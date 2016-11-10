@@ -49,9 +49,9 @@
                                     <?php $attributes = array("name" => "registrationform");
                 echo form_open("registrasi/register", $attributes);?>
                 <div class="form-group">
-                    <label for="name">First Name</label>
+                    <label for="name">Nama Depan</label>
                     <div class="has-icon pull-left">
-                    <input class="form-control" name="nama_depan" placeholder="Your First Name" type="text" value="<?php echo set_value('nama_depan'); ?>" />
+                    <input class="form-control" name="nama_depan" placeholder="Nama Depan" type="text" value="<?php echo set_value('nama_depan'); ?>" />
                     <i class="ico-user2 form-control-icon"></i>
                     </div>
                     
@@ -59,32 +59,46 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Last Name</label>
-                    <input class="form-control" name="nama_belakang" placeholder="Last Name" type="text" value="<?php echo set_value('nama_belakang'); ?>" />
+                    <label for="name">Nama Belakang</label>
+                    <div class="has-icon pull-left">
+                    <input class="form-control" name="nama_belakang" placeholder="Nama Belakang" type="text" value="<?php echo set_value('nama_belakang'); ?>" />
+                    <i class="ico-user2 form-control-icon"></i>
                     <span class="text-danger"><?php echo form_error('nama_belakang'); ?></span>
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="email">Email ID</label>
+                    <div class="has-icon pull-left">
                     <input class="form-control" name="email" placeholder="Email-ID" type="text" value="<?php echo set_value('email'); ?>" />
+                    <i class="ico-envelop3 form-control-icon"></i>
                     <span class="text-danger"><?php echo form_error('email'); ?></span>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="subject">Password</label>
+                    <div class="has-icon pull-left">
                     <input class="form-control" name="password" placeholder="Password" type="password" />
+                    <i class="ico-key2 form-control-icon"></i>
                     <span class="text-danger"><?php echo form_error('password'); ?></span>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="subject">Confirm Password</label>
+                    <div class="has-icon pull-left">
                     <input class="form-control" name="cpassword" placeholder="Confirm Password" type="password" />
+                    <i class="ico-key2 form-control-icon"></i>
                     <span class="text-danger"><?php echo form_error('cpassword'); ?></span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="name">Tingkat</label>
-                    <input class="form-control" name="id_tingkat" placeholder="Your First Name" type="text" value="<?php echo set_value('id_tingkat'); ?>" />
+                    <label for="name">Tingkat Sekolah</label>
+                    <div class="has-icon pull-left">
+                    <input class="form-control" name="id_tingkat" placeholder="Tingkat Sekolah" type="text" value="<?php echo set_value('id_tingkat'); ?>" />
                     <span class="text-danger"><?php echo form_error('id_tingkat'); ?></span>
+                    </div>
                 </div>
 
                 <div class="form-group">

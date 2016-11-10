@@ -28,31 +28,6 @@
                     </ul>
                     <!--/ END Left nav -->
 
-                    <!-- START navbar form -->
-                    <div class="navbar-form navbar-left dropdown" id="dropdown-form">
-                        <form action="" role="search">
-                            <div class="has-icon">
-                                <input type="text" class="form-control" placeholder="Search this site...">
-                                <i class="ico-search form-control-icon"></i>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- START navbar form -->
-
-                    <!-- START Right nav -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Search form toggler -->
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="dropdown" data-target="#dropdown-form">
-                                <span class="meta">
-                                    <span class="icon"><i class="ico-search"></i></span>
-                                </span>
-                            </a>
-                        </li>
-                        <!--/ Search form toggler -->
-                    </ul>
-                    <!--/ END Right nav -->
-
                     <!-- START nav collapse -->
                     <div class="collapse navbar-collapse navbar-collapse-alt" id="navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -113,89 +88,6 @@
                                     <li><a href="portfolio-4-columns.html">Portfolio 4 Columns</a></li>
                                     <li><a href="portfolio-single.html">Portfolio Single</a></li>
                                 </ul>
-                            </li>
-                            <li class="dropdown custom mega">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="meta">
-                                        <span class="text">MEGA MENU</span>
-                                        <span class="caret"></span>
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <ul class="table-layout nm">
-                                        <li class="col-sm-3 valign-top">
-                                            <ul class="dropdown-menu">
-                                                <li class="dropdown-header">Menu Section 1</li>
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li><a href="#">One more link</a></li>
-                                                <li><a href="#">Other more link</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="col-sm-3 valign-top">
-                                            <ul class="dropdown-menu">
-                                                <li class="dropdown-header">Menu Section 2</li>
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li><a href="#">One more link</a></li>
-                                                <li><a href="#">Other more link</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="col-sm-6 valign-top">
-                                            <ul class="dropdown-menu mb5">
-                                                <li class="dropdown-header">Mega Menu Widget</li>
-                                                <li class="row">
-                                                    <div class="col-xs-6">
-                                                        <!-- thumbnail -->
-                                                        <div class="thumbnail nm">
-                                                            <!-- media -->
-                                                            <div class="media">
-                                                                <!-- indicator -->
-                                                                <div class="indicator"><span class="spinner"></span></div>
-                                                                <!--/ indicator -->
-                                                                <!-- toolbar overlay -->
-                                                                <div class="overlay">
-                                                                    <div class="toolbar">
-                                                                        <a href="javascript:void(0);" class="btn btn-success"><i class="ico-plus"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/ toolbar overlay -->
-                                                                <img data-toggle="unveil" src="../image/portfolio/placeholder.jpg" data-src="../image/portfolio/portfolio8.jpg" alt="Photo" width="100%" />
-                                                            </div>
-                                                            <!--/ media -->
-                                                        </div>
-                                                        <!--/ thumbnail -->
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <!-- thumbnail -->
-                                                        <div class="thumbnail nm">
-                                                            <!-- media -->
-                                                            <div class="media">
-                                                                <!-- indicator -->
-                                                                <div class="indicator"><span class="spinner"></span></div>
-                                                                <!--/ indicator -->
-                                                                <!-- toolbar overlay -->
-                                                                <div class="overlay">
-                                                                    <div class="toolbar">
-                                                                        <a href="javascript:void(0);" class="btn btn-success"><i class="ico-plus"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <!--/ toolbar overlay -->
-                                                                <img data-toggle="unveil" src="../image/portfolio/placeholder.jpg" data-src="../image/portfolio/portfolio5.jpg" alt="Photo" width="100%" />
-                                                            </div>
-                                                            <!--/ media -->
-                                                        </div>
-                                                        <!--/ thumbnail -->
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
                         </ul>
                     </div>
