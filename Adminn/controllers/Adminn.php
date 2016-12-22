@@ -14,6 +14,8 @@ class Adminn extends MX_Controller {
 	}
 
 
+
 	//coba saja
+
 
 }
