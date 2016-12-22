@@ -6,9 +6,9 @@
 </div>
     
 <div class="header header-dark">
-    <a href="index.html" class="header-logo">MINI <span class="color-red-dark">BAR</span></a>
+    <a href="index.html" class="header-logo"><span class="color-red-dark">PATH</span></a>
     <a href="#" class="header-icon header-icon-1 close-sidebar-mask"></a>
-    <a href="#" class="header-icon header-icon-1 open-all-sidebar">
+    <a href="#" class="header-icon header-icon-1 close-sidebar">
         <em class="line-1"></em>
         <em class="line-2"></em>
         <em class="line-3"></em>    
@@ -19,12 +19,12 @@
 <!-- Main Small Icon Sidebar -->
 <div class="sidebar-menu sidebar-dark">
     <div class="sidebar-menu-scroll">
-        <a href="index.html"><i class="ion-ios-star-outline"></i><em>Welcome</em></a>       
+        <a class="current-menu" href="index.html"><i class="ion-ios-star-outline"></i><em>Welcome</em></a>       
         <a data-submenus="sub1" href="#"><i class="ion-ios-home-outline"></i><em>Home</em></a>       
         <a data-submenus="sub2" href="#"><i class="ion-ios-gear-outline"></i><em>Features</em></a>      
         <a data-submenus="sub3" href="#"><i class="ion-ios-camera-outline"></i><em>Gallery</em></a>       
         <a data-submenus="sub4" href="#"><i class="ion-ios-analytics-outline"></i><em>Portfolio</em></a>
-        <a class="current-menu" data-submenus="sub5" href="#"><i class="ion-ios-list-outline"></i><em>Pages</em></a>       
+        <a data-submenus="sub5" href="#"><i class="ion-ios-list-outline"></i><em>Pages</em></a>       
         <a data-submenus="sub6" href="#"><i class="ion-ios-heart-outline"></i><em>AppStyle</em></a>      
         <a data-submenus="sub7" href="#"><i class="ion-ios-cart-outline"></i><em>Store</em></a>
         <a data-submenus="sub8" href="#"><i class="ion-ios-paper-outline"></i><em>News</em></a>
@@ -103,7 +103,7 @@
         <a href="page-error.html"><i class="ion-ios-close-outline"></i><em>Error</em></a>       
         <a href="page-soon.html"><i class="ion-ios-clock-outline"></i><em>Soon</em></a>       
         <a href="page-login.html"><i class="ion-ios-unlocked-outline"></i><em>Login</em></a>       
-        <a class="active-menu" href="page-register.html"><i class="ion-ios-locked-outline"></i><em>Register</em></a>       
+        <a href="page-register.html"><i class="ion-ios-locked-outline"></i><em>Register</em></a>       
         <a href="page-reviews.html"><i class="ion-ios-star-outline"></i><em>Reviews</em></a>       
         <a href="page-profile-1.html"><i class="ion-ios-person-outline"></i><em>Profile 1</em></a>       
         <a href="page-profile-2.html"><i class="ion-ios-person-outline"></i><em>Profile 2</em></a>       

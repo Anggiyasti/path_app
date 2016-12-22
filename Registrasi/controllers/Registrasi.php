@@ -16,10 +16,13 @@ class Registrasi extends MX_Controller
 	}
 
 	function index() {
-        $this->load->view('layout/header');
-        $this->load->view('layout/nav');
-        $this->load->view('vMain');
-        $this->load->view('layout/footer');
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar-login');
+        $this->load->view('form_registrasi');
+        // $this->load->view('layout/header');
+        // $this->load->view('layout/nav');
+        // $this->load->view('vMain');
+        // $this->load->view('layout/footer');
 		// $this->load->view('vRegistrasi');
 	}
 
@@ -30,24 +33,21 @@ class Registrasi extends MX_Controller
         $this->form_validation->set_rules('email', 'Email ID', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|matches[cpassword]|md5');
         $this->form_validation->set_rules('cpassword', 'Confirm Password', 'trim|required');
-        $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
+        // $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
 
         //validate form input
         if ($this->form_validation->run() == FALSE) {
             // gagal
             // $this->load->view('vRegistrasi');
-            $this->load->view('layout/header');
-            $this->load->view('layout/nav');
-            $this->load->view('vMain');
-            $this->load->view('layout/footer');
-        } else {
+            redirect('registrasi');
+            } else {
             //insert the user registration details into database
             $data = array(
                 'nama_depan' => $this->input->post('nama_depan'),
                 'nama_belakang' => $this->input->post('nama_belakang'),
                 'email' => $this->input->post('email'),
-                'password' => $this->input->post('password'),
-                'id_tingkat' => $this->input->post('id_tingkat')
+                'password' => $this->input->post('password')
+                // 'id_tingkat' => $this->input->post('id_tingkat')
             );
             
             // insert form data into database

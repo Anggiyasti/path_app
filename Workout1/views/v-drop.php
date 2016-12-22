@@ -1,3 +1,39 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<title>Epsilon 7.0</title>
+    
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/style.css')?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/skin.css')?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/framework.css')?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/ionicons.min.css')?>">
+        <script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/jquery.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/plugins.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/custom.js')?>"></script>
+        <link rel="stylesheet" href="<?= base_url('assets/plugins/magnific/css/magnific-popup.min.css'); ?>">
+
+        <link rel="stylesheet" href="<?= base_url('assets/plugins/owl/css/owl.carousel.min.css'); ?>">
+
+
+
+        <link rel="shortcut icon" href="<?= base_url('assets/back/img/favicon.png') ?>">
+
+        <link rel="stylesheet" href="<?= base_url('assets/library/bootstrap/css/bootstrap.min.css'); ?>">
+
+        <link rel="stylesheet" href="<?= base_url('assets/stylesheet/layout.css'); ?>">
+
+        <link rel="stylesheet" href="<?= base_url('assets/stylesheet/uielement.css'); ?>">
+
+
+        <link rel="stylesheet" href="<?= base_url('assets/adminre/plugins/selectize/css/selectize.min.css'); ?>">
+
+        <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
+        <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
+</head>
 <body>
 <div id="page-transitions">
     
@@ -21,10 +57,10 @@
     <div class="sidebar-menu-scroll">
         <a href="index.html"><i class="ion-ios-star-outline"></i><em>Welcome</em></a>       
         <a data-submenus="sub1" href="#"><i class="ion-ios-home-outline"></i><em>Home</em></a>       
-        <a data-submenus="sub2" href="#"><i class="ion-ios-gear-outline"></i><em>Features</em></a>      
+        <a data-submenus="sub2" class="current-menu" href="#"><i class="ion-ios-gear-outline"></i><em>Features</em></a>      
         <a data-submenus="sub3" href="#"><i class="ion-ios-camera-outline"></i><em>Gallery</em></a>       
         <a data-submenus="sub4" href="#"><i class="ion-ios-analytics-outline"></i><em>Portfolio</em></a>
-        <a class="current-menu" data-submenus="sub5" href="#"><i class="ion-ios-list-outline"></i><em>Pages</em></a>       
+        <a data-submenus="sub5" href="#"><i class="ion-ios-list-outline"></i><em>Pages</em></a>       
         <a data-submenus="sub6" href="#"><i class="ion-ios-heart-outline"></i><em>AppStyle</em></a>      
         <a data-submenus="sub7" href="#"><i class="ion-ios-cart-outline"></i><em>Store</em></a>
         <a data-submenus="sub8" href="#"><i class="ion-ios-paper-outline"></i><em>News</em></a>
@@ -60,7 +96,7 @@
         <a class="close-sidebar" href="#"><i class="ion-ios-close-empty"></i><em>Close</em></a>        
         <a href="features-tabs.html"><i class="ion-ios-more-outline"></i><em>Tabs</em></a>       
         <a href="features-toggles.html"><i class="ion-ios-toggle-outline"></i><em>Toggles</em></a>       
-        <a href="features-dropdown.html"><i class="ion-ios-arrow-thin-down"></i><em>Dropdown</em></a>       
+        <a class="active-menu" href="features-dropdown.html"><i class="ion-ios-arrow-thin-down"></i><em>Dropdown</em></a>       
         <a href="features-accordion.html"><i class="ion-ios-settings"></i><em>Accordion</em></a>       
         <a href="features-typography.html"><i class="ion-ios-compose-outline"></i><em>Typography</em></a>       
         <a href="features-menu-bars.html"><i class="ion-navicon"></i><em>Menu Bars</em></a>       
@@ -103,7 +139,7 @@
         <a href="page-error.html"><i class="ion-ios-close-outline"></i><em>Error</em></a>       
         <a href="page-soon.html"><i class="ion-ios-clock-outline"></i><em>Soon</em></a>       
         <a href="page-login.html"><i class="ion-ios-unlocked-outline"></i><em>Login</em></a>       
-        <a class="active-menu" href="page-register.html"><i class="ion-ios-locked-outline"></i><em>Register</em></a>       
+        <a href="page-register.html"><i class="ion-ios-locked-outline"></i><em>Register</em></a>       
         <a href="page-reviews.html"><i class="ion-ios-star-outline"></i><em>Reviews</em></a>       
         <a href="page-profile-1.html"><i class="ion-ios-person-outline"></i><em>Profile 1</em></a>       
         <a href="page-profile-2.html"><i class="ion-ios-person-outline"></i><em>Profile 2</em></a>       
@@ -202,3 +238,133 @@
         <a class="close-sidebar" href="#"><i class="ion-ios-close-empty"></i><em>Close</em></a>  
     </div>
 </div>
+            
+<div id="page-content" class="header-clear">
+    <div id="page-content-scroll"><!--Enables this element to be scrolled --> 
+        
+        <div class="heading-strip bg-5">
+            <h3>Dropdowns</h3>
+            <p>Essential Features for your Page</p>
+            <i class="ion-android-arrow-dropdown-circle"></i>
+            <div class="overlay dark-overlay"></div>
+        </div>
+        <div class="decoration decoration-margins"></div>
+        
+        <div class="content">
+            <p>
+                Dropdown menus are great to have and add inside different pages where the site's 
+                main navigation is just not enough. 
+            </p>
+        </div>
+        
+        <div class="decoration decoration-margins"></div>
+        
+        <div class="content"> 
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item dropdown-toggle bg-red-dark"><i class="fa ion-ios-home-outline"></i><em>Dropdown</em><i class="ion-android-add"></i></a>
+                <div class="dropdown-content bg-red-light">
+                    <a href="#" class="dropdown-item"><i class="ion-ios-cart-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                    <a href="#" class="dropdown-item"><i class="ion-ios-paper-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                </div>
+            </div>             
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item dropdown-toggle bg-orange-dark"><i class="ion-ios-gear-outline"></i><em>Dropdown</em><i class="ion-android-add"></i></a>
+                <div class="dropdown-content bg-orange-light">
+                    <a href="#" class="dropdown-item"><i class="ion-ios-paper-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                    <a href="#" class="dropdown-item"><i class="ion-ios-book-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                </div>
+            </div>            
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item dropdown-toggle bg-green-dark"><i class="ion-ios-analytics-outline"></i><em>Dropdown</em><i class="ion-android-add"></i></a>
+                <div class="dropdown-content bg-green-light">
+                    <a href="#" class="dropdown-item"><i class="ion-ios-book-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                    <a href="#" class="dropdown-item"><i class="ion-ios-briefcase-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                </div>
+            </div>   
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item dropdown-toggle bg-blue-dark"><i class="ion-ios-camera-outline"></i><em>Dropdown</em><i class="ion-android-add"></i></a>
+                <div class="dropdown-content bg-blue-light">
+                    <a href="#" class="dropdown-item"><i class="ion-ios-person-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                    <a href="#" class="dropdown-item"><i class="ion-ios-paw-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                </div>
+            </div>     
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item dropdown-toggle bg-night-dark"><i class="ion-ios-videocam-outline"></i><em>Dropdown</em><i class="ion-android-add"></i></a>
+                <div class="dropdown-content bg-night-light">
+                    <a href="#" class="dropdown-item"><i class="ion-ios-film-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                    <a href="#" class="dropdown-item"><i class="ion-ios-lightbulb-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                </div>
+            </div> 
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item dropdown-toggle bg-magenta-dark"><i class="ion-ios-heart-outline"></i><em>Dropdown</em><i class="ion-android-add"></i></a>
+                <div class="dropdown-content bg-magenta-light">
+                    <a href="#" class="dropdown-item"><i class="ion-ios-calendar-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                    <a href="#" class="dropdown-item"><i class="ion-ios-gear-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                </div>
+            </div>            
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item dropdown-toggle dropdown-ghost"><i class="ion-ios-email-outline"></i><em>Dropdown</em><i class="ion-android-add"></i></a>
+                <div class="dropdown-content dropdown-ghost">
+                    <a href="#" class="dropdown-item"><i class="ion-ios-heart-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                    <a href="#" class="dropdown-item"><i class="ion-ios-star-outline"></i><em>Sub Item</em><i class="ion-ios-arrow-thin-right"></i></a>
+                </div>
+            </div>                          
+        </div>
+                
+        <div class="decoration decoration-margins"></div>
+        
+        <div class="footer footer-dark">
+            <a href="index.html" class="footer-logo scale-hover"></a>
+            <p>
+                Simplicity and complexity packed into a beautiful, 
+                feature filled, powerful, gorgeous mobile template.
+            </p>
+            <div class="footer-socials">
+                <a href="#" class="icon icon-round icon-ghost icon-xs facebook-bg"><i class="ion-social-facebook"></i></a>
+                <a href="#" class="icon icon-round icon-ghost icon-xs twitter-bg"><i class="ion-social-twitter"></i></a>
+                <a href="#" class="icon icon-round icon-ghost icon-xs google-bg"><i class="ion-social-googleplus"></i></a>
+                <a href="#" class="icon icon-round icon-ghost icon-xs phone-bg"><i class="ion-ios-telephone"></i></a>
+                <a href="#" class="icon icon-round icon-ghost icon-xs show-share-bottom border-magenta-dark"><i class="ion-android-share"></i></a>
+                <a href="#" class="icon icon-round icon-ghost icon-xs back-to-top border-blue-light"><i class="ion-arrow-up-b"></i></a>
+            </div>
+            <div class="decoration"></div>
+            <p class="copyright-text">Copyright <span id="copyright-year"></span>. All Rights Reserved.</p>
+        </div>
+    </div>  
+</div>
+    
+<div class="share-bottom share-dark">
+    <h3>Share Page</h3>
+    <div class="share-socials-bottom">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.themeforest.net/">
+            <i class="ion-social-facebook-outline icon-ghost facebook-bg"></i>
+            Facebook
+        </a>
+        <a href="https://twitter.com/home?status=Check%20out%20ThemeForest%20http://www.themeforest.net">
+            <i class="ion-social-twitter-outline twitter-bg"></i>
+            Twitter
+        </a>
+        <a href="https://plus.google.com/share?url=http://www.themeforest.net">
+            <i class="ion-social-googleplus-outline icon-ghost google-bg"></i>
+            Google
+        </a>
+        <a href="https://pinterest.com/pin/create/button/?url=http://www.themeforest.net/&media=https://0.s3.envato.com/files/63790821/profile-image.jpg&description=Themes%20and%20Templates">
+            <i class="ion-social-pinterest-outline icon-ghost pinterest-bg"></i>
+            Pinterest
+        </a>
+        <a href="sms:">
+            <i class="ion-ios-chatboxes-outline icon-ghost sms-bg"></i>
+            Text
+        </a>
+        <a href="mailto:?&subject=Check this page out!&body=http://www.themeforest.net">
+            <i class="ion-ios-email-outline icon-ghost mail-bg"></i>
+            Email
+        </a>
+        <div class="clear"></div>
+    </div>
+</div>
+ 
+    
+</div>
+</body>
+   
