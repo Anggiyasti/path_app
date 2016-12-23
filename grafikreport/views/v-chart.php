@@ -59,7 +59,7 @@
   <span class="tip"></span>
   </div>
   <?php foreach ($c as $key) {
-    $p = $key['score'];
+    $p = $key['score_grafik'];
   } ?>
   <span class="fill" data-percentage="<?=$p?>"></span>
 </div>
