@@ -35,7 +35,14 @@
                             <i class="ion-ios-analytics-outline border-magenta-dark"></i>
                             <em>Report Workout</em>
                         </a>
-                    </li>        
+                    </li>
+
+                    <li>
+                        <a href="<?= base_url('index.php/Grafikreport') ?>">
+                            <i class="ion-ios-analytics-outline border-magenta-dark"></i>
+                            <em>Grafik Report</em>
+                        </a>
+                    </li>          
                     <li>
                         <a href="<?php echo base_url('index.php/Login/logout_siswa')?>">
                             <i class="ion-ios-email-outline border-blue-dark"></i>
