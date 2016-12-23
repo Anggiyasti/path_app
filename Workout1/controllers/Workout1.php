@@ -42,7 +42,7 @@ class Workout1 extends MX_Controller
             $this->load->view('v-daftar-test', $data);
             $this->load->view('t-footer-soal');
         } else {
-            $this->errorTest();
+            // $this->errorTest();
         }
 	}
 
@@ -166,7 +166,7 @@ class Workout1 extends MX_Controller
         // get soal randoom
         $data['soal_random'] = $this->Mworkout1->get_random_for_latihan_bab($param);
        
-        var_dump($data);
+        // var_dump($data);
         // $data['mm_sol']=array();
         //ngecacah terus dimasukin ke relasi
         foreach ($data['soal_random'] as $row) {
@@ -177,7 +177,7 @@ class Workout1 extends MX_Controller
             $this->Mworkout1->insert_tb_mm_sol_lat($data['mm_sol']);
             
         };
-        redirect('workout1/mulaitest');
+        $this->mulaitest($jumlah_soal);
 
     }
 
