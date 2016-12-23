@@ -194,6 +194,21 @@ class Mworkout1 extends CI_Model
         return $query->result_array();
 
     }
+
+    // get mapel dan bab
+    public function get_nama_mapel_bab($mapel) {
+        $this->db->distinct();
+        $this->db->select('m.id_mapel, m.nama_mapel, m.alias_mapel, b.id_mapel, b.id_bab, b.judul_bab');
+        $this->db->from('tb_mata_pelajaran m');
+        $this->db->join('tb_bab b', 'm.id_mapel = b.id_mapel');
+        $this->db->where('m.id_mapel', $mapel);
+        // $this->db->select('id_bab, judul_bab, id_mapel');
+        // $this->db->from('tb_bab');
+        // $this->db->where('id_mapel', $mapel);
+         
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 
  ?>
