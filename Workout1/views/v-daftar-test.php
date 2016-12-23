@@ -1,5 +1,8 @@
 <!-- START Body -->
 <style>
+    .bod {
+        background-color:#0c1117;
+    }
     .pager li > a, .pager li > span{
         display: inline-block;
         padding: 5px 14px;
@@ -73,7 +76,7 @@
     }
 </style>
 </head>
-<body class="bgcolor-white">
+<body class="bod">
     <!-- START Template Main -->
     <script src="<?= base_url('assets/js/bjqs-1.10.js') ?>"></script>
     <script type="text/javascript">
@@ -139,7 +142,7 @@
         <!--/ END page header -->
 
         <!-- START Register Content -->
-        <section class="section bgcolor-white">
+        <section class="section bgcolor-black">
             <!-- container-fluid -->
             <div class="container-fluid">
                 <!-- row -->

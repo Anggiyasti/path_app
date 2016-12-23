@@ -200,7 +200,8 @@ class Workout1 extends MX_Controller
             $this->Mworkout1->insert_tb_mm_sol_lat($data['mm_sol']);
             
         };
-        $this->mulaitest($jumlah_soal);
+        // $this->mulaitest($jumlah_soal);
+        redirect('workout1/mulaitest');
 
     }
 
