@@ -9,7 +9,7 @@
             <div class="mobileui-lockscreen-notifications">
                 <div class="mobileui-lockscreen-notifications-scroll">
                     <?php foreach ($mapel as $mapelitem): ?>
-                        <a href="<?=base_url()?>index.php/workout1/reportmapel/<?=$mapelitem['id_mapel'] ?>" class="animated fadeIn delay-100">
+                        <a href="<?=base_url()?>index.php/workout1/pilih_bab_report/<?=$mapelitem['nama_mapel'] ?>" class="animated fadeIn delay-100">
                         <i class="ion-social-whatsapp-outline bg-green-light"></i>
                         <em><strong><?=$mapelitem['nama_mapel'] ?></strong></em>
                     </a>  

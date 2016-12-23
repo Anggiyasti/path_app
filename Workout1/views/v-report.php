@@ -1,124 +1,107 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+<title>Epsilon 7.0</title>
+    
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/style.css')?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/skin.css')?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/framework.css')?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/ionicons.min.css')?>">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+
+<script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/jquery.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/plugins.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/custom.js')?>"></script>
+
+</head>
+
+<body>
+<div id="page-transitions">
+    
+<div class="page-preloader page-preloader-dark">
+    <div class="spinner"></div>
+</div>
+    
+<div class="header header-dark">
+    <a href="index.html" class="header-logo"><span class="color-red-dark">WORKOUT</span></a>
+    <a href="#" class="header-icon header-icon-1 close-sidebar-mask"></a>
+    <a href="#" class="header-icon header-icon-1 open-sidebar" disabled>
+        <em class="line-1"></em>
+        <em class="line-2"></em>
+        <em class="line-3"></em>    
+    </a>
+    <a href="#" class="header-icon header-icon-4"><i class="ion-ios-email-outline"></i></a>
+</div>
+    
+<!-- Main Small Icon Sidebar -->
+<div class="sidebar-menu sidebar-dark">
+    <div class="sidebar-menu-scroll">
+        <a class="current-menu" href="<?= base_url('index.php/Login/cek_login_siswa') ?>""><i class="ion-ios-star-outline"></i><em>Welcome</em></a>       
+        <a data-submenus="sub1" href="#"><i class="ion-ios-home-outline"></i><em>User</em></a>       
+        <a data-submenus="sub2" href="#"><i class="ion-ios-gear-outline"></i><em>Workout</em></a>      
+    </div>
+</div>
+<!-- Home Submenus -->
+<div class="submenu submenu-dark" id="sub1">
+    <div class="submenu-scroll">
+        <a class="close-sidebar" href="#"><i class="ion-ios-close-empty"></i><em>User Setting</em></a>        
+        <a href="index.html"><i class="ion-ios-star-outline"></i><em>Logout</em></a>         
+    </div>
+</div>
+<!-- Features Submenus -->
+<div class="submenu submenu-dark" id="sub2">
+    <div class="submenu-scroll">
+        <a class="close-sidebar" href="#"><i class="ion-ios-close-empty"></i><em>Workout</em></a> 
+        <a href="<?= base_url('index.php/workout1/pilihreport') ?>"><i class="ion-ios-star-outline"></i><em>Report</em></a>         
+    </div>
+</div>    
 <div id="page-content" class="header-clear">
     <div id="page-content-scroll"><!--Enables this element to be scrolled --> 
-    <div class="decoration decoration-margins"></div>
-        
-    <div class="container">
 
-        <!-- START Row -->
-
-        <div class="row">
-
-
-
-            <div class="col-md-12">
-
-                <font color="red"><h3>Daftar Report</h3></font>
- 
-                <div class="col-md-12">
-
-                    <?php if ($report == array()): ?>
-
-                        <h4>Tidak ada Report Latihan.</h4>
-
-                    <?php else: ?>
-
-                        <table class="table 2" style="font-size: 13px">
-
-                            <thead>
-
-                                <tr>
-                                    <th>No </th>
-                                    <th>Pelajaran</th>
-                                    <th>Bab</th>
-
-                                    <th>Level</th>
-                                    <th>Score</th>
-
-                                    <th>Tanggal Pengerjaan</th>
-
-                                    <th width="2%">Detail</th>
-
-                                </tr>
-
-                            </thead>
-
-
-
-                            <tbody>
-
-                                <?php 
-                                $no = 1;
-                                foreach ($report as $reportitem): ?>
-
-                                    <tr>
-
-                                        <td><?php echo $no; ?></td>
-
-                                        <td><?= $reportitem['nama_mapel'] ?></td>
-
-                                        <td><?= $reportitem['judul_bab'] ?></td>
-
-                                        <?php if ($reportitem['kesulitan'] = '1') { ?>
-                                            <td>Mudah</td>
-                                        <?php } elseif ($reportitem['kesulitan'] = '2') { ?>
-                                            <td>Sedang</td>
-                                        <?php } else { ?>
-                                            <td>Sulit</td>
-                                        <?php } ?>
-
-                                        <td><?= $reportitem['score'] ?></td>
-
-                                        <td><?= $reportitem['tgl_pengerjaan'] ?></td>
-
-
-
-                                        <td>
-                                        <a href="<?=base_url()?>index.php/workout1/detailreport/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail"><i class="glyphicon glyphicon-list-alt"></i>Detail</a>
-
-                                
-                                        </td>
-
-                                    </tr>
-
-                                <?php 
-                                $no++;
-                                endforeach ?>
-
-                            </tbody>
-
-                        </table>
-
-                    <?php endif ?>
-
-                </div>
-
+         <div class="heading-strip bg-4">
+            <?php 
+            foreach ($mapel as $reportitem): ?>
+            <h3>Mata Pelajaran : <?= $reportitem['nama_mapel'] ?></h3>
+            <div class="overlay dark-overlay"></div>
+            <?php 
+            endforeach ?>
+            <?php 
+            foreach ($bab as $reportitem): ?>
+            <h3>Bab : <?= $reportitem['judul_bab'] ?></h3>
+            <div class="overlay dark-overlay"></div>
+            <?php 
+            endforeach ?>
+        </div>
+        <div class="content">
+            <div class="portfolio portfolio-one-item">  
+                <?php if ($report == array()): ?>
+                    <h4>Tidak ada Report Latihan.</h4>
+                <?php else: ?>
+                    <div class="portfolio-item">
+                    <?php foreach ($report as $reportitem): ?>
+                            Time : <?= $reportitem['tgl_pengerjaan'] ?> <br>
+                            <?php if ($reportitem['kesulitan'] = '1') { ?>
+                            Level : Easy <br>
+                            <?php } elseif ($reportitem['kesulitan'] = '2') { ?>
+                            Level : Medium <br>
+                            <?php } else { ?>
+                            Level : Hard <br>
+                            <?php } ?>
+                            Score : <?= $reportitem['score'] ?><br>
+                            <a href="<?=base_url()?>index.php/workout1/detailreport/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail"><i class="glyphicon glyphicon-list-alt"></i>Detail</a>
+                    <?php endforeach ?>
+                    </div>
+                <?php endif ?>
             </div>
+        </div>
 
 
-
-
-
-
-
-
-
-
-            <!--/ END Blog Content -->
-
-
-
-            <!-- START To Top Scroller -->
-
-            <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
-
-            <!--/ END To Top Scroller -->
-
-
+    </div>
 </div>
-</div></div>
-            <!--/ END Template Main -->
-
-
-
+</div>
 </body>

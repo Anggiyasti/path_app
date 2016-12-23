@@ -3,15 +3,14 @@
         
         <div class="mobileui-lockscreen">
             <div class="mobileui-lockscreen-header animated fadeIn">
-                <h3><!--Time--></h3>
-                <p></p>
+                <h1><?=$mapel ?></h1>
             </div>
             <div class="mobileui-lockscreen-notifications">
                 <div class="mobileui-lockscreen-notifications-scroll">
-                    <?php foreach ($mapel as $mapelitem): ?>
-                        <a href="<?=base_url()?>index.php/workout1/pilih_bab/<?=$mapelitem['nama_mapel'] ?>" class="animated fadeIn delay-100">
+                    <?php foreach ($bab as $row): ?>
+                        <a href="<?=base_url()?>index.php/workout1/reportmapel/<?=$row['id_bab'] ?>" class="animated fadeIn delay-100">
                         <i class="ion-social-whatsapp-outline bg-green-light"></i>
-                        <em><strong><?=$mapelitem['nama_mapel'] ?></strong></em>
+                        <em><strong><?=$row['judul_bab'] ?></strong></em>
                     </a>  
                     <?php endforeach ?>
                     <div class="clear"></div>

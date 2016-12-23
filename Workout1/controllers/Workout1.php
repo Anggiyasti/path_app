@@ -5,31 +5,36 @@
 */
 class Workout1 extends MX_Controller
 {
-	
-	function __construct()
-	{
-		parent::__construct();
-		$this->load->model('Mworkout1');
-	}
+    
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Mworkout1');
+    }
 
-	public function index()
-	{
-		$data['mapel'] = $this->Mworkout1->getdaftarmapel();
-		$this->load->view('template/header');
+    public function index()
+    {
+        $data['mapel'] = $this->Mworkout1->getdaftarmapel();
+        $this->load->view('template/header');
         $this->load->view('v-header');
-		$this->load->view('v-show-mapel', $data);
-	}
+        $this->load->view('v-show-mapel', $data);
+    }
+    public function chart()
+    {
+        $data['c'] = $this->Mworkout1->chart_model();
+        $this->load->view('v-chart',$data);
+    }
 
-	// fungsi edit pilihan bab
-	public function pilih_bab($no) {
-			$data['bab'] = $this->Mworkout1->get_mapel_bab($no);
-			$this->load->view('template/header');
-			$this->load->view('v-header');
-			$this->load->view('v-pilih-bab', $data);
-	}
+    // fungsi pilihan bab
+    public function pilih_bab($no) {
+            $data['bab'] = $this->Mworkout1->get_mapel_bab($no);
+            $this->load->view('template/header');
+            $this->load->view('v-header');
+            $this->load->view('v-pilih-bab', $data);
+    }
 
     // fungsi mulai workout
-	public function mulaitest() {
+    public function mulaitest() {
         if (!empty($this->session->userdata['id_latihan'])) {
             $id = $this->session->userdata['id_latihan'];
             $kesulitan = $this->input->post('kesulitan');
@@ -42,9 +47,9 @@ class Workout1 extends MX_Controller
             $this->load->view('v-daftar-test', $data);
             $this->load->view('t-footer-soal');
         } else {
-            // $this->errorTest();
+            $this->errorTest();
         }
-	}
+    }
 
     // fungsi jika error test
     public function errortest() {
@@ -52,7 +57,7 @@ class Workout1 extends MX_Controller
         $this->load->view('v-error-test.php');
     }
 
-	// fungsi untuk mengecek jawaban workout
+    // fungsi untuk mengecek jawaban workout
     public function cekjawaban() {
     $data = $this->input->post('pil');
     $id = $this->session->userdata['id_latihan'];
@@ -82,7 +87,7 @@ class Workout1 extends MX_Controller
     }
     $hasil['id_latihan'] = $id_latihan;
     // $hasil['id_pengguna'] = $this->session->userdata['id'];
-    $hasil['id_pengguna'] =  $this->session->userdata['email'];
+    $hasil['id_pengguna'] =1;
     $hasil['jmlh_kosong'] = $kosong;
     $hasil['jmlh_benar'] = $benar;
     $hasil['jmlh_salah'] = $salah;
@@ -97,43 +102,34 @@ class Workout1 extends MX_Controller
     }
 
     $hasil['durasi_pengerjaan'] = $this->input->post('durasi');
-
-
-    $mudah = 4;
-    $sedang = 5;
-    $sulit = 6;
-
-
-    if ($level == "4") {
-        $hasil1 = floatval($benar * ($mudah - $salah));
-    } else if ($level == "5") {
-        $hasil1 = floatval($benar * ($sedang - $salah));
-    } else {
-        $hasil1 = floatval($benar * ($sulit - $salah));
-    }
-
-    $hasil2 = floatval($jumlahsoal * 6);
 //
     $result = $this->Mworkout1->inputreport($hasil);
-    $result1 = $this->Mworkout1->insertst($id_latihan,$hasil1,$hasil2);
     $this->Mworkout1->updateLatihan($id_latihan);
     $this->session->unset_userdata('id_latihan');
-    redirect(base_url('index.php/Login/cek_login_siswa'));
+    redirect(base_url('index.php/workout/daftarlatihan'));
     }
 
-	public function daftarlatihan() {
+    public function daftarlatihan() {
     $data['report'] = $this->Mworkout1->get_report2($this->session->userdata['username']);
     $data['latihan'] = $this->Mworkout1->get_latihan($this->session->userdata['username']);
 
+        // $this->load->view('template/header');
+        // $this->load->view('template/sidebar');
+        // $this->load->view('Videoback/layout/header');
+        // $this->load->view('workout1/v-report', $data);
+        // $this->load->view('Videoback/layout/footer');
         $this->load->view('v-detail-report', $data);
     }
 
     public function reportmapel($mapel) {
     $data['report'] = $this->Mworkout1->get_report($this->session->userdata['username'], $mapel);
     $data['latihan'] = $this->Mworkout1->get_latihan($this->session->userdata['username']);
+    $data['mapel'] = $this->Mworkout1->get_nama_mapel_bab($mapel);
+    $data['bab'] = $this->Mworkout1->get_nama_bab($mapel);
 
-        $this->load->view('template/header');
-        // $this->load->view('template/sidebar');
+
+        // $this->load->view('template/header');
+        // $this->load->view('v-header');
         // $this->load->view('Videoback/layout/header');
         $this->load->view('v-report', $data);
     }
@@ -164,7 +160,7 @@ class Workout1 extends MX_Controller
             "jumlah_soal" => $jumlah_soal,
             "kesulitan" => $kesulitan,
             "nm_latihan" => $idbab,
-            "create_by" => $this->session->userdata['email'],
+            "create_by" => $this->session->userdata['username'],
             "uuid_latihan" => $uuid_latihan,
             "id_bab" => $idbab
         );
@@ -182,26 +178,18 @@ class Workout1 extends MX_Controller
         // var_dump($param);
         // get soal randoom
         $data['soal_random'] = $this->Mworkout1->get_random_for_latihan_bab($param);
-
-        $bab = array(
-            "id_bab" => $idbab,
-            "id_latihan" => $id_latihan  
-        );
-         $this->Mworkout1->inputgrafik($bab);
        
         // var_dump($data);
         // $data['mm_sol']=array();
-        //ngecacah terus dimasukin ke relasi
+        //ngecacah teru dimasukin ke relasi
         foreach ($data['soal_random'] as $row) {
             $data['mm_sol'] = array(
                 "id_latihan" => $id_latihan,
                 "id_soal" => $row['id_bank']
             );
             $this->Mworkout1->insert_tb_mm_sol_lat($data['mm_sol']);
-            
+            redirect('workout1/mulaitest');
         };
-        // $this->mulaitest($jumlah_soal);
-        redirect('workout1/mulaitest');
 
     }
 
@@ -243,9 +231,19 @@ class Workout1 extends MX_Controller
     {
         $data['report'] = $this->Mworkout1->get_report_detail($this->session->userdata['username'], $id);
         $data['latihan'] = $this->Mworkout1->get_latihan($this->session->userdata['username']);
-        // $this->load->view('t-header-soal');
+        // $this->load->view('template/header');
+        // $this->load->view('v-header');
         $this->load->view('v-detail-report', $data);
         // $this->load->view('t-footer-soal');
+    }
+
+    // fungsi pilihan bab
+    public function pilih_bab_report($no) {
+            $data['bab'] = $this->Mworkout1->get_mapel_bab($no);
+            $data['mapel'] = $no;
+            $this->load->view('template/header');
+            $this->load->view('v-header');
+            $this->load->view('v-bab-report', $data);
     }
 
 
