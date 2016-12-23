@@ -71,6 +71,16 @@ class Mworkout1 extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    //insert bab ke tb_grafik_report
+    public function inputgrafik($data) {
+        $this->db->insert('tb_grafik_report', $data);
+    }
+
+    public function insertst($data, $hasil,$hasil1) {
+        $query="UPDATE tb_grafik_report set sub_score= $hasil , total= $hasil1 where id_latihan='$data'";
+        $result = $this->db->query($query);
+        //return $result->result_array();    
+    }
 
     // input ke tb_report_latihan
     public function inputreport($data) {
