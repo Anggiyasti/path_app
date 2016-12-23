@@ -36,6 +36,14 @@ class Grafikreport extends MX_Controller {
     }
 
 
+    // buat nampilin grafik bar
+    public function chart()
+    {
+        $data['c'] = $this->Mgrafik->chart_model();
+        $this->load->view('v-chart',$data);
+    }
+
+
 
 
 	

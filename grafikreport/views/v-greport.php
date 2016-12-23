@@ -71,8 +71,8 @@
                 <?php else: ?>
                     <div class="portfolio-item">
                     <?php foreach ($report as $reportitem): ?>
-                            Score : <?= $reportitem['nama_mapel'] ?> <br>
-                            Total : <?= $reportitem['judul_bab'] ?> <br>
+                            Mata Pelajaran : <?= $reportitem['nama_mapel'] ?> <br>
+                            Bab : <?= $reportitem['judul_bab'] ?> <br>
 
                             Score : <?= $reportitem['score'] ?> <br>
                             Total : <?= $reportitem['total'] ?> <br>
