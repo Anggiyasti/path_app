@@ -21,12 +21,10 @@
 </head>
 
 <body>
-<div id="page-transitions">
-    
 <div class="page-preloader page-preloader-dark">
     <div class="spinner"></div>
 </div>
-    
+
 <div class="header header-dark">
     <a href="index.html" class="header-logo"><span class="color-red-dark">WORKOUT</span></a>
     <a href="#" class="header-icon header-icon-1 close-sidebar-mask"></a>
@@ -35,9 +33,8 @@
         <em class="line-2"></em>
         <em class="line-3"></em>    
     </a>
-    <a href="#" class="header-icon header-icon-4"><i class="ion-ios-email-outline"></i></a>
 </div>
-    
+
 <!-- Main Small Icon Sidebar -->
 <div class="sidebar-menu sidebar-dark">
     <div class="sidebar-menu-scroll">
@@ -59,7 +56,7 @@
         <a class="close-sidebar" href="#"><i class="ion-ios-close-empty"></i><em>Workout</em></a> 
         <a href="<?= base_url('index.php/workout1/pilihreport') ?>"><i class="ion-ios-star-outline"></i><em>Report</em></a>         
     </div>
-</div>    
+</div>   
 <div id="page-content" class="header-clear">
     <div id="page-content-scroll"><!--Enables this element to be scrolled --> 
 
@@ -102,6 +99,5 @@
 
 
     </div>
-</div>
 </div>
 </body>

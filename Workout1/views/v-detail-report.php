@@ -19,7 +19,13 @@
         <script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/jquery.js')?>"></script>
         <script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/plugins.js')?>"></script>
         <script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/custom.js')?>"></script>
-    
+    <style type="text/css">
+        .chart {
+            height: 400px; 
+            width: 100%;
+            color: green;
+        }
+    </style>
     </head>
 
     <body>
@@ -78,7 +84,7 @@
                 <?php foreach ($report as $reportitem): ?>
                     <div>Pelajaran &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['nama_mapel'] ?></div>
                     <div>Bab &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp :&nbsp&nbsp&nbsp<?= $reportitem['judul_bab'] ?></div>
-                    <div>Level &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :&nbsp&nbsp&nbsp
+                    <div>Level &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :&nbsp&nbsp
                         <?php if ($reportitem['kesulitan'] = '1') { ?>
                             Mudah
                         <?php } elseif ($reportitem['kesulitan'] = '2') { ?>
@@ -87,17 +93,17 @@
                             Sulit
                         <?php } ?>
                     </div>
-                    <div>Tanggal Pengerjaan &nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['nama_mapel'] ?></div>
-                    <div>Score &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['nama_mapel'] ?></div>
+                    <div>Tanggal Pengerjaan &nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['tgl_pengerjaan'] ?></div>
+                    <div>Score &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['score'] ?></div>
                         
                 <?php endforeach ?>
-
-                <div id="chartContainer" style="height: 400px; width: 100%;">
-
-                </div>
                
             <?php endif ?>
          </div>    
+         <div class="chart">
+            <div id="chartContainer">
+            </div>
+        </div>
     </div>
 </div>
 
@@ -122,18 +128,19 @@
                     report.score = data.jmlh_benar;
                     var chart = new CanvasJS.Chart("chartContainer", {
                         title: {
+                            fontColor: "white",
                             text: "Bab : " + data.judul_bab + " - Score : " + report.score
                         },
                         animationEnabled: true,
                         theme: "theme1",
-                        backgroundColor: "#2F4F4F",
+                        backgroundColor: "black",
                         data: [
                             {
                                 type: "doughnut",
                                 indexLabelFontFamily: "Garamond",
                                 indexLabelFontSize: 20,
                                 startAngle: 0,
-                                indexLabelFontColor: "dimgrey",
+                                indexLabelFontColor: "white",
                                 indexLabelLineColor: "darkgrey",
                                 toolTipContent: "Jumlah : {y} ",
                                 dataPoints: [
