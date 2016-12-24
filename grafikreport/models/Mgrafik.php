@@ -58,15 +58,15 @@ class Mgrafik extends CI_Model
 
 
     // get data buat grafik bar
-    public function chart_model()
+    public function chart_model($bab)
     {
-        $query = "SELECT m.nama_mapel, b.judul_bab, ROUND(SUM(g.sub_score) / SUM(g.total) * 1 /100) AS score_grafik, SUM( total ) AS total 
+        $query = "SELECT m.nama_mapel, b.judul_bab, ROUND(SUM(g.sub_score) / SUM(g.total) * 100) AS score_grafik, SUM( total ) AS total 
             FROM tb_grafik_report as g 
             RIGHT JOIN tb_bab as b
             ON  g.id_bab = b.id_bab
             JOIN tb_mata_pelajaran as m
             ON b.id_mapel = m.id_mapel
-            WHERE g.id_bab =8";
+            WHERE g.id_bab ='$bab'";
         $result = $this->db->query($query);
         return $result->result_array();
     }
