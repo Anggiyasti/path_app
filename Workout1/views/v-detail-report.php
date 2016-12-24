@@ -54,7 +54,7 @@
 <div id="page-content" class="header-clear">
     <div id="page-content-scroll"><!--Enables this element to be scrolled --> 
         <div class="content">
-        <h3>Daftar Report</h3>
+        <h3>Report Detail</h3>
             <?php if ($report == array()): ?>
                 <h4>Tidak ada Report Latihan.</h4>
             <?php else: ?>
@@ -70,7 +70,7 @@
                             Sulit
                         <?php } ?>
                     </div>
-                    <div>Tanggal Pengerjaan &nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['tgl_pengerjaan'] ?></div>
+                    <div>Tanggal Pengerjaan&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['tgl_pengerjaan'] ?></div>
                     <div>Score &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['score'] ?></div>
                         
                 <?php endforeach ?>
