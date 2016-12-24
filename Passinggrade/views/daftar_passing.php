@@ -51,7 +51,7 @@
                     </div>
                     <div class="table-responsive panel-collapse pull out">
                              <?php echo $this->session->flashdata('msg'); ?>
-                                <table class="table table-bordered" id="zero-configuration" style="font-size: 13px">
+                                <table class="table table-bordered" id="column-filtering" style="font-size: 13px">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -115,8 +115,19 @@
                                         $no++;
                                         endforeach; ?>                    
                     </tbody>
+                    <tfoot>
+                                    <tr>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="No"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="Kode"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="Wilayah"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="Universitas"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="Program Studi"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="Passing Grade"></th>
+                                        <th><input type="search" class="form-control" name="search_engine"  disabled/></th>
+                                    </tr>
+                                </tfoot>
                     </table>
-                                                </div>
+                </div>
 
                 </div>
                 <!-- /.table-hover -->
