@@ -231,8 +231,8 @@ class Workout1 extends MX_Controller
     {
         $data['report'] = $this->Mworkout1->get_report_detail($this->session->userdata['username'], $id);
         $data['latihan'] = $this->Mworkout1->get_latihan($this->session->userdata['username']);
-        // $this->load->view('template/header');
-        // $this->load->view('v-header');
+        $this->load->view('template/header');
+        $this->load->view('v-header');
         $this->load->view('v-detail-report', $data);
         // $this->load->view('t-footer-soal');
     }

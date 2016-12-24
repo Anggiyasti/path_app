@@ -1,5 +1,4 @@
 <body>
-<div id="page-transitions">
     
 <div class="page-preloader page-preloader-dark">
     <div class="spinner"></div>

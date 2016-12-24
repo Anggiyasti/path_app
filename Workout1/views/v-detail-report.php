@@ -1,24 +1,3 @@
-<html>
-
-
-
-    <!-- START Head -->
-
-    <head>
-
-        <title>Workout</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <!-- Mini bar-->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/style.css')?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/skin.css')?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/framework.css')?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/ionicons.min.css')?>">
-        <script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/jquery.js')?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/plugins.js')?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/custom.js')?>"></script>
     <style type="text/css">
         .chart {
             height: 400px; 
@@ -28,13 +7,11 @@
     </style>
     </head>
 
-    <body>
 
 
 
 
 <!--     </head> -->
-<div id="page-transitions">
     
 <div class="page-preloader page-preloader-dark">
     <div class="spinner"></div>
