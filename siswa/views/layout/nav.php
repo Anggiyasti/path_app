@@ -5,7 +5,7 @@
         <div class="landing-page landing-dark">
             <div class="landing-wrapper">
                 <div class="landing-header no-bottom">
-                    <a class="landing-header-logo" href="#">Welcome <?=$this->session->userdata['username'];?></a>
+                    <a class="landing-header-logo" href="#">Welcome</a>
                     <div class="clear"></div>
                 </div>
                 
@@ -38,7 +38,7 @@
                     </li>
 
                     <li>
-                        <a href="<?= base_url('index.php/Grafikreport') ?>">
+                        <a href="<?= base_url('index.php/grafikreport') ?>">
                             <i class="ion-ios-analytics-outline border-magenta-dark"></i>
                             <em>Grafik Report</em>
                         </a>

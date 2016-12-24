@@ -17,23 +17,30 @@ class Grafikreport extends MX_Controller {
 
 	// fungsi pilihan bab
     public function pilih_bab_report($no) {
+
+            $d = $this->input->post('');
+
             $data['bab'] = $this->Mgrafik->get_mapel_bab($no);
-            $data['c'] = $this->Mgrafik->chart_model($no);
+            // $data['c'] = $this->Mgrafik->chart_model($d);
             $data['mapel'] = $no;
             $this->load->view('template/header');
             $this->load->view('v-header');
             $this->load->view('bab_grafik', $data);
+            // $this->load->view('v-chart', $data);
 
     }
 
     public function greport($bab) {
     $data['report'] = $this->Mgrafik->get_greport($bab);
+    $data['c'] = $this->Mgrafik->chart_model($bab);
     
 
 
         // $this->load->view('template/header');
         // $this->load->view('v-header');
         // $this->load->view('Videoback/layout/header');
+    $this->load->view('template/header');
+            $this->load->view('v-header');
         $this->load->view('v-greport', $data);
     }
 
