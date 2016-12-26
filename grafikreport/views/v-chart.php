@@ -53,8 +53,19 @@
 </style>
 </head>
 <body>
-<br><br>
-<div id="bar1" class="barfiller">
+<div id="page-content" class="page-content header-clear bg bg-cover">
+    <div id="page-content-scroll">
+        
+        <div class="mobileui-lockscreen-notifications">
+            <div class="mobileui-lockscreen-header animated fadeIn">
+                <h1><?=$mapel ?></h1>
+            </div>
+            <div class="mobileui-lockscreen-notifications">
+                    <?php foreach ($bab as $row): ?>
+                        <a href="" class="animated fadeIn delay-100">
+                        <i></i>
+                        <em><strong><h2><?=$row['judul_bab'] ?></h2></strong><div id="bar1" class="barfiller">
+                        
   <div class="tipWrap">
   <span class="tip"></span>
   </div>
@@ -62,7 +73,19 @@
     $p = $key['score_grafik'];
   } ?>
   <span class="fill" data-percentage="<?=$p?>"></span>
+</div></em>
+                    </a>  
+                    <?php endforeach ?>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <a href="#" class="mobileui-lockscreen-home animated fadeIn delay-300"><i class="ion-ios-home-outline"></i></a>
+        </div>
+        
+    </div>  
 </div>
+    
+
 
 <script type="text/javascript">
 	$('#bar1').barfiller();
@@ -81,6 +104,7 @@
   animateOnResize: true
   
 });
+
 </script>
 
 </body>
