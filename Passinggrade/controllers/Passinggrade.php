@@ -130,7 +130,7 @@ class Passinggrade extends MX_Controller {
         $this->load->view('admin/layout/footer');
     }
         elseif ($this->session->userdata('id_guru')) {
-        $data['data']   = $this->Mpassing->getdaftarguru();
+        $data['data']   = $this->Mpassing->getpassing();
         $this->load->view('guru/layout/header');
         $this->load->view('daftar_passing', $data);
         $this->load->view('guru/layout/footer');
