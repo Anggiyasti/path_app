@@ -33,13 +33,13 @@ $(document).ready(function(){
   margin: 0;
 }
 
-body {background-color: #61B2A0}
-h1 {
+/*body {background-color: #61B2A0}*/
+/*h1 {
   width: 100%;
   display: inline-block;
   text-align: center;
   margin: 50px 0
-}
+}*/
 
 .wrapper {
   max-width: 1200px;
@@ -80,10 +80,11 @@ h1 {
 
 .skillbar-bar {
   height: 35px;
-  width: 0px;
+  width: 100%;
   background: #6adcfa;
   border-radius: 40px;
   display: inline-block;
+  padding-left: 20px;
 }
 
 .skill-bar-percent {
@@ -104,32 +105,42 @@ h1 {
 </head>
 
 <body>
-<div id="jquery-script-menu">
+
+<div id="page-content" class="page-content header-clear bg bg-cover">
+    <div id="page-content-scroll">
+        
+        <div class="mobileui-lockscreen-notifications">
+            <div class="mobileui-lockscreen-header animated fadeIn">
+                <h1><?=$mapel ?></h1>
+            </div>
+            <div id="jquery-script-menu">
 <div class="jquery-script-center">
 <div class="jquery-script-clear"></div>
 </div>
 </div>
-<div class="wrapper">
-    <h1>jQuery Skills Bar Plugin Demo</h1>
+
    
     <?php foreach ($c as $key) : 
      $p = $key['score_grafik'];
     ?>
+      <span><h3><?=$key['judul_bab'];?></h3></span>
 
     <div class="skillbar" data-percent="<?=$p?>">
-      <span class="skillbar-title" style="background: #d35400;"><?=$key['judul_bab'];?></span>
       <p class="skillbar-bar" style="background: #e67e22;"></p>
       <span class="skill-bar-percent"></span>
     </div>
     <!-- End Skill Bar -->
     <?php endforeach ?>
-    <div class="skillbar" data-percent="13">
-      <span class="skillbar-title" style="background: #d35400;">HTML5</span>
-      <p class="skillbar-bar" style="background: #e67e22;"></p>
-      <span class="skill-bar-percent"></span>
-    </div>
+   
     <!-- End Skill Bar -->
+            
+            </div>
+            <a href="#" class="mobileui-lockscreen-home animated fadeIn delay-300"><i class="ion-ios-home-outline"></i></a>
+        </div>
+        
+    </div>  
 </div>
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

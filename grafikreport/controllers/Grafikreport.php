@@ -26,7 +26,7 @@ class Grafikreport extends MX_Controller {
             $this->load->view('template/header');
             $this->load->view('v-header');
             // $this->load->view('bab_grafik', $data);
-            $this->load->view('v-chart', $data);
+            $this->load->view('v-chart2', $data);
 
     }
 

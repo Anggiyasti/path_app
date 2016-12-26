@@ -66,7 +66,7 @@ class Mgrafik extends CI_Model
             ON  g.id_bab = b.id_bab
             JOIN tb_mata_pelajaran as m
             ON b.id_mapel = m.id_mapel
-            WHERE m.nama_mapel = '$data' group by 'g.id_bab'";
+            WHERE m.nama_mapel = '$data' group by g.id_bab";
         $result = $this->db->query($query);
         return $result->result_array();
     }
