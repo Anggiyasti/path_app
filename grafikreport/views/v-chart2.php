@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery Skills Bar Plugin Demo</title>
-<script src="<?= base_url('assets/js/jquery-3.1.0.slim.min.js')?>"></script>
+<script src="<?= base_url('assets/js/jquery-1.11.3.min')?>"></script>
 <script src="<?= base_url('assets/plugins/skill.bars.jquery.js')?>"></script>
 
 <script>

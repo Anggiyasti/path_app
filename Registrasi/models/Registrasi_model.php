@@ -20,7 +20,7 @@ class Registrasi_model extends CI_Model
 		{
 			$from_email = 'noreply@sibejooclass.com';
 			$subject = 'Verify Your Email Address';
-			$message = 'Dear Student Lovers,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> http://localhost:81/path/index.php/registrasi/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Path Team';
+			$message = 'Dear Student Lovers,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> '. base_url() .' index.php/registrasi/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Path Team';
 
 			//configure email settings
         $config['protocol'] = 'smtp';

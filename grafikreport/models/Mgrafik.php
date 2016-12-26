@@ -52,8 +52,6 @@ class Mgrafik extends CI_Model
         $result = $this->db->query($query);
         return $result->result_array();
 
-
-
     }
 
 
