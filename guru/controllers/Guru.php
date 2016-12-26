@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class guru extends MX_Controller {
+class Guru extends MX_Controller {
 
     public function __construct() {
         parent::__construct();
