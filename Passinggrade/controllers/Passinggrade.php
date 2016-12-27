@@ -220,6 +220,28 @@ class Passinggrade extends MX_Controller {
         
     }
 
+    public function hasilpassing($no)
+    {
+
+
+        if ($no == 1 ) {
+            $a = 20;
+            $b = 25;
+        } elseif ($no == 2 ) {
+           $a = 40;
+            $b = 50;
+        }
+        $data['data']  = $this->Mpassing->hasil_passing($a,$b);
+        $this->load->view('template/header');
+        $this->load->view('workout1/v-header');
+        $this->load->view('v-coba',$data);
+        
+
+        // var_dump($data);
+
+        
+    }
+
 
 
 }
