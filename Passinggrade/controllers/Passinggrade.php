@@ -183,9 +183,10 @@ class Passinggrade extends MX_Controller {
 
     // fungsi untuk menampilkan  prodi berdasarkan pilihan 
     public function prodi($prodi)
-    {
-        $data['data']   = $this->Mpassing->getprodi($prodi);
-        $data['prodi'] = $prodi;
+    {   
+       $prodii = urldecode($prodi);
+        $data['data']   = $this->Mpassing->getprodi($prodii);
+        $data['prodi'] = $prodii;
         $this->load->view('template/header');
         $this->load->view('workout1/v-header');
         $this->load->view('v-prodi', $data);

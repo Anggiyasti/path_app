@@ -56,8 +56,9 @@
  	// tampil passing grade berdasarkan prodi
     public function getprodi($prodi) {
         $this->db->distinct();
-		$this->db->select()->from('tb_passing_grade');
-		$this->db->where('prodi', $prodi);
+		$this->db->select('*');
+		$this->db->from('tb_passing_grade');
+		$this->db->like('prodi', $prodi);
 		$this->db->where('status', '1');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
