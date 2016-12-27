@@ -3,7 +3,7 @@
         <div class="content"> 
         <h2>Prodi</h2>
             <?php foreach ($data as $row): ?>
-            <a href="<?=base_url()?>index.php/passinggrade/prodi/<?=$row['prodi']?>" >
+            <a href="<?=base_url()?>index.php/passinggrade/prodi/<?=$row['prodi']?>">
             <h3><strong><?=$row['prodi'];?></strong></h3>
             <?php endforeach ?>                          
         </div>
