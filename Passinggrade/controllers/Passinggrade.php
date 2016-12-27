@@ -153,6 +153,21 @@ class Passinggrade extends MX_Controller {
 
     }
 
+    public function pass_grade()
+    {
+        $this->load->view('template/header');
+        $this->load->view('workout1/v-header');
+        $this->load->view('v-front');
+    }
+
+    public function univ()
+    {
+        $data['data']   = $this->Mpassing->getpassing();
+        $this->load->view('template/header');
+        $this->load->view('workout1/v-header');
+        $this->load->view('v-univ', $data);
+        
+    }
 
 
 

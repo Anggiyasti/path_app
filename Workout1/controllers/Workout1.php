@@ -106,7 +106,7 @@ class Workout1 extends MX_Controller
     $result = $this->Mworkout1->inputreport($hasil);
     $this->Mworkout1->updateLatihan($id_latihan);
     $this->session->unset_userdata('id_latihan');
-    redirect(base_url('index.php/workout/daftarlatihan'));
+    redirect(base_url('index.php/workout1'));
     }
 
     public function daftarlatihan() {
