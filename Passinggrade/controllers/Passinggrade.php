@@ -198,43 +198,83 @@ class Passinggrade extends MX_Controller {
         // $data['data']   = $this->Mpassing->getpassing();
         $this->load->view('template/header');
         $this->load->view('workout1/v-header');
-        $this->load->view('v-passing');
+        $this->load->view('v-passinggrade');
         
     }
-    public function hasilpassing()
+    // public function hasilpassing()
+    // {
+    //     $pass = htmlspecialchars($this->input->post('pass'));
+
+
+    //     if ($pass = '1') {
+    //         $a = 40;
+    //         $b = 50;
+    //     }
+    //     $data['data']  = $this->Mpassing->hasil_passing($a,$b);
+    //     $this->load->view('template/header');
+    //     $this->load->view('workout1/v-header');
+    //     $this->load->view('v-cobapassing',$data);
+
+    //     // var_dump($data);
+
+        
+    // }
+
+    public function hasilpassing($no)
     {
-        $pass = htmlspecialchars($this->input->post('pass'));
-
-
-        if ($pass = '1') {
-            $a = 40;
-            $b = 50;
+        if ($no == 1 ) {
+            $a = 21;
+            $b = 25;
+        }elseif ($no == 2 ) {
+           $a = 26;
+           $b = 30;
+        }elseif ($no == 3 ) {
+           $a = 31;
+           $b = 35;
+        }elseif ($no == 4 ) {
+           $a = 36;
+           $b = 40;
+        }elseif ($no == 5 ) {
+           $a = 41;
+           $b = 45;
+        }elseif ($no == 6 ) {
+           $a = 46;
+           $b = 50;
+        }elseif ($no == 7 ) {
+           $a = 51;
+           $b = 55;
+        }elseif ($no == 8 ) {
+           $a = 56;
+           $b = 60;
+        }elseif ($no == 9 ) {
+           $a = 61;
+           $b = 65;
+        }elseif ($no == 10 ) {
+           $a = 66;
+           $b = 70;
+        }elseif ($no == 11) {
+           $a = 71;
+           $b = 75;
+        }elseif ($no == 12 ) {
+           $a = 76;
+           $b = 80;
+        }elseif ($no == 13) {
+           $a = 81;
+           $b = 85;
+        }elseif ($no == 14) {
+           $a = 86;
+           $b = 90;
+        }elseif ($no == 15) {
+           $a = 91;
+           $b = 95;
+        }elseif ($no == 16) {
+           $a = 96;
+           $b = 100;
         }
         $data['data']  = $this->Mpassing->hasil_passing($a,$b);
         $this->load->view('template/header');
         $this->load->view('workout1/v-header');
         $this->load->view('v-cobapassing',$data);
-
-        // var_dump($data);
-
-        
-    }
-
-    public function hasilpassing($no)
-    {
-
-
-        if ($no == 1 ) {
-            $a = 20;
-            $b = 25;
-        } elseif ($no == 2 ) {
-           $a = 40;
-            $b = 50;
-        }
-        $data['data']  = $this->Mpassing->hasil_passing($a,$b);
-        $this->load->view('template/header');
-        $this->load->view('workout1/v-header');
-        $this->load->view('v-coba',$data);
         
 
         // var_dump($data);

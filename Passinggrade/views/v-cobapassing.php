@@ -64,15 +64,20 @@
     <div id="page-content-scroll"><!--Enables this element to be scrolled --> 
 
          <div class="heading-strip bg-3">
+         <?php if ($data == array()): ?>
+                    <h4>Tidak ada Passing Grade.</h4>
+        <?php else: ?>
          <?php foreach ($data as $p): ?>
-            <em>Mata Pelajaran : <?= $p['universitas'] ?></em><br>
-            <em>Mata Pelajaran : <?= $p['prodi'] ?></em><br>
-            <em>Mata Pelajaran : <?= $p['passinggrade'] ?>%</em><br>
+            <em>Universitas : <?= $p['universitas'] ?></em><br>
+            <em>Program Studi : <?= $p['prodi'] ?></em><br>
+            <em>Passing Grade : <?= $p['passinggrade'] ?>%</em><br>
             <br>
             <?php 
             endforeach ?>
+             <?php endif ?>
             
         </div>
+
         
 
 
