@@ -74,6 +74,13 @@
 		return $tampil->result_array();
     }
 
+    public function hasil_passing($awal,$akhir) {
+		$query = "SELECT * FROM `tb_passing_grade` WHERE (passinggrade BETWEEN '$awal' AND '$akhir')";
+    
+        $result = $this->db->query($query);
+        return $result->result_array();
+    }
+
 	
 
 
