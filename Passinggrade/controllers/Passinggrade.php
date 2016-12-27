@@ -153,6 +153,7 @@ class Passinggrade extends MX_Controller {
 
     }
 
+    // tampilan awal passing grade
     public function pass_grade()
     {
         $this->load->view('template/header');
@@ -160,6 +161,7 @@ class Passinggrade extends MX_Controller {
         $this->load->view('v-front');
     }
 
+    // fungsi untuk menampilkan berdasarkan universitas
     public function univ()
     {
         $data['data']   = $this->Mpassing->getpassing();
@@ -169,6 +171,26 @@ class Passinggrade extends MX_Controller {
         
     }
 
+    //fungsi untuk memilih prodi
+    public function pilih_prodi()
+    {
+        $data['data']   = $this->Mpassing->tampil_prodi();
+        $this->load->view('template/header');
+        $this->load->view('workout1/v-header');
+        $this->load->view('v-pilih-prodi', $data);
+        
+    }
+
+    // fungsi untuk menampilkan  prodi berdasarkan pilihan 
+    public function prodi($prodi)
+    {
+        $data['data']   = $this->Mpassing->getprodi($prodi);
+        $data['prodi'] = $prodi;
+        $this->load->view('template/header');
+        $this->load->view('workout1/v-header');
+        $this->load->view('v-prodi', $data);
+        
+    }
 
 
 

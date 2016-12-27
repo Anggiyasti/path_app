@@ -53,7 +53,25 @@
         $this->db->update('tb_passing_grade');
 	}
 
- 	
+ 	// tampil passing grade berdasarkan prodi
+    public function getprodi($prodi) {
+        $this->db->distinct();
+		$this->db->select()->from('tb_passing_grade');
+		$this->db->where('prodi', $prodi);
+		$this->db->where('status', '1');
+		$tampil=$this->db->get();
+		return $tampil->result_array();
+    }
+
+    // tampil passing prodi
+    public function tampil_prodi() {
+        $this->db->distinct();
+		$this->db->select('prodi');
+		$this->db->from('tb_passing_grade');
+		$this->db->where('status', '1');
+		$tampil=$this->db->get();
+		return $tampil->result_array();
+    }
 
 	
 
