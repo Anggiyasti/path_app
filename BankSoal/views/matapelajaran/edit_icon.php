@@ -2,7 +2,8 @@
 
   foreach ($mapel as $row) {
     
-
+     $id = $row['id_mapel'];
+    
     $gambar=base_url().'assets/images/mapel/'.$row['gambar'];
 
     $oldphoto=$row['gambar'];
@@ -59,17 +60,17 @@
                             <!--/ panel heading/header -->
                             <!-- panel body -->
                            <div class="one-half-responsive last-column" id="photo">
-            <form name="form-account" action="<?=base_url()?>index.php/banksoal/gambar_mapel/<?=$oldphoto; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <form name="form-account" action="<?=base_url()?>index.php/banksoal/gambar_mapel/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
 
             <div class="content">
 
-            <img id="preview" class="img-circle img-bordered" src="<?=$gambar;?>" alt="" width="30%" />
+            <img id="preview" class="img-circle img-bordered" src="<?=$gambar;?>" alt="" width="20%" />
+
              
                 <div class="input-icon">
-                
-                    <input type="file" id="file" name="photo" class="btn btn-default" required="true"/>
-                    <button type="submit" class="button button-dark">Simpan</button>
+                    <input type="file" id="file" name="photo" class="btn " required="true"/><br>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
 
             </div>
