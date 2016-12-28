@@ -78,8 +78,8 @@ class Modelbank extends CI_Model
     public function getdaftarsoal(){
     	
 		$this->db->select('b.id_bank, b.judul_soal, b.soal, b.judul_bab, b.kesulitan, m.nama_mapel,b.publish,b.jawaban_benar,b.UUID,p.jawaban as jawab');
-		$this->db->from('tb_bank_soal b');
-		$this->db->join('tb_mata_pelajaran m', 'm.id_mapel = b.id_mapel');
+		$this->db->from('tb_mata_pelajaran m');
+		$this->db->join('tb_bank_soal b', 'm.id_mapel = b.id_mapel');
 		$this->db->join('tb_pil_jawab p', 'b.id_bank = p.id_soal');
 		$this->db->where('b.jawaban_benar = p.jawaban ');
 
