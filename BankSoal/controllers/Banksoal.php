@@ -691,7 +691,7 @@ public function gambar_mapel($id) {
         } else {
             $file_data = $this->upload->data();
             $photo = $file_data['file_name'];
-            $this->Modelbank->gambar_mapel($id, $photo);
+            $this->Modelbank->gambar_mapel($id,$photo);
             echo "berhasil upload"; 
             //for testing
             // $data['img'] = base_url().'/images/'.$file_data['file_name'];
