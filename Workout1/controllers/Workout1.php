@@ -47,7 +47,7 @@ class Workout1 extends MX_Controller
             $this->load->view('v-daftar-test', $data);
             $this->load->view('t-footer-soal');
         } else {
-            $this->errorTest();
+            $this->errortest();
         }
     }
 
@@ -188,8 +188,8 @@ class Workout1 extends MX_Controller
                 "id_soal" => $row['id_bank']
             );
             $this->Mworkout1->insert_tb_mm_sol_lat($data['mm_sol']);
-            redirect('workout1/mulaitest');
         };
+            redirect('workout1/mulaitest');
 
     }
 

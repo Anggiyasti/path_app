@@ -274,14 +274,15 @@
                                                                     <?php endforeach ?>
                                                                 </div>   
                                                             </div>
+                                                            
                                                             <div class="row">      
                                                                 <div class="col-md-10 col-md-offset-1">
                                                                         <?php
                                                                             if ($key['pembahasan'] == null ) {
                                                                                 echo "<h5><strong>Tidak ada pembahasan pada soal ini</strong></h5>";
-                                                                            }else{ ?>
-                                                                                <h5><strong>Link Pembahasan : <a href="<?= $key['pembahasan'] ?>"><?= $key['pembahasan'] ?></a></strong></h5>
-                                                                           <?php }
+                                                                            }else{ 
+                                                                                echo '<iframe width=100% height="430" src="'.$key['pembahasan'].'"></iframe>';
+                                                                             }
 
                                                                         ?>
                                                                 </div>   
@@ -329,8 +330,8 @@
         <!--/ END To Top Scroller -->
 </form>
 <!-- /page-transitions -->
-</div>
-    </section>
+<!-- </div>
+ -->    </section>
     <!--/ END Template Main -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 
