@@ -296,6 +296,11 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                                     <span class="text">Daftar Mata Pelajaran</span>
                                 </a>
                             </li>
+                            <li >
+                                <a href="<?php echo base_url('index.php/banksoal/daftarmapelicon')?>">
+                                    <span class="text">Tambah Icon</span>
+                                </a>
+                            </li>
                             
                         </ul>
                         <!--/ END 2nd Level Menu -->

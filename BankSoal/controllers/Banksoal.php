@@ -651,7 +651,9 @@ public function upload_video(){
         } else {
 	        $alias_mapel = htmlspecialchars($this->input->post('alias_mapel'));
 	        $nama_mapel = htmlspecialchars($this->input->post('nama_mapel'));
+          // $id_mapel = htmlspecialchars($this->input->post('id_mapel'));
 	               
+          // $datamapel['id_mapel'] = $UUID;
            $datamapel = array(
            	'alias_mapel' => $alias_mapel,
            	'nama_mapel' => $nama_mapel
@@ -665,6 +667,39 @@ public function upload_video(){
             
 	}
 }
+
+public function gambar_mapel($id) {
+
+        // unlink(FCPATH . "./assets/images/mapel/" . $id);
+        $config['upload_path'] = './assets/images/mapel';
+        $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
+        $config['max_size'] = 100;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('photo')) {
+
+
+            $data['error'] = array('error' => $this->upload->display_errors());
+            $data['mapel'] = $this->Modelbank->get_mapelgambar($id);
+            // $this->load->view('admin/layout/header');
+          $this->load->view('matapelajaran/edit_icon',$data);
+          $this->load->view('admin/layout/footer');
+
+            // $this->load->view('beranda/main_view',$error);,
+        } else {
+            $file_data = $this->upload->data();
+            $photo = $file_data['file_name'];
+            $this->Modelbank->gambar_mapel($id, $photo);
+            echo "berhasil upload"; 
+            //for testing
+            // $data['img'] = base_url().'/images/'.$file_data['file_name'];
+            // $this->load->view('beranda/success_msg',$data);
+            
+        }
+    }
+
 
 
 public function uploadbab(){
@@ -746,6 +781,19 @@ public function uploadbab(){
 
 
  	}
+
+function daftarmapelicon(){
+    if ($this->session->userdata('id_admin')) {
+    $daftarmapel = $this->Modelbank->getDaftarMapel();
+    $data['data']= $daftarmapel;  
+    $this->load->view('admin/layout/header');
+    $this->load->view('matapelajaran/tambah_icon',$data);
+    $this->load->view('admin/layout/footer');
+  }
+    
+
+  }
+
  	function daftarbab(){
 
 		if ($this->session->userdata('id_admin')) {
@@ -802,6 +850,8 @@ public function uploadbab(){
 	
 		public function hapus_mapel($id) {
 			$this->Modelbank->delete_mapel($id);
+      $this->Modelbank->hapusmapelbab($id);
+
 
 			if ($this->db->affected_rows()) 
 			{

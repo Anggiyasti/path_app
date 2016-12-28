@@ -227,6 +227,12 @@ class Modelbank extends CI_Model
         $this->db->update('tb_mata_pelajaran');
 	}
 
+	public function hapusmapelbab($id_mapel) {
+		$this->db->where('id_mapel', $id_mapel);
+        $this->db->set('status', '0');
+        $this->db->update('tb_bab');
+	}
+
 	public function update_bab() {
 		$a  =  $this->input->post('id_bab');
 		$b  =  $this->input->post('judul_bab');
@@ -268,6 +274,35 @@ class Modelbank extends CI_Model
         echo "masuk insert gambar";
         var_dump($datagambar);
     }
+
+    public function gambar_mapel($id, $photo) {
+        $data = array(
+            'gambar' => $photo
+        );
+        // $id_siswa = $this->session->userdata['email'];
+        $this->db->where('id_mapel', $id);
+        $this->db->update('tb_mata_pelajaran', $data);
+        var_dump($data);
+        // redirect(site_url('banksoal/daftarmapelicon'));
+    }
+
+    public function get_mapelgambar($id)
+
+	{
+
+		// $id_siswa=$this->session->userdata['email'] ;	
+
+		$this->db->select('*');
+
+		$this->db->from('tb_mata_pelajaran');
+
+		$this->db->where('id_mapel',$id); 
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+
+	}
 
 
     
