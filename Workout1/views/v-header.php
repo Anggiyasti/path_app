@@ -20,7 +20,7 @@
         <a class="current-menu" href="<?= base_url('index.php/Login/cek_login_siswa') ?>""><i class="ion-ios-star-outline"></i><em>Home</em></a>       
         <a data-submenus="sub1" href="#"><i class="ion-ios-home-outline"></i><em>User</em></a>       
         <a data-submenus="sub2" href="#"><i class="ion-ios-gear-outline"></i><em>Workout</em></a> 
-        <a data-submenus="sub2" href="<?php echo base_url('index.php/passinggrade/pass_grade')?>"><i class="ion-ios-gear-outline"></i><em>PassingGrade</em></a>      
+        <a data-submenus="sub3" href="#"><i class="ion-ios-gear-outline"></i><em>PassingGrade</em></a>      
     </div>
 </div>
 <!-- Home Submenus -->
@@ -40,7 +40,8 @@
 <!-- Home Submenus -->
 <div class="submenu submenu-dark" id="sub3">
     <div class="submenu-scroll">
-        <a class="close-sidebar" href="<?php echo base_url('index.php/passinggrade/pass_grade/univ')?>"><i class="ion-ios-close-empty"></i><em>Universitas</em></a>        
-        <a href="<?php echo base_url('index.php/passinggrade/pass_grade/univ')?>"><i class="ion-ios-star-outline"></i><em>Prodi</em></a>         
+        <a class="close-sidebar" href="<?php echo base_url('index.php/passinggrade/univ')?>"><i class="ion-ios-close-empty"></i><em>Universitas</em></a>        
+        <a href="<?php echo base_url('index.php/passinggrade/pilih_prodi')?>"><i class="ion-ios-star-outline"></i><em>Prodi</em></a> 
+        <a href="<?php echo base_url('index.php/passinggrade/passing')?>"><i class="ion-ios-star-outline"></i><em>PassGrade</em></a>         
     </div>
 </div>
