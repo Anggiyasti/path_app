@@ -197,7 +197,7 @@ class Workout1 extends MX_Controller
 
         $this->session->set_userdata('id_latihan',$id_latihan);
 
-        redirect('/workout/mulaitest', 'refresh');
+        redirect('/workout1/mulaitest', 'refresh');
 
     }
 
@@ -246,6 +246,45 @@ class Workout1 extends MX_Controller
             $this->load->view('v-bab-report', $data);
     }
 
+    public function create_session_id_pembahasan($id_pembahasan){
+
+        $this->session->set_userdata('id_pembahasan',$id_pembahasan);
+
+        redirect('workout1/pembahasanlatihan', 'refresh');
+
+    }
+
+    public function pembahasanlatihan() {
+    if (!empty($this->session->userdata['id_pembahasan'])) {
+        $id = $this->session->userdata['id_pembahasan'];
+        $this->load->view('t-header-soal');
+
+        $query = $this->Mworkout1->get_soal($id);
+        $data['soal'] = $query['soal'];
+        $data['pil'] = $query['pil'];
+
+        $this->load->view('v-pembahasan', $data);
+        $this->load->view('v-footer-pembahasan');
+    } else {
+        $this->errorTest();
+    }
+}
+
+ public function pembahasanlatihan2() {
+    if (!empty($this->session->userdata['id_pembahasan'])) {
+        $id = $this->session->userdata['id_pembahasan'];
+        $this->load->view('t-header-soal');
+
+        $query = $this->Mworkout1->get_soal($id);
+        $data['soal'] = $query['soal'];
+        $data['pil'] = $query['pil'];
+
+        $this->load->view('v-pembahasan', $data);
+        $this->load->view('v-footer-pembahasan');
+    } else {
+        $this->errorTest();
+    }
+}
 
 }
 

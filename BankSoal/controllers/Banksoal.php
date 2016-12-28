@@ -19,21 +19,21 @@
  		# code...
  	}
 
- 	function index(){
-    if ($this->session->userdata('id_guru')) {
-      $data['mapel']  = $this->Modelbank->getMapel();
-   		$this->load->view('layout/header');
-      $this->load->view('layout/nav');
-      $this->load->view('layout/footer');
-    } elseif ($this->session->userdata('id_admin')) {
-      $data['mapel']  = $this->Modelbank->getMapel();
-      $this->load->view('layout/header');
-      $this->load->view('layout/nav');
-      $this->load->view('layout/footer');
-    } else {
-      redirect('Login');
-    }
-  }
+ 	// function index(){
+  //   if ($this->session->userdata('id_guru')) {
+  //     $data['mapel']  = $this->Modelbank->getMapel();
+  //  		$this->load->view('layout/header');
+  //     $this->load->view('layout/nav');
+  //     $this->load->view('layout/footer');
+  //   } elseif ($this->session->userdata('id_admin')) {
+  //     $data['mapel']  = $this->Modelbank->getMapel();
+  //     $this->load->view('layout/header');
+  //     $this->load->view('layout/nav');
+  //     $this->load->view('layout/footer');
+  //   } else {
+  //     redirect('Login');
+  //   }
+  // }
 
     function ambil_data(){
       //fungsi ambil data unruk dropdown

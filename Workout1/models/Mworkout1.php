@@ -34,7 +34,7 @@ class Mworkout1 extends CI_Model
         // $this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
         // $this->db->where('sollat.id_latihan', $id_latihan);
 
-        $this->db->select('soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw');
+        $this->db->select('soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw, soal.status, soal.pembahasan');
         $this->db->from('tb_bank_soal as soal');
         $this->db->join('tb_mm_sol_lat as sollat', 'sollat.id_soal = soal.id_bank');
         $this->db->where('sollat.id_latihan', $id_latihan);
@@ -219,8 +219,9 @@ class Mworkout1 extends CI_Model
     // get nama bab
     public function get_nama_bab($mapel) {
         $this->db->distinct();
-        $this->db->select('id_bab, judul_bab');
-        $this->db->from('tb_bab ');
+        $this->db->select('b.id_bab, b.judul_bab, m.nama_mapel');
+        $this->db->from('tb_bab b');
+        $this->db->join('tb_mata_pelajaran m', 'b.id_mapel = m.id_mapel');
         $this->db->where('id_bab', $mapel);
         // $this->db->select('id_bab, judul_bab, id_mapel');
         // $this->db->from('tb_bab');

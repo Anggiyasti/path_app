@@ -128,7 +128,7 @@ MathJax.Hub.Config({
                             echo substr($c, 0, 20) ."..." ?>
                             <a class='label label-info' href='#mdetailsoal' title='lihat detail' data-toggle='modal' data-target='#mdetailsoal<?php echo $d['id_bank']; ?>'>Lihat Detail</a>
                         </td>
-                        <td><?=$d['jawab'] ?>
+                        <td><?=$d['jawaban_benar'] ?>
                         </td>
                         <td>
                             <?php 

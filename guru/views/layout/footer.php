@@ -9,19 +9,19 @@
         <script type="text/javascript" src="<?php echo base_url('assets/adminre/javascript/app.min.js')?>"></script>
         
         
-        <script type="text/javascript" src="<?php echo base_url('assets/adminr/plugins/flot/jquery.flot.min.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/adminre/plugins/flot/jquery.flot.min.js')?>"></script>
         
-        <script type="text/javascript" src="<?php echo base_url('assets/adminr/plugins/flot/jquery.flot.categories.min.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/adminre/plugins/flot/jquery.flot.categories.min.js')?>"></script>
         
-        <script type="text/javascript" src="<?php echo base_url('assets/adminr/plugins/flot/jquery.flot.tooltip.min.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/adminre/plugins/flot/jquery.flot.tooltip.min.js')?>"></script>
         
-        <script type="text/javascript" src="<?php echo base_url('assets/adminr/plugins/flot/jquery.flot.resize.min.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/adminre/plugins/flot/jquery.flot.resize.min.js')?>"></script>
         
-        <script type="text/javascript" src="<?php echo base_url('assets/adminr/plugins/flot/jquery.flot.spline.min.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/adminre/plugins/flot/jquery.flot.spline.min.js')?>"></script>
         
-        <script type="text/javascript" src="<?php echo base_url('assets/adminr/plugins/selectize/js/selectize.min.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/adminre/plugins/selectize/js/selectize.min.js')?>"></script>
         
-        <script type="text/javascript" src="<?php echo base_url('assets/adminr/javascript/pages/dashboard.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/adminre/javascript/pages/dashboard.js')?>"></script>
 
 
          

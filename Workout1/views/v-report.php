@@ -71,14 +71,11 @@
     <div id="page-content-scroll"><!--Enables this element to be scrolled --> 
 
          <div class="heading-strip bg-4">
-            <?php 
-            foreach ($mapel as $reportitem): ?>
-            <h3>Mata Pelajaran : <?= $reportitem['nama_mapel'] ?></h3>
-            <div class="overlay dark-overlay"></div>
-            <?php 
-            endforeach ?>
-            <?php 
+             <?php 
             foreach ($bab as $reportitem): ?>
+            <div class="overlay dark-overlay"></div>
+            
+            <h3>Mapel : <?= $reportitem['nama_mapel'] ?></h3>
             <h3>Bab : <?= $reportitem['judul_bab'] ?></h3>
             <div class="overlay dark-overlay"></div>
             <?php 
@@ -100,7 +97,15 @@
                             Level : Hard <br>
                             <?php } ?>
                             Score : <?= $reportitem['score'] ?><br>
-                            <a href="<?=base_url()?>index.php/workout1/detailreport/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail"><i class="glyphicon glyphicon-list-alt"></i>Detail</a>
+                            <a href="<?=base_url()?>index.php/workout1/detailreport/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail">Detail</a>
+                            <a class="btn btn-primary modal-on<?= $reportitem['id_latihan'] ?>" 
+
+                                               title="Lihat pembahasan" 
+
+                                                onclick="mulai_pembahasan(<?= $reportitem['id_latihan'] ?>)"
+
+                                               ><i class="glyphicon glyphicon-book"></i>Pembahasan</a>
+                            <a href="<?=base_url()?>index.php/workout1/create_session_id_pembahasan/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail">Pembahasan</a>
                     <?php endforeach ?>
                     </div>
                 <?php endif ?>
@@ -110,4 +115,10 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    function mulai_pembahasan(id_pembahasan) {
+                    window.location.href = base_url + "index.php/workout1/create_session_id_pembahasan/" + id_pembahasan;
+
+                }
+</script>
 </body>
