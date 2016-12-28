@@ -288,8 +288,8 @@ class Modelbank extends CI_Model
         // $id_siswa = $this->session->userdata['email'];
         $this->db->where('id_mapel', $id);
         $this->db->update('tb_mata_pelajaran', $data);
-        var_dump($data);
-        // redirect(site_url('banksoal/daftarmapelicon'));
+        // var_dump($data);
+        redirect(site_url('banksoal/daftarmapelicon'));
     }
 
     public function get_mapelgambar($id)

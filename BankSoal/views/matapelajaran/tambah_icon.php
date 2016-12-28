@@ -51,7 +51,9 @@
                         </div>
                     </div>
                     <div class="table-responsive panel-collapse pull out">
+                    <?php echo $this->session->flashdata('msg'); ?>
                                 <table class="table table-bordered" id="zero-configuration" style="font-size: 13px">
+
                                     <thead>
                                         <tr>
                                             <!-- <th width="5%"></th> -->

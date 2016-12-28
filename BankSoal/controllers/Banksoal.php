@@ -667,6 +667,18 @@ public function upload_video(){
             
 	}
 }
+function daftarmapelicon(){
+    if ($this->session->userdata('id_admin')) {
+    $daftarmapel = $this->Modelbank->getDaftarMapel();
+    $data['data']= $daftarmapel;  
+    $this->load->view('admin/layout/header');
+    $this->load->view('matapelajaran/tambah_icon',$data);
+    $this->load->view('admin/layout/footer');
+  }
+    
+
+  }
+
 
 public function gambar_mapel($id) {
 
@@ -683,7 +695,7 @@ public function gambar_mapel($id) {
 
             $data['error'] = array('error' => $this->upload->display_errors());
             $data['mapel'] = $this->Modelbank->get_mapelgambar($id);
-            // $this->load->view('admin/layout/header');
+            $this->load->view('admin/layout/header');
           $this->load->view('matapelajaran/edit_icon',$data);
           $this->load->view('admin/layout/footer');
 
@@ -782,17 +794,7 @@ public function uploadbab(){
 
  	}
 
-function daftarmapelicon(){
-    if ($this->session->userdata('id_admin')) {
-    $daftarmapel = $this->Modelbank->getDaftarMapel();
-    $data['data']= $daftarmapel;  
-    $this->load->view('admin/layout/header');
-    $this->load->view('matapelajaran/tambah_icon',$data);
-    $this->load->view('admin/layout/footer');
-  }
-    
 
-  }
 
  	function daftarbab(){
 
