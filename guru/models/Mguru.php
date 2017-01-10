@@ -40,19 +40,29 @@ class Mguru extends CI_Model {
 		$a  =  $this->input->post('nama_guru');
 		$b  =  $this->input->post('username');
 		$c  =  $this->input->post('email');
-		$d  =  $this->input->post('password');
-		$e  =  $this->input->post('status');
+		
 		$f  =  $this->input->post('id_guru');
 
 		$arr = array(
 				'nama_guru' => $a,
 				'username' => $b,
 				'email'=> $c,
-				'password' => $d,
-				'status' => $e,
-				'id_guru' => $f
+				'status' => $e
+				
 			);
 		$this->db->where('id_guru', $f);
+		return $this->db->update('tb_guru', $arr);
+	}
+
+	public function ubah_pass() {
+		$a  =  $this->input->post('id_guru');
+		$b  =  md5($this->input->post('password'));
+		
+
+		$arr = array(
+				'password' => $b
+			);
+		$this->db->where('id_guru', $a);
 		return $this->db->update('tb_guru', $arr);
 	}
 

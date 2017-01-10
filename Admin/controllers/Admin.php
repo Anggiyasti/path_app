@@ -5,8 +5,8 @@ class Admin extends MX_Controller {
 
 	public function __construct() {
         parent::__construct();
-        $this->load->helper('url');
-        $this->murl = 'assets/adminre/';
+        // $this->load->helper('url');
+        // $this->murl = 'assets/adminre/';
         $this->load->model('Madmin');
         $this->load->helper(array('form', 'url', 'file', 'html'));
 
@@ -38,12 +38,12 @@ class Admin extends MX_Controller {
             if ($this->db->affected_rows())
             {
                  $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-                redirect('guru/profileguru');
+                redirect('admin/Profileadmin');
             }
             else
             {
                  $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-                redirect('guru/profileguru');
+                redirect('admin/Profileadmin');
             }
         }
         
@@ -53,11 +53,12 @@ class Admin extends MX_Controller {
     public function Profileadmin() {
    
     $data['admin'] = $this->Madmin->get_admin();
-    $data['username']=$this->session->userdata['username'];
+    $data['id_admin']=$this->session->userdata['id_admin'];
         $this->load->view('layout/header');
         $this->load->view('profilesetadmin', $data);
         $this->load->view('layout/footer');
     
 }
+
 
 }

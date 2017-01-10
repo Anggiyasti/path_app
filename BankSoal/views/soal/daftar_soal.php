@@ -83,7 +83,7 @@ MathJax.Hub.Config({
                         </div>
                     </div>
                     <div class="table-responsive panel-collapse pull out">
-                    <table class="table table-bordered" id="zero-configuration" style="font-size: 13px">
+                    <table class="table table-bordered" id="column-filtering" style="font-size: 13px">
                     <thead>
                         <tr class="info">
                         <th>No</th>
@@ -128,7 +128,7 @@ MathJax.Hub.Config({
                             echo substr($c, 0, 20) ."..." ?>
                             <a class='label label-info' href='#mdetailsoal' title='lihat detail' data-toggle='modal' data-target='#mdetailsoal<?php echo $d['id_bank']; ?>'>Lihat Detail</a>
                         </td>
-                        <td><?=$d['jawaban_benar'] ?>
+                        <td><?=$d['jawab'] ?>
                         </td>
                         <td>
                             <?php 
@@ -193,7 +193,7 @@ MathJax.Hub.Config({
                                         </p>
                                         <label>JAWABAN :</label>
                                         <p class="text-justify" id="djawaban">
-                                            <?=$d['jawaban_benar'] ?>
+                                            <?=$d['jawab'] ?>
                                             
                                         </p>
                                         </div>
@@ -210,6 +210,20 @@ MathJax.Hub.Config({
                     endforeach; 
                     ?>                      
                     </tbody>
+                    <tfoot>
+                                    <tr>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="No"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="id Soal"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="judul soal"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="mata pelajaran"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="id bab"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="kesulitan"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="soal"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="jawaban"></th>
+                                        <th><input type="search" class="form-control" name="search_engine" placeholder="publish "></th>
+                                        <th><input type="search" class="form-control" name="search_engine"  disabled/></th>
+                                    </tr>
+                                </tfoot>
                     </table>
                                                 </div>
 

@@ -121,7 +121,7 @@ class Login extends MX_Controller
                     # code...
                 $this->session->set_flashdata('pesan1', 'Logged in Successfully');
                 $this->session->set_userdata($sees_data);
-                $admin = $this->Loginmodel->get_admin($this->session->userdata['id_admin']);
+               
 
                    
                 redirect('admin');

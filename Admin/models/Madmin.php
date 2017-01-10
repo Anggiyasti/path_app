@@ -17,13 +17,13 @@
 
 	{
 
-		$id_admin=$this->session->userdata['username'] ;	
+		$id_admin=$this->session->userdata['id_admin'] ;	
 
 		$this->db->select('id_admin,username,password,status');
 
 		$this->db->from('tb_admin');
 
-		$this->db->where('username',$id_admin); 
+		$this->db->where('id_admin',$id_admin); 
 
 		$query = $this->db->get();
 
@@ -32,22 +32,19 @@
 	}
 
 	public function update_admin() {
-		// $a  =  $this->input->post('nama_guru');
-		// $c  =  $this->input->post('email');
+		$a  =  $this->input->post('id_admin');
 		$b  =  $this->input->post('username');
 		$d  =  $this->input->post('password');
 		$e  =  $this->input->post('status');
-		$f  =  $this->input->post('id_admin');
 
 		$arr = array(
-				// 'nama_guru' => $a,
-				// 'email'=> $c,
+				'id_admin' => $a,
 				'username' => $b,
 				'password' => $d,
-				'status' => $e,
-				'id_guru' => $f
+				'status' => $e
+				
 			);
-		$this->db->where('id_admin', $f);
+		$this->db->where('id_admin', $a);
 		return $this->db->update('tb_admin', $arr);
 	}
 

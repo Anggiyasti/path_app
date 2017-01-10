@@ -144,7 +144,7 @@
                                     </div>
                                     <div class="panel-footer">
                                     <input type="hidden" name="id_guru" value="<?=$id_admin;?>">
-                                            <input type="submit" class="btn" name="update"  value="Update" class="btn btn-primary">
+                                            <input type="submit" class="btn" name="update"  value="update" class="btn btn-primary">
                                             <!-- <h1>selamat datang <?=$this->session->userdata['username'];?></h1>
  -->
                                         <!-- <button type="reset" class="btn btn-default">Reset</button>

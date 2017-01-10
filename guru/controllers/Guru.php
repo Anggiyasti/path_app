@@ -11,47 +11,78 @@ class Guru extends MX_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Mguru');
+        $this->load->helper(array('form', 'url', 'file', 'html'));
+        $this->load->library('form_validation');
     }
 
     public function index() {
-    	if ($this->session->userdata('id_guru')) {
-    		# code...
-    	
+        if ($this->session->userdata('id_guru')) {
+            # code...
+        
         $this->load->view('guru/layout/header');
         $this->load->view('guru/layout/nav');
         $this->load->view('guru/layout/footer');
     }
     else{
-            redirect('Login');
+            redirect('login');
         }
 
 }
 
     public function edit_guru() {
-		if ($this->input->post('update')) 
-		{
-			$this->Mguru->update_guru();
-			
-			if ($this->db->affected_rows())
-			{
-				 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-				redirect('guru/profileguru');
-			}
-			else
-			{
-				 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-				redirect('guru/profileguru');
-			}
-		}
-		
-	}
+        if ($this->input->post('update')) 
+        {
+            $this->Mguru->update_guru();
+            
+            if ($this->db->affected_rows())
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
+                redirect('guru/profileguru');
+            }
+            else
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
+                redirect('guru/profileguru');
+            }
+        }
+        
+    }
 
 
-	public function Profileguru() {
+    public function Profileguru() {
    
     $data['guru'] = $this->Mguru->get_guru();
     $data['email']=$this->session->userdata['email'];
-    	$this->load->view('layout/header');
+        $this->load->view('layout/header');
+        $this->load->view('profileset', $data);
+        $this->load->view('layout/footer');
+    
+}
+
+public function ubah_password() {
+        if ($this->input->post('update')) 
+        {
+            $this->Mguru->ubah_pass();
+            
+            if ($this->db->affected_rows())
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
+                redirect('guru/profileguru');
+            }
+            else
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
+                redirect('guru/profileguru');
+            }
+        }
+        
+    }
+
+public function ubahpass() {
+   
+    $data['guru'] = $this->Mguru->get_guru();
+    $data['email']=$this->session->userdata['email'];
+        $this->load->view('layout/header');
         $this->load->view('profileset', $data);
         $this->load->view('layout/footer');
     
