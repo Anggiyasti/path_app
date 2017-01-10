@@ -375,7 +375,7 @@
                             <!-- tab-pane: account -->
                             <div class="tab-pane" id="account">
                                 <!-- form account -->
-                                <form class="panel form-horizontal form-bordered" name="form-account" action="<?=base_url()?>index.php/guru/ubah_password">
+                                <form class="panel form-horizontal form-bordered" name="form-account" action="<?=base_url()?>index.php/guru/ubahkatasandi">
                                     <div class="panel-body pt0 pb0">
                                         <div class="form-group header bgcolor-default">
                                             <div class="col-md-12">
@@ -416,7 +416,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 ">Ulangi Password</label>
                                             <div class="col-sm-5">
-                                                <input type="password" name="password" class="form-control" id="password2" name="password_conf"  required onkeyup="checkPass(); return false;">
+                                                <input type="password" name="password2" class="form-control" id="password2" name="password_conf"  required onkeyup="checkPass(); return false;">
                                                
                                            
                                                 
@@ -425,6 +425,7 @@
                                         
                                     </div>
                                     <div class="panel-footer">
+                                    <input type="hidden" name="id_guru" value="<?=$id_guru;?>">
                                         <button type="reset" class="btn btn-default">Reset</button>
                                         <input type="submit" class="btn" name="update"  value="Update" class="btn btn-primary">
                                     </div>

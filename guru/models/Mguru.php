@@ -47,14 +47,14 @@ class Mguru extends CI_Model {
 				'nama_guru' => $a,
 				'username' => $b,
 				'email'=> $c,
-				'status' => $e
+				// 'status' => $e
 				
 			);
 		$this->db->where('id_guru', $f);
 		return $this->db->update('tb_guru', $arr);
 	}
 
-	public function ubah_pass() {
+	public function ubah_passguru() {
 		$a  =  $this->input->post('id_guru');
 		$b  =  md5($this->input->post('password'));
 		
@@ -64,6 +64,21 @@ class Mguru extends CI_Model {
 			);
 		$this->db->where('id_guru', $a);
 		return $this->db->update('tb_guru', $arr);
+	}
+
+	public function update_katasandi($data, $id)
+
+	{
+
+
+		$this->db->where('id_guru',$id);
+
+		$this->db->update('tb_guru',$data);
+
+		redirect(site_url('guru/profileguru'));
+
+
+
 	}
 
 
