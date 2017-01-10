@@ -375,7 +375,7 @@
                             <!-- tab-pane: account -->
                             <div class="tab-pane" id="account">
                                 <!-- form account -->
-                                <form class="panel form-horizontal form-bordered" name="form-account" action="<?=base_url()?>index.php/guru/ubahkatasandi">
+                                <form class="panel form-horizontal form-bordered" name="form-account" action="<?=base_url()?>index.php/guru/ubah_password" method="post">
                                     <div class="panel-body pt0 pb0">
                                         <div class="form-group header bgcolor-default">
                                             <div class="col-md-12">
