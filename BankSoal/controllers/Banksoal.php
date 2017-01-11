@@ -515,7 +515,7 @@ public function upload_video(){
             // pengecekan upload
             if ($this->upload->do_upload($gambar)) {
               // jika upload berhasil hapus gambar sebelumnya
-                unlink(FCPATH . "./assets/images/jawaban/" . $rows[0]['gambar']);
+                unlink(FCPATH . "./assets/images/jawaban/" . $rows['gambar']);
 
                 $file_data = $this->upload->data();
                 $file_name = $file_data['file_name'];
@@ -531,7 +531,7 @@ public function upload_video(){
                     $pilihan = 'E';
                 }
                 // tampung nama gambar yg berhasil di upload ke array
-                $datagambar[] = array('pilihan_jawaban' => $pilihan_jawaban,
+                $datagambar[] = array('pilihan_jawaban' => $pilihan,
                     'id_soal' => $soalID,
                     'gambar' => $file_name,
                     'id_pilih' => $rows['id_pilih']);
