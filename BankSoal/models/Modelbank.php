@@ -76,16 +76,30 @@ class Modelbank extends CI_Model
     }
 
     public function getdaftarsoal(){
-    	
-		$this->db->select('b.id_bank, b.judul_soal, b.soal, b.judul_bab, b.kesulitan, m.nama_mapel,b.publish,p.jawaban as jawab,b.UUID');
+
+  //   	$this->db->select('*');
+  //   	$this->db->from('tb_bank_soal');
+  //   	$tampil=$this->db->get();
+		// return $tampil->result_array();
+		// $this->db->select('b.id_bank, b.judul_soal, b.soal, b.judul_bab, b.kesulitan, m.nama_mapel,b.publish,p.jawaban as jawab,b.UUID');
+		// $this->db->from('tb_mata_pelajaran m');
+		// $this->db->join('tb_bank_soal b', 'm.id_mapel = b.id_mapel');
+		// $this->db->join('tb_pil_jawab p', 'b.id_bank = p.id_soal');
+		// $this->db->where('p.pilihan_jawaban = b.jawaban_benar ');
+
+
+
+
+		// $tampil=$this->db->get();
+		// return $tampil->result_array();
+		$this->db->select('b.id_bank, b.judul_soal, b.soal, bb.judul_bab, b.kesulitan, m.nama_mapel,b.publish,p.jawaban as jawab,b.UUID');
 		$this->db->from('tb_mata_pelajaran m');
 		$this->db->join('tb_bank_soal b', 'm.id_mapel = b.id_mapel');
 		$this->db->join('tb_pil_jawab p', 'b.id_bank = p.id_soal');
+		$this->db->join('tb_bab bb', 'm.id_mapel = bb.id_mapel');
 		$this->db->where('p.pilihan_jawaban = b.jawaban_benar ');
-
-
-
-
+		$this->db->where('b.publish= 1');
+		$this->db->order_by('b.id_bank', 'desc');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
 
