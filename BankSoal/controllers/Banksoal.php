@@ -515,7 +515,7 @@ public function upload_video(){
             // pengecekan upload
             if ($this->upload->do_upload($gambar)) {
               // jika upload berhasil hapus gambar sebelumnya
-                unlink(FCPATH . "./assets/images/jawaban/" . $rows['gambar']);
+                unlink(FCPATH . "./assets/images/jawaban/" . $rows[0]['gambar']);
 
                 $file_data = $this->upload->data();
                 $file_name = $file_data['file_name'];

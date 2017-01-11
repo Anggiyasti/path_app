@@ -67,12 +67,12 @@ public function ubah_password() {
             if ($this->db->affected_rows())
             {
                  $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-                redirect('guru/profileguru');
+                redirect('guru/ubahpass');
             }
             else
             {
                  $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-                redirect('guru/profileguru');
+                redirect('guru/ubahpass');
             }
         }
         
@@ -81,7 +81,7 @@ public function ubah_password() {
 public function ubahpass() {
    
     $data['guru'] = $this->Mguru->get_guru();
-    $data['email']=$this->session->userdata['email'];
+    // $data['email']=$this->session->userdata['email'];
         $this->load->view('layout/header');
         $this->load->view('profileset', $data);
         $this->load->view('layout/footer');

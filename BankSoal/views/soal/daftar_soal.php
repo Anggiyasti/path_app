@@ -103,7 +103,7 @@ MathJax.Hub.Config({
                     <?php 
                    
                     $no = 1;
-                    foreach ($data as $d) : ?>
+                    foreach ($data as $d): ?>
                     <tr>
                         <td><?php echo $no; ?></td>
                         <!-- <td><?=$d['UUID'] ?></td> -->
