@@ -55,11 +55,7 @@
         <form action="<?=base_url()?>index.php/Siswa/edit_siswa" method="post">
         <div class="one-half-responsive">
             <div class="content">
-                <div class="input-icon">
-                    <label>ID Siswa</label>
-                    <input type="text" class="input-text-box input-red-border" name="id_siswa" value="<?=$id_siswa; ?>" disabled/>
-                   <?php echo form_error('id_siswa'); ?>
-                </div>
+                
                 <div class="input-icon">
                     <label>Nama Depan</label>
                     <input type="text" class="input-text-box input-green-border" name="nama_depan" value="<?=$nama_depan; ?>">
@@ -70,11 +66,7 @@
                     <input type="text" class="input-text-box input-green-border" name="nama_belakang" value="<?=$nama_belakang; ?>">
                     <?php echo form_error('nama_belakang'); ?>
                 </div>
-                <div class="input-icon">
-                    <label>Password</label>
-                    <input type="password" class="input-text-box input-green-border" name="password" value="<?=$password; ?>">
-                    <?php echo form_error('password'); ?>
-                </div>
+                
                 <div class="input-icon">
                     <label>Alamat
                     </label>
@@ -126,6 +118,47 @@
              
             </form>
         </div>
+
+        <div class="decoration decoration-margins"></div>
+        <div class="heading-strip bg-7">
+            <h3>Update Password</h3>
+           
+            <i class="ion-compose"></i>
+            <div class="overlay dark-overlay"></div>
+        </div>
+        <?php echo $this->session->flashdata('msg'); ?>
+        <form action="<?=base_url()?>index.php/Siswa/ubahpass_siswa" method="post">
+        <div class="one-half-responsive">
+            <div class="content">
+                <div class="input-icon">
+                    <label>Password Lama</label>
+                    <input type="password" name="" class="input-text-box input-green-border" >
+                    <?php echo form_error('password'); ?>
+                </div>
+            </div>
+            <div class="content">
+
+                <div class="input-icon">
+                    <label>Password Baru</label>
+                    <input type="password" class="input-text-box input-green-border" name="password" >
+                    
+                </div>
+                <div class="input-icon">
+                    <label>Ulangi Password</label>
+                    <input type="password" class="input-text-box input-green-border" name="password2" class="form-control" id="password2" name="password_conf"  required onkeyup="checkPass(); return false;">
+                    <?php echo form_error('password'); ?>
+                </div>
+                
+            </div>
+            <div class="content">
+            <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
+            <button type="reset" class="button button-dark btn btn-default">Reset</button>
+            <input type="submit" class="button button-dark" name="update"  value="Update" class="btn btn-primary">
+            
+            </div> 
+                
+        </div>
+        </form>
 
     </div>  
 </div>

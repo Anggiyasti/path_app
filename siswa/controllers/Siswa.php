@@ -49,6 +49,40 @@ class Siswa extends MX_Controller {
        
     
 }
+
+public function ubahpass_siswa() {
+        if ($this->input->post('update')) 
+        {
+            $this->Msiswa->ubah_katasandi();
+            
+            if ($this->db->affected_rows())
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
+                redirect('Siswa/passwordsiswa');
+            }
+            else
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
+                redirect('Siswa/passwordsiswa');
+            }
+        }
+        
+    }
+
+    public function passwordsiswa() {
+   
+    $data['Siswa'] = $this->Msiswa->get_siswa();
+    // $data['email']=$this->session->userdata['email'];
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar');
+        $this->load->view('profilesetsiswa',$data);
+       
+    
+}
+
+
+
+
 public function upload($oldphoto) {
         unlink(FCPATH . "./assets/images/siswa/" . $oldphoto);
         $config['upload_path'] = './assets/images/siswa';

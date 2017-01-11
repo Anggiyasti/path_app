@@ -38,7 +38,7 @@ class Msiswa extends CI_Model {
 		$a  =  $this->input->post('nama_depan');
 		$b  =  $this->input->post('nama_belakang');
 		$c  =  $this->input->post('email');
-		$d  =  $this->input->post('password');
+		// $d  =  $this->input->post('password');
 		$e  =  $this->input->post('alamat');
 		$f  =  $this->input->post('no_tlp');
 		$g  =  $this->input->post('id_siswa');
@@ -48,7 +48,7 @@ class Msiswa extends CI_Model {
 				'nama_depan' => $a,
 				'nama_belakang'=> $b,
 				'email'=> $c,
-				'password' => $d,
+				// 'password' => $d,
 				'alamat'=> $e,
 				'no_tlp'=> $f,
 				'id_siswa' => $g,
@@ -57,6 +57,19 @@ class Msiswa extends CI_Model {
 
 			);
 		$this->db->where('id_siswa', $g);
+		return $this->db->update('tb_siswa', $arr);
+	}
+
+
+	public function ubah_katasandi() {
+		$a  =  $this->input->post('id_siswa');
+		$b  =  md5($this->input->post('password'));
+		
+
+		$arr = array(
+				'password' => $b
+			);
+		$this->db->where('id_siswa', $a);
 		return $this->db->update('tb_siswa', $arr);
 	}
 
