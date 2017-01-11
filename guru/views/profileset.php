@@ -325,7 +325,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 ">ID Guru</label>
                                             <div class="col-sm-5">
-                                                <input class="form-control" name="id_guru" type="text" value="<?=$id_guru; ?>" disabled/>
+                                                <input class="form-control" name="id_guru" type="text" value="<?=$id_guru;?>" disabled/>
                                             <span class="text-danger"><?php echo form_error('id_guru'); ?></span>
                                                 <p class="help-block">Enter your real name.</p>
                                             </div>
