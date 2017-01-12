@@ -420,6 +420,8 @@ public function upload_video(){
 	        $this->Modelbank->ch_soalup($data);
 	        $this->ch_img_soal($UUID);
 
+          $data['id_soal']=$soalID;
+          // $this->count_pilihan($data);
           // $data['id_soal']=$soalID;
 	        if ($options == 'text') {
 	           		$data['jawaban'] = array(
