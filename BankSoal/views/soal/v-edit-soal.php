@@ -59,6 +59,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         </div>
                                     </div>
                                             <input id="UUID" type="text" name="UUID" value="<?=$banksoal['UUID']; ?>" hidden="true">
+                                            <input id="UUID" type="text" name="UUID" value="<?=$banksoal['id_bab']; ?>">
                                               
                                     
 

@@ -124,11 +124,11 @@ MathJax.Hub.Config({
                                               }
                                              ?>   
                                              <td><?=$kk;?></td>                  
-                        <td><?php
+                        <!-- <td><?php
                             $c =  $d['soal'];
                             echo substr($c, 0, 500) ?>
                             <a class='label label-info' href='#mdetailsoal' title='lihat detail' data-toggle='modal' data-target='#mdetailsoal<?php echo $d['id_bank']; ?>'>Lihat Detail</a>
-                        </td>
+                        </td> -->
                         <td><?=$d['jawab'] ?>
                         </td>
                         <td>
@@ -170,8 +170,7 @@ MathJax.Hub.Config({
                                 <!-- /.modal-dialog -->
                             </div>
                             <!-- /.modal -->
-                        </td>
-                        <!-- Start Modal Detail Soal -->
+                            <!-- Start Modal Detail Soal -->
                             <div class="modal fade" id="mdetailsoal<?php echo $d['id_bank']; ?>">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -185,7 +184,6 @@ MathJax.Hub.Config({
                                         <label>SOAL :</label><br>
                                         <img src="<?=base_url();?>assets/uploads/<?=$d['gambar_soal'] ?>"> <br>
                                         <p class="text-justify" id="dsoal">
-                                            <?=$d['soal'] ?>
                                             
                                         </p>
                                         <label>JAWABAN :</label><br>
@@ -202,6 +200,8 @@ MathJax.Hub.Config({
                                 </div>
                             </div>
                             <!-- End Modal Detail Soal-->
+                        </td>
+                        
                     </tr>
                     <?php 
                     $no++;

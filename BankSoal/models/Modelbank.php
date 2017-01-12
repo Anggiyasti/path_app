@@ -336,7 +336,7 @@ class Modelbank extends CI_Model
         $this->db->update_batch('tb_pil_jawab', $data['jawaban'], 'pilihan_jawaban');
     }
     public function get_onesoal($UUID) {
-        $this->db->where('UUID', $UUID);
+        $this->db->where('b.UUID', $UUID);
         $this->db->select('*, m.nama_mapel, bb.judul_bab');
         $this->db->from('tb_bank_soal b');
         $this->db->join('tb_mata_pelajaran m', 'b.id_mapel = m.id_mapel');

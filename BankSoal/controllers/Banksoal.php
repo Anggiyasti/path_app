@@ -345,13 +345,14 @@ public function upload_video(){
 
     $data['mapel']=$this->Modelbank->getmapel();
       $data['data'] = $this->Modelbank->getsoal();
-        $data['banksoal'] = $this->Modelbank->get_onesoal($UUID)[0];
+        $data['banksoal'] = $this->Modelbank->get_onesoal($UUID);
         $id_soal = $data['banksoal']['id_bank'];
             //get piljawaban == id soal
         $data['piljawaban'] = $this->Modelbank->get_piljawaban($id_soal);
-        $this->load->view('admin/layout/header');
-        $this->load->view('soal/v-edit-soal',$data);
-         $this->load->view('admin/layout/footer');
+        // $this->load->view('admin/layout/header');
+        // $this->load->view('soal/v-edit-soal',$data);
+         // $this->load->view('admin/layout/footer');
+         var_dump($data['banksoal']);
          }
   //hak akses jika guru
     elseif ($this->session->userdata('id_guru')) {
