@@ -1,4 +1,3 @@
-
 <?php 
 
 if (!isset($piljawaban['4']['id_pilih'])) {
@@ -56,7 +55,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         <div class="col-sm-5">
                                             <input class="form-control" id="disabledSelect" type="text" name="soalID" value="<?=$banksoal['id_bank']; ?>" disabled>
                                             <input type="text" name="soalID" value="<?=$banksoal['id_bank']; ?>" hidden="true">
-											<span id="pesan"></span>
+                      <span id="pesan"></span>
                                         </div>
                                     </div>
                                             <input id="UUID" type="text" name="UUID" value="<?=$banksoal['UUID']; ?>" hidden="true">
@@ -64,13 +63,24 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                     
 
 
-                                    <div class="form-group">
+                                   <div class="form-group" id="oldmapel">
                                         <label class="col-sm-2 ">Mata Pelajaran</label>
                                         <div class="col-sm-5">
                                        <!--  <input class="form-control" type="text" name="id_mapel" value="<?php echo $editdata->id_mapel; ?>"> -->
-												
+                        
+                                            <select class='form-control' value="<?=$banksoal['id_mapel']; ?>">
+                                              <option value='<?=$banksoal['nama_mapel']; ?>'><?=$banksoal['nama_mapel']; ?></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" hidden="true"  id="mapel">
+                                        <label class="col-sm-2 ">Mata Pelajaran</label>
+                                        <div class="col-sm-5">
+                                       <!--  <input class="form-control" type="text" name="id_mapel" value="<?php echo $editdata->id_mapel; ?>"> -->
+                        
                                             <select class='form-control' name="id_mapel" id='id_mapel' value="<?=$banksoal['id_mapel']; ?>">
-                                              <option value='0'>--pilih--</option>
+                                              <option value='<?=$banksoal['id_mapel']; ?>'><?=$banksoal['nama_mapel']; ?></option>
                                               <?php 
                                                 foreach ($mapel as $pel) {
                                                 echo "<option value='$pel[id_mapel]'>$pel[nama_mapel]</option>";
@@ -79,11 +89,23 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" id="oldbab">
                                         <label class="col-sm-2">BAB</label>
                                         <div class="col-sm-5">
                                         <!-- <input class="form-control" type="text" name="judul_bab" value="<?php echo $editdata->judul_bab; ?>"> -->
-			
+      
+                                            <select name="judul_bab" id="id_bab" class="form-control" >
+                                           <option value='0'><?=$banksoal['judul_bab']; ?></option>
+                                        </select>
+                                        <span id="pesan"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" id="bab" hidden="true">
+                                        <label class="col-sm-2">BAB</label>
+                                        <div class="col-sm-5">
+                                        <!-- <input class="form-control" type="text" name="judul_bab" value="<?php echo $editdata->judul_bab; ?>"> -->
+      
                                             <select name="judul_bab" id="id_bab" class="form-control" >
                                            
                                         </select>
@@ -94,19 +116,19 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         <label class="col-sm-2">Judul Soal</label>
                                         <div class="col-sm-5">
                                             <input class="form-control" type="text" name="judul_soal" value="<?=$banksoal['judul_soal']; ?>">
-											<span id="pesan"></span>
+                      <span id="pesan"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2">Kesilitan</label>
                                         <div class="col-sm-5">
                                             <select name="kesulitan" id="kesulitan" class="form-control" value="<?=$banksoal['kesulitan']; ?>">
-                    						<option value="1">Mudah</option>
-                    						<option value="2">Sedang</option>
-                    						<option value="3">Sulit</option>
-                							</select>
+                                <option value="1">Mudah</option>
+                                <option value="2">Sedang</option>
+                                <option value="3">Sulit</option>
+                              </select>
     
-											<span id="pesan"></span>
+                      <span id="pesan"></span>
                                         </div>
                                     </div>
 
@@ -157,6 +179,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                     </label>
 
                                     <input style="display:none;" type="file" id="fileSoal" name="gambarSoal" onchange="ValidateSingleInput(this);"/>
+                                    <button type="reset" class="btn btn-default">Reset</button>
 
                                 </div>
 
@@ -167,7 +190,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         <label class="col-sm-2">Sumber</label>
                                         <div class="col-sm-5">
                                             <input class="form-control" type="text" name="sumber" value="<?=$banksoal['sumber']; ?>">
-											<span id="pesan"></span>
+                      <span id="pesan"></span>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -465,7 +488,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         <label class="col-sm-2">Jawaban Benar</label>
                                         <div class="col-sm-5">
                                         <!-- <input class="form-control" type="text" name="jawaban_benar" value="<?php echo $editdata->jawaban_benar; ?>"> -->
-			
+      
                                             <select name="jawaban_benar" id="kesulitan" class="form-control" value="<?=$banksoal['jawaban_benar']; ?>">
                                             <option value="A">A</option>
                                             <option value="B">B</option>
@@ -478,26 +501,58 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         </div>
                                     </div>
                                     
+                                    
+                                    
                                     <div class="form-group">
-                                        <label class="col-sm-2">Custom checkbox</label>
-                                        <div class="col-sm-5">
-                                            <span class="checkbox custom-checkbox custom-checkbox-inverse">
-                                                <input type="checkbox" name="publish" id="customcheckbox1" value="1" />
-                                                <label for="customcheckbox1">&nbsp;&nbsp;Publish</label>
-                                            </span>
-                                            <span class="checkbox custom-checkbox">
-                                                <input type="checkbox" name="random" value="1" id="customcheckbox2" />
-                                                <label for="customcheckbox2">&nbsp;&nbsp;Random</label>
-                                            </span>
-                                        </div>
-                                    </div>
+                                    <label class="col-sm-2"></label>
+
+                                        
+                          <div class="col-sm-5">
+                                        <?php 
+                            $publish =  $banksoal['publish'];
+                            // echo $publish;
+                            // menentukan checked random
+                            if ($publish == '1') {
+                                echo '<div class="checkbox custom-checkbox nm">  
+                                <span class="checkbox custom-checkbox custom-checkbox-inverse">
+                            <input type="checkbox" name="publish" id="customcheckbox-one1" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" checked>  
+                            <label for="customcheckbox-one1">&nbsp;&nbsp;Publish</label>
+                            </span>   
+                            </div>';
+                            } else {
+                                 echo '<div class="checkbox custom-checkbox nm">  
+                            <input type="checkbox" name="publish" id="customcheckbox-one1" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" disabled>  
+                            <label for="customcheckbox-one1">Publish</label>   
+                            </div>';
+                        }
+                             ?>
+                             <?php 
+                            $random =  $banksoal['random'];
+                            // echo $publish;
+                            // menentukan checked random
+                            if ($random == '1') {
+                                echo '<div class="checkbox custom-checkbox nm">  
+                                <span class="checkbox custom-checkbox custom-checkbox-inverse">
+                            <input type="checkbox" name="random" id="customcheckbox" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" checked>  
+                            <label for="customcheckbox">&nbsp;&nbsp;Random</label>
+                            </span>   
+                            </div>';
+                            } else {
+                                 echo '<div class="checkbox custom-checkbox nm">  
+                            <input type="checkbox" name="random" id="customcheckbox" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" disabled>  
+                            <label for="customcheckbox">Random</label>   
+                            </div>';
+                        }
+                             ?>
+                             </div>
+                             </div>
                                     
                                     <div class="panel-footer">
                                         <div class="form-group no-border">
                                             <!-- <label class="col-sm-3 control-label">Button</label> -->
                                             <div class="col-sm-9">
                                     
-											                         <input type="submit" class="btn" name="update"  value="Update">
+                                               <input type="submit" class="btn" name="update"  value="Update">
                                                 <!-- <button type="submit" class="btn btn-primary">Simpan</button> -->
                                                 <!-- <button type="reset" class="btn btn-danger">Reset button</button> -->
                                             </div>
@@ -925,7 +980,7 @@ $(function(){
 
 $.ajaxSetup({
 type:"POST",
-url: "<?php echo base_url('index.php/Banksoal/ambil_data') ?>",
+url: "<?php echo base_url('index.php/banksoal/ambil_data') ?>",
 cache: false,
 });
 
@@ -1583,4 +1638,10 @@ function ValidateSingleInput(oInput) {
 </script>
 
 
+<script type="text/javascript">
+  $("#oldmapel").click(function(){
+    $("#mapel").show();
+    $("#oldmapel").hide();
+});
+</script>
 

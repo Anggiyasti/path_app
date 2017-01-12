@@ -76,27 +76,12 @@ class Modelbank extends CI_Model
     }
 
     public function getdaftarsoal(){
-
-  //   	$this->db->select('*');
-  //   	$this->db->from('tb_bank_soal');
-  //   	$tampil=$this->db->get();
-		// return $tampil->result_array();
-		// $this->db->select('b.id_bank, b.judul_soal, b.soal, b.judul_bab, b.kesulitan, m.nama_mapel,b.publish,p.jawaban as jawab,b.UUID');
-		// $this->db->from('tb_mata_pelajaran m');
-		// $this->db->join('tb_bank_soal b', 'm.id_mapel = b.id_mapel');
-		// $this->db->join('tb_pil_jawab p', 'b.id_bank = p.id_soal');
-		// $this->db->where('p.pilihan_jawaban = b.jawaban_benar ');
-
-
-
-
-		// $tampil=$this->db->get();
-		// return $tampil->result_array();
-		$this->db->select('b.id_bank, b.judul_soal, b.soal, bb.judul_bab, b.kesulitan, m.nama_mapel,b.publish,p.jawaban as jawab,b.UUID');
+    
+    	
+		$this->db->select('b.id_bank, b.judul_soal, b.soal, b.kesulitan,b.id_bab, m.nama_mapel,b.publish,p.jawaban as jawab,b.UUID, p.gambar, b.gambar_soal');
 		$this->db->from('tb_mata_pelajaran m');
 		$this->db->join('tb_bank_soal b', 'm.id_mapel = b.id_mapel');
 		$this->db->join('tb_pil_jawab p', 'b.id_bank = p.id_soal');
-		$this->db->join('tb_bab bb', 'm.id_mapel = bb.id_mapel');
 		$this->db->where('p.pilihan_jawaban = b.jawaban_benar ');
 		$this->db->where('b.publish= 1');
 		$this->db->order_by('b.id_bank', 'desc');
@@ -115,6 +100,7 @@ class Modelbank extends CI_Model
 		$h  =  $this->input->post('id_bab');
 		$i  =  $this->input->post('random');
 		$j  =  $this->input->post('publish');
+		//$k  =  $this->input->post('pembahasan');
 
 		
 		$arr = array(
@@ -128,6 +114,7 @@ class Modelbank extends CI_Model
 				'judul_bab'=> $h,
 				'random' => $i,
 				'publish'=> $j,
+				//'pembahasan'=> $k,
 				
 			);
 		$this->db->where('id_bank', $a);
@@ -196,9 +183,11 @@ class Modelbank extends CI_Model
   //   }
     public function delete_soal($id_bank) {
 		$this->db->where('id_bank', $id_bank);
-        $this->db->set('status', '0');
+        $this->db->set('publish', '0');
         $this->db->update('tb_bank_soal');
 	}
+	
+	
 	public function insert_mapel($datamapel) {
         $this->db->insert('tb_mata_pelajaran', $datamapel);
     }
@@ -213,6 +202,36 @@ class Modelbank extends CI_Model
 		$tampil=$this->db->get();
 		return $tampil->result_array();
     }
+    
+    public function gambar_mapel($id, $photo) {
+        $data = array(
+            'gambar' => $photo
+        );
+        // $id_siswa = $this->session->userdata['email'];
+        $this->db->where('id_mapel', $id);
+        $this->db->update('tb_mata_pelajaran', $data);
+        // var_dump($data);
+        redirect(site_url('banksoal/daftarmapelicon'));
+    }
+
+    public function get_mapelgambar($id)
+
+	{
+
+		// $id_siswa=$this->session->userdata['email'] ;	
+
+		$this->db->select('*');
+
+		$this->db->from('tb_mata_pelajaran');
+
+		$this->db->where('id_mapel',$id); 
+
+		$query = $this->db->get();
+
+		return $query->result_array();
+
+	}
+    
 
      public function getDaftarBab(){
     	$this->db->distinct();
@@ -245,12 +264,6 @@ class Modelbank extends CI_Model
 		$this->db->where('id_mapel', $id_mapel);
         $this->db->set('status', '0');
         $this->db->update('tb_mata_pelajaran');
-	}
-
-	public function hapusmapelbab($id_mapel) {
-		$this->db->where('id_mapel', $id_mapel);
-        $this->db->set('status', '0');
-        $this->db->update('tb_bab');
 	}
 
 	public function update_bab() {
@@ -291,38 +304,8 @@ class Modelbank extends CI_Model
 
 	public function insert_gambar($datagambar) {
         $this->db->insert_batch('tb_pil_jawab', $datagambar);
-        echo "masuk insert gambar";
-        var_dump($datagambar);
+
     }
-
-    public function gambar_mapel($id, $photo) {
-        $data = array(
-            'gambar' => $photo
-        );
-        // $id_siswa = $this->session->userdata['email'];
-        $this->db->where('id_mapel', $id);
-        $this->db->update('tb_mata_pelajaran', $data);
-        // var_dump($data);
-        redirect(site_url('banksoal/daftarmapelicon'));
-    }
-
-    public function get_mapelgambar($id)
-
-	{
-
-		// $id_siswa=$this->session->userdata['email'] ;	
-
-		$this->db->select('*');
-
-		$this->db->from('tb_mata_pelajaran');
-
-		$this->db->where('id_mapel',$id); 
-
-		$query = $this->db->get();
-
-		return $query->result_array();
-
-	}
 
 
     
@@ -354,10 +337,14 @@ class Modelbank extends CI_Model
     }
     public function get_onesoal($UUID) {
         $this->db->where('UUID', $UUID);
-        $this->db->select('*')->from('tb_bank_soal');
+        $this->db->select('*, m.nama_mapel, bb.judul_bab');
+        $this->db->from('tb_bank_soal b');
+        $this->db->join('tb_mata_pelajaran m', 'b.id_mapel = m.id_mapel');
+        $this->db->join('tb_bab bb', 'm.id_mapel = bb.id_mapel');
         $query = $this->db->get();
         return $query->result_array();
     }
+
 
     public function get_piljawaban($id_soal) {
         $this->db->where('id_soal', $id_soal);

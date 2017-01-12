@@ -1,4 +1,3 @@
-
 <section id="main" role="main">
 <!-- Start Math jax -->
   <script type="text/x-mathjax-config">
@@ -87,11 +86,12 @@ MathJax.Hub.Config({
                     <thead>
                         <tr class="info">
                         <th>No</th>
-                        <th>Id Soal</th>
+                        
                         <th>Judul Soal</th>
-                        <th>Id Mata Pelajaran</th>
-                        <th>Id Bab</th>
-                        <th>Kesulitan</th>
+                        <th>UUID</th>
+                        <th>Mata Pelajaran</th>
+                        <th>Bab</th>
+                        <th>K</th>
                         <th>Soal</th>
                         <th>Jawaban</th>
                         <th>Publish</th>
@@ -103,29 +103,30 @@ MathJax.Hub.Config({
                     <?php 
                    
                     $no = 1;
-                    foreach ($data as $d): ?>
+                    foreach ($data as $d) : ?>
                     <tr>
                         <td><?php echo $no; ?></td>
-                        <!-- <td><?=$d['UUID'] ?></td> -->
-                        <td><?=$d['id_bank'] ?></td>
+                        <!-- <td><?=$d['id_bank'] ?></td>-->
                         <td><?=$d['judul_soal'] ?></td>
+                        <td><?=$d['UUID'] ?></td>
+
                         <td><?=$d['nama_mapel'] ?></td> 
-                        <td><?=$d['judul_bab'] ?></td>
+                        <td><?=$d['id_bab'] ?></td>
                         <?php 
                                             // menentukan tingkat kesulitan dengan indeks 1 - 3
                                               $k = $d['kesulitan'];
                                               if ($k == '3') {
-                                                  $kk = 'Sulit';
+                                                  $kk = 'SU';
                                               } elseif ($k == '2') {
-                                                  $kk = 'Sedang';
+                                                  $kk = 'SE';
                                               }else {
-                                                 $kk = 'Mudah';
+                                                 $kk = 'MU';
                                               }
                                              ?>   
                                              <td><?=$kk;?></td>                  
                         <td><?php
                             $c =  $d['soal'];
-                            echo substr($c, 0, 20) ."..." ?>
+                            echo substr($c, 0, 500) ?>
                             <a class='label label-info' href='#mdetailsoal' title='lihat detail' data-toggle='modal' data-target='#mdetailsoal<?php echo $d['id_bank']; ?>'>Lihat Detail</a>
                         </td>
                         <td><?=$d['jawab'] ?>
@@ -135,17 +136,12 @@ MathJax.Hub.Config({
                             $publish =  $d['publish'];
                             // echo $publish;
                             // menentukan checked random
-                            if ($publish == '1') {
-                                echo '<div class="checkbox custom-checkbox nm">  
-                            <input type="checkbox" id="customcheckbox-one1" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" checked>  
-                            <label for="customcheckbox-one1"></label>   
-                            </div>';
-                            } else {
-                                 echo '<div class="checkbox custom-checkbox nm">  
-                            <input type="checkbox" id="customcheckbox-one1" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" disabled>  
-                            <label for="customcheckbox-one1"></label>   
-                            </div>';
-                        }
+                            if ($publish == '1') { ?>
+                                Publish   
+                            
+                            <?php } else { ?>
+                                 Tidak
+                            <?php }
                              ?>
                         </td>
                         <td>
@@ -186,12 +182,14 @@ MathJax.Hub.Config({
                                             <h3 class="semibold mt0 text-accent text-center"></h3>
                                         </div>
                                         <div class="modal-body">
-                                        <label>SOAL :</label>
+                                        <label>SOAL :</label><br>
+                                        <img src="<?=base_url();?>assets/uploads/<?=$d['gambar_soal'] ?>"> <br>
                                         <p class="text-justify" id="dsoal">
                                             <?=$d['soal'] ?>
                                             
                                         </p>
-                                        <label>JAWABAN :</label>
+                                        <label>JAWABAN :</label><br>
+                                        <img src="<?=base_url();?>assets/images/jawaban/<?=$d['gambar'] ?>"> <br>
                                         <p class="text-justify" id="djawaban">
                                             <?=$d['jawab'] ?>
                                             
@@ -213,7 +211,7 @@ MathJax.Hub.Config({
                     <tfoot>
                                     <tr>
                                         <th><input type="search" class="form-control" name="search_engine" placeholder="No"></th>
-                                        <th><input type="search" class="form-control" name="search_engine" placeholder="id Soal"></th>
+                                       
                                         <th><input type="search" class="form-control" name="search_engine" placeholder="judul soal"></th>
                                         <th><input type="search" class="form-control" name="search_engine" placeholder="mata pelajaran"></th>
                                         <th><input type="search" class="form-control" name="search_engine" placeholder="id bab"></th>
