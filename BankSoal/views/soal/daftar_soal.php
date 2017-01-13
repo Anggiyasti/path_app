@@ -182,17 +182,31 @@ MathJax.Hub.Config({
                                         </div>
                                         <div class="modal-body">
                                         <label>SOAL :</label><br>
-                                        <img src="<?=base_url();?>assets/uploads/<?=$d['gambar_soal'] ?>"> <br>
+                                        <?php if (!empty($d['gambar_soal'])) { ?>
+                                            <img src="<?=base_url();?>assets/uploads/<?=$d['gambar_soal'] ?>"> <br>
+                                            <p class="text-justify" id="dsoal">
+                                                 <?=$d['soal'] ?>
+                                                
+                                            </p>
+                                        <?php } else { ?>
                                         <p class="text-justify" id="dsoal">
-                                             <?=$d['soal'] ?>
-                                            
-                                        </p>
+                                                 <?=$d['soal'] ?>
+                                                
+                                            </p>
+                                            <?php } ?>
                                         <label>JAWABAN :</label><br>
-                                        <img src="<?=base_url();?>assets/images/jawaban/<?=$d['gambar'] ?>"> <br>
-                                        <p class="text-justify" id="djawaban">
-                                            <?=$d['jawab'] ?>
-                                            
-                                        </p>
+                                        <?php if (!empty($d['gambar'])) { ?>
+                                            <img src="<?=base_url();?>assets/images/jawaban/<?=$d['gambar'] ?>"> <br>
+                                            <p class="text-justify" id="djawaban">
+                                                <?=$d['jawab'] ?>
+                                                
+                                            </p>
+                                        <?php } else { ?>
+                                            <p class="text-justify" id="djawaban">
+                                                <?=$d['jawab'] ?>
+                                                
+                                            </p>
+                                        <?php } ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger mb5" data-dismiss="modal">Close</button>

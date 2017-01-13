@@ -39,4 +39,15 @@
 
 <script type="text/javascript" src="<?= base_url('assets/javascript/pages/frontend/home.js'); ?>"></script>
 
+<!-- Start Math jax --> 
+<script type="text/x-mathjax-config"> 
+    MathJax.Hub.Config({ 
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+    }); 
+</script> 
+<script type="text/javascript" async 
+        src="<?= base_url('assets/adminre/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>">
+</script> 
+<!-- end Math jax -->
+
 </body>
