@@ -78,7 +78,7 @@ class Modelbank extends CI_Model
     public function getdaftarsoal(){
     
     	
-		$this->db->select('b.id_bank, b.judul_soal, b.soal, b.kesulitan,b.id_bab, m.nama_mapel,b.publish,p.jawaban as jawab,b.UUID, p.gambar, b.gambar_soal');
+		$this->db->select('b.id_bank, b.judul_soal, b.judul_bab, b.soal, b.kesulitan,b.id_bab, m.nama_mapel,b.publish,p.jawaban as jawab,b.UUID, p.gambar, b.gambar_soal');
 		$this->db->from('tb_mata_pelajaran m');
 		$this->db->join('tb_bank_soal b', 'm.id_mapel = b.id_mapel');
 		$this->db->join('tb_pil_jawab p', 'b.id_bank = p.id_soal');
@@ -112,6 +112,7 @@ class Modelbank extends CI_Model
 				'kesulitan'=> $f,
 				'id_mapel' => $g,
 				'judul_bab'=> $h,
+				'id_bab'=> $h,
 				'random' => $i,
 				'publish'=> $j,
 				//'pembahasan'=> $k,
@@ -332,15 +333,16 @@ class Modelbank extends CI_Model
     }
 
     public function ch_jawaban($data) {
-        // $this->db->where('id_soal',$data['id_soal']);
+        $this->db->where('id_soal',$data['id_soal']);
         $this->db->update_batch('tb_pil_jawab', $data['jawaban'], 'pilihan_jawaban');
     }
     public function get_onesoal($UUID) {
-        $this->db->where('b.UUID', $UUID);
+        $this->db->where('UUID', $UUID);
         $this->db->select('*, m.nama_mapel, bb.judul_bab');
         $this->db->from('tb_bank_soal b');
+        $this->db->join('tb_bab bb', 'b.id_bab = bb.id_bab');
         $this->db->join('tb_mata_pelajaran m', 'b.id_mapel = m.id_mapel');
-        $this->db->join('tb_bab bb', 'm.id_mapel = bb.id_mapel');
+        
         $query = $this->db->get();
         return $query->result_array();
     }

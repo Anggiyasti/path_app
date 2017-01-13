@@ -59,7 +59,6 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         </div>
                                     </div>
                                             <input id="UUID" type="text" name="UUID" value="<?=$banksoal['UUID']; ?>" hidden="true">
-                                            <input id="UUID" type="text" name="UUID" value="<?=$banksoal['id_bab']; ?>">
                                               
                                     
 
@@ -93,7 +92,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                     <div class="form-group" id="oldbab">
                                         <label class="col-sm-2">BAB</label>
                                         <div class="col-sm-5">
-                                        <!-- <input class="form-control" type="text" name="judul_bab" value="<?php echo $editdata->judul_bab; ?>"> -->
+                                        <!-- <input class="form-control" type="text" name="judul_bab" value=""> -->
       
                                             <select name="judul_bab" id="id_bab" class="form-control" >
                                            <option value='0'><?=$banksoal['judul_bab']; ?></option>
@@ -120,8 +119,32 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                       <span id="pesan"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2">Kesilitan</label>
+                                    <div class="form-group" id="oldlevel">
+                                        <label class="col-sm-2">Kesulitan</label>
+                                        <div class="col-sm-5">
+                                            <select name="kesulitan" id="kesulitan" class="form-control" value="<?=$banksoal['kesulitan']; ?>">
+                                            <?php 
+                                            // menentukan tingkat kesulitan dengan indeks 1 - 3
+                                              $k = $banksoal['kesulitan'];
+                                              if ($k == '3') {
+                                                  $kk = 'Sulit';
+                                              } elseif ($k == '2') {
+                                                  $kk = 'Sedang';
+                                              }else {
+                                                 $kk = 'Mudah';
+                                              }
+                                             ?>   
+                                             <td><?=$kk;?></td>
+                                <option value="<?=$banksoal['kesulitan']; ?>"><?=$kk; ?></option>
+
+                              </select>
+    
+                      <span id="pesan"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" id="level" hidden="true">
+                                        <label class="col-sm-2">Kesulitan</label>
                                         <div class="col-sm-5">
                                             <select name="kesulitan" id="kesulitan" class="form-control" value="<?=$banksoal['kesulitan']; ?>">
                                 <option value="1">Mudah</option>
@@ -228,9 +251,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                              <div class="col-sm-10">
 
                                  <textarea  name="editor1" class="form-control" id="" value="">
-                                <?=$banksoal['soal'];?>
-
-                                 </textarea>
+                                <?=$banksoal['soal'];?></textarea>
                                  <span id="pesan"></span>
 
                              </div>
@@ -241,8 +262,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                               <label class="control-label col-sm-2">Buat rumus</label>
                               <div class="col-sm-10">
 
-                               <textarea class="form-control" id="MathInput" cols="60" rows="10" onkeyup="Preview.Update()" >
-                               </textarea>
+                               <textarea class="form-control" id="MathInput" cols="60" rows="10" onkeyup="Preview.Update()" ></textarea>
 
                               </div>
                               <label class="control-label col-sm-2"></label>
@@ -485,7 +505,20 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                         </div>
                         <!-- END input Jawaban E -->
 
-                                    <div class="form-group">
+                                    <div class="form-group" id="oldjawaban">
+                                        <label class="col-sm-2">Jawaban Benar</label>
+                                        <div class="col-sm-5">
+                                        <!-- <input class="form-control" type="text" name="jawaban_benar" value="<?php echo $editdata->jawaban_benar; ?>"> -->
+      
+                                            <select name="jawaban_benar" id="kesulitan" class="form-control" value="<?=$banksoal['jawaban_benar']; ?>">
+                                            <option value="<?=$banksoal['jawaban_benar']; ?>"><?=$banksoal['jawaban_benar']; ?></option>
+
+                                        </select>
+                                        <span id="pesan"></span>
+                                        </div>
+                                    </div>
+
+                                     <div class="form-group" id="jawaban" hidden="true">
                                         <label class="col-sm-2">Jawaban Benar</label>
                                         <div class="col-sm-5">
                                         <!-- <input class="form-control" type="text" name="jawaban_benar" value="<?php echo $editdata->jawaban_benar; ?>"> -->
@@ -1643,6 +1676,16 @@ function ValidateSingleInput(oInput) {
   $("#oldmapel").click(function(){
     $("#mapel").show();
     $("#oldmapel").hide();
+});
+
+   $("#oldlevel").click(function(){
+    $("#level").show();
+    $("#oldlevel").hide();
+});
+
+    $("#oldjawaban").click(function(){
+    $("#jawaban").show();
+    $("#oldjawaban").hide();
 });
 </script>
 
