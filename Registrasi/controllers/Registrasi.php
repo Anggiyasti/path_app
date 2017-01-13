@@ -27,19 +27,26 @@ class Registrasi extends MX_Controller
 	}
 
 	function register() {
+         $this->load->helper(array('form', 'url'));
+
+        $this->load->library('form_validation');
         //set validation rules
         $this->form_validation->set_rules('nama_depan', 'Nama Depan', 'trim|required');
         $this->form_validation->set_rules('nama_belakang', 'Nama Belakang', 'trim|required');
-        $this->form_validation->set_rules('email', 'Email ID', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email ID', 'required|valid_email|is_unique[tb_siswa.email]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|matches[cpassword]|md5');
         $this->form_validation->set_rules('cpassword', 'Confirm Password', 'trim|required');
         // $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
+
+        $this->form_validation->set_message('is_unique', '*Nama Pengguna atau email sudah terpakai');
+        $this->form_validation->set_message('valid_email', '*silahkan masukan alamat email anda dengan benar');
 
         //validate form input
         if ($this->form_validation->run() == FALSE) {
             // gagal
             // $this->load->view('vRegistrasi');
             redirect('registrasi');
+
             } else {
             //insert the user registration details into database
             $data = array(
@@ -58,20 +65,20 @@ class Registrasi extends MX_Controller
                 {
                     // successfully sent mail
                     $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please confirm the mail sent to your Email-ID!!!</div>');
-                    redirect('registrasi/register');
+                    redirect('registrasi');
                 }
                 else
                 {
                     // error
                     $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
-                    redirect('registrasi/register');
+                    redirect('registrasi');
                 }
             }
             else
             {
                 // error
                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
-                redirect('registrasi/register');
+                redirect('registrasi');
             }
         }
     }

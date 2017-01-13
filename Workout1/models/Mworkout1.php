@@ -156,13 +156,12 @@ class Mworkout1 extends CI_Model
         $this->db->join('tb_mata_pelajaran pel',
             'pel.id_mapel=bab.id_mapel');
         $this->db->where('create_by', $createdby);
-        $this->db->where('bab.id_mapel', $mapel);
-        $this->db->order_by('tgl_pengerjaan', 'asc');
+        $this->db->where('bab.id_bab', $mapel);
+        $this->db->order_by('report.tgl_pengerjaan', 'desc');
         $query = $this->db->get();
         return $query->result_array();
 
     }
-
     public function get_report2($createdby){
         $this->db->select('*, bab.judul_bab');
         $this->db->from('tb_latihan latihan');

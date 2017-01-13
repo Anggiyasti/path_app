@@ -89,22 +89,22 @@
                     <div class="portfolio-item">
                     <?php foreach ($report as $reportitem): ?>
                             Time : <?= $reportitem['tgl_pengerjaan'] ?> <br>
-                            <?php if ($reportitem['kesulitan'] = '1') { ?>
-                            Level : Easy <br>
-                            <?php } elseif ($reportitem['kesulitan'] = '2') { ?>
-                            Level : Medium <br>
+                            <?php if ($reportitem['kesulitan'] == '1') { ?>
+                            Level : Mudah <br>
+                            <?php } elseif ($reportitem['kesulitan'] == '2') { ?>
+                            Level : Sedang <br>
                             <?php } else { ?>
-                            Level : Hard <br>
+                            Level : Sulit <br>
                             <?php } ?>
                             Score : <?= $reportitem['score'] ?><br>
                             <a href="<?=base_url()?>index.php/workout1/detailreport/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail">Detail</a>
-                            <a class="btn btn-primary modal-on<?= $reportitem['id_latihan'] ?>" 
+                            <!-- <a class="btn btn-primary modal-on<?= $reportitem['id_latihan'] ?>" 
 
                                                title="Lihat pembahasan" 
 
                                                 onclick="mulai_pembahasan(<?= $reportitem['id_latihan'] ?>)"
 
-                                               ><i class="glyphicon glyphicon-book"></i>Pembahasan</a>
+                                               ><i class="glyphicon glyphicon-book"></i>Pembahasan</a> -->
                             <a href="<?=base_url()?>index.php/workout1/create_session_id_pembahasan/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail">Pembahasan</a>
                     <?php endforeach ?>
                     </div>
