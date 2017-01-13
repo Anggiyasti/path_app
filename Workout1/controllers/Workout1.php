@@ -37,7 +37,7 @@ class Workout1 extends MX_Controller
     public function mulaitest() {
         if (!empty($this->session->userdata['id_latihan'])) {
             $id = $this->session->userdata['id_latihan'];
-            $kesulitan = $this->input->post('kesulitan');
+            // $kesulitan = $this->input->post('kesulitan');
             $this->load->view('t-header-soal');
             // $this->load->view('template/header');
             // $this->load->view('v-header');
@@ -190,6 +190,7 @@ class Workout1 extends MX_Controller
             $this->Mworkout1->insert_tb_mm_sol_lat($data['mm_sol']);
         };
             redirect('workout1/mulaitest');
+        // $this->mulaitest($kesulitan);
 
     }
 

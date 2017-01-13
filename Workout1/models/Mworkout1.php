@@ -38,6 +38,7 @@ class Mworkout1 extends CI_Model
         $this->db->from('tb_bank_soal as soal');
         $this->db->join('tb_mm_sol_lat as sollat', 'sollat.id_soal = soal.id_bank');
         $this->db->where('sollat.id_latihan', $id_latihan);
+        // $this->db->where('soal.kesulitan', $kesulitan);
         $query = $this->db->get();
         $soal = $query->result_array();
 
@@ -125,7 +126,7 @@ class Mworkout1 extends CI_Model
     //random buat bab
     public function get_random_for_latihan_bab( $param ) {
         $this->db->where( 'id_bab', $param['id_bab'] );
-        // $this->db->where( 'kesulitan', $param['kesulitan'] );
+        $this->db->where( 'kesulitan', $param['kesulitan'] );
         $this->db->order_by( 'rand()' );
         $this->db->limit( $param['jumlah_soal'] );
         $this->db->select( '*' );
