@@ -11,19 +11,19 @@
 <script>
 
 $(document).ready(function(){
-	
-	$('.skillbar').skillBars({
-		from: 0,
-		speed: 4000, 
-		interval: 100,
-		decimals: 0,
-	});
-	
+  
+  $('.skillbar').skillBars({
+    from: 0,
+    speed: 4000, 
+    interval: 100,
+    decimals: 0,
+  });
+  
 });
 
 </script>
 <style type="text/css">
-	@charset "utf-8";
+  @charset "utf-8";
 
 /* CSS Document */
 
@@ -91,11 +91,12 @@ $(document).ready(function(){
   position: absolute;
   right: 10px;
   top: 0;
-  font-size: 11px;
+  font-size: 18px;
   height: 35px;
   line-height: 35px;
   color: #ffffff;
   color: rgba(0, 0, 0, 0.4);
+  color: #800000;
 }
 
 </style>
@@ -118,10 +119,22 @@ $(document).ready(function(){
 <div class="jquery-script-clear"></div>
 </div>
 </div>
-
+<?php if ($c== array()): ?>
+                    <h4 align="center">Tidak ada Grafik Workout.</h4>
+                <?php else: ?>
    
     <?php foreach ($c as $key) : 
      $p = $key['score_grafik'];
+    $p2 = $key['tot'];
+
+     if ($p2 == 0) { ?>
+     <span><h3><?=$key['judul_bab'];?></h3></span>
+
+    <div class="skillbar" data-percent="0">
+      <p class="skillbar-bar" style="background: #e67e22;"></p>
+      <span class="skill-bar-percent"></span>
+    </div>
+      <?php } else {
     ?>
       <span><h3><?=$key['judul_bab'];?></h3></span>
 
@@ -129,13 +142,14 @@ $(document).ready(function(){
       <p class="skillbar-bar" style="background: #e67e22;"></p>
       <span class="skill-bar-percent"></span>
     </div>
+    <?php } ?>
     <!-- End Skill Bar -->
     <?php endforeach ?>
    
     <!-- End Skill Bar -->
+    <?php endif ?>
             
             </div>
-            <a href="#" class="mobileui-lockscreen-home animated fadeIn delay-300"><i class="ion-ios-home-outline"></i></a>
         </div>
         
     </div>  

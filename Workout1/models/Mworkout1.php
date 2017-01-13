@@ -89,20 +89,20 @@ class Mworkout1 extends CI_Model
     }
 
 
-    public function insertst($data, $hasil,$hasil1) {
-        $query="UPDATE tb_grafik_report set sub_score= $hasil , total= $hasil1 where id_latihan='$data'";
-        // $this->db->set('sub_score',$hasil);
-        // $this->db->where('id_latihan', $data);
-        // $this->db->update('tb_grafik_report');
-        // var_dump($data);
-        // return $query;
-        $result = $this->db->query($query);
-        //return $result->result_array();    
-    }
+    // public function insertst($data, $hasil,$hasil1) {
+    //     $query="UPDATE tb_grafik_report set sub_score= $hasil , total= $hasil1 where id_latihan='$data'";
+    //     // $this->db->set('sub_score',$hasil);
+    //     // $this->db->where('id_latihan', $data);
+    //     // $this->db->update('tb_grafik_report');
+    //     // var_dump($data);
+    //     // return $query;
+    //     $result = $this->db->query($query);
+    //     //return $result->result_array();    
+    // }
 
-    public function inputgrafik($data) {
-        $this->db->insert('tb_grafik_report', $data);
-    }
+    // public function inputgrafik($data) {
+    //     $this->db->insert('tb_grafik_report', $data);
+    // }
 
     // update latihan
     public function updateLatihan($id) {
