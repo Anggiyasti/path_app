@@ -103,7 +103,25 @@ class Workout1 extends MX_Controller
 
     $hasil['durasi_pengerjaan'] = $this->input->post('durasi');
 //
+
+    $mudah = 4;
+    $sedang = 5;
+    $sulit = 6;
+
+
+    if ($level == "4") {
+        $hasil1 = floatval($benar * ($mudah - $salah));
+    } else if ($level == "5") {
+        $hasil1 = floatval($benar * ($sedang - $salah));
+    } else {
+        $hasil1 = floatval($benar * ($sulit - $salah));
+    }
+
+    $hasil2 = floatval($jumlahsoal * 6);
+
+
     $result = $this->Mworkout1->inputreport($hasil);
+    $result1 = $this->Mworkout1->insertst($id_latihan,$hasil1,$hasil2);
     $this->Mworkout1->updateLatihan($id_latihan);
     $this->session->unset_userdata('id_latihan');
     redirect(base_url('index.php/workout1'));
@@ -179,6 +197,13 @@ class Workout1 extends MX_Controller
         // get soal randoom
         $data['soal_random'] = $this->Mworkout1->get_random_for_latihan_bab($param);
        
+         $bab = array(
+            "id_bab" => $idbab,
+            "id_latihan" => $id_latihan  
+        );
+         $this->Mworkout1->inputgrafik($bab);
+
+
         // var_dump($data);
         // $data['mm_sol']=array();
         //ngecacah teru dimasukin ke relasi
