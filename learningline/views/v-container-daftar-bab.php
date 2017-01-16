@@ -108,10 +108,10 @@
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>Nama Tingkat</th>
-                            <th>Pelajaran</th>
-                            <th>Bab</th>
-                            <th>learning Line</th>
+                            <th>Nama Mapel</th>
+                            <th>Judul Bab</th>
+<!--                             <th>Bab</th>
+ -->                        <th>learning Line</th>
                             <th width="15%">Aksi</th>
                         </tr>
                     </thead>
@@ -128,11 +128,3 @@
 </section>
 
 
-<script type="text/javascript">
-    var url = base_url + "learningline/ajax_get_list_bab";
-    var kelas = '.daftarbab';
-    var tabel;
-
-    var dataTableLearning ;
-    var kelasDTLearning= ".daftartopik" ;
-</script>

@@ -22,27 +22,28 @@ class Learningline extends MX_Controller {
 	// GET LIST STEP BERDASARKAN ID TOPIK
 	public function ajax_get_list_bab(){
 		$list = $this->learningmodel->get_bab_for_topik();
+		
 		$data = array();
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
 			// $no++;
 			$row = array();
-			$row[] = $list_item['id'];			
-			$row[] = $list_item['namaTingkat'];
-			$row[] = $list_item['namaMataPelajaran'];
-			$row[] = $list_item['judulBab'];
+			$row[] = $list_item['id_bab'];			
+			$row[] = $list_item['nama_mapel'];
+			$row[] = $list_item['judul_bab'];
+			// $row[] = $list_item['judulbab'];
 			if ($list_item['statusLearningLine']==1) {
 				$row[] = "<input type='checkbox' 
-				class='switchery' checked onclick='update_learning_bab(".$list_item['id'].",".$list_item['statusLearningLine'].")'>";
+				class='switchery' checked onclick='update_learning_bab(".$list_item['id_bab'].",".$list_item['statusLearningLine'].")'>";
 			} else {
 				$row[] = "<input type='checkbox' 
-				class='switchery' unchecked onclick='update_learning_bab(".$list_item['id'].",".$list_item['statusLearningLine'].")'>";
+				class='switchery' unchecked onclick='update_learning_bab(".$list_item['id_bab'].",".$list_item['statusLearningLine'].")'>";
 			}
 			
 			
 			$row[] = '
-			<a class="btn btn-sm btn-success"  title="Detail" onclick="detail_bab('."'".$list_item['id']."'".')"><i class="ico-file-plus2"></i></a>';
+			<a class="btn btn-sm btn-success"  title="Detail" onclick="detail_bab('."'".$list_item['id_bab']."'".')"><i class="ico-file-plus2"></i></a>';
 
 			$data[] = $row;
 

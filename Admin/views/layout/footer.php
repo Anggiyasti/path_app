@@ -1,3 +1,4 @@
+
         <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
         <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery-migrate.min.js')?>"></script>
         <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/bootstrap/js/bootstrap.min.js')?>"></script>
@@ -36,6 +37,7 @@
         <script type="text/javascript" src="<?php echo base_url('assets/adminre/plugins/datatables/js/jquery.datatables-custom.min.js')?>"></script>
         
         <script type="text/javascript" src="<?php echo base_url('assets/adminre/javascript/tables/datatable.js')?>"></script>
+        
 
 
        

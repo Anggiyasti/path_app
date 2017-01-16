@@ -47,13 +47,10 @@ class Learningmodel extends CI_Model{
 
 	// ambil semua bab
 	public function get_bab_for_topik(){
-		$this->db->select('b.id, mata_pelajaran,judulBab,statusLearningLine');
-		
-		$this->db->from('`tb_bab` b');
+		$this->db->select('b.id_bab, m.nama_mapel,b.judul_bab,b.statusLearningLine');
+		$this->db->from('tb_bab b');
+		$this->db->join('tb_mata_pelajaran m',' m.id_mapel = b.id_mapel');
 		$this->db->where('b.status',1);
-		$this->db->join('`tb_tingkat` tn',' tn.`id` = tp.`tingkatID`');
-		$this->db->join('tb_mata-pelajaran` m',' m.`id` = tp.`mataPelajaranID`');
-		$this->db->order_by('namaTingkat');
 		$query = $this->db->get();
 		return $query->result_array();
 	}

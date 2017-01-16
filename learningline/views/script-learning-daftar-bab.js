@@ -1,4 +1,13 @@
 <script>
+
+    var url = base_url + "index.php/learningline/ajax_get_list_bab";
+    var kelas = '.daftarbab';
+    var tabel;
+
+    var dataTableLearning ;
+    var kelasDTLearning= ".daftartopik" ;
+
+    
 //load table
 $(document).ready(function () {
 	tabel = $(kelas).DataTable({
@@ -9,6 +18,7 @@ $(document).ready(function () {
 		"emptyTable": "Tidak Ada Data Pesan",
 		"info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
 	});
+
 });
 
 //update data
