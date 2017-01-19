@@ -23,6 +23,7 @@
         
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/plugins/selectize/css/selectize.min.css')?>">
          <link rel="stylesheet" href="<?php echo base_url('assets/adminre/plugins/datatables/css/jquery.datatables.min.css')?>">
+
         <!--/ Plugins stylesheet -->
 
         <!-- Application stylesheet : mandatory -->
