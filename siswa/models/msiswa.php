@@ -70,7 +70,7 @@ class Msiswa extends CI_Model {
 		$option="<option value='0'>--pilih--</pilih>";
 
 		$this->db->order_by('prodi','ASC');
-		$jur= $this->db->get_where('tb_passing_grade',array('id_passing'=>$id));
+		$jur= $this->db->get_where('tb_passing_grade',array('universitas'=>$id));
 		foreach ($jur->result_array() as $data ){
 		$option.= "<option value='$data[prodi]'></option>";
 

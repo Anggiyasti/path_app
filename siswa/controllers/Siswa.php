@@ -14,10 +14,21 @@ class Siswa extends MX_Controller {
       //fungsi ambil data unruk dropdown
     $modul=$this->input->post('modul');
     $id=$this->input->post('id');
+    var_dump($modul);
 
     if($modul=="getjur"){
     echo $this->Msiswa->getjur($id);
   }
+  }
+
+  public function get_jurusan()
+  {
+      $univ = $this->input->post('univ');
+      // var_dump($univ);
+      echo $this->Msiswa->getjur($univ);
+
+
+
   }
 
 

@@ -217,5 +217,5 @@ $("#jurusan").html(respond);
 
 })
 
-</script> 
+</script>  
 </body>
