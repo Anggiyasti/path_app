@@ -22,7 +22,7 @@ class Msiswa extends CI_Model {
 
 		$id_siswa=$this->session->userdata['email'] ;	
 
-		$this->db->select('id_siswa,nama_depan,nama_belakang,password,email,alamat,no_tlp,nama_sekolah,status,photo');
+		$this->db->select('id_siswa,nama_depan,nama_belakang,password,email,alamat,no_tlp,nama_sekolah,status,photo, jurusan, univ');
 
 		$this->db->from('tb_siswa');
 
@@ -62,6 +62,21 @@ class Msiswa extends CI_Model {
 
 			);
 		$this->db->where('id_siswa', $g);
+		return $this->db->update('tb_siswa', $arr);
+	}
+
+	// fungsi update univ dan jurusan
+	public function up_siswa($j, $u) {
+		$id_siswa=$this->session->userdata['email'] ;
+		$jur = urldecode($j);
+		$univ = urldecode($u);
+		$arr = array(
+				'jurusan'=> $jur,
+				'univ'=> $univ,
+			);
+
+		// var_dump($arr);
+		$this->db->where('email', $id_siswa);
 		return $this->db->update('tb_siswa', $arr);
 	}
 

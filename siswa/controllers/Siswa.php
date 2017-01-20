@@ -40,6 +40,24 @@ class Siswa extends MX_Controller {
         $this->load->view('layout/nav');
 	}
 
+    public function update_siswa($jur, $univ) {
+        // var_dump($jur, $univ);
+
+            $this->Msiswa->up_siswa($jur, $univ);
+            
+            if ($this->db->affected_rows())
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
+                redirect('passinggrade/univ');
+            }
+            else
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
+                redirect('Siswa/Profilesiswa');
+            }
+        
+    }
+    
 	public function edit_siswa() {
 		if ($this->input->post('update')) 
 		{

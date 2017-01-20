@@ -17,9 +17,11 @@
 
     $no = $row['no_tlp'];
 
-    // $universitas = $row['univ'];
+    $univ = $row['univ'];
 
-    $jurusan = $row['prodi'];
+    $jur = $row['jurusan'];
+
+    // $universitas = $row['univ'];
 
     $photo=base_url().'assets/images/siswa/'.$row['photo'];
 
@@ -98,23 +100,13 @@
                     <input type="text" class="input-text-box input-green-border" name="no_tlp" value="<?=$no; ?>">
                      <?php echo form_error('no_tlp'); ?>
                 </div>
-                <div class="input-icon ">
+                <div class="input-icon">
                     <label>Universitas</label>
-                    <div class="select-box" color="white">  
-                    <select class='form-control' name="univ" id='univ'>
-                    <option value='0'>--pilih--</option>
-                    <?php foreach ($univ as $U) {
-                    echo "<option value='$U[universitas]'>$U[universitas]</option>";
-                    }?>
-                    </select></div>
+                    <input type="text" class="input-text-box input-green-border" name="no_tlp" value="<?=$univ; ?>" disabled>
                 </div>
-                <div class="input-icon ">
-                    <label>No Telepon</label>
-                    <div class="select-box" color="white">  
-                    <select name="jurusan" id="jurusan" class="form-control" >
-                    <option value='0'>--pilih--</option>
-                    </select>
-                    </div>
+                <div class="input-icon">
+                    <label>Jurusan</label>
+                    <input type="text" class="input-text-box input-green-border" name="no_tlp" value="<?=$jur; ?>" disabled>
                 </div>
             </div>
             <div class="content">
