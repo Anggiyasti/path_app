@@ -17,6 +17,10 @@
 
     $no = $row['no_tlp'];
 
+    // $universitas = $row['univ'];
+
+    $jurusan = $row['prodi'];
+
     $photo=base_url().'assets/images/siswa/'.$row['photo'];
 
     $oldphoto=$row['photo'];
@@ -89,6 +93,29 @@
                     <input type="text" class="input-text-box input-green-border" name="no_tlp" value="<?=$no; ?>">
                      <?php echo form_error('no_tlp'); ?>
                 </div>
+                <div class="input-icon">
+                    <label>No Telepon</label>
+                    <input type="text" class="input-text-box input-green-border" name="no_tlp" value="<?=$no; ?>">
+                     <?php echo form_error('no_tlp'); ?>
+                </div>
+                <div class="input-icon ">
+                    <label>Universitas</label>
+                    <div class="select-box" color="white">  
+                    <select class='form-control' name="univ" id='univ'>
+                    <option value='0'>--pilih--</option>
+                    <?php foreach ($univ as $U) {
+                    echo "<option value='$U[universitas]'>$U[universitas]</option>";
+                    }?>
+                    </select></div>
+                </div>
+                <div class="input-icon ">
+                    <label>No Telepon</label>
+                    <div class="select-box" color="white">  
+                    <select name="jurusan" id="jurusan" class="form-control" >
+                    <option value='0'>--pilih--</option>
+                    </select>
+                    </div>
+                </div>
             </div>
             <div class="content">
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
@@ -105,7 +132,7 @@
 
             <div class="content">
 
-            <img id="preview" class="img-circle img-bordered" src="<?=$photo;?>" alt="" width="30%" />
+            <img id="preview" class="img-circle img-bordered" src="<?=$photo;?>" alt="" width="30%" height="30%" />
              
                 <div class="input-icon">
                 
@@ -164,4 +191,31 @@
 </div>
     
 </div>
+ <script type="text/javascript">
+// load bab
+$(function(){
+
+$.ajaxSetup({
+type:"POST",
+url: "<?php echo base_url('index.php/siswa/ambil_univ_jur')?>",
+cache: false,
+});
+
+$("#univ").change(function(){
+
+var value=$(this).val();
+if(value>0){
+$.ajax({
+data:{modul:'getjur',id:value},
+success: function(respond){
+$("#jurusan").html(respond);
+}
+})
+}
+
+});
+
+})
+
+</script> 
 </body>

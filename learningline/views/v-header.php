@@ -29,6 +29,8 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/library/bootstrap/css/bootstrap.min.css')?>">
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/stylesheet/layout.min.css')?>">
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/stylesheet/uielement.min.css')?>">
+        <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
+
         <!--/ Application stylesheet -->
         <!-- END STYLESHEETS -->
 

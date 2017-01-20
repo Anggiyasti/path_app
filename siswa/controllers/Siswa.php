@@ -10,6 +10,16 @@ class Siswa extends MX_Controller {
         $this->load->library('form_validation');
     }
 
+    function ambil_univ_jur(){
+      //fungsi ambil data unruk dropdown
+    $modul=$this->input->post('modul');
+    $id=$this->input->post('id');
+
+    if($modul=="getjur"){
+    echo $this->Msiswa->getjur($id);
+  }
+  }
+
 
 	
 
@@ -42,6 +52,7 @@ class Siswa extends MX_Controller {
 	public function Profilesiswa() {
    
     $data['Siswa'] = $this->Msiswa->get_siswa();
+    $data['univ']=$this->Msiswa->getuniv();
     $data['email']=$this->session->userdata['email'];
     	$this->load->view('layout/header');
         $this->load->view('layout/sidebar');

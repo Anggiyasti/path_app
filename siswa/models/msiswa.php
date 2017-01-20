@@ -42,6 +42,9 @@ class Msiswa extends CI_Model {
 		$e  =  $this->input->post('alamat');
 		$f  =  $this->input->post('no_tlp');
 		$g  =  $this->input->post('id_siswa');
+		$h  =  $this->input->post('univ');
+		$i  =  $this->input->post('jurusan');
+		
 		
 
 		$arr = array(
@@ -52,6 +55,8 @@ class Msiswa extends CI_Model {
 				'alamat'=> $e,
 				'no_tlp'=> $f,
 				'id_siswa' => $g,
+				'univ' => $h,
+				'jurusan' => $i,
 				
 
 
@@ -60,6 +65,25 @@ class Msiswa extends CI_Model {
 		return $this->db->update('tb_siswa', $arr);
 	}
 
+	function getjur($id){
+
+		$option="<option value='0'>--pilih--</pilih>";
+
+		$this->db->order_by('prodi','ASC');
+		$jur= $this->db->get_where('tb_passing_grade',array('id_passing'=>$id));
+		foreach ($jur->result_array() as $data ){
+		$option.= "<option value='$data[prodi]'></option>";
+
+		}
+
+		return $option;
+
+}
+	function getuniv(){
+		$this->db->order_by('universitas','ASC');
+		$provinces= $this->db->get('tb_passing_grade');
+		return $provinces->result_array();
+	}
 
 	public function ubah_katasandi() {
 		$a  =  $this->input->post('id_siswa');

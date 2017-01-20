@@ -161,6 +161,8 @@ class Learningline extends MX_Controller {
 	}
 
 
+
+
 	function ajax_get_video($babid){
 		$list = $this->mvideos->get_all_video_by_bab($babid);
 		$data = array();
@@ -189,6 +191,13 @@ class Learningline extends MX_Controller {
 
 
 	## --------------------------AJAX PROCESSING-------------------------- ##
+
+	function drop_topik(){
+		$data = array(
+			'id'=>$this->input->post('id')
+			);
+		$this->learningmodel->drop_topik($data);
+	}
 
 
 }
