@@ -81,8 +81,8 @@
                 'password' => $this->input->post('password'),
                 'alamat' => $this->input->post('alamat'),
                 'no_tlp' => $this->input->post('no_tlp'),
-                'nama_sekolah' => $this->input->post('nama_sekolah')
-                // 'status' => $this->input->post('status')
+                'nama_sekolah' => $this->input->post('nama_sekolah'),
+                'status' => $this->input->post('status')
             );
             
             // insert form data into database
@@ -150,8 +150,8 @@
                 'nama_guru' => $this->input->post('nama'),
                 'username' => $this->input->post('username'),
                 'email' => $this->input->post('email'),
-                'password' => $this->input->post('password')
-                // 'status' => $this->input->post('status')
+                'password' => $this->input->post('password'),
+                'status' => $this->input->post('status')
             );
             
             // insert form data into database

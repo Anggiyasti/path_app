@@ -108,14 +108,31 @@
                                     </div> -->
                                     
                                     <div class="form-group">
-                                        <label class="col-sm-2">Status</label>
-                                        <div class="col-sm-5">
-                                            <span class="checkbox custom-checkbox custom-checkbox-inverse">
-                                                <input type="checkbox" name="status" id="customcheckbox1" value="1" />
-                                                <label for="customcheckbox1">&nbsp;&nbsp;Aktif</label>
-                                            </span>
-                                        </div>
-                                    </div>
+                                    <label class="col-sm-2">Statud</label>
+
+                                        
+                          <div class="col-sm-5">
+                                        <?php 
+                            $status =  $editdata->status;
+                            // echo $publish;
+                            // menentukan checked random
+                            if ($status == '1') {
+                                echo '<div class="checkbox custom-checkbox nm">  
+                                <span class="checkbox custom-checkbox custom-checkbox-inverse">
+                            <input type="checkbox" name="status" id="customcheckbox-one1" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" checked>  
+                            <label for="customcheckbox-one1">&nbsp;&nbsp;Publish</label>
+                            </span>   
+                            </div>';
+                            } else {
+                                 echo '<div class="checkbox custom-checkbox nm">  
+                            <input type="checkbox" name="status" id="customcheckbox-one1" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" disabled>  
+                            <label for="customcheckbox-one1">Publish</label>   
+                            </div>';
+                        }
+                             ?>
+                             
+                             </div>
+                             </div>
                                     
                                     <div class="panel-footer">
                                         <div class="form-group no-border">

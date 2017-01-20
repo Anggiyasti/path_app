@@ -74,6 +74,15 @@
                                             <span class="text-danger"><?php echo form_error('password_conf'); ?></span>
                                             </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Status</label>
+                                        <div class="col-sm-5">
+                                            <span class="checkbox custom-checkbox custom-checkbox-inverse">
+                                                <input type="checkbox" name="status" value="1" id="customcheckbox1"  />
+                                                <label for="customcheckbox1">&nbsp;&nbsp;Aktif</label>
+                                            </span>
+                                        </div>
+                                    </div>
                                     
                                     <div class="panel-footer">
                                         <div class="form-group no-border">

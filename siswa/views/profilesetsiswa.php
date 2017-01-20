@@ -132,7 +132,7 @@
 
             <div class="content">
 
-            <img id="preview" class="img-circle img-bordered" src="<?=$photo;?>" alt="" width="30%" height="30%" />
+            <img id="preview" class="img-circle img-bordered" src="<?=$photo;?>" alt="" width="150px" height="150px" />
              
                 <div class="input-icon">
                 
