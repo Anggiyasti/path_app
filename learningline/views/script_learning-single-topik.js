@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 /*## -----------------------------Drop Learning-------------------------------##*/
 function drop_topik(idtopik){
-	url = base_url+"learningline/drop_topik";
+	url = base_url+"index.php/learningline/drop_topik";
 	swal({
 		title: "Yakin akan hapus Topik?",
 		text: "Jika anda menghapus topik, step juga akan terhapus",

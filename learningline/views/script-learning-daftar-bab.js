@@ -65,9 +65,9 @@ function detail_topik(data){
 	$('.detail_step').modal('show');
 	judul = " <h4 class='modal-title' style='display: inline'>Daftar Step</h4>";
 	$('.detail_step .modal-header').html(judul);
-	$(".detail_step a").attr("href", base_url+"learningline/formstep/"+data);
+	$(".detail_step a").attr("href", base_url+"index.php/learningline/formstep/"+data);
 
-	var url = base_url+"learningline/ajax_list_ge_step/"+data;
+	var url = base_url+"index.php/learningline/ajax_list_ge_step/"+data;
 	dataTableLearning = $('.daftarstep').DataTable({
 		"ajax": {
 			"url": url,

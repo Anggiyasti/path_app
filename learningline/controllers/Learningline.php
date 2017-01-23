@@ -53,8 +53,9 @@ class Learningline extends MX_Controller {
 			"data"=>$data,
 			);
 
-		echo json_encode( $output );	
+		echo json_encode($output);	
 	}
+
 
 	//FUNGSI MENAMBAHKAN TOPIK
 	public function formtopik($data){
@@ -81,6 +82,28 @@ class Learningline extends MX_Controller {
 		// $this->loadparser($data);
 	}
 	//FUNGSI MENAMBAHKAN TOPIK
+
+	//FUNGSI TAMBAHKAN LINE STEP
+	public function formstep($data){
+		$metadata = $this->learningmodel->get_topik_byid($data);
+		// var_dump($metadata);
+		$data = array(
+			'judul_halaman' => " - Add Learning Line Step untuk ".$metadata['namaTopik'],
+			'namaTopik' => $metadata['namaTopik'],
+			'id'=>$metadata['id'],
+			'babID'=>$metadata['babID'],
+			'mapel'=>$metadata['nama_mapel'],
+			'bab'=>$metadata['judul_bab'],
+			);
+
+
+		$this->load->view('v-header');
+		$this->load->view('v-form-step',$data);
+		$this->load->view('script_learning-form-step.js',$data);
+		$this->load->view('admin/layout/footer');
+
+	}
+	//FUNGSI TAMBAHKAN LINE STEP
 
 	// TB-TOPIK //
 	function ajax_insert_line_topik(){
@@ -153,7 +176,7 @@ class Learningline extends MX_Controller {
 	// GET LIST STEP BERDASARKAN ID TOPIK
 
 	public function ajax_list_ge_step($id_topik){
-		$list = $this->learning_model->get_step_by_id_topik($id_topik);
+		$list = $this->learningmodel->get_step_by_id_topik($id_topik);
 		$data = array();
 
 		$baseurl = base_url();
@@ -178,6 +201,64 @@ class Learningline extends MX_Controller {
 
 		echo json_encode( $output );	
 	}
+
+	function ajax_insert_line_step(){
+	$uuid = uniqid();
+	
+	if($this->input->post('latihanID')){
+		$data = array(
+			'namaStep'=>$this->input->post('namastep'),
+			'jenisStep'=>$this->input->post('select_jenis'),
+			'videoID'=>$this->input->post('videoID'),
+			'MateriID'=>$this->input->post('materiID'),
+			'latihanID'=>$this->session->userdata('id_latihan'),
+			'status'=>1,
+			'urutan'=>$this->input->post('urutan'),
+			'topikID'=>$this->input->post('topikID'),
+			'jumlah_benar'=>$this->input->post('jumlah_benar'),
+			'jumlah_soal_sedang'=>$this->input->post('jumlah_soal_sedang'),
+			'jumlah_soal_mudah'=>$this->input->post('jumlah_soal_mudah'),
+			'jumlah_soal_sulit'=>$this->input->post('jumlah_soal_sulit'),
+			'depend_status'=>$this->input->post('status_depedensi'),
+			'UUID'=>$uuid
+			);
+	}else{ 
+		$data = array(
+			'namaStep'=>$this->input->post('namastep'),
+			'jenisStep'=>$this->input->post('select_jenis'),
+			'videoID'=>$this->input->post('videoID'),
+			'MateriID'=>$this->input->post('materiID'),
+			'status'=>1,
+			'urutan'=>$this->input->post('urutan'),
+			'topikID'=>$this->input->post('topikID'),
+			'depend_status'=>$this->input->post('status_depedensi'),
+			'UUID'=>$uuid
+			);
+	}
+	// 1. Cek dulu yang diinsert ada yang sama atau tidak?
+	$step_urutan_sama = $this->learningmodel->get_step_sama_urutan($data['topikID'], $data['urutan']);
+	if ($step_urutan_sama) {
+		// kalo ada yang sama
+		$list_step = $this->learningmodel->get_step_urutan_idtopik($data['topikID'], $data['urutan']);
+		$data_urutan_update = array();
+		if ($list_step) {
+		//ambil urutan yang lebih sama dengan urutan		
+			$urutanngaco  = $this->learningmodel->get_step_urutan($data['topikID'], $data['urutan']);
+		//cacah di buat array baru, urutan valuenya +1
+			foreach ($urutanngaco as $value) {
+				$a = array('urutan'=>$value['urutan']+1);
+				$b = array('id'=>$value['id']);
+				$result = array_merge($a, $b);
+			//update batch
+				$this->learningmodel->update_step_urutan($result);
+			}
+		} 
+		$this->learningmodel->insert_line_step($data);
+	} else {
+		//kalo gak ada yang sama
+		$this->learningmodel->insert_line_step($data);
+	}
+}
 
 
 

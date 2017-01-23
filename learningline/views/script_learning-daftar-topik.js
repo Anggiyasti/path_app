@@ -59,7 +59,7 @@ function detail_topik(data){
 	judul = " <h4 class='modal-title' style='display: inline'>Daftar Step Yang Harus Dikerjakan</h4>";
 	$('.detail_learning .modal-header').html(button+""+judul);
 
-	var url = base_url+"learningline/ajax_list_ge_step/"+data;
+	var url = base_url+"index.php/learningline/ajax_list_ge_step/"+data;
 	dataTableLearning = $(kelasDTLearning).DataTable({
 		"ajax": {
 			"url": url,

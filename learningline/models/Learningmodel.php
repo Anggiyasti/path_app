@@ -35,8 +35,8 @@ class Learningmodel extends CI_Model{
 	// fungi ambil semua step berdasarkan id topik tertentu
 	public function get_step_by_id_topik($data){
 		$this->db->select('*');
-		$this->db->from('`tb_line_topik` tp');
-		$this->db->join('`tb_line_step` ls','tp.`id`=ls.`topikID`');
+		$this->db->from('tb_line_topik tp');
+		$this->db->join('tb_line_step ls','tp.id=ls.topikID');
 		$this->db->where('tp.id',$data);
 		$query = $this->db->get();
 		return $query->result_array();
@@ -54,6 +54,22 @@ class Learningmodel extends CI_Model{
         $result = $this->db->query($query);
         return $result->result_array();
     }
+
+    function get_topik_byid($data){
+		$query = "SELECT topik.id,bab.id_bab as babID, mapel.id_mapel as mapelID, namaTopik, statusLearning,topik.urutan,deskripsi, nama_mapel, judul_bab 
+		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
+		JOIN tb_bab AS bab ON topik.babID = bab.id_bab
+		JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = bab.id_mapel";
+
+		$result = $this->db->query($query);
+		if ($result->result_array()==array()) {
+			return false;
+		} else {
+			return $result->result_array()[0];
+		}
+		
+
+	}
 
 	// ambil semua bab
 	public function get_bab_for_topik(){
