@@ -23,6 +23,9 @@
         
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/plugins/selectize/css/selectize.min.css')?>">
          <link rel="stylesheet" href="<?php echo base_url('assets/adminre/plugins/datatables/css/jquery.datatables.min.css')?>">
+         <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
+          <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
+
 
         <!--/ Plugins stylesheet -->
 

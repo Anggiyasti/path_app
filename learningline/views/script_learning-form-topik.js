@@ -28,7 +28,7 @@ function load_tingkat() {
    pelajaran_id = $('select[name=select_mapel]').val()
    load_bab(pelajaran_id);
  });
-  ## -------------------------------SALAT SELECT DIPILIH-------------------------------##
+  /*## -------------------------------SALAT SELECT DIPILIH-------------------------------##*/
 
 });
 
@@ -80,11 +80,14 @@ $('input[name=urutan]').keyup(function () {
 $('.simpanlearning').click(function(){
   data = 
   {babID:$('input[name=select_bab]').val(),
-  statusLearning:$('input[name=status]:checked'),
-  deskripsi:$('textarea[name=deskripsi]').val(),
-  namaTopik:$('input[name=nama_topik]').val(),
-  urutan:$('input[name=urutan]').val()
+  statusLearning:$('input[name=stat]:checked').val(),
+  deskripsi:$('textarea[name=des]').val(),
+  namaTopik:$('input[name=namatopik]').val(),
+  urutan:$('input[name=urt]').val()
 };
+
+// console.log(data);
+
   if (data.statusLearning=="kosongundefined" || data.namaTopik=="") {
     swal('Silahkan lengkapi data');
   }else{
@@ -111,7 +114,9 @@ $('.simpanlearning').click(function(){
         function(isConfirm){
           if (isConfirm) {
             swal("selesai", "Anda akan dialihkan ke daftar topik", "success");
-            window.location = base_url+"learningline";
+            link = base_url+"index.php/learningline/topik/"+data.babID;
+            window.location.href = link;
+            console.log(link);
           } else {
           // swal("Cancelled", "Your imaginary file is safe :)", "error");
         }

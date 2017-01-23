@@ -69,7 +69,7 @@ class Learningline extends MX_Controller {
 		
 		$this->load->view('v-header');
 		$this->load->view('v-form-topik',$data);
-		$this->load->view('script_learning-form-topik.js');
+		$this->load->view('script_learning-form-topik.js',$data);
 		$this->load->view('admin/layout/footer');
 
 
@@ -91,9 +91,28 @@ class Learningline extends MX_Controller {
 			'deskripsi'=>$this->input->post('deskripsi'),
 			'namaTopik'=>$this->input->post('namaTopik'),
 			'status'=>1,
-			'urutan'=>$this->input->post('urutan')
+			'urutan'=>$this->input->post('urutan'),
+			'UUID'=>uniqid(),
+
 			);
-		$this->learningmodel->insert_line_topik ($data);
+		$this->learningmodel->insert_line_topik($data);
+	}
+
+	function topik($byid){
+		$metadata = $this->learningmodel->get_bab_by_id($byid)[0];
+		// var_dump($metadata);
+		$data = array(
+			'judul_halaman' => " - Daftar Topik",
+			'mapel'=>$metadata['nama_mapel'],
+			'bab'=>$metadata['judul_bab'],
+			);
+
+		$this->load->view('v-header');
+		$this->load->view('v-daftar-topik-single.php',$data);
+		$this->load->view('script_learning-single-topik.js');
+		$this->load->view('admin/layout/footer');
+
+		
 	}
 	// TB-TOPIK //
 
@@ -198,6 +217,9 @@ class Learningline extends MX_Controller {
 			);
 		$this->learningmodel->drop_topik($data);
 	}
+
+
+	
 
 
 }

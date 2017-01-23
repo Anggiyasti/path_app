@@ -27,7 +27,7 @@
   <div class="col-sm-8">
    <input type="text" class="form-control" disabled="true" name="bab" value="<?=$bab; ?>">
 
-   <input type="hidden" name="select_bab" value="{id}">
+   <input type="hidden" name="select_bab" value="<?=$id ?>">
  </div>
 </div>
 
@@ -35,7 +35,7 @@
   <label class="col-sm-3 control-label">Nama Topik</label>
   <div class="col-sm-8">
 
-   <input type="text" class="form-control" name="nama_topik">
+   <input type="text" class="form-control" name="namatopik">
  </div>
 </div>
 
@@ -43,7 +43,7 @@
   <label class="col-sm-3 control-label">Urutan</label>
   <div class="col-sm-8">
 
-   <input type="text" class="form-control" name="urutan">
+   <input type="text" class="form-control" name="urt">
  </div>
 </div>
 
@@ -51,11 +51,11 @@
   <label class="col-sm-3 control-label">Status</label>
   <div class="col-sm-8">
    <span class="radio custom-radio-primary">  
-    <input type="radio" id="radio1" value="1" name="status"checked>  
+    <input type="radio" id="radio1" value="1" name="stat" checked>  
     <label for="radio1">&nbsp;&nbsp;Published</label>   
   </span>
   <span class="radio custom-radio-primary">  
-    <input type="radio" id="radio2" value="0" name="status">  
+    <input type="radio" id="radio2" value="0" name="stat">  
     <label for="radio2">&nbsp;&nbsp;Non Published</label>   
   </span>
 </div>
@@ -64,7 +64,7 @@
 <div  class="form-group">
   <label class="col-sm-3 control-label">Deskripsi</label>
   <div class="col-sm-8">
-    <textarea class="form-control" name="deskripsi"></textarea>
+    <textarea class="form-control" name="des"></textarea>
   </div>
 </div>
 

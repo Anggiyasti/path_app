@@ -84,7 +84,7 @@ class Learningmodel extends CI_Model{
 
 
 	function insert_line_topik($data){
-		$this->db->insert( 'tb_line_topik', $data );
+		$this->db->insert( 'tb_line_topik', $data);
 	}
 
 	function drop_topik($data){
