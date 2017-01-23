@@ -215,7 +215,7 @@ class Learningline extends MX_Controller {
 		$data = array(
 			'id'=>$this->input->post('id')
 			);
-		$this->learningmodel->drop_topik($data);
+		$this->learningmodel->droptopik($data);
 	}
 
 

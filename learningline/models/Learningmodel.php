@@ -87,7 +87,7 @@ class Learningmodel extends CI_Model{
 		$this->db->insert( 'tb_line_topik', $data);
 	}
 
-	function drop_topik($data){
+	function droptopik($data){
 		$this->db->where('id', $data['id']);
 		$this->db->set('status', 0);
 		$this->db->update('tb_line_topik');
