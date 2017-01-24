@@ -19,7 +19,7 @@ function play(data){
 	kelas = '.detail-'+data;
 	meta = $(kelas).data('todo');
 	// console.log(meta);
-	url = base_url+"learningline/ajax_detail_video/"+meta.videoID;
+	url = base_url+"index.php/learningline/ajax_detail_video/"+meta.videoID;
 	get_detail_video(url);
 	$('.detailstep').modal('show');
 
@@ -30,7 +30,7 @@ function materi_detail(id){
 	var kelas ='.detail-'+id;
 	var data = $(kelas).data('todo');
 	$('.detailstep .modal-header').html('<h3 class="semibold mt0 text-accent text-center">'+data.namaStep+'</h3>');
-	url = base_url+"learningline/ajax_detail_materi/"+data.materiID;
+	url = base_url+"index.php/learningline/ajax_detail_materi/"+data.materiID;
 
 	get_detail_materi(data.materiID,url);
 	$('.detailstep').modal('show');
@@ -127,7 +127,7 @@ function latihan_detail(id, url){
 	'</div>'+
 
 	'</div>';
-	url = base_url+"learningline/ajax_detail_latihan/"+data.latihanID;
+	url = base_url+"index.php/learningline/ajax_detail_latihan/"+data.latihanID;
 	console.log(url);
 	$('.detailstep .modal-body').html(konten);
 	tabel = $('.daftarsoal').DataTable({
@@ -145,7 +145,7 @@ function latihan_detail(id, url){
 
 
 function drop_step(idstep){
-	url = base_url+"learningline/drop_step";
+	url = base_url+"index.php/learningline/drop_step";
 	swal({
 		title: "Yakin akan hapus Step?",
 		text: "Jika anda menghapus Step",

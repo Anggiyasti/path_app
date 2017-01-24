@@ -32,6 +32,27 @@ class Learningmodel extends CI_Model{
 		return $query->result_array();
 	}
 
+	function get_all_video_by_bab($idbab){
+    $this->db->select('video.id_video as videoID, nama_file, link, judul_video, bab.id_bab, bab.judul_bab');
+    $this->db->from( 'tb_bab bab' );
+    $this->db->join('tb_video video','bab.id_bab = video.id_bab');
+    $this->db->where('bab.id_bab',$idbab);
+    $this->db->order_by('bab.id_bab');
+
+    $query = $this->db->get();
+    return $query->result_array(); 
+  }
+  function get_materi_babID($data){
+		$this->db->select('m.id, judulMateri, isiMateri');
+		$this->db->from('tb_line_materi m');
+		$this->db->JOIN('tb_subbab s','s.id = m.subBabID'); 
+		$this->db->JOIN('tb_bab b','b.id = s.babID'); 
+		$this->db->where('b.id', $data);
+
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
 	// fungi ambil semua step berdasarkan id topik tertentu
 	public function get_step_by_id_topik($data){
 		$this->db->select('*');
@@ -141,6 +162,58 @@ class Learningmodel extends CI_Model{
 		$this->db->insert( 'tb_line_step', $data );
 	}
 	/*insert DATA UNTUK STEP*/
+
+
+	function get_step_sama_urutan($idtopik, $urutan){
+		$this->db->select('*');
+		$this->db->from('tb_line_step');
+		$this->db->where('topikID', $idtopik);
+		$this->db->where('urutan =', $urutan);
+
+		$result = $this->db->get();
+		if ($result->result_array()==array()) {
+			return false;
+		} else {
+			return $result->result_array();
+		}
+
+	}
+
+	function get_step_urutan_idtopik($idtopik, $urutan){
+		$this->db->select('*');
+		$this->db->from('tb_line_step');
+		$this->db->where('topikID', $idtopik);
+		$this->db->where('urutan >=', $urutan);
+		$this->db->order_by('urutan','asc');
+
+		$result = $this->db->get();
+		if ($result->result_array()==array()) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+	function get_step_urutan($idtopik, $urutan){
+		$this->db->select('*');
+		$this->db->from('tb_line_step');
+		$this->db->where('topikID', $idtopik);
+		$this->db->where('urutan >=', $urutan);
+
+		$result = $this->db->get();
+		if ($result->result_array()==array()) {
+			return false;
+		} else {
+			return $result->result_array();
+		}
+
+	}
+
+	public function update_step_urutan($data) {
+        $this->db->where('id',$data['id']);
+        $this->db->set($data);
+		$this->db->update('tb_line_step');
+    }
 
 }
 ?>

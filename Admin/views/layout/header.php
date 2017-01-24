@@ -383,6 +383,30 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                         
                         <!--/ END 2nd Level Menu -->
                     </li>
+                    <li >
+                        <a href="javascript:void(0);" data-toggle="submenu" data-target="#materi" data-parent=".topmenu">
+                            <span class="figure"><i class="ico-book"></i></span>
+                            <span class="text">Materi</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <!-- START 2nd Level Menu -->
+                        <ul id="materi" class="submenu collapse">
+                            <li class="submenu-header ellipsis">Forms</li>
+                            <li >
+                                <a href="<?=base_url('index.php/materi/form_materi')?>">
+                                    <span class="text">Tambah materi</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a href="<?=base_url('index.php/materi/list_all_materi')?>">
+                                    <span class="text">Lihat materi</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        
+                        <!--/ END 2nd Level Menu -->
+                    </li>
                      <li >
                         <a href="javascript:void(0);" data-toggle="submenu" data-target="#guru" data-parent=".topmenu">
                             <span class="figure"><i class="ico-book"></i></span>

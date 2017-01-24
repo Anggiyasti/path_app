@@ -260,11 +260,42 @@ class Learningline extends MX_Controller {
 	}
 }
 
+function ajax_get_materi($data){
+		$list = $this->learning_model->get_materi_babID($data);
+		$data = array();
+
+		$baseurl = base_url();
+		foreach ( $list as $list_item ) {
+			// $no++;
+			$row = array();
+			$row[] = $list_item['id'];			
+			$row[] = $list_item['judulMateri'];
+			$row[] = '<a class="btn btn-sm btn-primary btn-outline detail-'.$list_item['id'].'"  title="Lihat"
+			data-id='."'".json_encode($list_item)."'".'
+			onclick="detail('."'".$list_item['id']."'".')"
+			>
+			<i class=" ico-eye "></i>
+		</a> ';
+
+		$row[] = "<input type='radio' name='materi' value=".$list_item['id']." ' class='switchery' unchecked'>";
+
+		$data[] = $row;
+
+	}
+
+	$output = array(
+		"data"=>$data,
+		);
+
+	echo json_encode( $output );	
+
+}
+
 
 
 
 	function ajax_get_video($babid){
-		$list = $this->mvideos->get_all_video_by_bab($babid);
+		$list = $this->learningmodel->get_all_video_by_bab($babid);
 		$data = array();
 
 		$baseurl = base_url();
@@ -272,8 +303,8 @@ class Learningline extends MX_Controller {
 			// $no++;
 			$row = array();
 			$row[] = $list_item['videoID'];			
-			$row[] = $list_item['judulSubBab'];
-			$row[] = $list_item['judulVideo'];
+			$row[] = $list_item['judul_bab'];
+			$row[] = $list_item['judul_video'];
 			
 			$row[] = "<input type='radio' name='video' value=".$list_item['videoID']."class='switchery' unchecked'>";
 

@@ -55,7 +55,7 @@ function updatestatus(id,status){
 //detail topik
 function detail_topik(data){
 	$('.detail_learning').modal('show');
-	button = "<a href="+base_url+"learningline/formstep/"+data+" class='close' aria-label='Close' title='Step Baru'><span aria-hidden='true'><i class='ico-plus'></i></span></a>";
+	button = "<a href="+base_url+"index.php/learningline/formstep/"+data+" class='close' aria-label='Close' title='Step Baru'><span aria-hidden='true'><i class='ico-plus'></i></span></a>";
 	judul = " <h4 class='modal-title' style='display: inline'>Daftar Step Yang Harus Dikerjakan</h4>";
 	$('.detail_learning .modal-header').html(button+""+judul);
 
