@@ -43,11 +43,10 @@ class Learningmodel extends CI_Model{
     return $query->result_array(); 
   }
   function get_materi_babID($data){
-		$this->db->select('m.id, judulMateri, isiMateri');
+		$this->db->select('m.id, judulMateri, isiMateri, b.id_bab');
 		$this->db->from('tb_line_materi m');
-		$this->db->JOIN('tb_subbab s','s.id = m.subBabID'); 
-		$this->db->JOIN('tb_bab b','b.id = s.babID'); 
-		$this->db->where('b.id', $data);
+		$this->db->JOIN('tb_bab as b ',' b.id_bab = m.id_bab'); 
+		$this->db->where('b.id_bab', $data);
 
 		$query = $this->db->get();
 		return $query->result_array();
@@ -59,6 +58,7 @@ class Learningmodel extends CI_Model{
 		$this->db->from('tb_line_topik tp');
 		$this->db->join('tb_line_step ls','tp.id=ls.topikID');
 		$this->db->where('tp.id',$data);
+		$this->db->where('ls.status',1);
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -130,6 +130,12 @@ class Learningmodel extends CI_Model{
 		$this->db->update('tb_line_topik');
 	}
 
+	#dropstep
+	function drop_step($data){
+		$this->db->where('id', $data['id']);
+		$this->db->set('status', 0);
+		$this->db->update('tb_line_step');
+	}
 	// update line bab aktiv
 	function updateaktiv_bab($data){
 		$this->db->where('id', $data);

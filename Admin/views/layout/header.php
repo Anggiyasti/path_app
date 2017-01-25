@@ -65,6 +65,7 @@
 <script type="text/javascript" src="<?= base_url('assets/adminre/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
 
 <script>
+var base_url = "<?php echo base_url();?>" ;
 var Preview = {
   delay: 150,        // delay after keystroke before updating
 

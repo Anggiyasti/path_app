@@ -1,5 +1,11 @@
-<!-- Start Modal Detail Video dari server -->
-	<div class="modal fade" id="mdetailvideo">
+
+
+
+
+
+        <!-- START Template Main -->
+        <section id="main" role="main">
+        <div class="modal fade" id="mdetailvideo">
 
 		<div class="modal-dialog" role="document">
 
@@ -34,11 +40,62 @@
 		</div>
 
 	</div>
-	<!-- End Modal Detail Video -->
-<section class="id="main" role="main"">
-	<div class="container-fluid">
-		<!-- Start row -->
-		<div class="row">
+            <!-- START Template Container -->
+            <div class="container-fluid">
+                <!-- Page Header -->
+               
+                <!-- Page Header -->
+
+                <!-- START row -->
+
+                <!-- Page Header -->
+                
+                <!-- Page Header -->
+
+                <!-- START row -->
+                <!-- /.row -->
+<div class="row">
+ <div class="container-fluid">
+                <!-- Page Header -->
+                <div class="page-header page-header-block">
+                    <div class="checkbox custom-checkbox pull-left">  
+                        <h3 class="panel-title"><span class="panel-icon mr5"><i class="ico-table22"></i></span> Daftar Soal</h3>
+                    </div>
+                    <div class="page-header-section">
+                        <!-- Toolbar -->
+                        <div class="toolbar">
+                            <ol class="breadcrumb breadcrumb-transparent nm">
+                                
+                            </ol>
+                        </div>
+                        <!--/ Toolbar -->
+                    </div>
+                </div>  
+    <!-- /.col-lg-12 -->
+    <div class="col-lg-12">
+        <!-- jalankan validasi pesan -->
+        <?php if ($this->session->flashdata('info')) { ?>
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4>Success</h4>
+            </div>
+        <?php } elseif ($this->session->flashdata('pesan2')) { ?>
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4>Failed</h4>
+                <?php echo $this->session->flashdata('pesan2'); ?>
+            </div>
+        <?php }; ?>
+            <!-- end validasi -->
+
+        
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row --> 
+            
+<!-- /.row -->
+<div class="row">
 			
 			<div class="col-md-12">
 				<!-- Start Panel -->
@@ -61,10 +118,9 @@
 							<tr>
 							<th>No</th>
 								<th>Judul</th>
-								<th>Tingkat</th>
 								<th>Matapelajarn</th>
 								<th>Bab</th>
-								<th>Sub Bab</th>
+								<th>Isi Materi</th>
 								<th>Tanggal di buat</th>
 								<th>Status</th>
 								<th width="20%">Aksi</th>
@@ -80,8 +136,15 @@
 			</div>
 		</div>
 	</div>
+
+            <!-- START To Top Scroller -->
+<a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
+            <!--/ END To Top Scroller -->
+
 </section>
-<script type="text/javascript">
+        <!--/ END Template Main -->
+
+        <script type="text/javascript">
 	var  $list_materi;
 	$(document).ready(function() {
 		//#get list by id guru
@@ -139,3 +202,7 @@ function  reload_tblist(){
 }
 
 </script>
+
+
+
+

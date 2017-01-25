@@ -94,7 +94,7 @@
         </div>
       </div>
     </div>
-    <input type="hidden" name="babID" value={babID}>
+    <input type="hidden" name="babID" value=<?=$babID ?>>
     <!-- TABEL KONTEN 1 . FORM LEARNINGNLINE -->
     <div class="row">
      <div class="col-md-12">
@@ -151,7 +151,7 @@
     <div class="col-sm-3">
       <select class="form-control" name="select_jenis">
         <option value="0">-- Pilih Jenis Step --</option>
-        <option value="1">Video</option>
+        <!-- <option value="1">Video</option> -->
         <option value="2">Materi</option>
         <option value="3">Latihan</option>
       </select>

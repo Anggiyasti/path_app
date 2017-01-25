@@ -25,10 +25,10 @@
                         <br>
                         <li><span><a href="<?=base_url('learningline')?>"><i class="ico-list"></i></a></span></li>
 
-                        <li><span>{tingkat}</span></li>
-                        <li>{mapel}</li>
-                        <li>{bab}</li>
-                        <li>{namaTopik}</li>
+                        
+                        <li><?=$mapel  ?></li>
+                        <li><?=$bab  ?></li>
+                        <li><?=$namaTopik  ?></li>
 
                         <li><a class="btn btn-success" 
                             href="<?= base_url("index.php/learningline/formstep/".$this->uri->segment(3)); ?>" 

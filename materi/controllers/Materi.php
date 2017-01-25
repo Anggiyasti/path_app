@@ -10,28 +10,39 @@ class Materi extends MX_Controller
 		parent::__construct();
 		$this->load->model('Mmateri');
 		$this->load->library('parser');
+		$this->load->helper(array('form', 'url', 'file', 'html'));
+        $this->load->library('form_validation');
 	}
+
+	function ambil_data(){
+      //fungsi ambil data unruk dropdown
+    $modul=$this->input->post('modul');
+    $id=$this->input->post('id');
+
+    if($modul=="getbab"){
+    echo $this->Mmateri->getbab($id);
+  }
+  }
 
 	// Menampilkan form materi
 	public function form_materi()
 	{
+	$data['mapel']=$this->Mmateri->getmapel();
 		if ($this->session->userdata('id_admin')) {
 
-    $this->load->view('admin/layout/header');
+    	$this->load->view('admin/layout/header');
         // $this->load->view('layout/nav');
-        $this->load->view('v-form-materi');
+        $this->load->view('v-form-materi',$data);
         $this->load->view('admin/layout/footer');
     }
       //hak akses jika guru
 
       elseif ($this->session->userdata('id_guru')) {
     	$this->load->view('guru/layout/header');
-        $this->load->view('v-form-materi');
+        $this->load->view('v-form-materi',$data);
         $this->load->view('guru/layout/footer');
     }
-    else{
-    	redirect("");
-    }
+    
 		// $data['files'] = array(
 		// 	APPPATH . 'modules/materi/views/v-form-materi.php',
 		// 	);
@@ -54,20 +65,22 @@ class Materi extends MX_Controller
 	public function uploadMateri()
 	{
 
-		$this->load->view('admin/layout/header');
-        // $this->load->view('layout/nav');
-        $this->load->view('soal/tambah_soal', $data);
-        $this->load->view('admin/layout/footer');
+		
 		$judulMateri=htmlspecialchars($this->input->post('judul'));
-		$subBabID = htmlspecialchars($this->input->post('subBabID'));
+		$id_bab = htmlspecialchars($this->input->post('id_bab'));
 		$isiMateri = $this->input->post('editor1');
 		$publish= htmlspecialchars($this->input->post('stpublish'));
- 		$penggunaID = $this->session->userdata['id'];
+ 		if ($this->session->userdata('id_admin')) {
+ 		$penggunaID = $this->session->userdata['id_admin'];
+ 		}
+ 		elseif ($this->session->userdata('id_guru')) {
+ 		$penggunaID = $this->session->userdata['id_guru'];
+ 		}
  		$UUID = uniqid();
 		$datMateri=array(
 						'judulMateri'=>$judulMateri,
 						'isiMateri'=>$isiMateri,
-						'subBabID'=>$subBabID,
+						'id_bab'=>$id_bab,
 						'penggunaID'=>$penggunaID,
 						'publish'=>$publish,
 						'UUID'=>$UUID);
@@ -134,10 +147,9 @@ class Materi extends MX_Controller
             }
             $row[] = $no;
             $row[] = $list_materi['judulMateri'];
-            $row[] =$list_materi['aliasTingkat'];
-            $row[] =$list_materi['mapel'];
-            $row[] =$list_materi['judulBab'];
-            $row[] =$list_materi['judulSubBab'];
+            $row[] =$list_materi['nama_mapel'];
+            $row[] =$list_materi['judul_bab'];
+            $row[] =$list_materi['isiMateri'];
             $row[] =$list_materi['tgl'];
             $row[] =  $publish;
             $row[] = '  <a class="btn btn-sm btn-primary btn-outline detail-'.$list_materi['materiID'].'"  title="Lihat"
@@ -174,24 +186,22 @@ class Materi extends MX_Controller
 	public function form_update_materi($UUID)
 	{
 		$data['singleMateri']=$this->Mmateri->get_single_materi($UUID);
-		$subBabID = $data['singleMateri'] ['subBabID'];
-		$data['infomateri']=$this->Mmateri->get_tingkat_info($subBabID);
-		$data['files'] = array(
-			APPPATH . 'modules/materi/views/v-update-materi.php',
-			);
-		$data['judul_halaman'] = "Form Update Materi";
-		$hakAkses=$this->session->userdata['HAKAKSES'];
-                // cek hakakses 
-		if ($hakAkses=='admin') {
-        // jika admin
-			$this->parser->parse('admin/v-index-admin', $data);
-		} elseif($hakAkses=='guru'){
-                 // jika guru
-			$this->parser->parse('templating/index-b-guru', $data);          
-		}else{
-            // jika siswa redirect ke welcome
-			redirect(site_url('welcome'));
-		}
+		// $subBabID = $data['singleMateri'] ['subBabID'];
+		$data['infomateri']=$this->Mmateri->get_tingkat_info($UUID);
+		if ($this->session->userdata('id_admin')) {
+
+    $this->load->view('admin/layout/header');
+        // $this->load->view('layout/nav');
+        $this->load->view('v-update-materi',$data);
+        $this->load->view('admin/layout/footer');
+    }
+      //hak akses jika guru
+
+      elseif ($this->session->userdata('id_guru')) {
+    	$this->load->view('guru/layout/header');
+        $this->load->view('v-update-materi',$data);
+        $this->load->view('guru/layout/footer');
+    }
 	}
 
 	// update materi
@@ -199,14 +209,18 @@ class Materi extends MX_Controller
 	{	
 		$data['UUID'] = $this->input->post('UUID');
 		$judulMateri=htmlspecialchars($this->input->post('judul'));
-		$subBabID = htmlspecialchars($this->input->post('subBabID'));
+		// $subBabID = htmlspecialchars($this->input->post('subBabID'));
 		$isiMateri = $this->input->post('editor1');
 		$publish= htmlspecialchars($this->input->post('stpublish'));
- 		$penggunaID = $this->session->userdata['id'];
+ 		if ($this->session->userdata('id_admin')) {
+ 		$penggunaID = $this->session->userdata['id_admin'];
+ 		}
+ 		elseif ($this->session->userdata('id_guru')) {
+ 		$penggunaID = $this->session->userdata['id_guru'];
+ 		}
 		$data['datMateri']=array(
 						'judulMateri'=>$judulMateri,
 						'isiMateri'=>$isiMateri,
-						'subBabID'=>$subBabID,
 						'penggunaID'=>$penggunaID,
 						'publish'=>$publish);
 

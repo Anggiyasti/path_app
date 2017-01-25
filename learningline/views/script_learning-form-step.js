@@ -104,7 +104,7 @@ $('.simpan_step').click(function(){
 				function(isConfirm){
 					if (isConfirm) {
 						swal("selesai", "Anda akan dialihkan ke daftar step", "success");
-						window.location.href = base_url+"learningline/step/"+data.topikID;
+						window.location.href = base_url+"index.php/learningline/step/"+data.topikID;
 					} else {
 						swal("Tambah Data", "silahkan ambahkan data");
 						$('.jenis').html("<h4 class='text-center animation animating pulse'>Pilih Jenis Terlebih Dahulu</h4>");	
@@ -219,7 +219,7 @@ function load_materi(){
 
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
-	var url = base_url+"learningline/ajax_get_materi/"+babID;
+	var url = base_url+"index.php/learningline/ajax_get_materi/"+babID;
 
 	tabel = $('.daftarvideo').DataTable({
 		"ajax": {

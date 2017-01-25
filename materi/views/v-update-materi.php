@@ -1,20 +1,29 @@
-<section class="id="main" role="main"">
-	<div class="container-fluid">
-		<!-- Start row -->
-		<div class="row">
-			
-			<div class="col-md-12">
-				<!-- Start Panel -->
-				<form class="form-horizontal form-bordered  panel panel-teal" action="<?=base_url()?>index.php/materi/updateMateri" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+
+     
+        <!--/ END Template Sidebar (Left) -->
+
+        <!-- START Template Main -->
+        <section id="main" role="main">
+            <!-- START Template Container -->
+            <div class="container-fluid">
+                <!-- Page Header -->
+                <div class="page-header page-header-block">
+                    
+                    
+                </div>
+                <!-- Page Header -->
+
+                <!-- START row -->
+                <form class="form-horizontal form-bordered  panel panel-teal" action="<?=base_url()?>index.php/materi/updateMateri" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 					<!-- Start HEading Panel -->
 					<div class="panel-heading">
 						<h3 class="panel-title">Form Update Materi</h3>
 						<input type="text" name="UUID" value="<?=$singleMateri['UUID']?>" hidden="true">
 						  <!-- Start old info data materi -->
-                        <input type="text" id="oldtkt" value="<?=$infomateri['id_tingkat'];?>" hidden="true">
+                        <!-- <input type="text" id="oldtkt" value="<?=$infomateri['id_tingkat'];?>" hidden="true"> -->
                         <input type="text"  id="oldmp"  value="<?=$infomateri['id_mp'];?>" hidden="true">
                         <input type="text" id="oldbab"  value="<?=$infomateri['id_bab'];?>" hidden="true">
-                        <input type="text" id="oldsub"  value="<?=$infomateri['id_subbab'];?>" hidden="true">
+                        <!-- <input type="text" id="oldsub"  value="<?=$infomateri['id_subbab'];?>" hidden="true"> -->
                         <input type="text" id="oldpub"  value="<?=$singleMateri['publish']?>" hidden="true">
                         <!-- END old info data materi -->
 					</div>
@@ -23,33 +32,11 @@
 					<!-- Start Pnel Body -->
 					<div class="panel-body">
 						<!-- Start Dropd Down depeden -->
-						<div  class="form-group">
-							<label class="col-sm-1 control-label">Tingkat</label>
-							<div class="col-sm-4">
-								<select class="form-control" name="tingkat" id="tingkat">
-									<option>-Pilih Tingkat-</option>
-								</select>
-							</div>
-							<label class="col-sm-2 control-label">Mata Pelajaran</label>
-							<div class="col-sm-4">
-								<select class="form-control" name="mataPelajaran" id="pelajaran">
-
-								</select>
-							</div>
-						</div>
 						<div class="form-group">
-							<label class="col-sm-1 control-label">Bab</label>
+							<label class="col-sm-2 control-label">Bab</label>
 							<div class="col-sm-4">
-								<select class="form-control" name="bab" id="bab">
-
-								</select>
-							</div>
-							<label class="col-sm-2 control-label">Subab</label>
-							<div class="col-sm-4">
-								<select class="form-control" name="subBabID" id="subbab" required="">
-
-								</select>
-								<span class="text-danger"><?php echo form_error('subBab'); ?></span>
+							<input class="form-control" type="text" name="bab" required="" value="<?=$infomateri['id_bab']?>" disabled>
+								
 							</div>
 						</div>
 						<!-- END Drop Down depeden -->
@@ -138,11 +125,21 @@
 					</div>
 					<!-- End Panel Footer -->
 				</form>
-				<!-- End Pnel -->
-			</div>
-		</div>
-	</div>
-</section>
+                <!--/ END row -->
+
+                <!-- START row -->
+                
+                <!--/ END row -->
+
+                <!-- START row -->
+                
+            <!--/ END Template Container -->
+
+            <!-- START To Top Scroller -->
+            <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
+            <!--/ END To Top Scroller -->
+
+        </section>
 <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
 <script type="text/javascript">
 	// Replace the <textarea id="editor1"> with a CKEditor

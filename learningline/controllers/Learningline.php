@@ -139,6 +139,32 @@ class Learningline extends MX_Controller {
 	}
 	// TB-TOPIK //
 
+	function step($topikID){
+		$metadata = $this->learningmodel->get_topik_byid($topikID);
+		// $metadata = $this->learning_model->get_step_by_id_topik($topikID)[0];
+		$data = array(
+			'judul_halaman' => " - Daftar Step",
+			'namaTopik' => $metadata['namaTopik'],
+			'id'=>$metadata['id'],
+			'id_bab'=>$metadata['babID'],
+			'mapel'=>$metadata['nama_mapel'],
+			'bab'=>$metadata['judul_bab'],
+			);
+
+		$this->load->view('v-header');
+		$this->load->view('v-daftar-step-single',$data);
+		$this->load->view('script_learning-single-step.js');
+		$this->load->view('admin/layout/footer');
+
+		// $data['files'] = array(
+		// 	APPPATH . 'modules/learningline/views/v-daftar-step-single.php',
+		// 	APPPATH . 'modules/learningline/views/script_learning-single-step.js',
+		// 	);
+
+		// $this->loadparser($data);
+	}
+	// DAFTAR STEP
+
 	public function ajax_get_list_topik($babid){
 		$list = $this->learningmodel->get_topik_by_babid($babid);
 		$data = array();
@@ -261,7 +287,7 @@ class Learningline extends MX_Controller {
 }
 
 function ajax_get_materi($data){
-		$list = $this->learning_model->get_materi_babID($data);
+		$list = $this->learningmodel->get_materi_babID($data);
 		$data = array();
 
 		$baseurl = base_url();
@@ -270,6 +296,7 @@ function ajax_get_materi($data){
 			$row = array();
 			$row[] = $list_item['id'];			
 			$row[] = $list_item['judulMateri'];
+			$row[] = $list_item['isiMateri'];
 			$row[] = '<a class="btn btn-sm btn-primary btn-outline detail-'.$list_item['id'].'"  title="Lihat"
 			data-id='."'".json_encode($list_item)."'".'
 			onclick="detail('."'".$list_item['id']."'".')"
@@ -329,6 +356,13 @@ function ajax_get_materi($data){
 			);
 		$this->learningmodel->droptopik($data);
 	}
+
+	function drop_step(){
+	$data = array(
+		'id'=>$this->input->post('id')
+		);
+	$this->learningmodel->drop_step($data);
+}
 
 
 	

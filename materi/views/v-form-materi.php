@@ -1,11 +1,23 @@
-<section class="id="main" role="main"">
-	<div class="container-fluid">
-		<!-- Start row -->
-		<div class="row">
-			
-			<div class="col-md-12">
-				<!-- Start Panel -->
-				<form class="form-horizontal form-bordered  panel panel-teal" action="<?=base_url()?>index.php/materi/uploadMateri" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<section id="main" role="main">
+            <!-- START Template Container -->
+            <div class="container-fluid">
+                <!-- Page Header -->
+                
+                <!-- Page Header -->
+
+                <!-- START row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- START panel -->
+                        <div class="panel panel-default">
+                            <!-- panel heading/header -->
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Form Soal</h3>
+                            </div>
+                            <!--/ panel heading/header -->
+                            <!-- panel body -->
+                            <div class="panel-body">
+                                <form class="form-horizontal form-bordered  panel panel-teal" action="<?=base_url()?>index.php/materi/uploadMateri" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 					<!-- Start HEading Panel -->
 					<div class="panel-heading">
 						<h3 class="panel-title">Form Input Materi</h3>
@@ -15,35 +27,27 @@
 					<!-- Start Pnel Body -->
 					<div class="panel-body">
 						<!-- Start Dropd Down depeden -->
-						<div  class="form-group">
-							<label class="col-sm-1 control-label">Tingkat</label>
-							<div class="col-sm-4">
-								<select class="form-control" name="tingkat" id="tingkat">
-									<option>-Pilih Tingkat-</option>
-								</select>
-							</div>
-							<label class="col-sm-2 control-label">Mata Pelajaran</label>
-							<div class="col-sm-4">
-								<select class="form-control" name="mataPelajaran" id="pelajaran">
-
-								</select>
-							</div>
-						</div>
 						<div class="form-group">
-							<label class="col-sm-1 control-label">Bab</label>
-							<div class="col-sm-4">
-								<select class="form-control" name="bab" id="bab">
-
-								</select>
-							</div>
-							<label class="col-sm-2 control-label">Subab</label>
-							<div class="col-sm-4">
-								<select class="form-control" name="subBabID" id="subbab" required="">
-
-								</select>
-								<span class="text-danger"><?php echo form_error('subBab'); ?></span>
-							</div>
-						</div>
+                                        <label class="col-sm-2">Mata Pelajaran</label>
+                                    <div class="col-sm-5">
+                                        <select class='form-control' name="id_mapel" id='id_mapel'>
+                                              <option value='0'>--pilih--</option>
+                                              <?php 
+                                                foreach ($mapel as $pel) {
+                                                echo "<option value='$pel[id_mapel]'>$pel[nama_mapel]</option>";
+                                                }
+                                              ?>
+                                            </select>
+                                    </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2">BAB</label>
+                                        <div class="col-sm-5">
+                                            <select class='form-control' name="id_bab" id='id_bab'>
+                                            <option value='0'>--pilih--</option>
+                                          </select>
+                                        </div>
+                                    </div>
 						<!-- END Drop Down depeden -->
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Judul Materi</label>
@@ -130,12 +134,56 @@
 					</div>
 					<!-- End Panel Footer -->
 				</form>
-				<!-- End Pnel -->
-			</div>
-		</div>
-	</div>
-</section>
+                            </div>
+                            <!-- panel body -->
+                        </div>
+                        <!--/ END form panel -->
+                    </div>
+                </div>
+                <!--/ END row -->
+
+                <!-- START row -->
+                
+                <!--/ END row -->
+
+                <!-- START row -->
+                
+            <!--/ END Template Container -->
+
+            <!-- START To Top Scroller -->
+            <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
+            <!--/ END To Top Scroller -->
+
+        </section>
 <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
+
+<script type="text/javascript">
+// load bab
+$(function(){
+
+$.ajaxSetup({
+type:"POST",
+url: "<?php echo base_url('index.php/Materi/ambil_data') ?>",
+cache: false,
+});
+
+$("#id_mapel").change(function(){
+
+var value=$(this).val();
+if(value>0){
+$.ajax({
+data:{modul:'getbab',id:value},
+success: function(respond){
+$("#id_bab").html(respond);
+}
+})
+}
+
+});
+
+})
+
+</script> 
 <script type="text/javascript">
 	// Replace the <textarea id="editor1"> with a CKEditor
    // instance, using default configuration.
@@ -183,44 +231,7 @@
 });
 
     //buat load tingkat
-    function loadTingkat() {
-    	jQuery(document).ready(function () {
-    		var tingkat_id = {"tingkat_id": $('#tingkat').val()};
-    		var idTingkat;
-    		$.ajax({
-    			type: "POST",
-    			dataType: "json",
-    			data: tingkat_id,
-    			url: "<?= base_url() ?>index.php/videoback/getTingkat",
-    			success: function (data) {
-    				console.log("Data" + data);
-    				$('#tingkat').html('<option value="">-- Pilih Tingkat  --</option>');
-    				$.each(data, function (i, data) {
-    					$('#tingkat').append("<option value='" + data.id + "'>" + data.aliasTingkat + "</option>");
-    					return idTingkat = data.id;
-    				});
-    			}
-    		});
-
-
-    		$('#tingkat').change(function () {
-    			tingkat_id = {"tingkat_id": $('#tingkat').val()};
-    			loadPelajaran($('#tingkat').val());
-    		})
-
-    		$('#pelajaran').change(function () {
-    			pelajaran_id = {"pelajaran_id": $('#pelajaran').val()};
-    			load_bab($('#pelajaran').val());
-    		})
-
-    		$('#bab').change(function () {
-    			load_sub_bab($('#bab').val());
-    		})
-
-    	})
-    }
-    ;
-
+   
 
 
     //buat load pelajaran
@@ -260,21 +271,7 @@
 
     //load sub bab
 
-    function load_sub_bab(babID) {
-    	$.ajax({
-    		type: "POST",
-    		dataType: "json",
-    		data: babID.bab_id,
-    		url: "<?php echo base_url() ?>index.php/videoback/getSubbab/" + babID,
-    		success: function (data) {
-    			$('#subbab').html('<option value="">-- Pilih Sub Bab Pelajaran  --</option>');
-    			$.each(data, function (i, data) {
-    				$('#subbab').append("<option value='" + data.id + "'>" + data.judulSubBab + "</option>");
-    			});
-
-    		}
-    	});
-    }
+    
 
 
     loadTingkat();
