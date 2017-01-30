@@ -35,7 +35,7 @@ class Learningmodel extends CI_Model{
 	function get_all_video_by_bab($idbab){
     $this->db->select('video.id_video as videoID, nama_file, link, judul_video, bab.id_bab, bab.judul_bab');
     $this->db->from( 'tb_bab bab' );
-    $this->db->join('tb_video video','bab.id_bab = video.id_bab');
+    $this->db->join('tb_video video ',' bab.id_bab = video.id_bab');
     $this->db->where('bab.id_bab',$idbab);
     $this->db->order_by('bab.id_bab');
 

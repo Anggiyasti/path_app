@@ -23,12 +23,15 @@
         
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/plugins/selectize/css/selectize.min.css')?>">
          <link rel="stylesheet" href="<?php echo base_url('assets/adminre/plugins/datatables/css/jquery.datatables.min.css')?>">
+          <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
+          <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
         <!--/ Plugins stylesheet -->
 
         <!-- Application stylesheet : mandatory -->
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/library/bootstrap/css/bootstrap.min.css')?>">
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/stylesheet/layout.min.css')?>">
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/stylesheet/uielement.min.css')?>">
+        <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
         <!--/ Application stylesheet -->
         <!-- END STYLESHEETS -->
 
@@ -401,6 +404,25 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                             <li >
                                 <a href="<?=base_url('index.php/materi/list_all_materi')?>">
                                     <span class="text">Lihat materi</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        
+                        <!--/ END 2nd Level Menu -->
+                    </li>
+                    <li >
+                        <a href="javascript:void(0);" data-toggle="submenu" data-target="#learning" data-parent=".topmenu">
+                            <span class="figure"><i class="ico-book"></i></span>
+                            <span class="text">Learning line</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <!-- START 2nd Level Menu -->
+                        <ul id="learning" class="submenu collapse">
+                            <li class="submenu-header ellipsis">Forms</li>
+                            <li >
+                                <a href="<?=base_url('index.php/learningline')?>">
+                                    <span class="text">Lihat Learning Line</span>
                                 </a>
                             </li>
                             

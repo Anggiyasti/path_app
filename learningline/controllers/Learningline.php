@@ -12,11 +12,18 @@ class Learningline extends MX_Controller {
 
 	// FUNGSI INDEX
 	public function index(){
-		$this->load->view('v-header');
-		$this->load->view('v-container-daftar-bab');
-		$this->load->view('script-learning-daftar-bab.js');
-		$this->load->view('admin/layout/footer');
+		if ($this->session->userdata('id_admin')) {
+			$this->load->view('admin/layout/header');
+			$this->load->view('v-container-daftar-bab');
+			$this->load->view('script-learning-daftar-bab.js');
+			$this->load->view('admin/layout/footer');
+	}	elseif ($this->session->userdata('id_guru')) {
+			$this->load->view('guru/layout/header');
+			$this->load->view('v-container-daftar-bab');
+			$this->load->view('script-learning-daftar-bab.js');
+			$this->load->view('guru/layout/footer');
 	}
+}
 	// FUNGSI INDEX
 
 	// GET LIST STEP BERDASARKAN ID TOPIK
@@ -66,12 +73,21 @@ class Learningline extends MX_Controller {
 			'bab'=>$bab_meta['judul_bab'],
 			'id'=>$bab_meta['id_bab']
 			);
-
+		// hak akses jika admin
+		if ($this->session->userdata('id_admin')) {
+			$this->load->view('admin/layout/header');
+			$this->load->view('v-form-topik',$data);
+			$this->load->view('script_learning-form-topik.js',$data);
+			$this->load->view('admin/layout/footer');
+		}
+		// hak akses jika guru
+		elseif ($this->session->userdata('id_guru')) {
+			$this->load->view('guru/layout/header');
+			$this->load->view('v-form-topik',$data);
+			$this->load->view('script_learning-form-topik.js',$data);
+			$this->load->view('guru/layout/footer');
+		}
 		
-		$this->load->view('v-header');
-		$this->load->view('v-form-topik',$data);
-		$this->load->view('script_learning-form-topik.js',$data);
-		$this->load->view('admin/layout/footer');
 
 
 		// $data['files'] = array(
@@ -96,11 +112,18 @@ class Learningline extends MX_Controller {
 			'bab'=>$metadata['judul_bab'],
 			);
 
-
-		$this->load->view('v-header');
+		if ($this->session->userdata('id_admin')) {
+		$this->load->view('admin/layout/header');
 		$this->load->view('v-form-step',$data);
 		$this->load->view('script_learning-form-step.js',$data);
 		$this->load->view('admin/layout/footer');
+	}
+		if ($this->session->userdata('id_guru')) {
+		$this->load->view('guru/layout/header');
+		$this->load->view('v-form-step',$data);
+		$this->load->view('script_learning-form-step.js',$data);
+		$this->load->view('guru/layout/footer');
+	}
 
 	}
 	//FUNGSI TAMBAHKAN LINE STEP
@@ -130,11 +153,18 @@ class Learningline extends MX_Controller {
 			'bab'=>$metadata['judul_bab'],
 			);
 
-		$this->load->view('v-header');
+		if ($this->session->userdata('id_admin')) {
+		$this->load->view('admin/layout/header');
 		$this->load->view('v-daftar-topik-single.php',$data);
 		$this->load->view('script_learning-single-topik.js');
 		$this->load->view('admin/layout/footer');
-
+	}
+		elseif ($this->session->userdata('id_guru')) {
+		$this->load->view('guru/layout/header');
+		$this->load->view('v-daftar-topik-single.php',$data);
+		$this->load->view('script_learning-single-topik.js');
+		$this->load->view('guru/layout/footer');
+}
 		
 	}
 	// TB-TOPIK //
@@ -151,10 +181,18 @@ class Learningline extends MX_Controller {
 			'bab'=>$metadata['judul_bab'],
 			);
 
-		$this->load->view('v-header');
+		if ($this->session->userdata('id_admin')) {
+		$this->load->view('admin/layout/header');
 		$this->load->view('v-daftar-step-single',$data);
 		$this->load->view('script_learning-single-step.js');
 		$this->load->view('admin/layout/footer');
+		if ($this->session->userdata('id_guru')) {
+		$this->load->view('guru/layout/header');
+		$this->load->view('v-daftar-step-single',$data);
+		$this->load->view('script_learning-single-step.js');
+		$this->load->view('guru/layout/footer');
+	}
+	}
 
 		// $data['files'] = array(
 		// 	APPPATH . 'modules/learningline/views/v-daftar-step-single.php',
@@ -210,7 +248,7 @@ class Learningline extends MX_Controller {
 			// $no++;
 			$row = array();
 			$row[] = $list_item['urutan'];
-			$row[] = $list_item['namaTopik'];
+			$row[] = $list_item['namaStep'];
 			$row[] = $list_item['jenisStep'];
 
 			$row[] = '<a class="btn btn-sm btn-warning"  title="Edit" onclick="edit_step('."'".$list_item['id']."'".')"><i class="ico-edit"></i></a>
@@ -296,7 +334,7 @@ function ajax_get_materi($data){
 			$row = array();
 			$row[] = $list_item['id'];			
 			$row[] = $list_item['judulMateri'];
-			$row[] = $list_item['isiMateri'];
+			// $row[] = $list_item['isiMateri'];
 			$row[] = '<a class="btn btn-sm btn-primary btn-outline detail-'.$list_item['id'].'"  title="Lihat"
 			data-id='."'".json_encode($list_item)."'".'
 			onclick="detail('."'".$list_item['id']."'".')"

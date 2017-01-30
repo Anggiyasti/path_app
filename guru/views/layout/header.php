@@ -21,19 +21,21 @@
         <!-- Plugins stylesheet : optional -->
         
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/plugins/selectize/css/selectize.min.css')?>">
+         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/plugins/datatables/css/jquery.datatables.min.css')?>">
+          <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
+          <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
         <!--/ Plugins stylesheet -->
 
         <!-- Application stylesheet : mandatory -->
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/library/bootstrap/css/bootstrap.min.css')?>">
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/stylesheet/layout.min.css')?>">
         <link rel="stylesheet" href="<?php echo base_url('assets/adminre/stylesheet/uielement.min.css')?>">
+        <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
         <!--/ Application stylesheet -->
         <!-- END STYLESHEETS -->
 
         <!-- START JAVASCRIPT SECTION - Load only modernizr script here -->
         <script src="<?php echo base_url('assets/adminre/library/modernizr/js/modernizr.min.js')?>"></script>
-        <!--/ END JAVASCRIPT SECTION -->
-        <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
     </head>
     <!--/ END Head -->
 
@@ -65,6 +67,7 @@
 <script type="text/javascript" src="<?= base_url('assets/adminre/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
 
 <script>
+var base_url = "<?php echo base_url();?>" ;
 var Preview = {
   delay: 150,        // delay after keystroke before updating
 
@@ -396,6 +399,25 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                             </li>
                         </ul>
 
+                        <!--/ END 2nd Level Menu -->
+                    </li>
+                    <li >
+                        <a href="javascript:void(0);" data-toggle="submenu" data-target="#learning" data-parent=".topmenu">
+                            <span class="figure"><i class="ico-book"></i></span>
+                            <span class="text">Learning line</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <!-- START 2nd Level Menu -->
+                        <ul id="learning" class="submenu collapse">
+                            <li class="submenu-header ellipsis">Forms</li>
+                            <li >
+                                <a href="<?=base_url('index.php/learningline')?>">
+                                    <span class="text">Lihat Learning Line</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        
                         <!--/ END 2nd Level Menu -->
                     </li>
                     

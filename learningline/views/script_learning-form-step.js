@@ -299,7 +299,7 @@ function load_soal(){
 
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
-	var url = base_url+"paketsoal/ajax_get_soal_byid/"+babID;
+	var url = base_url+"index.php/paketsoal/ajax_get_soal_byid/"+babID;
 	tabel = $('.daftarsoal').DataTable({
 		"ajax": {
 			"url": url,
@@ -319,7 +319,7 @@ function tambahkan_soal(){
 		idsoal[i] = $(this).val();
 	}); 
 	var idsoal = [];
-	babID = $('input[name=babID]').val();
+	id_bab = $('input[name=id_bab]').val();
 	$(':checkbox:checked').each(function(i){
 		idsoal[i] = $(this).val();
 	}); 

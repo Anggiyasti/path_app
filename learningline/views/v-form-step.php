@@ -1,3 +1,6 @@
+<section id="main" role="main">
+<!-- START Template Container -->
+<div class="container-fluid">
     <div class="modal fad mdetailsoal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -73,7 +76,7 @@
             <table class="daftarsteptable table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
               <thead>
                 <tr>
-                  <th width="3%">ID Step</th>
+                  <!-- <th width="3%">ID Step</th> -->
                   <th width="3%">Urutan</th>
 
                   <th>Nama step</th>
@@ -151,7 +154,7 @@
     <div class="col-sm-3">
       <select class="form-control" name="select_jenis">
         <option value="0">-- Pilih Jenis Step --</option>
-        <!-- <option value="1">Video</option> -->
+        <option value="1">Video</option>
         <option value="2">Materi</option>
         <option value="3">Latihan</option>
       </select>
@@ -181,4 +184,6 @@
 </div>
 </div>
 </div>
+</div>
+</section>
 <!-- TABEL KONTEN 1 . FORM LEARNINGNLINE -->

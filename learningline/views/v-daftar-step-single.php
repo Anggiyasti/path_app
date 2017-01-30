@@ -1,3 +1,6 @@
+<section id="main" role="main">
+<!-- START Template Container -->
+<div class="container-fluid">
     <div class="modal fad detailstep">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -57,4 +60,7 @@
         </div>
     </div>
 </div>
+</div>
+
+</section>
 <!-- TABEL LEARNING LINE -->

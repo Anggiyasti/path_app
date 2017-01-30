@@ -1,10 +1,11 @@
-            <style type="text/css">
+            
+<section id="main" role="main">
+<style type="text/css">
                 .modal-dialog{
                     width: 850px;
                     padding: 10px;
                 }
             </style>
-<section id="main" role="main">
             <!-- MODAL TABEL STEP -->
             <div class="modal fade detail_topik" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">

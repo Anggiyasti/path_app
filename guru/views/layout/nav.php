@@ -54,7 +54,7 @@
                                         <img class="img-circle img-bordered" src="<?php echo base_url('assets/adminre/image/avatar/avatar7.jpg')?>" alt="" width="100px" height="90px">
                                     </li>
                                     <li>
-                                        <h4 class="semibold mb0 mt15"><?=$this->session->userdata['id_guru'];?></h4>
+                                        <h4 class="semibold mb0 mt15"><?=$this->session->userdata['username'];?></h4>
                                         <p class="nm">UI / UX Designer</p>
                                         <br/>
                                         <p class="nm">Berlin</p>

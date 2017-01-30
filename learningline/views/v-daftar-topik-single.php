@@ -1,4 +1,7 @@
 <!-- TABEL LEARNING LINE  -->
+<section id="main" role="main">
+<!-- START Template Container -->
+<div class="container-fluid">
 
             <!-- MODAL TABEL STEP -->
             <div class="modal fade detail_learning" tabindex="-1" role="dialog">
@@ -72,4 +75,6 @@
     </div>
 </div>
 </div>
+</div>
+</section>
 <!-- TABEL LEARNING LINE -->

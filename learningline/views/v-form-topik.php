@@ -1,4 +1,7 @@
 <!-- TABEL KONTEN 1 . FORM LEARNINGNLINE -->
+<section id="main" role="main">
+<!-- START Template Container -->
+<div class="container-fluid">
 <div class="row">
  <div class="col-md-12">
   <div class="panel panel-default">
@@ -82,4 +85,7 @@
 </div>
 </div>
 </div>
+</div>
+</section>
+
 <!-- TABEL KONTEN 1 . FORM LEARNINGNLINE -->
