@@ -210,7 +210,7 @@ function load_materi(){
 
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
-	var url = base_url+"learningline/ajax_get_materi_edit/"+babID+"/"+relasi;
+	var url = base_url+"index.php/learningline/ajax_get_materi_edit/"+babID+"/"+relasi;
 	console.log(url);
 
 	tabel = $('.daftarvideo').DataTable({

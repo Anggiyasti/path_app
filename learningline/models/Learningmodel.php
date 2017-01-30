@@ -42,6 +42,16 @@ class Learningmodel extends CI_Model{
     $query = $this->db->get();
     return $query->result_array(); 
   }
+
+  //ambil 1 video bedasarkan id videonya
+  function get_single_video( $id_video ) {
+    $this->db->select( '*' );
+    $this->db->from( 'tb_video video' );
+    $this->db->where( 'id_video', $id_video );
+    $query = $this->db->get();
+    return $query->result();
+  }
+
   function get_materi_babID($data){
 		$this->db->select('m.id, judulMateri, isiMateri, b.id_bab');
 		$this->db->from('tb_line_materi m');

@@ -82,6 +82,7 @@ function detail_topik(data){
 }
 
 
+
 //detail bab
 function detail_bab(data){
 	$('.detail_topik').modal('show');
@@ -133,6 +134,11 @@ function drop_topik(idtopik){
 		});
 	});
 }
+function reload(){
+	tabel.ajax.reload(null,false);
+	dataTableLearning.ajax.reload(null,false);
+}
+
 /*## -----------------------------Drop Learning-------------------------------##*/
 
 
@@ -174,6 +180,37 @@ function update_learning_bab(id,status){
 			tabel.ajax.reload(null,false);
 
 		}
+	});
+}
+function drop_step(idstep){
+	url = base_url+"index.php/learningline/drop_step";
+	swal({
+		title: "Yakin akan hapus Step?",
+		text: "Jika anda menghapus Step",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Ya,Tetap hapus!",
+		closeOnConfirm: false
+	},
+	function(){
+		var datas = {id:idstep};
+		$.ajax({
+			dataType:"text",
+			data:datas,
+			type:"POST",
+			url:url,
+			success:function(){
+				swal("Terhapus!", "Step berhasil dihapus.", "success");
+				reload();
+			},
+			error:function(){
+				sweetAlert("Oops...", "Data gagal terhapus!", "error");
+			dataTableLearning.ajax.reload(null,false);
+
+			}
+
+		});
 	});
 }
 /*## -----------------------------Update Status bab Learning-------------------------------##*/

@@ -38,33 +38,33 @@
         <!-- START JAVASCRIPT SECTION - Load only modernizr script here -->
         <script src="<?php echo base_url('assets/adminre/library/modernizr/js/modernizr.min.js')?>"></script>
         <!--/ END JAVASCRIPT SECTION -->
-    </head>
+</head>
     <!--/ END Head -->
 
     <!-- START Body -->
-    <body>
-    <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
-    <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
- <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
- <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
+<body>
+<script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
 
 <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
 
 <!--js buat menampilakan priview video sebelum di upload  -->
 
-    <script type="text/javascript" src="<?= base_url('assets/library/jquery/preview.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/library/jquery/preview.js') ?>"></script>
 
     <!-- js untuk progres bar file yg di upload -->
 
-    <script type="text/javascript" src="<?= base_url('assets/library/jquery/upbar.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/library/jquery/upbar.js') ?>"></script>
 
-    <script type="text/javascript" src="<?= base_url('assets/library/jquery/jequery.form.js') ?>"></script>
-  <script type="text/x-mathjax-config">
+<script type="text/javascript" src="<?= base_url('assets/library/jquery/jequery.form.js') ?>"></script>
+<script type="text/x-mathjax-config">
        MathJax.Hub.Config({
          showProcessingMessages: false,
          tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
        });
-     </script>
+</script>
 <script type="text/javascript" src="<?= base_url('assets/adminre/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
 
 <script>
