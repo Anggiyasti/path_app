@@ -31,58 +31,50 @@
                 user-select: none;
             }
         </style>
-<!-- Courses 1 Area Start Here -->
+
+        <!-- Courses 1 Area Start Here -->
             <div class="courses1-area">
                 <div class="container">    
                     <h2 class="title-default-left">Workout - Bab</h2> 
                 </div>
-                <div id="shadow-carousel" class="container"> 
+                <div id="shadow-carousel" class="container">  
                     <!-- <div class="news-btn-holder">
                         <a href="" class="view-all-accent-btn">Step 1</a>
-                        <a href="<?= base_url() ?>index.php/workout1/next" class="view-all-accent-btn" style="background-color: white; border: 1px solid black; color: black;">Step 2</a>
-                    </div> <br> -->  
-                    <div class="rc-carousel"
-                        data-loop="true"
-                        data-items="4"
-                        data-margin="20"
-                        data-autoplay="false"
-                        data-autoplay-timeout="10000"
-                        data-smart-speed="2000"
-                        data-dots="false"
-                        data-nav="true"
-                        data-nav-speed="false"
-                        data-r-x-small="1"
-                        data-r-x-small-nav="true"
-                        data-r-x-small-dots="false"
-                        data-r-x-medium="2"
-                        data-r-x-medium-nav="true"
-                        data-r-x-medium-dots="false"
-                        data-r-small="2"
-                        data-r-small-nav="true"
-                        data-r-small-dots="false"
-                        data-r-medium="3"
-                        data-r-medium-nav="true"
-                        data-r-medium-dots="false"
-                        data-r-large="4"
-                        data-r-large-nav="true"
-                        data-r-large-dots="false"> 
-                        <form action="<?= base_url() ?>index.php/workout1/next" method="post">
+                        <a href="" class="view-all-accent-btn">Step 2</a>
+                    </div> -->
+                        <form action="<?= base_url() ?>index.php/workout1/tambah_latihan_ajax" method="post">
+                            <input type="text" name="id_bab" value="<?=$bab ?>" hidden="true">
                             <div>
-                                <?php 
-                            $i=1;
-                            foreach ($bab as $row) { ?>
-                                <input type="radio" name="id_bab" id="radio1234<?=$i?>" class="css-checkbox" value="<?=$row['id_bab']?>" checked/>
-                                <label for="radio1234<?=$i?>" class="css-label radGroup1"><?php echo $row['judul_bab']; ?></label> <br>
-                            <?php  
-                            $i++;
-                            } 
-                           ?>
-                            </div><br>
-                            <div class="news-btn-holder">
-                                <input type="submit" name="" value="Next" class="view-all-accent-btn">
+                                <h3 class="item-title">Tingkat Kesulitan</h3>
                             </div>
+
+                            <div style="padding-right: 100px;">
+                                <input type="radio" name="kesulitan" value="1" id="radio12341" class="css-checkbox" checked="">
+                                <label for="radio12341" class="css-label radGroup1">Mudah</label>
+                                <input type="radio" name="kesulitan" value="2" id="radio12342" class="css-checkbox">
+                                <label for="radio12342" class="css-label radGroup1">Sedang</label>
+                                <input type="radio" name="kesulitan" value="3" id="radio12343" class="css-checkbox">
+                                <label for="radio12343" class="css-label radGroup1">Sulit</label> 
+                            </div>
+                            <br>
+                            <div>
+                                <h3 class="item-title">Jumlah Soal</h3>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="jumlahsoal" value="5" id="radio12344" class="css-checkbox" checked="">
+                                <label for="radio12344" class="css-label radGroup1" style="padding-right: 50px;">5</label>
+                                <input type="radio" name="jumlahsoal" value="10" id="radio12345" class="css-checkbox">
+                                <label for="radio12345" class="css-label radGroup1" style="padding-right: 50px;">10</label>
+                                <input type="radio" name="jumlahsoal" value="15" id="radio12346" class="css-checkbox">
+                                <label for="radio12346" class="css-label radGroup1" style="padding-right: 50px;">15</label> 
+                            </div>
+                            <br>
+                            <div class="news-btn-holder" style="float: right;">
+                                <input type="submit" name="" value="Go" class="view-all-accent-btn">
+                            </div>
+                            
                         </form>                     
-                    </div> 
                 </div>  
             </div>  
             <!-- Courses 1 Area End Here -->

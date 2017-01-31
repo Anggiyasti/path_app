@@ -15,9 +15,9 @@ class Workout1 extends MX_Controller
     public function index()
     {
         $data['mapel'] = $this->Mworkout1->getdaftarmapel();
-        $this->load->view('template/header');
-        $this->load->view('v-header');
+        $this->load->view('front/v-head');
         $this->load->view('v-show-mapel', $data);
+        $this->load->view('front/v-footer');
     }
     public function chart()
     {
@@ -28,9 +28,25 @@ class Workout1 extends MX_Controller
     // fungsi pilihan bab
     public function pilih_bab($no) {
             $data['bab'] = $this->Mworkout1->get_mapel_bab($no);
-            $this->load->view('template/header');
-            $this->load->view('v-header');
+            $this->load->view('front/v-head');
             $this->load->view('v-pilih-bab', $data);
+            $this->load->view('front/v-footer');
+    }
+
+    // fungsi untuk menampilkan form kesulitan dan jumlah soal
+    function next() {
+        $data['bab'] = $this->input->post('id_bab');
+        $this->load->view('front/v-head');
+        $this->load->view('v-pilih-next', $data);
+        $this->load->view('front/v-footer');
+    }
+
+    // fungsi untuk menampilkan form kesulitan dan jumlah soal
+    function nextlagi() {
+        $data = $this->input->post('id_bab');
+        $k = $this->input->post('kesulitan');
+        $j = $this->input->post('jumlahsoal');
+        var_dump($data, $k, $j);
     }
 
     // fungsi mulai workout
