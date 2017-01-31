@@ -52,9 +52,9 @@ class Login extends MX_Controller
 
         }
         else{
-        $this->load->view('template/header');
-        $this->load->view('template/sidebar-login');
-        $this->load->view('form_login');
+        // $this->load->view('template/header');
+        // $this->load->view('template/sidebar-login');
+        $this->load->view('login_form');
         // $this->load->view('layout/footer');
 		// $this->load->view('v-login2');
     }
@@ -140,10 +140,19 @@ class Login extends MX_Controller
     function cek_login_siswa(){
 
        if ($this->session->userdata('id_siswa')) {
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        
       
-            $this->load->view('siswa/layout/header');
-            $this->load->view('siswa/layout/sidebar');
-            $this->load->view('siswa/layout/nav');
+            // $this->load->view('siswa/layout/header');
+            // $this->load->view('siswa/layout/sidebar');
+            // $this->load->view('siswa/layout/nav');
+
+            $this->load->view('template/siswa/v-head');
+            $this->load->view('siswa/home',$data);
+            $this->load->view('template/siswa/v-footer');
+            
+
         }
         else{
             redirect('Login');

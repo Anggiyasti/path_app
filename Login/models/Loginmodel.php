@@ -37,6 +37,12 @@ class Loginmodel extends CI_Model
 
     }
 
+    function getsiswa(){
+    return $this->db->get('tb_siswa');
+
+    }
+
+
 
 
     public function login_user($username,$password)
@@ -148,9 +154,11 @@ class Loginmodel extends CI_Model
 }
 
  function get_siswa($id_siswa){
-        $this->db->select('tb_siswa.id_siswa');
+        $this->db->select('tb_siswa.id_siswa,photo,jurusan,univ');
 
         $this->db->from('tb_siswa');
+        $this->db->where('id_siswa',$id_siswa);
+
 
         $this->db->limit(1);
 

@@ -80,15 +80,50 @@
                 </div>
             </div>
             <!-- Service 1 Area End Here -->
-            <!-- About 1 Area Start Here -->
             <div class="about1-area">                                
                 <div class="container">
-                    <h2 class="about-title">Welcome To Academics</h2>
-                    <p class="about-sub-title">Tmply dummy text of the printing and typesetting industry. Lorem Ipsum has been theindustry's standard dummy text ever since the 1500s, when an unknown printer took.</p>
+                <?php foreach ($siswa as $s): ?>
+                    <h2 class="about-title">Welcome To Journal Edu</h2>
+                    <p class="about-sub-title"><b>Hallo <?=$this->session->userdata['username'];?>!! </b>Selamat datang di Journal Edu. Ayo teruskan latihan mu biar kamu bisa masuk jurusan <?=$s->jurusan?> <?=$s->univ ?></p>
                     <div class="about-img-holder">
-                        <img src="<?php echo base_url('assets/main-academics/academics-placeholder/img/about/1.jpg')?>" alt="about" class="img-responsive"/>  
+                        <img src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" style="width: 100px; height: 100px;" alt="about" class="img-responsive"/>  
                     </div>
+                <?php endforeach ?>  
                 </div>
+            </div>
+            <!-- About 1 Area Start Here -->
+            <div class="students-say-area">
+                <h2 class="title-default-center">Welcome To Journal Edu</h2> 
+                <div class="container">    
+                    
+                            <div class="single-item-wrapper">
+                            <?php foreach ($siswa as $s): ?>
+                                <div class="profile-img-wrapper">
+                                
+                                    <a href="#" class="profile-img"><img class="profile-img-responsive img-circle" src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" style="width: 110px; height: 110px;" alt="Testimonial"></a>
+                                    
+                                </div>
+                                <div class="tlp-tm-content-wrapper">
+                                    <h2 class="item-title"><p>Hallo <?=$this->session->userdata['username'];?> !!</p></h2>
+                                    
+                                    <ul class="rating-wrapper">
+                                        <!-- <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                        <li><i class="fa fa-star" aria-hidden="true"></i></li> -->
+                                    </ul>
+                                    <div class="item-content">Selamat datang di Journal Edu. Ayo teruskan latihan mu biar kamu bisa masuk jurusan <?=$s->jurusan?> <?=$s->univ ?> </div>
+                                </div> 
+                            <?php endforeach ?>                           
+                            </div>                            
+                        </div>
+                        
+                        
+                        
+                                                
+                    </div> 
+                </div>  
             </div>
             <!-- About 1 Area End Here -->
             <!-- Courses 1 Area Start Here -->

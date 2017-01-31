@@ -21,6 +21,8 @@
 
     $jur = $row['jurusan'];
 
+    $bio = $row['biografi'];
+
     // $universitas = $row['univ'];
 
     $photo=base_url().'assets/images/siswa/'.$row['photo'];
@@ -107,6 +109,10 @@
                 <div class="input-icon">
                     <label>Jurusan</label>
                     <input type="text" class="input-text-box input-green-border" name="no_tlp" value="<?=$jur; ?>" disabled>
+                </div>
+                <div class="input-icon">
+                    <label>biografi</label>
+                    <input type="text" class="input-text-box input-green-border" name="biografi" value="<?=$bio; ?>" disabled>
                 </div>
             </div>
             <div class="content">

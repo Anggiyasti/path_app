@@ -83,9 +83,15 @@ class Siswa extends MX_Controller {
     $data['Siswa'] = $this->Msiswa->get_siswa();
     $data['univ']=$this->Msiswa->getuniv();
     $data['email']=$this->session->userdata['email'];
-    	$this->load->view('layout/header');
-        $this->load->view('layout/sidebar');
-        $this->load->view('profilesetsiswa',$data);
+    
+    	// $this->load->view('layout/header');
+     //    $this->load->view('layout/sidebar');
+     //    $this->load->view('profilesetsiswa',$data);
+
+    $this->load->view('template/siswa/v-head');
+    $this->load->view('profile_siswa',$data);
+    $this->load->view('template/siswa/v-footer');
+    
        
     
 }

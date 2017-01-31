@@ -22,7 +22,7 @@ class Msiswa extends CI_Model {
 
 		$id_siswa=$this->session->userdata['email'] ;	
 
-		$this->db->select('id_siswa,nama_depan,nama_belakang,password,email,alamat,no_tlp,nama_sekolah,status,photo, jurusan, univ');
+		$this->db->select('id_siswa,nama_depan,nama_belakang,password,email,alamat,no_tlp,nama_sekolah,status,photo, jurusan, univ,biografi');
 
 		$this->db->from('tb_siswa');
 
@@ -44,6 +44,7 @@ class Msiswa extends CI_Model {
 		$g  =  $this->input->post('id_siswa');
 		$h  =  $this->input->post('univ');
 		$i  =  $this->input->post('jurusan');
+		$j  =  $this->input->post('biografi');
 		
 		
 
@@ -57,6 +58,7 @@ class Msiswa extends CI_Model {
 				'id_siswa' => $g,
 				'univ' => $h,
 				'jurusan' => $i,
+				'biografi' => $j,
 				
 
 
