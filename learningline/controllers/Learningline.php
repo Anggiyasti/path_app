@@ -489,6 +489,35 @@ function ajax_update_line_topik(){
 	$this->learningmodel->drop_step($data);
 }
 
+function updateaktiv_bab($data){
+	$this->learningmodel->updateaktiv_bab($data);
+}
+
+function updatepasive_bab($data){
+	$this->learningmodel->updatepasive_bab($data);
+}
+
+function updateaktiv($data){
+	$this->learningmodel->updateaktiv($data);
+}
+
+function updatepasive($data){
+	$this->learningmodel->updatepasive($data);
+}
+
+
+
+public function getPelajaran() {
+        $data = $this->output
+        ->set_content_type( "application/json" )
+        ->set_output( json_encode( $this->learningmodel->scPelajaran() ) ) ;
+    }
+public function getBab( $tpelajaranID ) {
+        $data = $this->output
+        ->set_content_type( "application/json" )
+        ->set_output( json_encode( $this->learningmodel->scBab( $tpelajaranID ) ) ) ;
+    }
+
 
 	
 

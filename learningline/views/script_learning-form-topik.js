@@ -1,27 +1,29 @@
 <script>
 /*## -------------------------------LOAD TINGKAT DAN KAWAN KAWAN-------------------------------##*/
-load_tingkat();
-function load_tingkat() {
+load_pelajaran();
+
+
+function load_pelajaran() {
  jQuery(document).ready(function () {
-  var idTingkat;
+  var idMapel;
 
   $.ajax({
    type: "POST",
-   url: "<?= base_url() ?>index.php/videoback/getTingkat",
+   url: "<?= base_url() ?>index.php/learningline/getPelajaran",
    success: function (data) {
-    $('select[name=select_tingkat]').html('<option value="">-- Pilih Tingkat  --</option>');
+    $('select[name=select_mapel]').html('<option value="">-- Pilih Pelajaran  --</option>');
     $.each(data, function (i, data) {
-     $('select[name=select_tingkat]').append("<option value='" + data.id + "'>" + data.aliasTingkat + "</option>");
-     return idTingkat = data.id;
+     $('select[name=select_mapel]').append("<option value='" + data.id_mapel + "'>" + data.nama_mapel + "</option>");
+     return idMapel = data.id_mapel;
    });
   }
 });
 
   /*## -------------------------------SALAT SELECT DIPILIH-------------------------------##*/
-  $('select[name=select_tingkat]').change(function () {
-   tingkat_id = $('select[name=select_tingkat]').val();
-   load_pelajaran(tingkat_id);
- });
+ //  $('select[name=select_tingkat]').change(function () {
+ //   tingkat_id = $('select[name=select_tingkat]').val();
+ //   load_pelajaran(tingkat_id);
+ // });
 
 
   $('select[name=select_mapel]').change(function () {
@@ -35,18 +37,18 @@ function load_tingkat() {
 };
 
 /*## -------------------------------LOAD PELAJARAN-------------------------------##*/
-function load_pelajaran(tingkatID) {
-  $.ajax({
-    type: "POST",
-    url: "<?php echo base_url() ?>index.php/videoback/getPelajaran/" + tingkatID,
-    success: function (data) {
-     $('select[name=select_mapel]').html('<option value="">-- Pilih Mata Pelajaran  --</option>');
-     $.each(data, function (i, data) {
-      $('select[name=select_mapel]').append("<option value='" + data.id + "'>" + data.keterangan + "</option>");
-    });
-   }
- });
-}
+// function load_pelajaran(tingkatID) {
+//   $.ajax({
+//     type: "POST",
+//     url: "<?php echo base_url() ?>index.php/learningline/getPelajaran/" + tingkatID,
+//     success: function (data) {
+//      $('select[name=select_mapel]').html('<option value="">-- Pilih Mata Pelajaran  --</option>');
+//      $.each(data, function (i, data) {
+//       $('select[name=select_mapel]').append("<option value='" + data.id + "'>" + data.keterangan + "</option>");
+//     });
+//    }
+//  });
+// }
 /*## -------------------------------LOAD PELAJARAN-------------------------------##*/
 
 
@@ -55,11 +57,11 @@ function load_pelajaran(tingkatID) {
 function load_bab(mapelID) {
   $.ajax({
     type: "POST",
-    url: "<?php echo base_url() ?>index.php/videoback/getBab/" + mapelID,
+    url: "<?php echo base_url() ?>index.php/learningline/getBab/" + mapelID,
     success: function (data) {
      $('select[name=select_bab]').html('<option value="">-- Pilih Bab Pelajaran  --</option>');
      $.each(data, function (i, data) {
-      $('select[name=select_bab]').append("<option value='" + data.id + "'>" + data.judulBab + "</option>");
+      $('select[name=select_bab]').append("<option value='" + data.id_bab + "'>" + data.judul_bab + "</option>");
     });
    }
  });

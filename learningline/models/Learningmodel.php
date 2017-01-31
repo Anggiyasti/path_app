@@ -148,7 +148,7 @@ class Learningmodel extends CI_Model{
 	}
 	// update line bab aktiv
 	function updateaktiv_bab($data){
-		$this->db->where('id', $data);
+		$this->db->where('id_bab', $data);
 		$this->db->set('statusLearningLine', 1);
 		$this->db->update('tb_bab');
 	// update line topik aktiv
@@ -156,7 +156,7 @@ class Learningmodel extends CI_Model{
 
 	// update line bab passive
 	function updatepasive_bab($data){
-		$this->db->where('id', $data);
+		$this->db->where('id_bab', $data);
 		$this->db->set('statusLearningLine', 0);
 		$this->db->update('tb_bab');
 	// update line topik aktiv
@@ -230,6 +230,23 @@ class Learningmodel extends CI_Model{
         $this->db->set($data);
 		$this->db->update('tb_line_step');
     }
+
+
+    public function scPelajaran()
+	{
+		$this->db->select('id_mapel,nama_mapel')->from('tb_mata_pelajaran');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	//mengambil value pelajaran berdasarkan id tingkatan
+	public function scBab($tpelajaranID)
+	{
+		$this->db->select('id_bab, keterangan, judul_bab')->from('tb_bab');
+		$this->db->where('id_bab', $tpelajaranID);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
 }
 ?>

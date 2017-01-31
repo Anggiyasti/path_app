@@ -15,9 +15,9 @@ $(document).ready(function () {
 function updatestatus(id,status){
 	var url;
 	if (status==1) {
-		url = base_url+"learningline/updatepasive/"+id;
+		url = base_url+"index.php/learningline/updatepasive/"+id;
 	}else{
-		url = base_url+"learningline/updateaktiv/"+id;		
+		url = base_url+"index.php/learningline/updateaktiv/"+id;		
 	}
 
 	swal({
