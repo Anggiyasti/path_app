@@ -23,10 +23,15 @@ class Grafikreport extends MX_Controller {
             $data['bab'] = $this->Mgrafik->get_mapel_bab($no);
             $data['c'] = $this->Mgrafik->chart_model($no);
             $data['mapel'] = $no;
-            $this->load->view('template/header');
-            $this->load->view('v-header');
+            // $this->load->view('template/header');
+            // $this->load->view('v-header');
+            
+            // $this->load->view('v-chart2', $data);
             // $this->load->view('bab_grafik', $data);
-            $this->load->view('v-chart2', $data);
+
+             $this->load->view('template/siswa/v-head');
+            $this->load->view('v-chart-gr',$data);
+            $this->load->view('template/siswa/v-footer'); 
 
     }
 

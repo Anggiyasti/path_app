@@ -66,7 +66,8 @@
         <!-- Main Body Area Start Here -->
         <div id="wrapper">
             <!-- Header Area Start Here -->
-            <header>                
+            <header>
+            <div style=" height: 130px;"></div>                
                 <div id="header1" class="header1-area">
                     <div class="main-menu-area bg-primary" id="sticker">
                         <div class="container">

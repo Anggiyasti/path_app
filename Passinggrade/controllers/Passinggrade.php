@@ -165,9 +165,13 @@ class Passinggrade extends MX_Controller {
     public function univ()
     {
         $data['data']   = $this->Mpassing->getpassing();
-        $this->load->view('template/header');
-        $this->load->view('workout1/v-header');
-        $this->load->view('v-univ', $data);
+        // $this->load->view('template/header');
+        // $this->load->view('workout1/v-header');
+        // $this->load->view('v-univ', $data);
+
+        $this->load->view('template/siswa/v-head');
+        $this->load->view('v-universitas',$data);
+        $this->load->view('template/siswa/v-footer');
         
     }
 
@@ -175,10 +179,14 @@ class Passinggrade extends MX_Controller {
     public function pilih_prodi()
     {
         $data['data']   = $this->Mpassing->tampil_prodi();
-        $this->load->view('template/header');
-        $this->load->view('workout1/v-header');
-        $this->load->view('v-pilih-prodi', $data);
-        
+        // $this->load->view('template/header');
+        // $this->load->view('workout1/v-header');
+        // $this->load->view('v-pilih-prodi', $data);
+
+
+        $this->load->view('template/siswa/v-head');
+        $this->load->view('v-pilih-programstudi',$data);
+        $this->load->view('template/siswa/v-footer');        
     }
 
     // fungsi untuk menampilkan  prodi berdasarkan pilihan 
@@ -187,18 +195,26 @@ class Passinggrade extends MX_Controller {
        $prodii = urldecode($prodi);
         $data['data']   = $this->Mpassing->getprodi($prodii);
         $data['prodi'] = $prodii;
-        $this->load->view('template/header');
-        $this->load->view('workout1/v-header');
-        $this->load->view('v-prodi', $data);
+       //  $this->load->view('template/header');
+       //  $this->load->view('workout1/v-header');
+       //  $this->load->view('v-prodi', $data);
+
+        $this->load->view('template/siswa/v-head');
+        $this->load->view('v-programstudi',$data);
+        $this->load->view('template/siswa/v-footer');  
         
     }
 
     public function passing()
     {
-        // $data['data']   = $this->Mpassing->getpassing();
-        $this->load->view('template/header');
-        $this->load->view('workout1/v-header');
-        $this->load->view('v-passinggrade');
+        $data['data']   = $this->Mpassing->getpassing();
+        // $this->load->view('template/header');
+        // $this->load->view('workout1/v-header');
+        // $this->load->view('v-passinggrade');
+
+        $this->load->view('template/siswa/v-head');
+        $this->load->view('v-passgrade');
+        $this->load->view('template/siswa/v-footer');  
         
     }
     // public function hasilpassing()
@@ -272,9 +288,12 @@ class Passinggrade extends MX_Controller {
            $b = 100;
         }
         $data['data']  = $this->Mpassing->hasil_passing($a,$b);
-        $this->load->view('template/header');
-        $this->load->view('workout1/v-header');
-        $this->load->view('v-cobapassing',$data);
+        // $this->load->view('template/header');
+        // $this->load->view('workout1/v-header');
+        // $this->load->view('v-cobapassing',$data);
+        $this->load->view('template/siswa/v-head');
+        $this->load->view('v-hasilpassing',$data);
+        $this->load->view('template/siswa/v-footer');  
         
 
         // var_dump($data);
