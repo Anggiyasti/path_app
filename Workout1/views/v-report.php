@@ -1,124 +1,151 @@
-<!DOCTYPE HTML>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+            <!-- Courses 1 Area Start Here -->
+            <div class="courses1-area">
+                <div class="container">    
+                    <h2 class="title-default-left">
+                        <?php foreach ($bab as $reportitem): ?>
+                            <h3>Mapel : <?= $reportitem['nama_mapel'] ?></h3>
+                            <h3>Bab : <?= $reportitem['judul_bab'] ?></h3>
+                        <?php endforeach ?>
+                    </h2> 
+                </div>
+                <div id="shadow-carousel" class="container"> 
 
-<title>Epsilon 7.0</title>
-    
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/style.css')?>">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/skin.css')?>">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/framework.css')?>">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/minibar/dark/styles/ionicons.min.css')?>">
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-
-
-<script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/jquery.js')?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/plugins.js')?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/minibar/dark/scripts/custom.js')?>"></script>
-
-</head>
-
-<body>
-<div class="page-preloader page-preloader-dark">
-    <div class="spinner"></div>
-</div>
-
-<div class="header header-dark">
-    <a href="index.html" class="header-logo"><span class="color-red-dark">WORKOUT</span></a>
-    <a href="#" class="header-icon header-icon-1 close-sidebar-mask"></a>
-    <a href="#" class="header-icon header-icon-1 open-sidebar" disabled>
-        <em class="line-1"></em>
-        <em class="line-2"></em>
-        <em class="line-3"></em>    
-    </a>
-</div>
-
-<!-- Main Small Icon Sidebar -->
-<div class="sidebar-menu sidebar-dark">
-    <div class="sidebar-menu-scroll">
-        <a class="current-menu" href="<?= base_url('index.php/Login/cek_login_siswa') ?>""><i class="ion-ios-star-outline"></i><em>Welcome</em></a>       
-        <a data-submenus="sub1" href="#"><i class="ion-ios-home-outline"></i><em>User</em></a>       
-        <a data-submenus="sub2" href="#"><i class="ion-ios-gear-outline"></i><em>Workout</em></a>   
-        <a data-submenus="sub3" href="#"><i class="ion-ios-gear-outline"></i><em>PassingGrade</em></a>   
-    </div>
-</div>
-<!-- Home Submenus -->
-<div class="submenu submenu-dark" id="sub1">
-    <div class="submenu-scroll">
-        <a class="close-sidebar" href="#"><i class="ion-ios-close-empty"></i><em>User Setting</em></a>        
-        <a href="index.html"><i class="ion-ios-star-outline"></i><em>Logout</em></a>         
-    </div>
-</div>
-<!-- Features Submenus -->
-<div class="submenu submenu-dark" id="sub2">
-    <div class="submenu-scroll">
-        <a class="close-sidebar" href="#"><i class="ion-ios-close-empty"></i><em>Workout</em></a> 
-        <a href="<?= base_url('index.php/workout1/pilihreport') ?>"><i class="ion-ios-star-outline"></i><em>Report</em></a>         
-    </div>
-</div>  
-<!-- Home Submenus -->
-<div class="submenu submenu-dark" id="sub3">
-    <div class="submenu-scroll">
-        <a class="close-sidebar" href="<?php echo base_url('index.php/passinggrade/univ')?>"><i class="ion-ios-close-empty"></i><em>Universitas</em></a>        
-        <a href="<?php echo base_url('index.php/passinggrade/pilih_prodi')?>"><i class="ion-ios-star-outline"></i><em>Prodi</em></a> 
-        <a href="<?php echo base_url('index.php/passinggrade/passing')?>"><i class="ion-ios-star-outline"></i><em>PassGrade</em></a>         
-    </div>
-</div>
- 
-<div id="page-content" class="header-clear">
-    <div id="page-content-scroll"><!--Enables this element to be scrolled --> 
-
-         <div class="heading-strip bg-4">
-             <?php 
-            foreach ($bab as $reportitem): ?>
-            <div class="overlay dark-overlay"></div>
+                    <?php if ($report == array()): ?>
+                        <h4>Tidak ada Report Latihan.</h4>
+                    <?php else: ?>   
+                    <?php foreach ($report as $reportitem): ?> 
+                        <div class="media-body">
+                            <ul class="course-feature">
+                                <li>Time : <?= $reportitem['tgl_pengerjaan'] ?></li>
+                                <?php if ($reportitem['kesulitan'] == '1') { ?>
+                                    <li>Level : Mudah</li>
+                                <?php } elseif ($reportitem['kesulitan'] == '2') { ?>
+                                    <li>Level : Sedang</li>
+                                <?php } else { ?>
+                                    <li>Level : Sulit</li>
+                                <?php } ?>
+                                <li>Score : <?= $reportitem['score'] ?></li>
+                                <li> <a href="<?=base_url()?>index.php/workout1/detailreport/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail"><i class="glyphicon glyphicon-list-alt"></i>Detail</a> <a href="<?=base_url()?>index.php/workout1/create_session_id_pembahasan/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail">Pembahasan</a></li>
+                            
+                            </ul>
+                        </div>
+                        <div class="section-divider"></div>
+                        <?php endforeach ?>
+                    <?php endif ?> 
+                </div>  
             
-            <h3>Mapel : <?= $reportitem['nama_mapel'] ?></h3>
-            <h3>Bab : <?= $reportitem['judul_bab'] ?></h3>
-            <div class="overlay dark-overlay"></div>
-            <?php 
-            endforeach ?>
-        </div>
-        <div class="content">
-            <div class="portfolio portfolio-one-item">  
-                <?php if ($report == array()): ?>
-                    <h4>Tidak ada Report Latihan.</h4>
-                <?php else: ?>
-                    <div class="portfolio-item">
-                    <?php foreach ($report as $reportitem): ?>
-                            Time : <?= $reportitem['tgl_pengerjaan'] ?> <br>
-                            <?php if ($reportitem['kesulitan'] == '1') { ?>
-                            Level : Mudah <br>
-                            <?php } elseif ($reportitem['kesulitan'] == '2') { ?>
-                            Level : Sedang <br>
-                            <?php } else { ?>
-                            Level : Sulit <br>
-                            <?php } ?>
-                            Score : <?= $reportitem['score'] ?><br>
-                            <a href="<?=base_url()?>index.php/workout1/detailreport/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail">Detail</a>
-                            <!-- <a class="btn btn-primary modal-on<?= $reportitem['id_latihan'] ?>" 
+            </div>  
+            <!-- Courses 1 Area End Here -->
 
-                                               title="Lihat pembahasan" 
-
-                                                onclick="mulai_pembahasan(<?= $reportitem['id_latihan'] ?>)"
-
-                                               ><i class="glyphicon glyphicon-book"></i>Pembahasan</a> -->
-                            <a href="<?=base_url()?>index.php/workout1/create_session_id_pembahasan/<?=$reportitem['id_latihan'] ?>" class="btn btn-primary title="Lihat Detail">Pembahasan</a>
-                    <?php endforeach ?>
+            <div id="shadow-carousel" class="container">  
+                        <div class="course-details-inner">
+                            <ul class="course-feature">
+                            <?php foreach ($bab as $row): ?>
+                                <li><a href="<?=base_url()?>index.php/workout1/reportmapel/<?=$row['id_bab'] ?>" class="animated fadeIn delay-100"><?=$row['judul_bab'] ?></a></li>
+                            <?php endforeach ?>
+                            </ul>
+                        </div> 
+                </div>  
+            
+            <!-- Footer Area Start Here -->
+            <footer>
+                <div class="footer-area-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="footer-box">
+                                    <a href="index.html"><img class="img-responsive" src="img/logo-footer.png" alt="logo"></a>
+                                    <div class="footer-about">
+                                        <p>Praesent vel rutrum purus. Nam vel dui eu sus duis dignissim dignissim. Suspenetey disse at ros tecongueconsequat.Fusce sit amet rna feugiat.</p>
+                                    </div>
+                                    <ul class="footer-social">
+                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="footer-box">
+                                    <h3>Featured Links</h3>
+                                    <ul class="featured-links">
+                                        <li>
+                                            <ul>
+                                                <li><a href="#">Graduation</a></li>
+                                                <li><a href="#">Admissions</a></li>
+                                                <li><a href="#">International</a></li>
+                                                <li><a href="#">FAQs</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul>
+                                                <li><a href="#">Courses</a></li>
+                                                <li><a href="#">About Us</a></li>
+                                                <li><a href="#">Book store</a></li>
+                                                <li><a href="#">Alumni</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>                             
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="footer-box">
+                                    <h3>Information</h3>
+                                    <ul class="corporate-address">
+                                        <li><i class="fa fa-phone" aria-hidden="true"></i><a href="Phone(01)800433633"> (01) 800 433 633 </a></li>
+                                        <li><i class="fa fa-envelope-o" aria-hidden="true"></i>info@bostonea.com</li>
+                                    </ul>
+                                    <div class="newsletter-area">
+                                        <h3>Newsletter</h3>
+                                        <div class="input-group stylish-input-group">
+                                            <input type="text" placeholder="Enter your e-mail here" class="form-control">
+                                            <span class="input-group-addon">
+                                                <button type="submit">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                                </button>  
+                                            </span>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="footer-box">
+                                    <h3>Flickr Photos</h3>
+                                    <ul class="flickr-photos">
+                                        <li><a href="#"><img class="img-responsive" src="img/footer/1.jpg" alt="flickr"></a></li>
+                                        <li><a href="#"><img class="img-responsive" src="img/footer/2.jpg" alt="flickr"></a></li>
+                                        <li><a href="#"><img class="img-responsive" src="img/footer/3.jpg" alt="flickr"></a></li>
+                                        <li><a href="#"><img class="img-responsive" src="img/footer/4.jpg" alt="flickr"></a></li>
+                                        <li><a href="#"><img class="img-responsive" src="img/footer/5.jpg" alt="flickr"></a></li>           
+                                        <li><a href="#"><img class="img-responsive" src="img/footer/6.jpg" alt="flickr"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                <?php endif ?>
-            </div>
+                </div>
+                <div class="footer-area-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                <p>&copy; 2017 Academics All Rights Reserved. &nbsp; Designed by<a target="_blank" href="http://radiustheme.com"> RadiusTheme</a></p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <ul class="payment-method">
+                                    <li><a href="#"><img alt="payment-method" src="img/payment-method1.jpg"></a></li>
+                                    <li><a href="#"><img alt="payment-method" src="img/payment-method2.jpg"></a></li>
+                                    <li><a href="#"><img alt="payment-method" src="img/payment-method3.jpg"></a></li>
+                                    <li><a href="#"><img alt="payment-method" src="img/payment-method4.jpg"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer Area End Here -->
         </div>
-
-
-    </div>
-</div>
-<script type="text/javascript">
-    function mulai_pembahasan(id_pembahasan) {
-                    window.location.href = base_url + "index.php/workout1/create_session_id_pembahasan/" + id_pembahasan;
-
-                }
-</script>
-</body>
+        <!-- Main Body Area End Here -->
+        
