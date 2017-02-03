@@ -15,7 +15,7 @@
                                         <?php if ($ke==0): ?>
                                         <div class="panel-title faq-box-title">
                                             <h3>
-                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="faq-box-count">1</span><?=$univ['universitas']?>
+                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="faq-box-count"></span><?=$univ['universitas']?>
                                                 </a>
                                             </h3>
                                         </div>
@@ -33,7 +33,7 @@
                                     <div class="panel-heading">
                                         <div class="panel-title faq-box-title">
                                             <h3>
-                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="faq-box-count">2</span><?=$univ['universitas']?>
+                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="faq-box-count"></span><?=$univ['universitas']?>
                                                 </a>
                                             </h3>
                                         </div>
@@ -43,7 +43,7 @@
                                         <?php endif ?>
                                         <form action="" method="post">
             <!-- Body Info -->
-                                        <a href="" class="dropdown-item" ><i class="ion-ios-book-outline"></i><em><?=$univ['prodi']?>p<?=$univ['passinggrade']?>%</em><a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>" class="view-all-accent-btn" style="margin-left: 2px;">Set Prodi</a></a>
+                                        <a href="" class="dropdown-item" ><i class="ion-ios-book-outline"></i><em><?=$univ['prodi']?>&nbsp&nbsp|&nbsp&nbsp<?=$univ['passinggrade']?>%</em><a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>" class="view-all-accent-btn" style="margin-left: 2px;">Set Prodi</a></a>
 
             <!-- /Body info -->
             

@@ -2,7 +2,7 @@
     <div class="inner-product-details-right">
         <h3>Passing Grade</h3>
                                                 
-        <div class="product-details-content">
+        <div class="product-details-content" style="text-transform: uppercase;">
         <?php if ($data == array()): ?>
         <h4>Tidak ada Passing Grade.</h4>
         <?php else: ?>
@@ -11,6 +11,7 @@
             <p><span>Universitas :</span>  <?= $p['universitas'] ?></p>
             <p><span>Program Studi : </span> <?= $p['prodi'] ?></p>
             <p><span>Passing Grade : </span><?= $p['passinggrade'] ?>%</p> 
+            <br><br>
             <?php 
             endforeach ?>
              <?php endif ?>

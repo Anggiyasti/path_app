@@ -1,7 +1,7 @@
-<div class="inner-page-banner-area" style="background-image: url('img/banner/5.jpg'); " >
-                <div class="container" ">
+<div class="inner-page-banner-area" style="background-image: url('img/banner/5.jpg');"  >
+                <div class="container" style="height: 20px;">
                     <div class="pagination-area">
-                    <div class="sidebar-skilled-area">
+                    <div class="sidebar-skilled-area" >
                       <?php foreach ($siswa as $s): ?>
                                             <ul>
                                                 <li>
@@ -17,7 +17,7 @@
                                                 <li>
                                                     <div class="skilled-content">
                                                         <h4 style="color: white; text-transform: uppercase;">&nbsp&nbsp&nbsp&nbsp<?=$this->session->userdata['username'];?></h4>
-                                                        <h4 style="color: white; text-transform: uppercase;">&nbsp&nbsp&nbsp&nbsp<?=$s->jur?></h4>
+                                                        <h4 style="color: white; text-transform: uppercase;">&nbsp&nbsp&nbsp&nbsp<?=$s->jur?> - <?=$s->univ?></h4>
                                                     </div>
                                                    
                                                 </li>
