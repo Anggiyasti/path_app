@@ -53,7 +53,13 @@
 
         <!-- Modernizr Js -->
         <script src="<?php echo base_url('assets/main-academics/academics-placeholder/js/modernizr-2.8.3.min.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
+                <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
+        <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
 
+          <script>
+     var base_url = "<?php echo base_url();?>" ;
+ </script>
     </head>
     <body>
         <!--[if lt IE 8]>

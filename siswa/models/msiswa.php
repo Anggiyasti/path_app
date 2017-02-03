@@ -155,6 +155,30 @@ class Msiswa extends CI_Model {
 
     }
 
+    function get_siswaid(){
+        $penggunaID = $this->session->userdata['email'];
+
+        $this->db->select('id_siswa');
+        $this->db->from('tb_siswa');
+        $this->db->where('email',$penggunaID);
+        $query = $this->db->get();
+        return $query->result_array()[0]['id_siswa'];
+    }
+
+
+    function get_token(){
+        $siswaID = $this->get_siswaid();
+        $this->db->select('*');
+        $this->db->from('tb_token');
+        $this->db->where('siswaID', $siswaID);
+        $query = $this->db->get();
+        if ($query->result_array()) {
+            return $query->result_array()[0];
+        }else{
+            return false;
+        }
+    }
+
 }
 
 ?>

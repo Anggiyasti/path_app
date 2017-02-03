@@ -10,15 +10,51 @@ class Workout1 extends MX_Controller
     {
         parent::__construct();
         $this->load->model('Mworkout1');
+         $this->load->model('siswa/msiswa');
     }
 
     public function index()
     {
-        $data['mapel'] = $this->Mworkout1->getdaftarmapel();
+        $token = $this->msiswa->get_token();
+        if ($this->session->userdata('id_siswa')) {
+            if ($token) {
+                //memiliki token
+                $date1 = new DateTime($token['tanggal_diaktifkan']);
+                $date_diaktifkan = $date1->format('d-M-Y');
+                $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
+
+                $date1 = new DateTime(date("d-M-Y"));
+                $date2 = new DateTime($date_kadaluarsa);
+                $sisa_aktif = $date2->diff($date1)->days;
+                
+                if ($sisa_aktif != 0) {
+                    $this->session->set_userdata(array('token'=>TRUE,'sisa'=>$sisa_aktif));
+                }else{
+                    //token habis
+                    $this->session->set_userdata(array('token'=>FALSE));
+                }
+                $data['mapel'] = $this->Mworkout1->getdaftarmapel();
+                $this->load->view('template/siswa/v-head');
+                $this->load->view('v-show-mapel', $data);
+                $this->load->view('template/siswa/v-footer');
+            }else{
+                //tidak memiliki token
+                $this->session->set_userdata(array('token'=>0));
+                $this->settoken();
+            }
+        } else {
+            redirect('login');
+        }
+    }
+
+    // untuk menampilkan halaman isi token bila kosong
+    function settoken(){
+        // $this->load->view('token/v-header');
         $this->load->view('template/siswa/v-head');
-        $this->load->view('v-show-mapel', $data);
+        $this->load->view('token/v-set-token');
         $this->load->view('template/siswa/v-footer');
     }
+
     public function chart()
     {
         $data['c'] = $this->Mworkout1->chart_model();

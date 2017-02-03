@@ -45,13 +45,13 @@
 
      			if ($p2 == 0) { ?>
             <div class="lead"><?=$key['judul_bab'];?></div>
-            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 0%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="0" class="progress-bar wow fadeInLeft  animated"></div><span>0%</span>
+            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 0%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 20px;" data-progress="0" class="progress-bar wow fadeInLeft  animated"></div><span>0%</span>
         </div>
         <div class="progress">
         <?php } else {
     ?>
-            <div class="lead"><?=$key['judul_bab'];?></div>
-            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft  animated"></div><span><?=$p?>%</span> 
+            <div class="lead" style="height: 20px;"><?=$key['judul_bab'];?></div>
+            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 20px; background-color: black;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft animated"></div><span><?=$p?>%</span> 
             </div>
                 <?php } ?>
     <!-- End Skill Bar -->
