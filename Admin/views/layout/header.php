@@ -430,6 +430,23 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                         
                         <!--/ END 2nd Level Menu -->
                     </li>
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="submenu" data-target="#token" data-parent=".topmenu">
+                            <span class="figure"><i class="ico-book"></i></span>
+                            <span class="text">Token</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <!-- START 2nd Level Menu -->
+                        <ul id="token" class="submenu collapse">
+                            <li class="submenu-header ellipsis">Forms</li>
+                             <li >
+                                <a href="<?php echo base_url('index.php/token')?>">
+                                    <span class="text">Token</span>
+                                </a>
+                            </li>                           
+                        </ul>
+                        <!--/ END 2nd Level Menu -->
+                    </li>
                      <li >
                         <a href="javascript:void(0);" data-toggle="submenu" data-target="#guru" data-parent=".topmenu">
                             <span class="figure"><i class="ico-book"></i></span>

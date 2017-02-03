@@ -16,9 +16,14 @@ class Token extends MX_Controller {
 
 	public function index(){
 		// $this->load->view('v-header');
+		//hak akses jika admin
+    if ($this->session->userdata('id_admin')) {
 		$this->load->view('admin/layout/header');
 		$this->load->view('v-daftar-token');
 		$this->load->view('admin/layout/footer');
+	} else {
+		redirect('login');
+	}
 	}
 
 
