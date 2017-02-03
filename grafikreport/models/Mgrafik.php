@@ -27,6 +27,35 @@ class Mgrafik extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    function get_siswa($id_siswa){
+        $this->db->select('tb_siswa.id_siswa,photo,jurusan,univ');
+
+        $this->db->from('tb_siswa');
+        $this->db->where('id_siswa',$id_siswa);
+
+
+        $this->db->limit(1);
+
+
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 1) {
+
+            return $query->result(); //if data is true
+
+        } else {
+
+            return false; //if data is wrong
+
+        }
+    //     $query = $this->db->get_where('tb_siswa',array('nama_depan'=>$nama_depan));
+    //     $query = $query->result_array();
+    //     if ($query) {
+    //         return $query[0];
+    //     }
+    // }
+}
 
     public function get_greport($bab){
         $query = "SELECT m.nama_mapel, b.judul_bab, ROUND((SUM( sub_score ) / sum(total)) * 100) AS score, SUM( total ) AS total 

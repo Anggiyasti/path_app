@@ -17,9 +17,10 @@ class Grafikreport extends MX_Controller {
 
 	// fungsi pilihan bab
     public function pilih_bab_report($no) {
-
+            if ($this->session->userdata('id_siswa')) {
             // $d = $this->input->post('');
-
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Mgrafik->get_siswa($sis);
             $data['bab'] = $this->Mgrafik->get_mapel_bab($no);
             $data['c'] = $this->Mgrafik->chart_model($no);
             $data['mapel'] = $no;
@@ -32,6 +33,7 @@ class Grafikreport extends MX_Controller {
              $this->load->view('template/siswa/v-head');
             $this->load->view('v-chart-gr',$data);
             $this->load->view('template/siswa/v-footer'); 
+        }
 
     }
 
