@@ -34,24 +34,24 @@
         <h3 class="sidebar-title"><?=$mapel ?></h3>
         <div class="sidebar-course-reviews">
             <div class="skill-area">
-                <div class="progress">
+                <div class="progress" style="height: 30px; background-color: #FFFF00 ;">
                 <?php if ($c== array()): ?>
     			<h4 align="center">Tidak ada Grafik Workout.</h4>
 				<?php else: ?>
    
     			<?php foreach ($c as $key) : 
      			$p = $key['score_grafik'];
-    			$p2 = $key['tot'];
+    			
 
-     			if ($p2 == 0) { ?>
+     			if ($p == 0) { ?>
+                <div class="lead"><?=$key['judul_bab'];?></div>
+                <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px;" data-progress="0" class="progress-bar wow fadeInLeft  animated"></div><span><?=$p?>%</span>
+            </div>
+        
+            <div class="progress" style="height: 30px; background-color: #FFFF00 ;">
+        <?php } else {?>
             <div class="lead"><?=$key['judul_bab'];?></div>
-            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 0%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 20px;" data-progress="0" class="progress-bar wow fadeInLeft  animated"></div><span>0%</span>
-        </div>
-        <div class="progress">
-        <?php } else {
-    ?>
-            <div class="lead" style="height: 20px;"><?=$key['judul_bab'];?></div>
-            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 20px; background-color: black;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft animated"></div><span><?=$p?>%</span> 
+            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px; background-color: #002147;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft animated"></div><span><?=$p?>%</span> 
             </div>
                 <?php } ?>
     <!-- End Skill Bar -->
@@ -61,4 +61,5 @@
     <?php endif ?>
                                                 
     </div>
+</div>
 </div>
