@@ -6,10 +6,11 @@
             <center> 
                                     <div class="newsletter-area">
                                         <div class="input-group stylish-input-group">
-                                            <input type="text" placeholder="Enter your e-mail here" class="form-control">
+                                            <input type="text" name="kode_token" placeholder="Masukan Kode Token" class="form-control">
                                             <span class="input-group-addon">
-                                                <button type="submit">
+                                                <button type="submit" class="isi_button">
                                                     <i class="fa fa-paper-plane" aria-hidden="true">Isi</i>
+                                                    <img src="">
                                                 </button>  
                                             </span>
                                         </div>

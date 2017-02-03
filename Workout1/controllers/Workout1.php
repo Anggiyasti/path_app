@@ -84,7 +84,7 @@ class Workout1 extends MX_Controller
             $this->load->view('v-daftar-test', $data);
             $this->load->view('t-footer-soal');
         } else {
-            $this->errortest();
+            redirect('workout1/errortest');
         }
     }
 
@@ -253,7 +253,7 @@ class Workout1 extends MX_Controller
             redirect('workout1/mulaitest');
             // $this->mulaitest();
         } else {
-            $this->errortest();
+            redirect('workout1/errortest');
         }
 
     }
@@ -296,10 +296,9 @@ class Workout1 extends MX_Controller
     {
         $data['report'] = $this->Mworkout1->get_report_detail($this->session->userdata['username'], $id);
         $data['latihan'] = $this->Mworkout1->get_latihan($this->session->userdata['username']);
-        $this->load->view('template/header');
-        $this->load->view('v-header');
+        $this->load->view('template/siswa/v-head');
         $this->load->view('v-detail-report', $data);
-        // $this->load->view('t-footer-soal');
+        $this->load->view('template/siswa/v-footer');
     }
 
     // fungsi pilihan bab
@@ -333,7 +332,7 @@ class Workout1 extends MX_Controller
         $this->load->view('v-pembahasan', $data);
         $this->load->view('v-footer-pembahasan');
     } else {
-        $this->errortest();
+        redirect('workout1/errortest');
     }
 }
 

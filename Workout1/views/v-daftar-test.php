@@ -104,13 +104,7 @@
         <input type="text" hidden="true" id="durasi" value="" name="durasi" />
     </div>
     
-        <!-- START page header -->
-        <section class="page-header page-header-block nm" style="">
-            <!-- pattern -->
-            <!--/ pattern -->
-            
-        </section>
-        <!--/ END page header -->
+
 
         <!-- START Register Content -->
         <section class="section bgcolor-white">
@@ -237,7 +231,7 @@
 
                                                 <div class="col-md-12" style="">
                                                     <hr> 
-                                                    <button type="button" class="btn btn-info btn-block" onclick="kirimHasil();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
+                                                    <button type="button" class="btn btn-info btn-block" style="background-color: #002147;" onclick="kirimHasil();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
                                                 </div>
                                         </div>
                                         <div></div> 

@@ -247,6 +247,51 @@ class Mworkout1 extends CI_Model
         return $query->result_array();
     }
 
+
+    // get soal untuk pembahasan
+     public function get_soal_pembahasan($id_latihan) {
+        // $this->db->select('id_latihan as idlat, soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw');
+        // $this->db->from('tb_mm_sol_lat as sollat');
+        // $this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
+        // $this->db->where('sollat.id_latihan', $id_latihan);
+
+        $this->db->select('soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw, soal.status, soal.pembahasan');
+        $this->db->from('tb_bank_soal as soal');
+        $this->db->join('tb_mm_sol_lat as sollat', 'sollat.id_soal = soal.id_bank');
+        $this->db->where('sollat.id_latihan', $id_latihan);
+        $query = $this->db->get();
+        $soal = $query->result_array();
+
+        $this->db->select('*,id_latihan as idlat, soal as soal, pil.id_soal as pilid,soal.id_bank as soalid, pil.pilihan_jawaban as pilpil, pil.jawaban as piljaw, pil.gambar as pilgam');
+        $this->db->from('tb_mm_sol_lat as sollat');
+        $this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
+        $this->db->join('tb_pil_jawab as pil', 'soal.id_bank = pil.id_soal');
+        $this->db->where('sollat.id_latihan', $id_latihan);
+        $query = $this->db->get();
+        $pil = $query->result_array();
+
+        return array(
+            'soal' => $soal,
+            'pil' => $pil,
+        );
+    }
+
+     // get mapel dan bab untuk tampil di workout
+    public function get_mapel_bab_wo($id_bab) {
+        $this->db->distinct();
+        $this->db->select('m.id_mapel, m.nama_mapel, m.alias_mapel, b.id_mapel, b.id_bab, b.judul_bab');
+        $this->db->from('tb_mata_pelajaran m');
+        $this->db->join('tb_bab b', 'm.id_mapel = b.id_mapel');
+        $this->db->where('b.id_bab', $id_bab);
+        // $this->db->select('id_bab, judul_bab, id_mapel');
+        // $this->db->from('tb_bab');
+        // $this->db->where('id_mapel', $mapel);
+         
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+
 }
 
  ?>

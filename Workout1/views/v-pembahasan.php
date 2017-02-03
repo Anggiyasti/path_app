@@ -71,7 +71,6 @@
         /*background-color: #63d3e9;*/
     }
 </style>
-</head>
 <body class="bgcolor-white">
     <!-- START Template Main -->
     <script src="<?= base_url('assets/js/bjqs-1.10.js') ?>"></script>
@@ -85,65 +84,6 @@
         });
     </script>
 <section id="main" role="main">
-<!-- page-transitions -->
-    
-<div class="page-preloader page-preloader-dark">
-    <div class="spinner"></div>
-</div>
-
-<form action="<?= base_url('index.php/workout1/cekjawaban') ?>" method="post" id="hasil">    
-    <div class="header header-dark">
-        <div class="text-center"> 
-            <h4><span class="color-red-dark" id="timer"></span></h4>
-        </div>
-        <input type="text" hidden="true" id="durasi" value="" name="durasi" />
-        <a href="#" class="header-icon header-icon-1 close-sidebar-mask"></a>
-        <a href="#" class="header-icon header-icon-1 open-sidebar" disabled>
-            <em class="line-1"></em>
-            <em class="line-2"></em>
-            <em class="line-3"></em>    
-        </a>
-    </div>
-    
-    <div class="sidebar-menu sidebar-dark">
-    <div class="sidebar-menu-scroll">
-        <a class="current-menu" href="<?= base_url('index.php/login/cek_login_siswa') ?>""><i class="ion-ios-home-outline"></i><em>Home</em></a>       
-        <a data-submenus="sub1" href="#"><i class=" ion-ios-person-outline"></i><em>User</em></a>       
-        <a data-submenus="sub2" href="#"><i class="ion-ios-gear-outline"></i><em>Workout</em></a> 
-        <a data-submenus="sub3" href="#"><i class="ion-ios-speedometer-outline"></i><em>PG</em></a>      
-    </div>
-</div>
-<!-- Home Submenus -->
-<div class="submenu submenu-dark" id="sub1">
-    <div class="submenu-scroll">
-        <a class="close-sidebar" href="<?php echo base_url('index.php/siswa/profilesiswa')?>"><i class="ion-ios-gear-outline"></i><em>User Setting</em></a>        
-        <a href="<?php echo base_url('index.php/login/logout_siswa')?>"><i class="ion-ios-close-outline"></i><em>Logout</em></a>         
-    </div>
-</div>
-<!-- Features Submenus -->
-<div class="submenu submenu-dark" id="sub2">
-    <div class="submenu-scroll">
-        <a class="close-sidebar" href="<?= base_url('index.php/workout1') ?>"><i class="ion-ios-list-outline"></i><em>Workout</em></a> 
-        <a href="<?= base_url('index.php/workout1/pilihreport') ?>"><i class="ion-ios-paper-outline"></i><em>Report</em></a> 
-        <a href="<?= base_url('index.php/grafikreport') ?>"><i class="ion-ios-book-outline"></i><em>Grafik Report</em></a>         
-    </div>
-</div>    
-<!-- Home Submenus -->
-<div class="submenu submenu-dark" id="sub3">
-    <div class="submenu-scroll">
-        <a class="close-sidebar" href="<?php echo base_url('index.php/passinggrade/univ')?>"><i class="ion-ios-browsers-outline"></i><em>Universitas</em></a>        
-        <a href="<?php echo base_url('index.php/passinggrade/pilih_prodi')?>"><i class="ion-ios-star-outline"></i><em>Prodi</em></a>  
-        <a href="<?php echo base_url('index.php/passinggrade/passing')?>"><i class="ion-ios-clock-outline"></i><em>Passing Grade</em></a>       
-    </div>
-</div>
-        <!-- START page header -->
-        <section class="page-header page-header-block nm" style="">
-            <!-- pattern -->
-            <!--/ pattern -->
-            
-        </section>
-        <!--/ END page header -->
-
         <!-- START Register Content -->
         <section class="section bgcolor-black">
             <!-- container-fluid -->
@@ -206,7 +146,7 @@
                                                     <div class="panel-heading">                                                    
                                                         <div class="row">
                                                            <div class="col-md-6 center"></div>
-                                                           <div class="col-md-6 text-right" style="margin-top:0"><a href="<?=base_url('index.php/workout1/pilihreport')?>" class="btn btn-sm btn-info" onclick="raguColor(<?= $i ?>)">Pembahasan Selesai</a>&nbsp&nbsp&nbsp<a href="javascript:toggleDiv('myContent');" class="btn btn-sm btn-info" id="jawaban">Jawaban</a></div>
+                                                           <div class="col-md-6 text-right" style="margin-top:0"><a href="<?=base_url('index.php/workout1/pilihreport')?>" class="view-all-accent-btn" onclick="raguColor(<?= $i ?>)">Pembahasan Selesai</a></div>
                                                         </div>
                                                     </div>
                                                     <div class="panel-collapse">
@@ -237,9 +177,9 @@
                                                                     <?php foreach ($pil as $row): ?>
                                                                         <?php if ($row['pilid'] == $k) { ?>
                                                                             <div class="mb10">
-                                                                                 <label id="pil[<?= $row['pilid']; ?>]" onclick="changeColor('pil[<?= $row['pilid']; ?>]')" style="border:1px solid #63d3e9; padding: 5px;width:100%; <?php 
+                                                                                 <label id="pil[<?= $row['pilid']; ?>]" onclick="changeColor('pil[<?= $row['pilid']; ?>]')" style="border:1px solid black; padding: 5px;width:100%; border-radius:15px; <?php 
                                                                                                 if ($jawaban == $row['pilpil']) {
-                                                                                                    echo "background-color:#63d3e9";
+                                                                                                    echo "background-color:#BEF781";
                                                                                                 }else{
 
                                                                                                 }
@@ -308,8 +248,8 @@
                                     <div class="col-md-6 center"></div>
                                     <div class="col-md-2"></div>
                                         <div class="col-md-8 text-right"> 
-                                            <button class="button button-green" id="btnPrev"><<</button>
-                                            <button class="button button-green" id="btnNext">>></button>
+                                            <button class="view-all-accent-btn" id="btnPrev"><<</button>
+                                            <button class="view-all-accent-btn" id="btnNext">>></button>
                                         </div>
                                     </div>
                             </row>  
@@ -328,10 +268,8 @@
         <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
 
         <!--/ END To Top Scroller -->
-</form>
-<!-- /page-transitions -->
-<!-- </div>
- -->    </section>
+
+   </section>
     <!--/ END Template Main -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 
