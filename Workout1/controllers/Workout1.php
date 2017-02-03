@@ -39,7 +39,7 @@ class Workout1 extends MX_Controller
     public function mulaitest() {
         if (!empty($this->session->userdata['id_latihan'])) {
             $id = $this->session->userdata['id_latihan'];
-            $
+            
             
             $this->load->view('t-header-soal');
             $query = $this->Mworkout1->get_soal($id);
