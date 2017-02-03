@@ -28,7 +28,7 @@ class Mgrafik extends CI_Model
         return $query->result_array();
     }
     function get_siswa($id_siswa){
-        $this->db->select('tb_siswa.id_siswa,photo,jurusan,univ');
+        $this->db->select('id_siswa,photo,jurusan as jur,univ');
 
         $this->db->from('tb_siswa');
         $this->db->where('id_siswa',$id_siswa);

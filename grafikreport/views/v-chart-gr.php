@@ -1,21 +1,29 @@
-<div class="inner-page-banner-area" style="background-image: url('img/banner/5.jpg')" >
-                <div class="container">
+<div class="inner-page-banner-area" style="background-image: url('img/banner/5.jpg'); " >
+                <div class="container" ">
                     <div class="pagination-area">
                     <div class="sidebar-skilled-area">
-                    <?php foreach ($siswa as $s): ?>
+                      <?php foreach ($siswa as $s): ?>
                                             <ul>
                                                 <li>
+                                              
                                                     <div class="skilled-img">
                                                         <a href="#"><img src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" class="img-responsive" alt="skilled" style="width: 88px; height: 88px;"></a>
                                                     </div>
-                                                    <br>
-                                                    <div class="skilled-content">
-                                                        <h4 style="color: white; text-transform: uppercase;"><?=$this->session->userdata['username'];?></h4>
-                                                        <h3 style="color: white;"><?=$jurusan ?> - <?=$univ ?></h3>
-                                                    </div>
+                                                    
+                                                   
                                                 </li>
                                             </ul>
-                                            <?php endforeach ?>  
+                                            <ul>
+                                                <li>
+                                                    <div class="skilled-content">
+                                                        <h4 style="color: white; text-transform: uppercase;">&nbsp&nbsp&nbsp&nbsp<?=$this->session->userdata['username'];?></h4>
+                                                        <h4 style="color: white; text-transform: uppercase;">&nbsp&nbsp&nbsp&nbsp<?=$s->jur?></h4>
+                                                    </div>
+                                                   
+                                                </li>
+                                            </ul>
+                                             <?php endforeach ?>  
+                                            
                                         </div>
 
                     </div>
