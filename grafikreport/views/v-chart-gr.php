@@ -43,7 +43,7 @@
         <?php } else {
     ?>
             <div class="lead"><?=$key['judul_bab'];?></div>
-            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width:"<?=$p?>" ;" visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft  animated"></div><span><?=$p?>%</span> 
+            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft  animated"></div><span><?=$p?>%</span> 
             </div>
                 <?php } ?>
     <!-- End Skill Bar -->
