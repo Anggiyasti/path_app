@@ -10,9 +10,12 @@ class Grafikreport extends MX_Controller {
 
 	public function index() {
 		$data['mapel'] = $this->Mgrafik->getdaftarmapel();
-		$this->load->view('template/header');
-        $this->load->view('v-header');
-		$this->load->view('pilih_mapel', $data);
+		// $this->load->view('template/header');
+  //       $this->load->view('v-header');
+		// $this->load->view('pilih_mapel', $data);
+            $this->load->view('template/siswa/v-head');
+            $this->load->view('v-mapel',$data);
+            $this->load->view('template/siswa/v-footer'); 
 	}
 
 	// fungsi pilihan bab
