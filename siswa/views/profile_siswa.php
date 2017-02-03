@@ -50,8 +50,8 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <ul>
                                                 <li class="active"><a href="#description" data-toggle="tab" aria-expanded="false">Profile</a></li>
-                                                <li><a href="#review" data-toggle="tab" aria-expanded="false">Ubah Password</a></li>
-                                                <li><a href="#add-tags" data-toggle="tab" aria-expanded="false">ADD TAGS</a></li>
+                                                <li><a href="#review" data-toggle="tab" aria-expanded="false">Password</a></li>
+                                                <li><a href="#add-tags" data-toggle="tab" aria-expanded="false">Photo</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
