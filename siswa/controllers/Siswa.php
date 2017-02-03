@@ -119,9 +119,12 @@ public function ubahpass_siswa() {
    
     $data['Siswa'] = $this->Msiswa->get_siswa();
     // $data['email']=$this->session->userdata['email'];
-        $this->load->view('layout/header');
-        $this->load->view('layout/sidebar');
-        $this->load->view('profilesetsiswa',$data);
+        // $this->load->view('layout/header');
+        // $this->load->view('layout/sidebar');
+        // $this->load->view('profilesetsiswa',$data);
+    $this->load->view('template/siswa/v-head');
+    $this->load->view('profile_siswa',$data);
+    $this->load->view('template/siswa/v-footer');
        
     
 }
@@ -143,9 +146,12 @@ public function upload($oldphoto) {
 
             $data['error'] = array('error' => $this->upload->display_errors());
             $data['siswa'] = $this->Msiswa->get_siswa();
-            $this->load->view('layout/header');
-        	$this->load->view('layout/sidebar');
-        	$this->load->view('profilesetsiswa',$data);
+         //    $this->load->view('layout/header');
+        	// $this->load->view('layout/sidebar');
+        	// $this->load->view('profilesetsiswa',$data);
+            $this->load->view('template/siswa/v-head');
+            $this->load->view('profile_siswa',$data);
+            $this->load->view('template/siswa/v-footer');
 
             // $this->load->view('beranda/main_view',$error);,
         } else {

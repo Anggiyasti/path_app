@@ -145,12 +145,7 @@
         </div>
 
         <div class="decoration decoration-margins"></div>
-        <div class="heading-strip bg-7">
-            <h3>Update Password</h3>
-           
-            <i class="ion-compose"></i>
-            <div class="overlay dark-overlay"></div>
-        </div>
+
         <?php echo $this->session->flashdata('msg'); ?>
         <form action="<?=base_url()?>index.php/Siswa/ubahpass_siswa" method="post">
         <div class="one-half-responsive">
@@ -165,13 +160,14 @@
 
                 <div class="input-icon">
                     <label>Password Baru</label>
-                    <input type="password" class="input-text-box input-green-border" name="password" >
+                    <input type="password" class="input-text-box input-green-border" name="password" id="password">
                     
                 </div>
                 <div class="input-icon">
                     <label>Ulangi Password</label>
-                    <input type="password" class="input-text-box input-green-border" name="password2" class="form-control" id="password2" name="password_conf"  required onkeyup="checkPass(); return false;">
+                    <input type="password" class="input-text-box input-green-border" name="password2" class="form-control" id="password2"  required onkeyup="checkPass(); return false;">
                     <?php echo form_error('password'); ?>
+                    <span id="confirmMessage" class="confirmMessage"></span>
                 </div>
                 
             </div>
@@ -215,5 +211,70 @@ $("#jurusan").html(respond);
 
 })
 
-</script>  
+</script> 
+<script type="text/javascript">
+
+    function checkPass() {
+
+        //Store the password field objects into variables ...
+
+        var pass1 = document.getElementById('password');
+
+        var pass2 = document.getElementById('password2');
+
+        //Store the Confimation Message Object ...
+
+        var message = document.getElementById('confirmMessage');
+
+        //Set the colors we will be using ...
+
+        var goodColor = "#66cc66";
+
+        var badColor = "#ff6666";
+
+        var blank = "#fff"
+
+        //Compare the values in the password field
+
+        //and the confirmation field
+
+
+
+        if (pass2.value == "") {
+
+            message.style.color = blank;
+
+            message.innerHTML = ""
+
+        } else if (pass1.value == pass2.value) {
+
+            //The passwords match.
+
+            //Set the color to the good color and inform
+
+            //the user that they have entered the correct password
+
+            message.style.color = goodColor;
+
+            message.innerHTML = "Passwords Cocok!"
+
+        } else {
+
+            //The passwords do not match.
+
+            //Set the color to the bad color and
+
+            //notify the user.
+
+            message.style.color = badColor;
+
+            message.innerHTML = "Passwords Tidak Cocok!"
+
+        }
+
+    }
+
+
+
+</script> 
 </body>

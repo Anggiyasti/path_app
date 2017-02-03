@@ -8,6 +8,7 @@
                             <div class="faq-box-wrapper">
                                 <div class="faq-box-item panel panel-default">
                                     <div class="panel-heading ">
+
                                     <?php $ke=0; ?>
                                     <?php $universitas; ?>
                                     <?php foreach ($data as $univ) : ?>

@@ -42,8 +42,6 @@ class Msiswa extends CI_Model {
 		$e  =  $this->input->post('alamat');
 		$f  =  $this->input->post('no_tlp');
 		$g  =  $this->input->post('id_siswa');
-		$h  =  $this->input->post('univ');
-		$i  =  $this->input->post('jurusan');
 		$j  =  $this->input->post('biografi');
 		
 		
@@ -56,8 +54,6 @@ class Msiswa extends CI_Model {
 				'alamat'=> $e,
 				'no_tlp'=> $f,
 				'id_siswa' => $g,
-				'univ' => $h,
-				'jurusan' => $i,
 				'biografi' => $j,
 				
 
