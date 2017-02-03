@@ -1,19 +1,24 @@
-<script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
-        <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
 <main>
     <div class="page-content container clear-fix">
         <div class="container-404">
-            <p><span>Maaf:(</span><br>untuk mengakses halaman, silahkan tambahkan Token Terlebih dahulu!</p>
-            <center>    <input type="text" class="form-control" name="kode_token" style="width: 40%;margin-bottom: 10px" placeholder="Masukan Kode Token" class="input-text-box input-green-border"><button class="isi_button">Isi</button></center>
+        <div class="footer-area-top" style="background-color: white; margin-top: 0;">
+            <p style="color: black"><span>Maaf:(</span><br>untuk mengakses halaman, silahkan tambahkan Token Terlebih dahulu!</p>
+            <center> 
+                                    <div class="newsletter-area">
+                                        <div class="input-group stylish-input-group">
+                                            <input type="text" placeholder="Enter your e-mail here" class="form-control">
+                                            <span class="input-group-addon">
+                                                <button type="submit">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true">Isi</i>
+                                                </button>  
+                                            </span>
+                                        </div>
+                                    </div>                                    
+            </center>
+             </div>
         </div>
-        <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                    <label>Nama Depan</label>
-                                                                    <input type="text" class="form-control" name="nama_depan" value="">
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
     </div>
+
 </main>
 
 

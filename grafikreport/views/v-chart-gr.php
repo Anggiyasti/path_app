@@ -34,7 +34,7 @@
         <h3 class="sidebar-title"><?=$mapel ?></h3>
         <div class="sidebar-course-reviews">
             <div class="skill-area">
-                <div class="progress" style="height: 30px; background-color: #FFFF00 ;">
+                
                 <?php if ($c== array()): ?>
     			<h4 align="center">Tidak ada Grafik Workout.</h4>
 				<?php else: ?>
@@ -44,22 +44,24 @@
     			
 
      			if ($p == 0) { ?>
-                <div class="lead"><?=$key['judul_bab'];?></div>
-                <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px;" data-progress="0" class="progress-bar wow fadeInLeft  animated"></div><span><?=$p?>%</span>
-            </div>
-        
-            <div class="progress" style="height: 30px; background-color: #FFFF00 ;">
+                <div class="progress" style="height: 30px; background-color: #FFFF00 ;">
+                    <div class="lead"><?=$key['judul_bab'];?></div>
+                    <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px;" data-progress="0" class="progress-bar wow fadeInLeft  animated"></div><span>0%</span>
+                </div>
+                
         <?php } else {?>
+            <div class="progress" style="height: 30px; background-color: #FFFF00 ;">
             <div class="lead"><?=$key['judul_bab'];?></div>
             <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px; background-color: #002147;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft animated"></div><span><?=$p?>%</span> 
-            </div>
+            </div></div>
                 <?php } ?>
-    <!-- End Skill Bar -->
-    <?php endforeach ?>
+        <!-- End Skill Bar -->
+        <?php endforeach ?>
    
     <!-- End Skill Bar -->
     <?php endif ?>
                                                 
     </div>
+</div>
 </div>
 </div>
