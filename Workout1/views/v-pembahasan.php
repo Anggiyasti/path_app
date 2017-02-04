@@ -84,6 +84,9 @@
         });
     </script>
 <section id="main" role="main">
+
+<form action="<?= base_url('index.php/workout1/cekjawaban') ?>" method="post" id="hasil">    
+    
         <!-- START Register Content -->
         <section class="section bgcolor-black">
             <!-- container-fluid -->
@@ -146,7 +149,7 @@
                                                     <div class="panel-heading">                                                    
                                                         <div class="row">
                                                            <div class="col-md-6 center"></div>
-                                                           <div class="col-md-6 text-right" style="margin-top:0"><a href="<?=base_url('index.php/workout1/pilihreport')?>" class="view-all-accent-btn" onclick="raguColor(<?= $i ?>)">Pembahasan Selesai</a></div>
+                                                           <div class="col-md-6 text-right" style="margin-top:0;"><a href="<?=base_url('index.php/workout1/pilihreport')?>" style="background-color: #00082E;" class="btn btn-sm btn-info" onclick="raguColor(<?= $i ?>)">Pembahasan Selesai</a></div>
                                                         </div>
                                                     </div>
                                                     <div class="panel-collapse">
@@ -177,7 +180,7 @@
                                                                     <?php foreach ($pil as $row): ?>
                                                                         <?php if ($row['pilid'] == $k) { ?>
                                                                             <div class="mb10">
-                                                                                 <label id="pil[<?= $row['pilid']; ?>]" onclick="changeColor('pil[<?= $row['pilid']; ?>]')" style="border:1px solid black; padding: 5px;width:100%; border-radius:15px; <?php 
+                                                                                 <label id="pil[<?= $row['pilid']; ?>]" onclick="changeColor('pil[<?= $row['pilid']; ?>]')" style="border:1px solid black; border-radius:15px; padding: 5px;width:100%; <?php 
                                                                                                 if ($jawaban == $row['pilpil']) {
                                                                                                     echo "background-color:#BEF781";
                                                                                                 }else{
@@ -193,7 +196,7 @@
                                                                                             echo '';
                                                                                             } else {
                                                                                             ?>
-                                                                                            <img src="<?= base_url('./assets/image/soal/' . $row['pilgam']) ?>">
+                                                                                            <img src="<?= base_url('./assets/images/jawaban/' . $row['pilgam']) ?>">
                                                                                             <?php } ?>
                                                                                             <?= $row['piljaw'] ?>
                                                                                             <?php 
@@ -214,18 +217,18 @@
                                                                     <?php endforeach ?>
                                                                 </div>   
                                                             </div>
-                                                            
                                                             <div class="row">      
                                                                 <div class="col-md-10 col-md-offset-1">
                                                                         <?php
                                                                             if ($key['pembahasan'] == null ) {
                                                                                 echo "<h5><strong>Tidak ada pembahasan pada soal ini</strong></h5>";
                                                                             }else{ 
-                                                                                echo '<iframe width=100% height="430" src="'.$key['pembahasan'].'"></iframe>';
+                                                                                echo 'Pembahasan<iframe width=100% height="430" src="'.$key['pembahasan'].'"></iframe>';
                                                                              }
 
                                                                         ?>
-                                                                </div>   
+
+                                                                               
                                                                             
                                                                             
                                                                             
@@ -268,8 +271,8 @@
         <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
 
         <!--/ END To Top Scroller -->
-
-   </section>
+</form>
+    </section>
     <!--/ END Template Main -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 
@@ -322,4 +325,3 @@ function toggleDiv(divId) {
 
     });
     </script>
-    

@@ -51,9 +51,9 @@
                 
         <?php } else {?>
             <div class="progress" style="height: 30px; background-color: #FFFF00 ;">
-            <div class="lead"><?=$key['judul_bab'];?></div>
-            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px; background-color: #002147;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft animated"></div><span><?=$p?>%</span> 
-            </div></div>
+                <div class="lead"><?=$key['judul_bab'];?></div>
+                <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px; background-color: #002147;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft animated"></div><span><?=$p?>%</span> 
+            </div>
                 <?php } ?>
         <!-- End Skill Bar -->
         <?php endforeach ?>
