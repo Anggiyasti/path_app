@@ -1,5 +1,6 @@
 <?php 
 
+
 class Learningmodel extends CI_Model{
 
 	//fungsi ambil semua topik
@@ -162,6 +163,14 @@ class Learningmodel extends CI_Model{
 	// update line topik aktiv
 	}
 
+	// ------------------------------------TOPIK
+	function update_topik($data){
+		$this->db->where('id', $data['id']);
+		$this->db->set($data);
+		$this->db->update('tb_line_topik');
+	}
+
+
 	/*GET META DATA UNTUK STEP*/
 	function get_meta_data_step($data){
 		$this->db->select('*');
@@ -193,6 +202,10 @@ class Learningmodel extends CI_Model{
 			return $result->result_array();
 		}
 
+	}
+	public function getmapel()
+	{
+		return $this->db->get('tb_mata_pelajaran');
 	}
 
 	function get_step_urutan_idtopik($idtopik, $urutan){

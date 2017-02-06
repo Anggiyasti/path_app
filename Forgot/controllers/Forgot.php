@@ -46,9 +46,13 @@ class Forgot extends MX_Controller
     
 		 // $this->load->view('layout/header');
    //      $this->load->view('layout/nav');
-        $this->load->view('template/header');
-        $this->load->view('template/sidebar-login');
-        $this->load->view('v_forget');
+        // $this->load->view('template/header');
+        // $this->load->view('template/sidebar-login');
+        // $this->load->view('v_forget');
+
+        $this->load->view('login/layout_login/header');
+        $this->load->view('form_forget');
+        $this->load->view('login/layout_login/footer');
         
 	}
 

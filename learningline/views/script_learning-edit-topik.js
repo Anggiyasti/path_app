@@ -1,7 +1,7 @@
 <script>
 $('.update_topik').click(function(){
 	data = 
-	{babID:$('#bab').val(),
+	{babID:$('#id_bab').val(),
 	statusLearning:1,
 	deskripsi:$('textarea[name=deskripsi]').val(),
 	namaTopik:$('input[name=nama_topik]').val(),

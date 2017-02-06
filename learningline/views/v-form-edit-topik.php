@@ -1,3 +1,4 @@
+<section id="main" role="main">
 <div class="row">
  <div class="col-md-12">
   <div class="panel panel-default">
@@ -8,7 +9,6 @@
       <!-- TABEL KONTEN 1 . FORM LEARNINGNLINE -->
       <ol class="breadcrumb breadcrumb-transparent nm">
         <li><span><a href="<?=base_url('learningline')?>"><i class="ico-list"></i></a></span></li>
-
         <!-- <li><span>{tingkat}</span></li> -->
         <li><?=$mapel ?></li>
         <li><?=$bab ?></li>   
@@ -20,28 +20,57 @@
   <div class="panel-body">
     <input type="hidden" name="topikID" value="<?=$topikID?>">
     <input type="hidden" id="oldmp"  value="<?=$mapelID ?>">
-    <input type="hidden" id="oldbab"  value="<?=$babID ?>">
+    <input type="hidden" id="id_bab"  value="<?=$babID ?>">
     <!-- Start Body modal -->
     <form  class="panel panel-default form-horizontal form-bordered form-topik"  method="post" >
      
 
-   <div  class="form-group">
+    <div class="form-group" hidden="true"  id="mapel">
       <label class="col-sm-3 control-label">Mata Pelajaran</label>
       <div class="col-sm-8">
+                                       <!--  <input class="form-control" type="text" name="id_mapel" value="<?php echo $editdata->id_mapel; ?>"> -->
+                        
+           <select class='form-control' name="pelajaran" id='pelajaran'>
+           <option value='0'><?=$mapel?></option>
+            <?php 
+            foreach ($mapell as $m) {
+            echo "<option value='$m[id_mapel]'>$m[nama_mapel]</option>";
+            }
+            ?>
+        </select>
+          </div>
+      </div>
 
-       <!-- stkt = soal tingkat -->                          
-       <select class="form-control" id="pelajaran" id="pelajaran">
-         <option>-Pilih Pelajaran-</option>
-       </select>
+   <div  class="form-group" id="oldmapel">
+      <label class="col-sm-3 control-label">Mata Pelajaran</label>
+      <div class="col-sm-8">
+        <select class='form-control' name="pelajaran" id='pelajaran'>
+           <option value='0'><?=$mapel?></option>
+            <?php 
+            foreach ($mapell as $m) {
+            echo "<option value='$m[id_mapel]'>$m[nama_mapel]</option>";
+            }
+            ?>
+        </select>
      </div>
    </div>
 
-   <div  class="form-group">
+   <div class="form-group" id="bab" hidden="true">
+        <label class="col-sm-3 control-label">Bab</label>
+        <div class="col-sm-8">      
+            <select name="judul_bab" id="id_bab" class="form-control" >
+                                           
+        </select>
+        <span id="pesan"></span>
+        </div>
+    </div>
+
+   <div  class="form-group" id="oldbab1">
     <label class="col-sm-3 control-label">Bab</label>
     <div class="col-sm-8">
-     <select class="form-control" id="bab">
-
-     </select>
+      <select class='form-control' name="id_bab" id='id_bab'>
+        <option value='0'><?=$bab?></option>
+      </select>
    </div>
  </div>
 
@@ -97,219 +126,51 @@
 </div>
 </div>
 <!-- TABEL KONTEN 1 . FORM LEARNINGNLINE -->
+</section>   
+
 <script type="text/javascript">
-
-//buat load tingkat
-
-                function loadPelajaran() {
-
-                    jQuery(document).ready(function () {
-                        var oldmp = $('#oldmp').val();
-                        var pelajaran_id = {"pelajaran_id": $('#pelajaran').val()};
-
-                        var idMapel;
-
-                        $.ajax({
-
-                            type: "POST",
-                            dataType: "json",
-                            data: pelajaran_id,
-
-                            url: "<?= base_url() ?>index.php/learningline/getPelajaran",
-
-                            success: function (data) {
-
-                                console.log("Data" + data);
-
-                                $('#pelajaran').html('<option value="">-- Pilih Tingkat  --</option>');
-
-                                $.each(data, function (i, data) {
-
-                                 if (data.id==oldmp) {
-                                   $('#pelajaran').append("<option value='" + data.id_mapel + "' selected>" + data.nama_mapel + "</option>");
-                               } else {
-                                $('#pelajaran').append("<option value='" + data.id_mapel + "'>" + data.nama_mapel + "</option>");
-                            }
-
-                            return idMapel = data.id_mapel;
-
-                        });
-
-                            }
-
-                        });
-
-                        $('#pelajaran').change(function () {
-
-                            pelajaran_id = {"pelajaran_id": $('#pelajaran').val()};
-
-                            load_bab($('#pelajaran').val());
-
-                        })
-
-
-
-                        $('#bab').change(function () {
-
-                            load_sub_bab($('#bab').val());
-
-                        })
-
-                    })
-
-                }
-
-                ;
-
-  // function loadPelajaran(tingkatID) {
-  //       var oldmp = $('#oldmp').val();
-  //       $.ajax({
-
-  //           type: "POST",
-  //           dataType: "json",
-  //           data: tingkatID.tingkat_id,
-
-  //           url: "<?php echo base_url() ?>index.php/learningline/getPelajaran/" + tingkatID,
-
-  //           success: function (data) {
-
-  //               $('#pelajaran').html('<option value="">-- Pilih Mata Pelajaran  --</option>');
-  //               $.each(data, function (i, data) {
-  //                   if (data.id==oldmp) {
-  //                     $('#pelajaran').append("<option value='" + data.id + "' selected>" + data.keterangan + "</option>");
-  //                   } else {
-  //                     $('#pelajaran').append("<option value='" + data.id + "'>" + data.keterangan + "</option>");
-  //                   }
-                    
-
-  //               });
-
-  //           }
-
-  //       });
-
-  // }
-
-  function load_bab(mapelID) {
-        var oldbab = $('#oldbab').val();
-        $.ajax({
-
-            type: "POST",
-            dataType: "json",
-            data: mapelID.pelajaran_id,
-
-            url: "<?php echo base_url() ?>index.php/learningline/getBab/" + mapelID,
-
-            success: function (data) {
-
-
-
-                $('#bab').html('<option value="">-- Pilih Bab Pelajaran  --</option>');
-
-                //console.log(data);
-
-                $.each(data, function (i, data) {
-                    if (data.id_bab==oldbab) {
-                       $('#bab').append("<option value='" + data.id_bab + "' selected>" + data.judul_bab + "</option>");
-                    } else {
-                       $('#bab').append("<option value='" + data.id_bab + "'>" + data.judul_bab + "</option>");
-                    }
-                   
-
-                });
-
-            }
-
-
-
-        });
-  }
-
-  $(document).ready(function () {
-  //   $('#tingkat').change(function () {
-  //     tingkat_id = {"tingkat_id": $('#tingkat').val()};
-  //     loadPelajaran($('#tingkat').val());
-  //   })
-
-
-
-    $('#pelajaran').change(function () {
-      pelajaran_id = {"pelajaran_id": $('#pelajaran').val()};
-      load_bab($('#pelajaran').val());
-    })
-
-    $('#bab').change(function () {
-      bab_id = {"bab_id": $('#bab').val()};
-      load_bab($('#bab').val());
-    })
-
-    $('#ePelajaran').change(function () {
-      var form_data = {
-        name: $('#ePelajaran').val()
-      };
-      $.ajax({
-        url: "<?php echo site_url('index.php/learningline/getPelajaran'); ?>",
-
-        type: 'POST',
-        dataType: "json",
-        data: form_data,
-        success: function (msg) {
-          var sc = '';
-          $.each(msg, function (key, val) {
-            sc += '<option value="' + val.id_bab + '">' + val.judul_bab + '</option>';
-          });
-          $("#ebab option").remove();
-          $("#ebab").append(sc);
-        }
-      });
-    });
-    });
-  
-
-
-  // function loadTingkat() {
-
-  //   jQuery(document).ready(function () {
-  //     var oldtkt = $('#oldtkt').val();
-  //     var tingkat_id = {"tingkat_id": $('#tingkat').val()};
-
-  //     var idTingkat;
-  //     $.ajax({
-
-  //       type: "POST",
-  //       dataType: "json",
-  //       data: tingkat_id,
-
-  //       url: "<?= base_url() ?>index.php/videoback/getTingkat",
-
-  //       success: function (data) {
-
-
-  //         $('#tingkat').html('<option value="">-- Pilih Tingkat  --</option>');
-
-  //         $.each(data, function (i, data) {
-
-  //           if (data.id==oldtkt) {
-  //            $('#tingkat').append("<option value='" + data.id + "' selected>" + data.aliasTingkat + "</option>");
-  //          } else {
-  //           $('#tingkat').append("<option value='" + data.id + "'>" + data.aliasTingkat + "</option>");
-  //         }
-
-
-
-  //         return idTingkat = data.id;
-
-  //       });
-
-  //       }
-
-  //     });
-  //   });
-  // }
-
-  loadPelajaran();
-  console.log("asd"+$('#oldmp').val());
-  // loadPelajaran($('#oldtkt').val());
-  load_bab($('#oldmp').val());
-  console.log($('#oldmp').val());
+              $(function(){
+
+$.ajaxSetup({
+type:"POST",
+url: "<?php echo base_url('index.php/videoback/ambil_data') ?>",
+cache: false,
+});
+
+$("#pelajaran").change(function(){
+
+var value=$(this).val();
+if(value>0){
+$.ajax({
+data:{modul:'getbab',id:value},
+success: function(respond){
+$("#id_bab").html(respond);
+}
+})
+}
+
+});
+
+})
+</script> 
+
+<script type="text/javascript">
+  $("#oldmapel").click(function(){
+    $("#mapel").show();
+    $("#oldmapel").hide();
+});
+
+   $("#oldlevel").click(function(){
+    $("#level").show();
+    $("#oldlevel").hide();
+});
+   $("#oldbab1").click(function(){
+    $("#bab").show();
+    $("#oldbab1").hide();
+});
+
+    $("#oldjawaban").click(function(){
+    $("#jawaban").show();
+    $("#oldjawaban").hide();
+});
 </script>
