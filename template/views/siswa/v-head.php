@@ -178,13 +178,13 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                                 <div class="col-lg-8 col-md-8 col-sm-9">
                                     <nav>
                                         <ul>
-                                            <li class="active"><a href="#">Home</a>
-                                                <ul>
+                                            <li class="active"><a href="<?php echo base_url('index.php')?>">Home</a>
+                                                <!-- <ul>
                                                     <li><a href="index.html">Home 1</a></li>
                                                     <li><a href="index2.html">Home 2</a></li>
                                                     <li><a href="index3.html">Home 3</a></li>
                                                     <li><a href="index4.html">Home 4</a></li>
-                                                </ul>   
+                                                </ul>  -->  
                                             </li>
                                             <li><a href="#">Profile</a>
                                                 <ul>
@@ -233,13 +233,13 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                                 
                                     <nav id="dropdown">
                                         <ul>
-                                            <li><a href="#">Home</a>
-                                                <ul>
+                                            <li><a href="<?php echo base_url('index.php')?>">Home</a>
+                                                <!-- <ul>
                                                     <li><a href="index.html">Home 1</a></li>
                                                     <li><a href="index2.html">Home 2</a></li>
                                                     <li><a href="index3.html">Home 3</a></li>                                                       
                                                     <li><a href="index4.html">Home 4</a></li>                                                       
-                                                </ul>   
+                                                </ul>    -->
                                             </li>
                                                     <li><a href="#">Profile</a>
                                                 <ul>
