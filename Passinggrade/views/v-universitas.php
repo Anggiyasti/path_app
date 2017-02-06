@@ -10,18 +10,20 @@
                                     <div class="panel-heading ">
 
                                     <?php $ke=0; ?>
+
                                     <?php $universitas; ?>
                                     <?php foreach ($data as $univ) : ?>
-                                        <?php $universitas=$univ['universitas']; ?>
+                                        <?php $universitas=$univ['universitas']; 
+                                                ?>
                                         <?php if ($ke==0): ?>
                                         <div class="panel-title faq-box-title">
                                             <h3>
-                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#<?=$univ['universitas']?>"><span class="faq-box-count"></span><?=$univ['universitas']?>
+                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#<?=$univ['id_passing']?>"><span class="faq-box-count"></span><?=$univ['universitas']?>
                                                 </a>
                                             </h3>
                                         </div>
                                     </div>
-                                    <div aria-expanded="false" id="<?=$univ['universitas']?>" role="tabpanel" class="panel-collapse collapse " >
+                                    <div aria-expanded="false" id="<?=$univ['id_passing']?>" role="tabpanel" class="panel-collapse collapse " >
                                         <div class="panel-body faq-box-body" >
                                                 <?php $ke=1; ?>
                                                 <?php elseif($universitas!=$olduniversitas): ?>
@@ -34,12 +36,12 @@
                                     <div class="panel-heading">
                                         <div class="panel-title faq-box-title">
                                             <h3>
-                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#<?=$univ['universitas']?>"><span class="faq-box-count"></span><?=$univ['universitas']?>
+                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#<?=$univ['id_passing']?>"><span class="faq-box-count"></span><?=$univ['universitas']?>
                                                 </a>
                                             </h3>
                                         </div>
                                     </div>
-                                    <div aria-expanded="false" id="<?=$univ['universitas']?>" role="tabpanel" class="panel-collapse collapse">
+                                    <div aria-expanded="false" id="<?=$univ['id_passing']?>" role="tabpanel" class="panel-collapse collapse">
                                         <div class="panel-body faq-box-body">
                                         <?php endif ?>
                                         <form action="" method="post">

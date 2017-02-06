@@ -52,10 +52,10 @@ class Login extends MX_Controller
 
         }
         else{
-        // $this->load->view('template/header');
+        $this->load->view('layout_login/header');
         // $this->load->view('template/sidebar-login');
         $this->load->view('login_form');
-        // $this->load->view('layout/footer');
+        $this->load->view('layout_login/footer');
 		// $this->load->view('v-login2');
     }
 	}
