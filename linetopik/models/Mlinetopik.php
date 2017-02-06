@@ -33,11 +33,12 @@
  	}
 
  	//untuk mengecek log 
-    public function get_log($stepID)
+    public function get_log($stepID, $id_siswa)
     {
     	$this->db->select('id');
     	$this->db->from('tb_line_log');
     	$this->db->where('stepID',$stepID);
+        $this->db->where('penggunaID',$id_siswa);
     	$query = $this->db->get();
     	if ($query->result_array()==array()) {
     		return false;

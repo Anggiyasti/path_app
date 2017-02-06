@@ -51,6 +51,9 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="<?php echo base_url('assets/main-academics/academics-placeholder/style.css')?>">
 
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="<?php echo base_url('assets/timeline/base.css')?>">
+
         <!-- Modernizr Js -->
         <script src="<?php echo base_url('assets/main-academics/academics-placeholder/js/modernizr-2.8.3.min.js')?>"></script>
         <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>

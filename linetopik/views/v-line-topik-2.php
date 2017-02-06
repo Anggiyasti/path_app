@@ -1,55 +1,124 @@
-<div class="page-title" style="background:#2b3036">
+ <!-- Custom CSS -->
+          <link rel="stylesheet" href="<?php echo base_url('assets/timeline/base.css')?>">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- Courses 1 Area Start Here -->
+            <div class="courses1-area">
+                <div class="container">    
+                    <h2 class="title-default-left">Path - Topik</h2> 
+                </div>
+                <div id="shadow-carousel" class="container"> 
+                        <div id="timeline">
+                        
+                        <main> <?php   $i=0; 
+                                    $namaTopik=''; ?>
+                            <?php foreach ($datline as $key ): ?>
+                                
+                                <?php if ($namaTopik != $key['namaTopik'] && $i==0): ?>
 
-    <div class="grid-row">
+                    <!-- start header line-->
+                    <!-- post item -->
+                    <div class="timeline-item">
+                        <div class="timeline-icon"> <img src="<?php echo base_url('assets/timeline/dev/images/star.svg')?>" alt=""> </div>
+                        <div class="timeline-content">
 
-        <h1>{judul_header2}</h1>
+                        <h2><a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" ><?=$key['namaTopik']?></a></h2>
+                        <h3>Nama Topik:' <?=$key['namaTopik']?> '</h3>
+                        <h3>Deskripsi:' <?=$key['deskripsi']?> '</h3>
+                         <!-- Start Time Line -->
+                         <!-- <h4>Time Line</h4> -->
+                         <hr>
+                            <ul class="media-list media-list-feed " >
+                            <!-- end header line-->
+                                <?php elseif($namaTopik != $key['namaTopik']) : ?>
+                            <!-- END body line -->
+                            </ul>
+                            <!-- END Tieme line -->
+                        
+                        </div>
+                    </div>
+                    <!-- / post item -->
+                    <hr class="divider-color" />
+                    <!-- END body line -->
+                    <!-- start header line-->
+                    <!-- post item -->
+                    <div class="timeline-item">
+                    <div class="timeline-icon"> <img src="<?php echo base_url('assets/timeline/dev/images/star.svg')?>" alt=""> </div>
+                    <div class="timeline-item" id="topik1">
+                        <!-- <article> -->
+                        <div class="timeline-content">
+                            
+                            <h2><?=$key['namaTopik']?></h2>
+                            <h3>Nama Topik:' <?=$key['namaTopik']?> '</h3>
+                            <h3>Deskripsi:' <?=$key['deskripsi']?> '</h3>
+                            <!-- Start Time Line -->
+                            <!-- <h4>Time Line</h4> -->
+                            <hr>
+                                <ul class="media-list media-list-feed " >
+                                <!-- end header line-->
+                                <?php endif ?>
+                                <li for class="media">
+                                     <div class="media-object pull-left " >
+                                        <i  class="<?=$key['icon']?> " id="ico-<?=$i;?>"></i>
+                                    </div>
+                                    <div class="media-body">
+                                    <!-- Untuk menampung staus step disable or enable -->
+                                     <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" hidden="true">
+                                     <!-- // Untuk menampung staus step disable or enable  -->
+                                        <!-- <a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" ><?=$key['namaStep']?></a> -->
+                                
+                                    </div>
+                             
+                                    <hr>
+                                </li> 
 
-    </div>
+                                <!-- </a>       -->
+                                 <?php $i++;  ?>
+                                <?php  $namaTopik=$key['namaTopik'];  ?>
+                                
 
-</div>
-<!-- CSS TIME LINE -->
- <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>">
+                                
+                            <?php endforeach ?>
+                            
+                            </ul>
 
-<!--  -->
+                            <!-- END Tieme line -->
+                        <!-- menampung nilai panjang array -->
+                      <input id="n" type="text"  value="<?=$i;?>" hidden="true">
+                            <?php if ($datline!= array()): ?>
+                        <!-- </article> -->
+                        <div class="tags-post">
+                                <a href="#" rel="tag"><?=$key['bab']?></a>
+                          </div>
+                          </div>
+                          </div>
+                    <!-- / post item -->
+                    <hr class="divider-color" />
+                            <?php else: ?>
 
-     <!-- content -->
-    <div class="page-content grid-row" >
-        <div class="grid-col-row clear-fix" >
-          <div class="grid-col grid-col-3 " >
-           <!-- Pencarian -->
-                <aside class="widget-search">
-                    <form method="get" class="search-form" action="<?=base_url()?>index.php/linetopik/caritopik"  accept-charset="utf-8" enctype="multipart/form-data"">
-                        <label>
-                            <span class="screen-reader-text">Search for:</span>
-                            <input type="search" class="search-field" placeholder="Search" value="" name="s" title="Search for:">
-                        </label>
-                        <input type="submit" class="search-submit" value="GO">
-                    </form>
-                </aside>
-           <!-- /Pencarian -->
-                <!-- Pengecekan jika step line tidak ada -->
-                <aside class="widget-categories">
-                <?php if ($datline!='' || $datline!=''): ?>
-                     <!-- widget Topik -->
-                
-                    <h2>Topik</h2>
-                    <hr class="divider-big" />
-                    <ul>
-                   
-                      <?php   $x=0; ?>
-                    <?php foreach ($topik as $rows): ?>
-                        <li class="cat-item cat-item-1 current-cat"><a href="#topik<?=$x?>"><?=$rows['namaTopik']?><span></span></a>
-                        <?php $x++; ?>
-                    <?php endforeach ?>
-                    </ul>
-                  
-              
-                <!--/ widget Topik -->
-                <?php endif ?>
-                  </aside>
-               
-      </div>
-            <div class="grid-col grid-col-9">
+                                <div class="container-404">
+                                  <div class="timeline-item">
+                                    <div class="timeline-icon"> <img src="<?php echo base_url('assets/timeline/dev/images/book.svg')?>" alt=""> </div>
+                                    <div class="timeline-content">
+                                      <h2>
+                                      <div class="number">U<span>P</span>S</div>
+                                        <p><span>Maaf:(</span><br>Step Line Belum Tersedia.</p>
+                                      </div></h2>
+                                  </div>
+                            <?php endif ?>
+
+                            
+
+
+
+
+
+
+
+                          <div class="timeline-item">
+                            <div class="timeline-icon"> <img src="<?php echo base_url('assets/timeline/dev/images/book.svg')?>" alt=""> </div>
+                            <div class="timeline-content right">
+                              <h2>LOREM IPSUM DOLOR</h2>
+                              <div class="grid-col grid-col-9">
                 <main> <?php   $i=0; 
                                     $namaTopik=''; ?>
                             <?php foreach ($datline as $key ): ?>
@@ -144,9 +213,13 @@
                 </main>
             </div>
           
-        </div>
-    </div>
-    <!-- / content -->
+                              <a href="#" class="btn">button</a> </div>
+                          </div>
+                        </div>
+                                           
+                </div>  
+            </div>  
+            <!-- Courses 1 Area End Here -->
 <script type="text/javascript">
     $(document).ready(function() { 
         var n = $("#n").val();
@@ -156,12 +229,10 @@
         var status = $("#status-"+i).val();
         
             if (status=="disable") {
-                 $("#ico-"+i).css("background","#b0b0b0");
-                 $("#font-"+i).css("color","#b0b0b0");
+                 $("#ico-"+i).css("background","#00082E");
+                 $("#font-"+i).css("color","#00082E");
             } 
            
         }
     });
 </script>
-
-

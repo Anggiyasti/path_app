@@ -1,7 +1,7 @@
 <!-- START Body -->
 <style>
     .bod {
-        background-color:white;
+        background-color:#0c1117;
     }
     .pager li > a, .pager li > span{
         display: inline-block;
@@ -97,17 +97,61 @@
 </div>
 
 <form action="<?= base_url('index.php/linetopik/cekjawaban') ?>" method="post" id="hasil">    
-    <div>
+    <div class="header header-dark">
         <div class="text-center"> 
             <h4><span class="color-red-dark" id="timer"></span></h4>
         </div>
         <input type="text" hidden="true" id="durasi" value="" name="durasi" />
+        <a href="#" class="header-icon header-icon-1 close-sidebar-mask"></a>
+        <a href="#" class="header-icon header-icon-1 open-sidebar" disabled>
+            <em class="line-1"></em>
+            <em class="line-2"></em>
+            <em class="line-3"></em>    
+        </a>
+        <a href="#" class="header-icon header-icon-4"><i class="ion-ios-email-outline"></i></a>
     </div>
     
-
+    <!-- Main Small Icon Sidebar -->
+    <div class="sidebar-menu sidebar-dark">
+        <div class="sidebar-menu-scroll">
+            <a class="current-menu" href="<?= base_url('index.php/Login/cek_login_siswa') ?>""><i class="ion-ios-star-outline"></i><em>Welcome</em></a>       
+            <a data-submenus="sub1" href="#"><i class="ion-ios-home-outline"></i><em>User</em></a>       
+            <a data-submenus="sub2" href="#"><i class="ion-ios-gear-outline"></i><em>Workout</em></a> 
+            <a data-submenus="sub3" href="#"><i class="ion-ios-gear-outline"></i><em>PassingGrade</em></a>     
+        </div>
+    </div>
+    <!-- Home Submenus -->
+    <div class="submenu submenu-dark" id="sub1">
+        <div class="submenu-scroll">
+            <a class="close-sidebar" href="#">User Setting</a>        
+            <a href="index.html">Logout</a>         
+        </div>
+    </div>
+    <!-- Features Submenus -->
+    <div class="submenu submenu-dark" id="sub2">
+        <div class="submenu-scroll">
+            <a class="close-sidebar" href="#">Workout</a> 
+            <a href="index.html">Report</a>         
+        </div>
+    </div>
+    <!-- Home Submenus -->
+<div class="submenu submenu-dark" id="sub3">
+    <div class="submenu-scroll">
+        <a class="close-sidebar" href="<?php echo base_url('index.php/passinggrade/univ')?>"><i class="ion-ios-close-empty"></i><em>Universitas</em></a>        
+        <a href="<?php echo base_url('index.php/passinggrade/pilih_prodi')?>"><i class="ion-ios-star-outline"></i><em>Prodi</em></a> 
+        <a href="<?php echo base_url('index.php/passinggrade/passing')?>"><i class="ion-ios-star-outline"></i><em>PassGrade</em></a>         
+    </div>
+</div>
+        <!-- START page header -->
+        <section class="page-header page-header-block nm" style="">
+            <!-- pattern -->
+            <!--/ pattern -->
+            
+        </section>
+        <!--/ END page header -->
 
         <!-- START Register Content -->
-        <section class="section bgcolor-white">
+        <section class="section bgcolor-black">
             <!-- container-fluid -->
             <div class="container-fluid">
                 <!-- row -->
@@ -117,91 +161,7 @@
                             <!-- col-md-8 -->
                             <div class="col-md-8" style="margin-bottom:0">
 
-                               
-                            </div>
-                            </div>
-                            <div class="col-md-8" style="margin-bottom:0">
-                                <row>
-                                <?php
-                                    $i = 1;
-                                    $nosoal = 1;
-                                ?>
-                                <div id="my-slideshow" style="">
-                                     <ul class="bjqs" style="display: block;list-style: none">
-                                        <?php foreach ($soal as $key): ?>
-                                        <li class="bjqs-slide" style="display: none;">
-                                            <div class="">
-                                                 <div class="panel panel-default" style="">
-                                                    <div class="panel-collapse">
-                                                        <div class="panel-body">
-                                                            <div class="row">
-                                                                <!-- <div class="col-md-1 text-left">
-                                                                    <p><h4><?= $i ?>.</h4></p>
-                                                                </div> -->
-                                                                <div class="col-md-11">
-                                                                    <?php if (!empty($key['gambar'])) { ?>       
-                                                                            <img src="<?= base_url('./assets/uploads/' . $key['gambar']) ?>" width="100%">   
-                                                                        <?php } ?>
-                                                                        <h5><?= $key['soal'] ?></h5>
-                                                                        <br>
-                                                                </div>
-                                                               
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-10 col-md-offset-1">  
-                                                                    <?php
-                                                                        $k = $key['soalid'];
-                                                                        $pilihan = array("A", "B", "C", "D", "E");
-                                                                        $indexpil = 0;
-                                                                    ?>
-
-                                                                    <?php foreach ($pil as $row): ?>
-                                                                        <?php if ($row['pilid'] == $k) { ?>
-                                                                            <div class="mb10">
-                                                                                 <label id="<?=$key['soalid'].$indexpil;?>" onclick="changeColor('<?=$key['soalid'].$indexpil;?>',<?=$key['soalid']?>)" alt="<?=$key['soalid'];?>" style="border:1px solid black; padding: 5px;width:100%;border-radius:15px;  ">
-                                                                                        <input type="radio" id="<?= $i ?>" value="<?= $row['pilpil'] ?>" name="pil[<?= $row['pilid'] ?>]" onclick="updateColor(<?= $i ?>)">
-                                                                                         <div class ="btn"><?=  $pilihan[$indexpil];?>.
-                                                                                            </div>
-                                                                                             <?php
-                                                                                            if (empty($row['pilgam'])) {
-                                                                                            echo '';
-                                                                                            } else {
-                                                                                            ?>
-                                                                                            <img src="<?= base_url('./assets/image/soal/' . $row['pilgam']) ?>">
-                                                                                            <?php } ?>
-                                                                                            <?= $row['piljaw'] ?>
-                                                                                            <?php $indexpil++;?>
-                                                                                        </label>  
-                                                                            </div>
-                                                                            <?php
-                                                                                } else {
-                                                                                    // $indexpil = 0;
-                                                                                }
-                                                                            ?>
-                                                                    <?php endforeach ?>
-                                                                </div>   
-                                                            </div>
-                                                        </div>   
-                                                    </div>
-                                                 </div>
-                                            </div>
-                                                                            <div class="panel panel-default" style="">
-                                                    <div class="panel-heading">                                                    
-                                                        <div class="row">
-                                                           <!-- <div class="col-md-6 center"></div> -->
-                                                           <div class="col-md-12 text-left" style="margin-top:0; padding: 5px;"><a href="javascript:toggleDiv('myContent');"  class="view-all-accent-btn" id="jawaban">Jawaban</a>&nbsp&nbsp&nbsp<a class="view-all-accent-btn" onclick="bataljawab('pil[<?= $key['soalid']?>]','<?=$i?>',<?= $key['soalid']?>)">Batal Jawab</a>&nbsp&nbsp&nbsp<a href="#" class="view-all-accent-btn" onclick="raguColor(<?= $i ?>)">Ragu Ragu</a></div>
-                                                        </div>
-                                                    </div>
-                                        </li>
-                                        <?php
-                                        $i++;
-                                        $nosoal++;
-                                        ?>
-                                <?php endforeach; ?>
-                                     </ul>
-                                </div>
-
-                                 <div class="panel panel-default"  style="min-height:170px;" id="myContent" hidden="true">
+                                <div class="panel panel-default"  style="min-height:170px;" id="myContent" hidden="true">
                                      
                                     <!--panel body with collapse capabale--> 
                                     <div class="panel-collapse">
@@ -231,7 +191,7 @@
 
                                                 <div class="col-md-12" style="">
                                                     <hr> 
-                                                    <button type="button" class="btn btn-info btn-block" style="background-color: #002147;" onclick="kirimHasil();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
+                                                    <button type="button" class="btn btn-info btn-block" onclick="kirimHasil();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
                                                 </div>
                                         </div>
                                         <div></div> 
@@ -239,13 +199,94 @@
                                     </div>
                                     <!--/ END panel--> 
                                 </div>
+                            </div>
+                            </div></div>
+                            </div>
+                            <div class="col-md-8" style="margin-bottom:0">
+                                <row>
+                                <?php
+                                    $i = 1;
+                                    $nosoal = 1;
+                                ?>
+                                <div id="my-slideshow" style="">
+                                     <ul class="bjqs" style="display: block;list-style: none">
+                                        <?php foreach ($soal as $key): ?>
+                                        <li class="bjqs-slide" style="display: none;">
+                                            <div class="">
+                                                 <div class="panel panel-default" style="">
+                                                    <div class="panel-heading">                                                    
+                                                        <div class="row">
+                                                           <div class="col-md-6 center"></div>
+                                                           <div class="col-md-6 text-right" style="margin-top:0"><a href="javascript:toggleDiv('myContent');"  class="btn btn-sm btn-info" id="jawaban">Jawaban</a>&nbsp&nbsp&nbsp<a class="btn btn-sm btn-success" onclick="bataljawab('pil[<?= $key['soalid']?>]','<?=$i?>',<?= $key['soalid']?>)">Batal Jawab</a>&nbsp&nbsp&nbsp<a href="#" class="btn btn-sm btn-warning" onclick="raguColor(<?= $i ?>)">Ragu Ragu</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-collapse">
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-md-1 text-left">
+                                                                    <p><h4><?= $i ?>.</h4></p>
+                                                                </div>
+                                                                <div class="col-md-11">
+                                                                    <?php if (!empty($key['gambar'])) { ?>       
+                                                                            <img src="<?= base_url('./assets/uploads/' . $key['gambar']) ?>" width="100%">   
+                                                                        <?php } ?>
+                                                                        <h5><?= $key['soal'] ?></h5>
+                                                                        <br>
+                                                                </div>
+                                                               
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-10 col-md-offset-1">  
+                                                                    <?php
+                                                                        $k = $key['soalid'];
+                                                                        $pilihan = array("A", "B", "C", "D", "E");
+                                                                        $indexpil = 0;
+                                                                    ?>
 
+                                                                    <?php foreach ($pil as $row): ?>
+                                                                        <?php if ($row['pilid'] == $k) { ?>
+                                                                            <div class="mb10">
+                                                                                 <label id="<?=$key['soalid'].$indexpil;?>" onclick="changeColor('<?=$key['soalid'].$indexpil;?>',<?=$key['soalid']?>)" alt="<?=$key['soalid'];?>" style="border:1px solid #63d3e9; padding: 5px;width:100% ">
+                                                                                        <input type="radio" id="<?= $i ?>" value="<?= $row['pilpil'] ?>" name="pil[<?= $row['pilid'] ?>]" onclick="updateColor(<?= $i ?>)">
+                                                                                         <div class ="btn"><?=  $pilihan[$indexpil];?>.
+                                                                                            </div>
+                                                                                             <?php
+                                                                                            if (empty($row['pilgam'])) {
+                                                                                            echo '';
+                                                                                            } else {
+                                                                                            ?>
+                                                                                            <img src="<?= base_url('./assets/image/soal/' . $row['pilgam']) ?>">
+                                                                                            <?php } ?>
+                                                                                            <?= $row['piljaw'] ?>
+                                                                                            <?php $indexpil++;?>
+                                                                                        </label>  
+                                                                            </div>
+                                                                            <?php
+                                                                                } else {
+                                                                                    // $indexpil = 0;
+                                                                                }
+                                                                            ?>
+                                                                    <?php endforeach ?>
+                                                                </div>   
+                                                            </div>
+                                                        </div>   
+                                                    </div>
+                                                 </div>
+                                            </div>
+                                        </li>
+                                        <?php
+                                        $i++;
+                                        $nosoal++;
+                                        ?>
+                                <?php endforeach; ?>
+                                     </ul>
+                                </div>
                                     <div class="row">
                                     <div class="col-md-6 center"></div>
                                     <div class="col-md-2"></div>
                                         <div class="col-md-8 text-right"> 
-                                            <button class="view-all-accent-btn" id="btnPrev"><<</button>
-                                            <button class="view-all-accent-btn" id="btnNext">>></button>
+                                            <button class="button button-green" id="btnPrev"><<</button>
+                                            <button class="button button-green" id="btnNext">>></button>
                                         </div>
                                     </div>
                             </row>  

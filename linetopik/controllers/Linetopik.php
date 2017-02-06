@@ -19,9 +19,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
      		$data['mapel'] = $this->load->Mworkout1->getdaftarmapel();
-     		$this->load->view('template/header');
-     		$this->load->view('workout1/v-header');
+     		$this->load->view('template/siswa/v-head');
      		$this->load->view('v-line-mapel', $data);
+            $this->load->view('template/siswa/v-footer');
      	} else {
             redirect('login');
         }
@@ -33,9 +33,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if ($this->session->userdata('id_siswa')) {
             $data['bab'] = $this->Mworkout1->get_mapel_bab($no);
             $data['mapel'] = $no;
-            $this->load->view('template/header');
-            $this->load->view('workout1/v-header');
+            $this->load->view('template/siswa/v-head');
             $this->load->view('v-line-bab', $data);
+            $this->load->view('template/siswa/v-footer');
         } else {
             redirect('login');
         }
@@ -110,16 +110,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  				'icon' =>$icon,
  				'link' => $link,
                 'status'=>$status);
-            $log=$this->Mlinetopik->get_log($stepID);
+            $id = $this->session->userdata['id_siswa'];
+            $log=$this->Mlinetopik->get_log($stepID, $id);
             $step = $log;
 
  		}
 
- 		$this->load->view('front/v-head');
+ 		$this->load->view('template/siswa/v-head');
  		// $this->load->view('workout1/v-header');
  		// $this->load->view('v-line-topik', $data);
         $this->load->view('v-line-topik-2', $data);
-        $this->load->view('front/v-footer');
+        $this->load->view('template/siswa/v-footer');
     } else {
             redirect('login');
     }
@@ -130,7 +131,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         if ($this->session->userdata('id_siswa')) { 
          $stepID= $this->Mlinetopik->get_stepID($UUID);
-        $this->logLine($stepID);
+        $this->logline($stepID);
          
         $data['datMateri']=$this->Mlinetopik->get_datMateri($UUID);
          // get UUID TOPIK
@@ -197,15 +198,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'status'=>$status);
             $data['bab']      = $rows['judul_bab'];
             $data['topik']    = $rows['namaTopik'];
-            $log=$this->Mlinetopik->get_log($stepID);
+            $id = $this->session->userdata['id_siswa'];
+            $log=$this->Mlinetopik->get_log($stepID, $id);
             $step = $log;
         }
           // END get data time untuk side bar
          
-        $this->load->view('template/header');
-        $this->load->view('workout1/v-header');
-        // $this->load->view('v-step-materi', $data);
+        $this->load->view('front/v-head');
         $this->load->view('v-step-materi-2', $data);
+        $this->load->view('front/v-footer');
         } else {
                 redirect('login');
         }
@@ -214,14 +215,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     // save log step
     public function logline($step_id)
     {
-       
-        $log=$this->Mlinetopik->get_log($step_id);
+        $id = $this->session->userdata['id_siswa'];
+
+        $log=$this->Mlinetopik->get_log($step_id, $id);
         // pengecekan log step line
         
         if ($log == false) {
             
             $datLog = array(
-                'penggunaID'=>$hakAkses=$this->session->userdata['id'],
+                'penggunaID'=>$this->session->userdata['id_siswa'],
                 'stepID'=>$step_id);
             //jika log belum ada maka save log
             $this->Mlinetopik->save_log($datLog);
@@ -315,10 +317,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $data['stepUUID']     = $tampStep['UUID'];
         if ($benar >= $minBenar ) {
           $data['hasil'] = "Selamat Anda Lulus";
-             
-             $this->logLine($stepID);
+             $id = $this->session->userdata['id_siswa'];
+             $this->logLine($stepID, $id);
          } else {
           $data['hasil'] = "Selamat Anda Gagal, Silahkan Coba Lagi";
+          $id = $this->session->userdata['id_siswa'];
+             $this->logLine($stepID, $id);
          }
          
          // redirect('/linetopik/timeLine/'.$UUID);
@@ -396,7 +400,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'icon' =>$icon,
                 'link' => $link,
                 'status'=>$status);
-            $log=$this->Mlinetopik->get_log($stepID);
+            $id = $this->session->userdata['id_siswa'];
+            $log=$this->Mlinetopik->get_log($stepID, $id);
             $step = $log;
 
         }
@@ -481,7 +486,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'icon' =>$icon,
                 'link' => $link,
                 'status'=>$status);
-            $log=$this->Mlinetopik->get_log($stepID);
+            $id = $this->session->userdata['id_siswa'];
+            $log=$this->Mlinetopik->get_log($stepID,$id);
             $step = $log;
 
         }
