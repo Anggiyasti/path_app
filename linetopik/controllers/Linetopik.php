@@ -204,9 +204,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
           // END get data time untuk side bar
          
-        $this->load->view('front/v-head');
+        $this->load->view('template/siswa/v-head');
         $this->load->view('v-step-materi-2', $data);
-        $this->load->view('front/v-footer');
+        $this->load->view('template/siswa/v-footer');
         } else {
                 redirect('login');
         }
@@ -408,8 +408,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       // END step line data
 
-        $this->load->view('template/header');
+        $this->load->view('template/siswa/v-head');
         $this->load->view('v-hasil-quiz', $data);
+        $this->load->view('template/siswa/v-footer');
 
     }
 
@@ -491,10 +492,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $step = $log;
 
         }
-        $this->load->view('template/header');
-        $this->load->view('workout1/v-header');
+        $this->load->view('template/siswa/v-head');
         // $this->load->view('v-step-materi', $data);
         $this->load->view('v-line-topik-2', $data);
+        $this->load->view('template/siswa/v-footer');
         // END step line
     }
 

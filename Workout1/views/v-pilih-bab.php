@@ -1,190 +1,190 @@
-        <style type="text/css">
-            input[type=radio].css-checkbox {
-                display:none;
-            }
-            .quiz-question-block.qhidden {
-                display:none;
-            }
-            input[type=radio].css-checkbox + label.css-label {
-                padding-left:45px;
-                height:32px;
-                display:inline-block;
-                line-height:30px;
-                background-repeat:no-repeat;
-                background-position: 0 0;
-                font-size:20px;
-                vertical-align:middle;
-                cursor:pointer;
-            }
-            input[type=radio].css-checkbox:checked + label.css-label {
-                background-position: 0 -32px;
-            }
-            label.css-label {
-                background-image:url('http://i.stack.imgur.com/KLQO2.png');
-            /*    background-color: #0B0B3B;
-                color: white;*/
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-        </style>
-<!-- Courses 1 Area Start Here -->
-            <div class="courses1-area">
-                <div class="container">    
-                    <h2 class="title-default-left">Workout - Bab</h2> 
-                </div>
-                <div id="shadow-carousel" class="container"> 
-                    <!-- <div class="news-btn-holder">
-                        <a href="" class="view-all-accent-btn">Step 1</a>
-                        <a href="<?= base_url() ?>index.php/workout1/next" class="view-all-accent-btn" style="background-color: white; border: 1px solid black; color: black;">Step 2</a>
-                    </div> <br> -->  
-                    <div class="rc-carousel"
-                        data-loop="true"
-                        data-items="4"
-                        data-margin="20"
-                        data-autoplay="false"
-                        data-autoplay-timeout="10000"
-                        data-smart-speed="2000"
-                        data-dots="false"
-                        data-nav="true"
-                        data-nav-speed="false"
-                        data-r-x-small="1"
-                        data-r-x-small-nav="true"
-                        data-r-x-small-dots="false"
-                        data-r-x-medium="2"
-                        data-r-x-medium-nav="true"
-                        data-r-x-medium-dots="false"
-                        data-r-small="2"
-                        data-r-small-nav="true"
-                        data-r-small-dots="false"
-                        data-r-medium="3"
-                        data-r-medium-nav="true"
-                        data-r-medium-dots="false"
-                        data-r-large="4"
-                        data-r-large-nav="true"
-                        data-r-large-dots="false"> 
-                        <form action="<?= base_url() ?>index.php/workout1/next" method="post">
-                            <div>
-                                <?php 
-                            $i=1;
-                            foreach ($bab as $row) { ?>
-                                <input type="radio" name="id_bab" id="radio1234<?=$i?>" class="css-checkbox" value="<?=$row['id_bab']?>" checked/>
-                                <label for="radio1234<?=$i?>" class="css-label radGroup1"><?php echo $row['judul_bab']; ?></label> <br>
-                            <?php  
-                            $i++;
-                            } 
-                           ?>
-                            </div><br>
-                            <div class="news-btn-holder">
-                                <input type="submit" name="" value="Next" class="view-all-accent-btn">
-                            </div>
-                        </form>                     
-                    </div> 
-                </div>  
-            </div>  
-            <!-- Courses 1 Area End Here -->
+<style type="text/css">
+    @import url('http://fonts.googleapis.com/css?family=Lato');
 
-            <!-- Footer Area Start Here -->
-            <footer>
-                <div class="footer-area-top">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="footer-box">
-                                    <a href="index.html"><img class="img-responsive" src="img/logo-footer.png" alt="logo"></a>
-                                    <div class="footer-about">
-                                        <p>Praesent vel rutrum purus. Nam vel dui eu sus duis dignissim dignissim. Suspenetey disse at ros tecongueconsequat.Fusce sit amet rna feugiat.</p>
-                                    </div>
-                                    <ul class="footer-social">
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="footer-box">
-                                    <h3>Featured Links</h3>
-                                    <ul class="featured-links">
-                                        <li>
-                                            <ul>
-                                                <li><a href="#">Graduation</a></li>
-                                                <li><a href="#">Admissions</a></li>
-                                                <li><a href="#">International</a></li>
-                                                <li><a href="#">FAQs</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <ul>
-                                                <li><a href="#">Courses</a></li>
-                                                <li><a href="#">About Us</a></li>
-                                                <li><a href="#">Book store</a></li>
-                                                <li><a href="#">Alumni</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>                             
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="footer-box">
-                                    <h3>Information</h3>
-                                    <ul class="corporate-address">
-                                        <li><i class="fa fa-phone" aria-hidden="true"></i><a href="Phone(01)800433633"> (01) 800 433 633 </a></li>
-                                        <li><i class="fa fa-envelope-o" aria-hidden="true"></i>info@bostonea.com</li>
-                                    </ul>
-                                    <div class="newsletter-area">
-                                        <h3>Newsletter</h3>
-                                        <div class="input-group stylish-input-group">
-                                            <input type="text" placeholder="Enter your e-mail here" class="form-control">
-                                            <span class="input-group-addon">
-                                                <button type="submit">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                                                </button>  
-                                            </span>
-                                        </div>
-                                    </div>                                    
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="footer-box">
-                                    <h3>Flickr Photos</h3>
-                                    <ul class="flickr-photos">
-                                        <li><a href="#"><img class="img-responsive" src="img/footer/1.jpg" alt="flickr"></a></li>
-                                        <li><a href="#"><img class="img-responsive" src="img/footer/2.jpg" alt="flickr"></a></li>
-                                        <li><a href="#"><img class="img-responsive" src="img/footer/3.jpg" alt="flickr"></a></li>
-                                        <li><a href="#"><img class="img-responsive" src="img/footer/4.jpg" alt="flickr"></a></li>
-                                        <li><a href="#"><img class="img-responsive" src="img/footer/5.jpg" alt="flickr"></a></li>           
-                                        <li><a href="#"><img class="img-responsive" src="img/footer/6.jpg" alt="flickr"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-area-bottom">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                <p>&copy; 2017 Academics All Rights Reserved. &nbsp; Designed by<a target="_blank" href="http://radiustheme.com"> RadiusTheme</a></p>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <ul class="payment-method">
-                                    <li><a href="#"><img alt="payment-method" src="img/payment-method1.jpg"></a></li>
-                                    <li><a href="#"><img alt="payment-method" src="img/payment-method2.jpg"></a></li>
-                                    <li><a href="#"><img alt="payment-method" src="img/payment-method3.jpg"></a></li>
-                                    <li><a href="#"><img alt="payment-method" src="img/payment-method4.jpg"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!-- Footer Area End Here -->
-        </div>
-        <!-- Main Body Area End Here -->
+
+
+.containere{
+  display: block;
+  position: absolute;
+  margin: auto;
+  height: 450px;
+  width: 400px;
+  bottom: 0; left:0; right: 0; top:0;
+  padding: 0;
+}
+
+h2 {
+    color: #AAAAAA;
+    font-weight: normal;
+}
+
+.containere ul{
+  list-style: none;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+ul li{
+  color: #AAAAAA;
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 100px;
+    border-bottom: 1px solid #111111;
+}
+
+ul li input[type=radio]{
+  position: absolute;
+  visibility: hidden;
+}
+
+ul li label{
+  display: block;
+  position: relative;
+  font-weight: 300;
+  font-size: 1.35em;
+  padding: 25px 25px 25px 80px;
+  margin: 10px auto;
+  height: 30px;
+  z-index: 9;
+  cursor: pointer;
+  -webkit-transition: all 0.25s linear;
+}
+
+ul li:hover label{
+    color: #FFFFFF;
+}
+
+ul li .check{
+  display: block;
+  position: absolute;
+  border: 5px solid #AAAAAA;
+  border-radius: 100%;
+  height: 25px;
+  width: 25px;
+  top: 30px;
+  left: 20px;
+    z-index: 5;
+    transition: border .25s linear;
+    -webkit-transition: border .25s linear;
+}
+
+ul li:hover .check {
+  border: 5px solid #FFFFFF;
+}
+
+ul li .check::before {
+  display: block;
+  position: absolute;
+    content: '';
+  border-radius: 100%;
+  height: 15px;
+  width: 15px;
+  top: 5px;
+    left: 5px;
+  margin: auto;
+    transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+}
+
+input[type=radio]:checked ~ .check {
+  border: 5px solid #00082E;
+}
+
+input[type=radio]:checked ~ .check::before{
+  background: #00082E;
+}
+
+input[type=radio]:checked ~ label{
+  color: #0DFF92;
+}
+
+.signature {
+    position: fixed;
+    margin: auto;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+}
+
+.signature p{
+    text-align: center;
+    font-family: Helvetica, Arial, Sans-Serif;
+    font-size: 0.85em;
+    color: #AAAAAA;
+}
+
+.signature .much-heart{
+    display: inline-block;
+    position: relative;
+    margin: 0 4px;
+    height: 10px;
+    width: 10px;
+    background: #AC1D3F;
+    border-radius: 4px;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.signature .much-heart::before, 
+.signature .much-heart::after {
+      display: block;
+  content: '';
+  position: absolute;
+  margin: auto;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+  background: #AC1D3F;
+  top: -4px;
+}
+
+.signature .much-heart::after {
+    bottom: 0;
+    top: auto;
+    left: -4px;
+}
+
+.signature a {
+    color: #AAAAAA;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+</style>
+<!-- <div class="container">
+ -->    
+    <h2>Tomorrow I want some:</h2>
+    
+  <ul>
+  <li>
+    <input type="radio" id="f-option" name="selector">
+    <label for="f-option">Pizza</label>
+    
+    <div class="check"></div>
+  </li>
+  
+  <li>
+    <input type="radio" id="s-option" name="selector">
+    <label for="s-option">Boyfriend</label>
+    
+    <div class="check"><div class="inside"></div></div>
+  </li>
+  
+  <li>
+    <input type="radio" id="t-option" name="selector">
+    <label for="t-option">Cats</label>
+    
+    <div class="check"><div class="inside"></div></div>
+  </li>
+</ul>
+<!-- </div>
+ -->
+<div class="signature">
+    <p>Made with <i class="much-heart"></i> by <a href="http://codepen.io/AngelaVelasquez">Angela Velasquez</a></p>
+</div>

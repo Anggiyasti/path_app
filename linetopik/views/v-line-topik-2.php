@@ -7,6 +7,17 @@
                     <h2 class="title-default-left">Path - Topik</h2> 
                 </div>
                 <div id="shadow-carousel" class="container"> 
+                <!-- Pencarian -->
+                            <aside class="widget-search">
+                                <form method="get" class="search-form" action="<?=base_url()?>index.php/linetopik/cariTopik"  accept-charset="utf-8" enctype="multipart/form-data">
+                                    <label>
+                                        <span class="screen-reader-text">Search for:</span>
+                                        <input type="search" class="search-field" placeholder="Search"  name="keycari" title="Search for:">
+                                    </label>
+                                    <input type="submit" class="search-submit" value="GO">
+                                </form>
+                            </aside>
+                       <!-- /Pencarian -->
                         <div id="timeline">
                         
                         <main> <?php   $i=0; 
@@ -47,7 +58,7 @@
                         <!-- <article> -->
                         <div class="timeline-content">
                             
-                            <h2><?=$key['namaTopik']?></h2>
+                            <h2><a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" ><?=$key['namaTopik']?></a></h2>
                             <h3>Nama Topik:' <?=$key['namaTopik']?> '</h3>
                             <h3>Deskripsi:' <?=$key['deskripsi']?> '</h3>
                             <!-- Start Time Line -->
