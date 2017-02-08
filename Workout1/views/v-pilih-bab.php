@@ -42,7 +42,9 @@ label{
 }
 
 .baru {
-    float: left; padding-right: 50px;
+    float: left; 
+    padding-right: 50px;
+    height: 100%;
 }
 
 
