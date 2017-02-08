@@ -76,8 +76,8 @@
                         data-r-large-nav="true"
                         data-r-large-dots="false"> 
                         <?php foreach ($mapel as $mapelitem): ?>
-                        <div class="courses-box1">
-                            <div class="single-item-wrapper">
+                        <div class="courses-box1" style="text-align: center; " >
+                            <div class="single-item-wrapper" style="height: 200px;">
                                 <div class="courses-img-wrapper hvr-bounce-to-bottom">
                                     <img class="profile-img-responsive img-circle" style="width: 150px; height: 150px;"  src="<?= base_url('./assets/images/mapel/'. $mapelitem['gambar']) ?>" alt="courses">
                                     <a href="<?=base_url()?>index.php/workout1/pilih_bab_report/<?=$mapelitem['nama_mapel'] ?>"><i class="fa fa-link" aria-hidden="true"></i></a>

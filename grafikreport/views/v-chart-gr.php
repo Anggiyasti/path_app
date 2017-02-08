@@ -1,5 +1,5 @@
-<div class="inner-page-banner-area" style="background-image: url('img/banner/5.jpg');"  >
-                <div class="container" style="height: 20px;">
+<div class="inner-page-banner-area" style="background-image: url('<?= base_url('./assets/images/g1.jpg') ?>');"  >
+                <div class="container" style="height: 50px;">
                     <div class="pagination-area">
                     <div class="sidebar-skilled-area" >
                       <?php foreach ($siswa as $s): ?>
@@ -8,7 +8,9 @@
                                               
                                                     <div class="skilled-img">
                                                         <a href="#"><img src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" class="img-responsive" alt="skilled" style="width: 88px; height: 88px;"></a>
+
                                                     </div>
+                                                    <br>
                                                     
                                                    
                                                 </li>
