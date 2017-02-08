@@ -133,7 +133,7 @@
                                                             <div class="col-sm-12">
                                                                 <div class="form-group">
                                                                 <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
-                                                                <input type="submit" class="view-all-accent-btn" name="update"  value="Update" style="color: #FFFFFF;" >
+                                                                <input type="submit" class="default-full-width-btn" name="update"  value="Update" style="color: #FFFFFF;" >
                                                                 <!-- <button type="submit" name="update" class="view-all-accent-btn">Update</button> -->
                                                                 </div>
                                                             </div>
@@ -173,11 +173,14 @@
                                                             <div class="col-sm-12">
                                                                 <div class="form-group">
                                                                 <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
-                                                                <button type="reset" class="view-all-accent-btn">Reset</button>
-                                                                 <input type="submit" class="view-all-accent-btn" name="update"  value="Update" style="color: #FFFFFF;" >
-
+                                                                <button type="reset" class="default-full-width-btn">Reset</button>
+                                                                 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
                                                                 
-                                                                <!-- <button type="submit" name="update" class="view-all-accent-btn">Update</button> -->
+                                                                 <input type="submit" class="default-full-width-btn" name="update"  value="Update" style="color: #FFFFFF;" >
                                                                 </div>
                                                             </div>
                                                         </fieldset>
@@ -189,15 +192,15 @@
                                                     <?php echo $this->session->flashdata('msg'); ?> 
                                                     <form action="<?=base_url()?>index.php/Siswa/upload/<?=$oldphoto; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                                                         <fieldset>
-                                                        <img id="preview" class="img-circle img-bordered" src="<?=$photo;?>" alt="" width="150px" height="150px" />
+                                                        <img id="preview" class="img-circle img-bordered" src="<?=$photo;?>" alt="" style="width: 150px; height: 150px;" />
                                                         <br><br>
-                                                        <label for="file" class="view-all-accent-btn">
+                                                        <label for="file" class="default-full-width-btn" style="text-align: center;">
                                                         Pilih Gambar
                                                         </label>
                                                         <input style="display:none;" type="file" id="file" name="photo" class="btn btn-default" required="true" onchange="ValidateSingleInput(this);" />
                                                         <?php echo form_error('password'); ?>
                                                        <!--  <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>"> -->
-                                                        <button type="submit" class="view-all-accent-btn">Simpan</button>
+                                                        <button type="submit" class="default-full-width-btn">Simpan</button>
                                                         <div class="help-block with-errors"></div>
 
                                                                  

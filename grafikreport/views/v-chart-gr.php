@@ -7,7 +7,7 @@
                                                 <li>
                                               
                                                     <div class="skilled-img">
-                                                        <a href="#"><img src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" class="img-responsive" alt="skilled" style="width: 88px; height: 88px;"></a>
+                                                        <a href="#"><img  src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" class="profile-img-responsive img-circle" alt="skilled" style="width: 88px; height: 88px;"></a>
 
                                                     </div>
                                                     <br>
