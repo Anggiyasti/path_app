@@ -237,6 +237,12 @@ class Workout1 extends MX_Controller
         // var_dump($param);
         // get soal randoom
         $data['soal_random'] = $this->Mworkout1->get_random_for_latihan_bab($param);
+
+         $bab = array(
+            "id_bab" => $idbab,
+            "id_latihan" => $id_latihan  
+        );
+         $this->Mworkout1->inputgrafik($bab);
        
         // var_dump($data);
         // $data['mm_sol']=array();
