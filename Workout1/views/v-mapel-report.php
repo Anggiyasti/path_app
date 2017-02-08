@@ -2,9 +2,9 @@
             <div class="slider1-area overlay-default index1">
                 <div class="bend niceties preview-1">
                     <div id="ensign-nivoslider-3" class="slides">   
-                        <img src="<?php echo base_url('assets/main-academics/academics-placeholder/img/slider/1-1.jpg')?>" alt="slider" title="#slider-direction-1"/>
-                        <img src="<?php echo base_url('assets/main-academics/academics-placeholder/img/slider/1-2.jpg')?>" alt="slider" title="#slider-direction-2"/>
-                        <img src="<?php echo base_url('assets/main-academics/academics-placeholder/img/slider/1-3.jpg')?>" alt="slider" title="#slider-direction-3"/>
+                        <img src="<?= base_url('./assets/images/g1.jpg') ?>" alt="slider" title="#slider-direction-1"/>
+                        <img src="<?= base_url('./assets/images/g2.jpg') ?>" alt="slider" title="#slider-direction-2"/>
+                        <img src="<?= base_url('./assets/images/g3.jpg') ?>" alt="slider" title="#slider-direction-3"/>
                     </div>
                     <div id="slider-direction-1" class="t-cn slider-direction">
                         <div class="slider-content s-tb slide-1">
@@ -42,55 +42,44 @@
                 </div> 
             </div>
             <!-- Slider 1 Area End Here -->
-            <!-- Service 1 Area Start Here -->
-            <div class="service1-area">                                
-                <div class="service1-inner-area">                                
-                    <div class="container">
-                         <div class="row service1-wrapper">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 service-box1">
-                                <div class="service-box-content">
-                                    <h3><a href="#">Scholarship Facility</a></h3>
-                                    <p>Eimply dummy text printing ypese tting industry.</p>
-                                </div>
-                                <div class="service-box-icon">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 service-box1">
-                                <div class="service-box-content">
-                                    <h3><a href="#">Skilled Lecturers</a></h3>
-                                    <p>Eimply dummy text printing ypese tting industry.</p>
-                                </div>
-                                <div class="service-box-icon">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 service-box1">
-                                <div class="service-box-content">
-                                    <h3><a href="#">Book Library & Store</a></h3>
-                                    <p>Eimply dummy text printing ypese tting industry.</p>
-                                </div>
-                                <div class="service-box-icon">
-                                    <i class="fa fa-book" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Service 1 Area End Here -->
-
-            <!-- Courses 1 Area Start Here -->
+            
+              <!-- choose mapel Start Here -->
             <div class="courses1-area">
                 <div class="container">    
-                    <h2 class="title-default-left">Report - Mata Pelajaran</h2> 
+                   <h2 class="title-default-left">Report - Mata Pelajaran</h2> 
+                   
                 </div>
                 <div id="shadow-carousel" class="container">    
+                    <div class="rc-carousel"
+                        data-loop="true"
+                        data-items="4"
+                        data-margin="20"
+                        data-autoplay="false"
+                        data-autoplay-timeout="10000"
+                        data-smart-speed="2000"
+                        data-dots="false"
+                        data-nav="true"
+                        data-nav-speed="false"
+                        data-r-x-small="2"
+                        data-r-x-small-nav="true"
+                        data-r-x-small-dots="false"
+                        data-r-x-medium="3"
+                        data-r-x-medium-nav="true"
+                        data-r-x-medium-dots="false"
+                        data-r-small="4"
+                        data-r-small-nav="true"
+                        data-r-small-dots="false"
+                        data-r-medium="4"
+                        data-r-medium-nav="true"
+                        data-r-medium-dots="false"
+                        data-r-large="4"
+                        data-r-large-nav="true"
+                        data-r-large-dots="false"> 
                         <?php foreach ($mapel as $mapelitem): ?>
                         <div class="courses-box1">
                             <div class="single-item-wrapper">
                                 <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                    <img class="img-responsive" src="<?php echo base_url('assets/main-academics/academics-placeholder/img/course/1.jpg')?>" alt="courses">
+                                    <img class="profile-img-responsive img-circle" style="width: 150px; height: 150px;"  src="<?= base_url('./assets/images/mapel/'. $mapelitem['gambar']) ?>" alt="courses">
                                     <a href="<?=base_url()?>index.php/workout1/pilih_bab_report/<?=$mapelitem['nama_mapel'] ?>"><i class="fa fa-link" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="courses-content-wrapper">
@@ -99,11 +88,10 @@
                             </div>                            
                         </div>
                         <?php endforeach ?>                      
+                    </div> 
                 </div>  
             </div>  
-            <!-- Courses 1 Area End Here -->
+            <!-- choose mapelEnd Here -->
+
             
-        
-        </div>
-        <!-- Main Body Area End Here -->
         
