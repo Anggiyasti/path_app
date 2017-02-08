@@ -78,10 +78,10 @@
                         data-r-large-dots="false"> 
                         <?php foreach ($mapel as $mapelitem): ?>
                         <div class="courses-box1" style="text-align: center; " >
-                            <div class="single-item-wrapper" style="height: 200px;">
+                            <div class="single-item-wrapper" style="height: 200px; background-color: #f5f5f5;">
                                 <div class="courses-img-wrapper hvr-bounce-to-bottom">
                                     <img class="profile-img-responsive img-circle" style="width: 98px; height: 98px;"  src="<?= base_url('./assets/images/mapel/'. $mapelitem['gambar']) ?>" alt="courses">
-                                    <a href="<?=base_url()?>index.php/workout1/pilih_bab/<?=$mapelitem['nama_mapel'] ?>"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                    <a href="<?=base_url()?>index.php/workout1/pilih_bab/<?=$mapelitem['nama_mapel'] ?>"><i class="fa fa-link " aria-hidden="true"></i></a>
                                 </div>
                                 <div class="courses-content-wrapper">
                                     <h3 class="item-title"><a href="<?=base_url()?>index.php/workout1/pilih_bab/<?=$mapelitem['nama_mapel'] ?>"><?=$mapelitem['nama_mapel'] ?></a></h3>
