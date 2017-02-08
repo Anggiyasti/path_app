@@ -2,189 +2,72 @@
     @import url('http://fonts.googleapis.com/css?family=Lato');
 
 
-
-.containere{
-  display: block;
-  position: absolute;
-  margin: auto;
-  height: 450px;
-  width: 400px;
-  bottom: 0; left:0; right: 0; top:0;
-  padding: 0;
-}
-
-h2 {
-    color: #AAAAAA;
-    font-weight: normal;
-}
-
-.containere ul{
+/*.container ul{
   list-style: none;
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+}*/
+
+
+
+
+input[type="radio"] {
+  display: none;
 }
 
-
-ul li{
-  color: #AAAAAA;
+input[type="radio"] + label {
+  background-image: url("https://developer.tizen.org/sites/default/files/images/5.3.2.d.png");
+  background-position: -169px -31px;
+  background-repeat: no-repeat;
   display: block;
-  position: relative;
-  float: left;
-  width: 100%;
-  height: 100px;
-    border-bottom: 1px solid #111111;
+  height: 37px;
+  width: 37px;
 }
 
-ul li input[type=radio]{
-  position: absolute;
-  visibility: hidden;
+input[type="radio"]:checked + label {
+  background-position: -44px -31px;
 }
 
-ul li label{
+label{
   display: block;
   position: relative;
   font-weight: 300;
   font-size: 1.35em;
-  padding: 25px 25px 25px 80px;
-  margin: 10px auto;
-  height: 30px;
-  z-index: 9;
-  cursor: pointer;
-  -webkit-transition: all 0.25s linear;
-}
-
-ul li:hover label{
-    color: #FFFFFF;
-}
-
-ul li .check{
-  display: block;
-  position: absolute;
-  border: 5px solid #AAAAAA;
-  border-radius: 100%;
-  height: 25px;
-  width: 25px;
-  top: 30px;
-  left: 20px;
-    z-index: 5;
-    transition: border .25s linear;
-    -webkit-transition: border .25s linear;
-}
-
-ul li:hover .check {
-  border: 5px solid #FFFFFF;
-}
-
-ul li .check::before {
-  display: block;
-  position: absolute;
-    content: '';
-  border-radius: 100%;
-  height: 15px;
-  width: 15px;
-  top: 5px;
-    left: 5px;
-  margin: auto;
-    transition: background 0.25s linear;
-    -webkit-transition: background 0.25s linear;
-}
-
-input[type=radio]:checked ~ .check {
-  border: 5px solid #00082E;
-}
-
-input[type=radio]:checked ~ .check::before{
-  background: #00082E;
-}
-
-input[type=radio]:checked ~ label{
-  color: #0DFF92;
-}
-
-.signature {
-    position: fixed;
-    margin: auto;
-    bottom: 0;
-    top: auto;
-    width: 100%;
-}
-
-.signature p{
-    text-align: center;
-    font-family: Helvetica, Arial, Sans-Serif;
-    font-size: 0.85em;
-    color: #AAAAAA;
-}
-
-.signature .much-heart{
-    display: inline-block;
-    position: relative;
-    margin: 0 4px;
-    height: 10px;
-    width: 10px;
-    background: #AC1D3F;
-    border-radius: 4px;
-    -ms-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.signature .much-heart::before, 
-.signature .much-heart::after {
-      display: block;
-  content: '';
-  position: absolute;
-  margin: auto;
+  padding: 0px 25px 25px 50px;
+  margin: 0 auto;
   height: 10px;
-  width: 10px;
-  border-radius: 5px;
-  background: #AC1D3F;
-  top: -4px;
 }
 
-.signature .much-heart::after {
-    bottom: 0;
-    top: auto;
-    left: -4px;
+.baru {
+    float: left; padding-right: 50px;
 }
 
-.signature a {
-    color: #AAAAAA;
-    text-decoration: none;
-    font-weight: bold;
-}
 
 </style>
-<!-- <div class="container">
- -->    
-    <h2>Tomorrow I want some:</h2>
-    
-  <ul>
-  <li>
-    <input type="radio" id="f-option" name="selector">
-    <label for="f-option">Pizza</label>
-    
-    <div class="check"></div>
-  </li>
-  
-  <li>
-    <input type="radio" id="s-option" name="selector">
-    <label for="s-option">Boyfriend</label>
-    
-    <div class="check"><div class="inside"></div></div>
-  </li>
-  
-  <li>
-    <input type="radio" id="t-option" name="selector">
-    <label for="t-option">Cats</label>
-    
-    <div class="check"><div class="inside"></div></div>
-  </li>
-</ul>
-<!-- </div>
- -->
-<div class="signature">
-    <p>Made with <i class="much-heart"></i> by <a href="http://codepen.io/AngelaVelasquez">Angela Velasquez</a></p>
-</div>
+ <div class="courses1-area">
+    <div class="container">    
+        <h2 class="title-default-left">Workout - Bab</h2> 
+    </div>
+    <div id="shadow-carousel" class="container">
+    <form action="<?= base_url() ?>index.php/workout1/next" method="post">
+    <div class="baru">
+              <?php 
+                $i=1;
+                foreach ($bab as $row) { ?>
+                    <input type="radio" id="<?=$i?>-option" name="id_bab" value="<?=$row['id_bab']?>" checked>
+                    <label for="<?=$i?>-option"><?php echo $row['judul_bab']; ?></label>
+              <?php  
+                $i++;
+                } ?>
+          </div>
+          <div style="clear:both"></div>
+        <div class="news-btn-holder" style="float: right; margin-top: 30px;">
+            <input type="submit" name="" value="Next" class="view-all-accent-btn">
+        </div>
+    </form>
+    </div>
+
+</div> 

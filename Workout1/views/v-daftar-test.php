@@ -189,7 +189,23 @@
                                                     <div class="panel-heading">                                                    
                                                         <div class="row">
                                                            <!-- <div class="col-md-6 center"></div> -->
-                                                           <div class="col-md-12 text-left" style="margin-top:0; padding: 5px;"><a href="javascript:toggleDiv('myContent');"  class="view-all-accent-btn" id="jawaban">Jawaban</a>&nbsp&nbsp&nbsp<a class="view-all-accent-btn" onclick="bataljawab('pil[<?= $key['soalid']?>]','<?=$i?>',<?= $key['soalid']?>)">Batal Jawab</a>&nbsp&nbsp&nbsp<a href="#" class="view-all-accent-btn" onclick="raguColor(<?= $i ?>)">Ragu Ragu</a></div>
+                                                           <div class="col-sm-12">
+                                                           <div class="form-group">
+                                                                <a href="javascript:toggleDiv('myContent');"  align="center" class="default-full-width-btn" id="jawaban">
+                                                                Jawaban</a>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <a class="default-full-width-btn" align="center"  onclick="bataljawab('pil[<?= $key['soalid']?>]','<?=$i?>',<?= $key['soalid']?>)">
+                                                                Batal Jawab</a>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <a href="#" class="default-full-width-btn" align="center" onclick="raguColor(<?= $i ?>)">Ragu Ragu</a>
+                                                            </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                         </li>
@@ -231,7 +247,7 @@
 
                                                 <div class="col-md-12" style="">
                                                     <hr> 
-                                                    <button type="button" class="btn btn-info btn-block" style="background-color: #002147;" onclick="kirimHasil();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
+                                                    <button type="button" class="default-full-width-btn" style="background-color: #002147;" onclick="kirimHasil();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
                                                 </div>
                                         </div>
                                         <div></div> 

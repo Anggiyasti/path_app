@@ -1,38 +1,52 @@
-        <style type="text/css">
-            input[type=radio].css-checkbox {
-                display:none;
-            }
-            .quiz-question-block.qhidden {
-                display:none;
-            }
-            input[type=radio].css-checkbox + label.css-label {
-                padding-left:45px;
-                height:32px;
-                display:inline-block;
-                line-height:30px;
-                background-repeat:no-repeat;
-                background-position: 0 0;
-                font-size:20px;
-                vertical-align:middle;
-                cursor:pointer;
-            }
-            input[type=radio].css-checkbox:checked + label.css-label {
-                background-position: 0 -32px;
-            }
-            label.css-label {
-                background-image:url('http://i.stack.imgur.com/KLQO2.png');
-            /*    background-color: #0B0B3B;
-                color: white;*/
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-        </style>
+<style type="text/css">
+    @import url('http://fonts.googleapis.com/css?family=Lato');
 
-        <!-- Courses 1 Area Start Here -->
+
+/*.container ul{
+  list-style: none;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}*/
+
+
+
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  background-image: url("https://developer.tizen.org/sites/default/files/images/5.3.2.d.png");
+  background-position: -169px -31px;
+  background-repeat: no-repeat;
+  display: block;
+  height: 37px;
+  width: 37px;
+}
+
+input[type="radio"]:checked + label {
+  background-position: -44px -31px;
+}
+
+label{
+  display: block;
+  position: relative;
+  font-weight: 300;
+  font-size: 1.35em;
+  padding: 0px 25px 25px 50px;
+  margin: 0 auto;
+  height: 10px;
+}
+
+.baru {
+    float: left; padding-right: 50px;
+}
+
+</style>
+<!-- Courses 1 Area Start Here -->
             <div class="courses1-area">
                 <div class="container">    
                     <h2 class="title-default-left">Workout - Bab</h2> 
@@ -47,28 +61,42 @@
                             <div>
                                 <h3 class="item-title">Tingkat Kesulitan</h3>
                             </div>
+                            <div>
+                                <div class="baru">
+                                    <input type="radio" id="1-option" name="kesulitan" value="1" checked>
+                                    <label for="1-option">Mudah</label>
+                                </div>
 
-                            <div style="padding-right: 100px;">
-                                <input type="radio" name="kesulitan" value="1" id="radio12341" class="css-checkbox" checked="">
-                                <label for="radio12341" class="css-label radGroup1">Mudah</label>
-                                <input type="radio" name="kesulitan" value="2" id="radio12342" class="css-checkbox">
-                                <label for="radio12342" class="css-label radGroup1">Sedang</label>
-                                <input type="radio" name="kesulitan" value="3" id="radio12343" class="css-checkbox">
-                                <label for="radio12343" class="css-label radGroup1">Sulit</label> 
+                                <div class="baru">        
+                                    <input type="radio" id="2-option" name="kesulitan" value="2">
+                                    <label for="2-option">Sedang</label>
+                                </div>
+
+                                <div class="baru">
+                                    <input type="radio" id="3-option" name="kesulitan" value="3"s>
+                                    <label for="3-option">Sulit</label>
+                                </div>
+                                        
                             </div>
+                            <div style="clear:both"></div>
                             <br>
                             <div>
                                 <h3 class="item-title">Jumlah Soal</h3>
                             </div>
 
-                            <div>
-                                <input type="radio" name="jumlahsoal" value="5" id="radio12344" class="css-checkbox" checked="">
-                                <label for="radio12344" class="css-label radGroup1" style="padding-right: 50px;">5</label>
-                                <input type="radio" name="jumlahsoal" value="10" id="radio12345" class="css-checkbox">
-                                <label for="radio12345" class="css-label radGroup1" style="padding-right: 50px;">10</label>
-                                <input type="radio" name="jumlahsoal" value="15" id="radio12346" class="css-checkbox">
-                                <label for="radio12346" class="css-label radGroup1" style="padding-right: 50px;">15</label> 
+                            <div class="baru">
+                                <input type="radio" name="jumlahsoal" value="5" id="radio12344" checked="">
+                                <label for="radio12344">5</label>
                             </div>
+                            <div class="baru">
+                                <input type="radio" name="jumlahsoal" value="10" id="radio12345">
+                                <label for="radio12345">10</label>
+                            </div>
+                            <div class="baru">
+                                <input type="radio" name="jumlahsoal" value="15" id="radio12346">
+                                <label for="radio12346">15</label>
+                            </div>
+                                
                             <br>
                             <div class="news-btn-holder" style="float: right;">
                                 <input type="submit" name="" value="Go" class="view-all-accent-btn">
