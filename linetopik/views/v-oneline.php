@@ -61,41 +61,30 @@
                             <!-- END Tieme line -->
                 
             </div>
-            <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> -->
+            <div class="grid-col grid-col-9">
                 <main>
                     <!-- post item -->
-                    <!-- <div class="blog-post">
+                    <div class="blog-post">
                         <article>
                         <div class="post-info">
                             <div class="date-post"><div class="day"><?=$tgl?></div><div class="month"><?=$bulan?></div></div>
                             <div class="post-info-main">
-                                Nama Step : Step : <?=$key['namaStep']?>
-                                <div class="author-post">Nama Materi:' <?= $datMateri['judulMateri']; ?> '</div>
+                                <div class="author-post">nama Materi:' <?= $datMateri['judulMateri']; ?> '</div>
                             </div>
-                            <div class="comments-post">Materi :</div>
+                            <div class="comments-post">Materi</div>
                         </div>
                          <p><?= $datMateri['isiMateri']; ?></p>
                             
                         </article>
                        
-                    </div> -->
+                    </div>
                     <!-- / post item -->
-                    <!-- <hr class="divider-color" /> -->
-
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="contact-us-info2">   
-                                <ul>
-                                    <li><i class="fa fa-map-marker" aria-hidden="true"></i>Nama Materi: ' <?= $datMateri['judulMateri']; ?> '</li>
-                                    <li><i class="fa fa-phone" aria-hidden="true"></i>Materi :
-                                    <p><?= $datMateri['isiMateri']; ?></p></li>
-                                </ul>
-                            </div>  
-                        </div>  
+                    <hr class="divider-color" />
                   
 
                 </main>
-            <!-- </div>
- -->
+            </div>
+
         </div>
     </div>
     <!-- / content -->

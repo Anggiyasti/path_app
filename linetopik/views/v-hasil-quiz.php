@@ -1,28 +1,8 @@
-<div class="page-title" style="background:#2b3036">
-
-    <div class="grid-row">
-
-        <h1>Hasil Quiz</h1>
-
-    </div>
-
-</div>
  <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>">
     <div class="page-content grid-row">
         <div class=" grid-col-row clear-fix" >
             <div class="grid-col grid-col-3 sidebar" >
-           <!-- Pencarian -->
-                            <aside class="widget-search">
-                                <form method="get" class="search-form" action="<?=base_url()?>index.php/linetopik/cariTopik"  accept-charset="utf-8" enctype="multipart/form-data">
-                                    <label>
-                                        <span class="screen-reader-text">Search for:</span>
-                                        <input type="search" class="search-field" placeholder="Search"  name="keycari" title="Search for:">
-                                    </label>
-                                    <input type="submit" class="search-submit" value="GO">
-                                </form>
-                            </aside>
-                       <!-- /Pencarian -->
-                          <h2><a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"><?=$namaTopik; ?></a></h2> 
+                          <h2><a href="<?=base_url('index.php/linetopik/timeline/').$topikUUID?>">Topik : <?=$namaTopik; ?></a></h2> 
                           <hr class="divider-big">
                                                   <!-- Start Time Line -->
                             <ul class="media-list media-list-feed grid-col grid-col-3" >
@@ -56,7 +36,6 @@
                     <div class="blog-post">
                         <article>
                         <div class="post-info">
-                            <div class="date-post"><!-- <div class="day">TGL</div> --><div class="month">Logo Quiz</div></div>
                             <div class="post-info-main">
                                 <div class="post">Hasil Quiz</div>
                             </div>

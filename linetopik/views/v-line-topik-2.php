@@ -1,23 +1,10 @@
- <!-- Custom CSS -->
-          <link rel="stylesheet" href="<?php echo base_url('assets/timeline/base.css')?>">
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <!-- Courses 1 Area Start Here -->
             <div class="courses1-area">
                 <div class="container">    
                     <h2 class="title-default-left">Path - Topik</h2> 
                 </div>
                 <div id="shadow-carousel" class="container"> 
-                <!-- Pencarian -->
-                            <aside class="widget-search">
-                                <form method="get" class="search-form" action="<?=base_url()?>index.php/linetopik/cariTopik"  accept-charset="utf-8" enctype="multipart/form-data">
-                                    <label>
-                                        <span class="screen-reader-text">Search for:</span>
-                                        <input type="search" class="search-field" placeholder="Search"  name="keycari" title="Search for:">
-                                    </label>
-                                    <input type="submit" class="search-submit" value="GO">
-                                </form>
-                            </aside>
-                       <!-- /Pencarian -->
                         <div id="timeline">
                         
                         <main> <?php   $i=0; 
@@ -35,9 +22,9 @@
                         <h2><a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" ><?=$key['namaTopik']?></a></h2>
                         <h3>Nama Topik:' <?=$key['namaTopik']?> '</h3>
                         <h3>Deskripsi:' <?=$key['deskripsi']?> '</h3>
+                        <a href="<?=$key['link'];?>" class="btn">STEP 1</a>
                          <!-- Start Time Line -->
                          <!-- <h4>Time Line</h4> -->
-                         <hr>
                             <ul class="media-list media-list-feed " >
                             <!-- end header line-->
                                 <?php elseif($namaTopik != $key['namaTopik']) : ?>
@@ -48,7 +35,6 @@
                         </div>
                     </div>
                     <!-- / post item -->
-                    <hr class="divider-color" />
                     <!-- END body line -->
                     <!-- start header line-->
                     <!-- post item -->
@@ -61,6 +47,7 @@
                             <h2><a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" ><?=$key['namaTopik']?></a></h2>
                             <h3>Nama Topik:' <?=$key['namaTopik']?> '</h3>
                             <h3>Deskripsi:' <?=$key['deskripsi']?> '</h3>
+                            <a href="<?=$key['link'];?>" class="btn">STEP 1</a>
                             <!-- Start Time Line -->
                             <!-- <h4>Time Line</h4> -->
                             <hr>
@@ -79,7 +66,6 @@
                                 
                                     </div>
                              
-                                    <hr>
                                 </li> 
 
                                 <!-- </a>       -->
@@ -149,7 +135,6 @@
                          <h3>Deskripsi:' <?=$key['deskripsi']?> '</h3>
                          <!-- Start Time Line -->
                          <h4>Time Line</h4>
-                         <hr>
                             <ul class="media-list media-list-feed " >
                 <!-- end header line-->
                                 <?php elseif($namaTopik != $key['namaTopik']) : ?>
@@ -240,8 +225,8 @@
         var status = $("#status-"+i).val();
         
             if (status=="disable") {
-                 $("#ico-"+i).css("background","#00082E");
-                 $("#font-"+i).css("color","#00082E");
+                 $("#ico-"+i).css("background","#b0b0b0");
+                 $("#font-"+i).css("color","#b0b0b0");
             } 
            
         }

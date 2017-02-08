@@ -8,7 +8,7 @@
     <div class="page-content grid-row">
         <div class=" grid-col-row clear-fix" >
             <div class="grid-col grid-col-3 sidebar" >
-                          <h2>Nama Topik : <?= $datMateri['namaTopik']; ?></h2>
+                          <h2>Nama Topik : <?= $datVideo['namaTopik']; ?></h2>
                           <hr class="divider-big">
                                                <!-- Start Time Line -->
 
@@ -61,41 +61,45 @@
                             <!-- END Tieme line -->
                 
             </div>
-            <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> -->
+            <div class="grid-col grid-col-9">
                 <main>
                     <!-- post item -->
-                    <!-- <div class="blog-post">
+                    <div class="blog-post">
                         <article>
                         <div class="post-info">
                             <div class="date-post"><div class="day"><?=$tgl?></div><div class="month"><?=$bulan?></div></div>
                             <div class="post-info-main">
-                                Nama Step : Step : <?=$key['namaStep']?>
-                                <div class="author-post">Nama Materi:' <?= $datMateri['judulMateri']; ?> '</div>
+                                <div class="post"><?=$datVideo['judulVideo']?></div>
                             </div>
-                            <div class="comments-post">Materi :</div>
+                            <div class="comments-post">Materi</div>
                         </div>
-                         <p><?= $datMateri['isiMateri']; ?></p>
+                        <?php if ($datVideo['link']=='' || $datVideo['link']==' '): ?>
+                            <div class="container-video color-palette bg-color-6alt">
+                                <video class="" width="100%" height="100%"  controls>
+                              <source src="<?=base_url();?>assets/video/<?=$datVideo['namaFile'];?>" >
+                                  Your browser does not support the video tag.
+                              </video>
+                            </div>
+                        <?php endif ?>
+                        <?php if ($datVideo['namaFile']=='' || $datVideo['namaFile']==' '): ?>
+                            <div class="video-player" style="background:grey;">
+                                 <iframe src="<?=$datVideo['link']?>"></iframe> 
+                            </div>
+                        <?php endif ?>
+
+                        <h3>Deskripsi</h3>
+                        <p><?=$datVideo['deskripsiVideo']?></p>
                             
                         </article>
                        
-                    </div> -->
+                    </div>
                     <!-- / post item -->
-                    <!-- <hr class="divider-color" /> -->
-
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="contact-us-info2">   
-                                <ul>
-                                    <li><i class="fa fa-map-marker" aria-hidden="true"></i>Nama Materi: ' <?= $datMateri['judulMateri']; ?> '</li>
-                                    <li><i class="fa fa-phone" aria-hidden="true"></i>Materi :
-                                    <p><?= $datMateri['isiMateri']; ?></p></li>
-                                </ul>
-                            </div>  
-                        </div>  
+                    <hr class="divider-color" />
                   
 
                 </main>
-            <!-- </div>
- -->
+            </div>
+
         </div>
     </div>
     <!-- / content -->
