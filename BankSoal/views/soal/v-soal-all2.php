@@ -1,3 +1,5 @@
+<section id="main" role="main">
+            <div class="container-fluid">
 
 <div class="row">
     <div class="col-sm-12">
@@ -16,16 +18,16 @@
                 <div class="panel-toolbar text-right">
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-inverse btn-outline"><b style="color:white;">Aksi</b></button>
-                        <button type="button" class="btn btn-sm btn-inverse btn-outline" data-toggle="dropdown"><span class="caret"></span></button>
+                        <button type="button" class="btn btn-sm btn-inverse btn-outline" style="height: 29px;" data-toggle="dropdown"><span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-header">Pilih Aksi :</li>
+                            <li class="dropdown-header" >Pilih Aksi :</li>
                             <li ><a href="javascript:void(0)" data-toggle="panelcollapse">Pembahasan (hide/unhide)</a></li>
-                            <li><a href="<?=base_url()?>banksoal/formUpdate?UUID=<?=$key['UUID']?>&subBab=<?=$key['id_subbab']?>">Edit</a></li>
-                            <li><a href="javascript:void(0)" onclick="drop_soal(<?=$key['id_soal'];?>)">Hapus</a></li>
+                            <li><a href="<?=base_url()?>index.php/banksoal/formUpdate/<?=$key['UUID'] ?>">Edit</a></li>
+                            <li><a href="javascript:void(0)" onclick="drop_soal(<?=$key['id_bank'];?>)">Hapus</a></li>
 
                         </ul>
                         <!-- tambah soal -->
-                         <a class="btn btn-sm  btn-inverse btn-outline" href="<?= base_url(); ?>index.php/banksoal/formsoal" title="Tambah Data Soal" ><i class="ico-plus"></i></a>
+                         <a class="btn btn-sm  btn-inverse btn-outline" style="height: 29px;" href="<?= base_url(); ?>index.php/banksoal/formsoal" title="Tambah Data Soal" ><i class="ico-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -51,13 +53,6 @@
             <!--/ panel-body -->
             <div class="panel-body pt10 table-responsive panel-collapse pull in ">
                 <h6>Pembahasan : </h6>
-                <!-- Start img pembahasan -->
-                <?php $imgBahas = $key['imgBahas'] ?>
-                <?php if ($imgBahas != '' && $imgBahas != ' '): ?>
-                    <div class="overlay text-center">
-                        <img class="unveiled" src="<?=$imgBahas ;?>" alt="imgSoal" style="max-width:400px;">
-                    </div>
-                <?php endif ?>
                 <!-- END img Pembahsan -->
                 <!-- Start Video Pembahasan -->
                 <?php $video = $key['videoBahas']; ?>
@@ -119,6 +114,8 @@
     </div>
 
 </div>
+</div>
+</section>
                         <!--/ Website States
                         <!-- Start javascript -->
                         <!-- Start Math jax --> 
@@ -136,7 +133,7 @@
     function drop_soal(id_bank){
   url = base_url+"banksoal/deletebanksoal2/"+id_bank;
   swal({
-    title: "Yakin akan hapus Token?",
+    title: "Yakin akan hapus soal?",
     text: "Anda tidak dapat membatalkan ini.",
     type: "warning",
     showCancelButton: true,
@@ -152,7 +149,7 @@
       type:"POST",
       url:url,
       success:function(){
-        swal("Terhapus!", "Token berhasil dihapus.", "success");
+        swal("Terhapus!", "Soal berhasil dihapus.", "success");
        window.location.href =base_url+"banksoal/listsoal";
       },
       error:function(){

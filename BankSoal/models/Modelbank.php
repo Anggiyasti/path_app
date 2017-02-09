@@ -204,6 +204,12 @@ class Modelbank extends CI_Model
         $this->db->set('publish', '0');
         $this->db->update('tb_bank_soal');
 	}
+
+	public function del_banksoal($data) {
+        $this->db->where('id_bank', $data);
+        $this->db->set('publish', '0');
+        $this->db->update('tb_bank_soal');
+    }
 	
 	
 	public function insert_mapel($datamapel) {
@@ -457,7 +463,7 @@ class Modelbank extends CI_Model
     // get piljawaban by id soal and pilihan
     public function get_jawaban($jawaban,$id_soal)
     {
-        $this->db->select('jawaban', 'gambar as imgJawaban' );
+        $this->db->select('jawaban, gambar as imgJawaban' );
         $this->db->from('tb_pil_jawab');
         $this->db->where('id_soal',$id_soal);
          $this->db->where('pilihan_jawaban',$jawaban);

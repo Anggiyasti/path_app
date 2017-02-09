@@ -109,12 +109,53 @@
             $bab = $list_soal['judul_bab'];
             $tampBahas=$list_soal['pembahasan'];
             $pembahasan = '<a style="color:red;">Maaf Pembahasan Belum Tersedia !! </a>';
+          
+            $tampVideo = $list_soal['pembahasan'];
             $videoBahas ='';
             $tampImgSoal= $list_soal['gambar_soal'];
             $imgSoal='';
             $imgJawaban='';
             $jawaban_benar=$list_soal['jawaban_benar'];
             $isiJawaban = '';
+
+            if ($jawaban_benar != '' && $jawaban_benar != ' ') {
+                //untuk menampung data sementara jawaban
+                $tampJawaban = $this->Modelbank->get_jawaban($jawaban_benar,$id_bank);
+                $isiJawaban = $tampJawaban['jawaban'];
+                $tampImgJawaban = $tampJawaban['imgJawaban'];
+                if ($tampImgJawaban != '' && $tampImgJawaban != ' ' ) {
+                     $imgJawaban=base_url().'/assets/images/jawaban/'.$tampImgJawaban;
+                }
+            }
+
+
+
+            
+
+            //pengecekan pembahsan
+            
+            if($tampVideo !='' && $tampVideo !=' ') {
+                $videoBahas=base_url().'/assets/video/video_soal/'.$tampVideo;
+                $pembahasan=$tampVideo;
+            }
+            elseif ($tampBahas != '' && $tampBahas != ' ') {
+                $pembahasan=$tampBahas;
+          }
+            
+            // Pengecekan gambar Soal
+            if ($tampImgSoal!='' && $tampImgSoal != ' ') {
+                // jika gambar tidak null 
+                $imgSoal=base_url().'/assets/uploads/'.$tampImgSoal;
+            } 
+
+
+            if ($tingkat == '3') {
+                $kesulitan = 'Sulit';
+            } elseif ($tingkat == '2') {
+                $kesulitan = 'Sedang';
+            }else {
+               $kesulitan = 'Mudah';
+            }
 
             
 
@@ -142,11 +183,11 @@
                 'mapel'=>$mapel,
                 'bab'=> $bab,
                 'pembahasan' => $pembahasan,
-                // 'videoBahas'=>$videoBahas,
+                'videoBahas'=>$videoBahas,
                 'UUID'=>$UUID,
                 'jawaban'=>$jawaban_benar,
-                // 'isiJawaban'=>$isiJawaban,
-                // 'imgJawaban'=>$imgJawaban
+                'isiJawaban'=>$isiJawaban,
+                'imgJawaban'=>$imgJawaban
                 );
           }
         // 
@@ -163,8 +204,16 @@
         //     redirect(site_url('welcome'));
         // }
         #END Cek USer#
-        $this->load->view('soal/v-soal-all2', $data);
-
+      if     ($this->session->userdata('id_admin')) {
+          $this->load->view('admin/layout/header');
+          $this->load->view('soal/v-soal-all2', $data);
+          $this->load->view('admin/layout/footer');
+    } elseif ($this->session->userdata('id_guru')) {
+          $this->load->view('guru/layout/header');
+          $this->load->view('soal/v-soal-all2', $data);
+          $this->load->view('guru/layout/footer');
+  }
+        
         
     }
 
@@ -733,6 +782,14 @@ public function upload_video(){
     }
 
   }
+
+  public function deletebanksoal2() {
+        if ($this->input->post()) {
+            $post = $this->input->post();
+             $this->Modelbank->del_banksoal($post['id']);
+        }
+           redirect(site_url('banksoal/listsoal'));
+    }
   
 
   function search(){
@@ -978,6 +1035,10 @@ public function uploadbab(){
       }
 
     }
+
+
+
+
   public function ubah_bab($no) {
     if ($this->input->post('update')) 
     {
