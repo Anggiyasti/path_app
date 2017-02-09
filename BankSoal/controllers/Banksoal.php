@@ -117,7 +117,7 @@
 
             if ($jawaban_benar != '' && $jawaban_benar != ' ') {
                 //untuk menampung data sementara jawaban
-                $tampJawaban = $this->Modelbank->get_jawaban($jawaban_benar,$id_bak);
+                $tampJawaban = $this->Modelbank->get_jawaban($jawaban_benar,$id_bank);
                 $isiJawaban = $tampJawaban['jawaban'];
                 $tampImgJawaban = $tampJawaban['imgJawaban'];
                 if ($tampImgJawaban != '' && $tampImgJawaban != ' ' ) {
@@ -183,6 +183,13 @@
         //     redirect(site_url('welcome'));
         // }
         #END Cek USer#
+          $this->load->view('soal/v-soal-all2',$data);
+
+  //         if ($this->session->userdata('id_admin')) {
+  //         $this->load->view('admin/layout/header');
+  //         $this->load->view('soal/daftar_soal',$data);
+  //         $this->load->view('admin/layout/footer');
+  // }
 
         
     }
