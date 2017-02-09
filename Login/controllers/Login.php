@@ -148,9 +148,12 @@ class Login extends MX_Controller
             // $this->load->view('siswa/layout/sidebar');
             // $this->load->view('siswa/layout/nav');
 
-            $this->load->view('template/siswa/v-head');
-            $this->load->view('siswa/home',$data);
-            $this->load->view('template/siswa/v-footer');
+            // $this->load->view('template/siswa/v-head');
+            // $this->load->view('siswa/home',$data);
+            // $this->load->view('template/siswa/v-footer');
+        $this->load->view('template/siswa2/v-header');
+            $this->load->view('siswa/home2',$data);
+            $this->load->view('template/siswa2/v-footer');
             
 
         }
