@@ -16,6 +16,7 @@
         $this->load->model('Modelbank');
     $this->load->helper(array('form', 'url', 'file', 'html'));
         $this->load->library('form_validation');
+         $this->load->library('pagination');
     # code...
   }
 
@@ -29,6 +30,162 @@
     echo $this->Modelbank->getbab($id);
   }
   }
+
+
+  public function listsoal()
+    {
+        // code u/pagination
+       $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data();
+       
+        $config['base_url'] = base_url().'index.php/banksoal/listsoal/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 2;
+
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
+        
+        $from = $this->uri->segment(3);
+        $this->pagination->initialize($config);     
+        $list = $this->Modelbank->data_soal($config['per_page'],$from);
+
+        $this->tampSoal($list);
+    }
+
+    //tampung list semua soal u/ ke view
+    public function tampSoal($list)
+    {
+        //  $data['judul_halaman'] = "Bank Soal";
+        // $data['files'] = array(
+        //     APPPATH . 'modules/banksoal/views/v-soal-all2.php',
+        //     );
+        // $this->load->view('soal/v-soal-all2');
+         // $pilihan = $this->Mbanksoal->get_allpilihan();
+        // ekstrak data db ke new arrat
+          $data['datSoal']=array();
+          foreach ( $list as $list_soal ) {
+            $id_bank=$list_soal['id_bank'];
+            $jawaban_benar=$list_soal['jawaban_benar'];
+            $id_bank=$list_soal['id_bank'];
+            $random=$list_soal['random'];
+            $publish=$list_soal['publish'];
+            $judulSoal = $list_soal['judul_soal'];
+            $soal=$list_soal['soal'];
+            $sumber=$list_soal['sumber'];
+            $UUID=$list_soal['UUID'];
+            $mapel= $list_soal['nama_mapel'];
+            $bab = $list_soal['judul_bab'];
+            $tampBahas=$list_soal['pembahasan'];
+            $pembahasan = '<a style="color:red;">Maaf Pembahasan Belum Tersedia !! </a>';
+            $videoBahas ='';
+            $tampImgSoal= $list_soal['gambar_soal'];
+            $imgSoal='';
+            $imgJawaban='';
+            $jawaban_benar=$list_soal['jawaban_benar'];
+            $isiJawaban = '';
+
+            if ($jawaban_benar != '' && $jawaban_benar != ' ') {
+                //untuk menampung data sementara jawaban
+                $tampJawaban = $this->Modelbank->get_jawaban($jawaban_benar,$id_bak);
+                $isiJawaban = $tampJawaban['jawaban'];
+                $tampImgJawaban = $tampJawaban['imgJawaban'];
+                if ($tampImgJawaban != '' && $tampImgJawaban != ' ' ) {
+                     $imgJawaban=base_url().'/assets/images/jawaban/'.$tampImgJawaban;
+                }
+            }
+
+
+
+            // pengecekan pembahsan
+            if ($tampBahas != '' && $tampBahas != ' ') {
+                $pembahasan=$tampBahas;
+            } else if($tampVideo !='' && $tampVideo !=' ') {
+                $videoBahas=base_url().'/assets/video/video_soal/'.$tampVideo;
+                $pembahasan='';
+            }
+            
+            // Pengecekan gambar Soal
+            if ($tampImgSoal!='' && $tampImgSoal != ' ') {
+                // jika gambar tidak null 
+                $imgSoal=base_url().'/assets/images/'.$tampImgSoal;
+            } 
+
+
+            if ($tingkat == '3') {
+                $kesulitan = 'Sulit';
+            } elseif ($tingkat == '2') {
+                $kesulitan = 'Sedang';
+            }else {
+               $kesulitan = 'Mudah';
+            }
+
+            $data['datSoal'][]=array(
+                'id_bank'=>$id_bank,
+                'judulSoal'=>$judulSoal,
+                'soal'=>$soal,
+                'imgSoal'=>$imgSoal,
+                'kesulitan'=>$kesulitan,
+                'publish'=>$publish,
+                'random'=>$random,
+                'sumber'=>$sumber,
+                'mapel'=>$mapel,
+                'bab'=> $bab,
+                'pembahasan' => $pembahasan,
+                'videoBahas'=>$videoBahas,
+                'UUID'=>$UUID,
+                'jawaban'=>$jawaban_benar,
+                'isiJawaban'=>$isiJawaban,
+                'imgJawaban'=>$imgJawaban
+                );
+          }
+        // 
+
+        //  #START cek hakakses#
+        // $hakAkses=$this->session->userdata['HAKAKSES'];
+        // if ($hakAkses=='admin') {
+        //         $this->parser->parse('admin/v-index-admin', $data);
+        // } elseif($hakAkses=='guru'){
+        //      // jika guru
+        //        $this->parser->parse('templating/index-b-guru', $data);
+        // }else{
+        //     // jika siswa redirect ke welcome
+        //     redirect(site_url('welcome'));
+        // }
+        #END Cek USer#
+
+        
+    }
 
   
     public function uploadsoal()

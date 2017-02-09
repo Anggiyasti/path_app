@@ -44,6 +44,8 @@ class Modelbank extends CI_Model
 	return $provinces->result_array();
 	}
 
+
+
 	function getmapel2(){
 	
 	return $this->db->get('tb_mata_pelajaran');
@@ -54,6 +56,21 @@ class Modelbank extends CI_Model
 	{
 		return $this->db->get('tb_tingkat_pelajaran');
 	}
+
+	function jumlah_data(){
+        $this->db->where('publish','1');
+        return $this->db->get('tb_bank_soal')->num_rows();
+    }
+    // data paginataion all soal
+    function data_soal($number,$offset){
+        $this->db->select('id_bank', 'sumber', 'kesulitan', 'judul_soal', 'jawaban_benar', 'UUID', 'publish', 'random', 'soal', 'gambar_soal', 'pembahasan',  'bab.judul_bab','mapel.id_mapel','mapel.nama_mapel');
+        // $this->db->from('tb_bank_soal bs');
+        $this->db->join('tb_bab bab','bab.id_bab=bs.id_bab');
+        $this->db->join('tb_mata_pelajaran mapel', 'mapel.id_mapel = bab.id_mapel' );
+        $this->db->where('bs.publish','1');
+        $this->db->order_by('bs.id_bank', 'desc');
+        return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
+    }
 
 	public function insert_soal($dataSoal) {
         $this->db->insert('tb_bank_soal', $dataSoal);
@@ -435,6 +452,23 @@ class Modelbank extends CI_Model
 		$this->db->where('b.id_mapel',$pel);
 		$tampil=$this->db->get();
 		return $tampil->result_array();
+    }
+
+    // get piljawaban by id soal and pilihan
+    public function get_jawaban($jawaban,$id_soal)
+    {
+        $this->db->select('jawaban', 'gambar as imgJawaban' );
+        $this->db->from('tb_pil_jawab');
+        $this->db->where('id_soal',$id_soal);
+         $this->db->where('pilihan_jawaban',$jawaban);
+         $query = $this->db->get();
+        // cek jika hasil query null
+        if($query->num_rows() == 1) {
+            return $query->result_array()[0];
+        }else{
+             return $result='';
+        }
+
     }
 
     

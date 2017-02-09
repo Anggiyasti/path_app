@@ -355,6 +355,11 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                                 </a>
                             </li>
                             <li >
+                                <a href="<?php echo base_url('index.php/banksoal/listsoal')?>">
+                                    <span class="text">Daftar Soal 2</span>
+                                </a>
+                            </li>
+                            <li >
                                 <a href="<?php echo base_url('index.php/banksoal/filter')?>">
                                     <span class="text">Filter Soal</span>
                                 </a>
