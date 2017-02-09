@@ -63,7 +63,7 @@ class Modelbank extends CI_Model
     }
     // data paginataion all soal
     function data_soal($number,$offset){
-        $this->db->select('id_bank,sumber,kesulitan,judul_soal,jawaban_benar,UUID,publish,random,soal,gambar_soal,pembahasan,bab.judul_bab,mapel.id_mapel,mapel.nama_mapel');
+        $this->db->select('id_bank, sumber, kesulitan, judul_soal, jawaban_benar, UUID, publish, random, soal, gambar_soal, pembahasan, bab.judul_bab, mapel.id_mapel, mapel.nama_mapel');
         // $this->db->from('tb_bank_soal bs');
         $this->db->join('tb_bab bab','bab.id_bab=bs.id_bab');
         $this->db->join('tb_mata_pelajaran mapel', 'mapel.id_mapel = bab.id_mapel' );

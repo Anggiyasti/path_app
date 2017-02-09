@@ -101,6 +101,7 @@
             $random=$list_soal['random'];
             $publish=$list_soal['publish'];
             $judulSoal = $list_soal['judul_soal'];
+            $tingkat = $list_soal['kesulitan'];
             $soal=$list_soal['soal'];
             $sumber=$list_soal['sumber'];
             $UUID=$list_soal['UUID'];
@@ -115,32 +116,11 @@
             $jawaban_benar=$list_soal['jawaban_benar'];
             $isiJawaban = '';
 
-            if ($jawaban_benar != '' && $jawaban_benar != ' ') {
-                //untuk menampung data sementara jawaban
-                $tampJawaban = $this->Modelbank->get_jawaban($jawaban_benar,$id_bank);
-                $isiJawaban = $tampJawaban['jawaban'];
-                $tampImgJawaban = $tampJawaban['imgJawaban'];
-                if ($tampImgJawaban != '' && $tampImgJawaban != ' ' ) {
-                     $imgJawaban=base_url().'/assets/images/jawaban/'.$tampImgJawaban;
-                }
-            }
-
-
-
-            // pengecekan pembahsan
-            if ($tampBahas != '' && $tampBahas != ' ') {
-                $pembahasan=$tampBahas;
-            } else if($tampVideo !='' && $tampVideo !=' ') {
-                $videoBahas=base_url().'/assets/video/video_soal/'.$tampVideo;
-                $pembahasan='';
-            }
             
-            // Pengecekan gambar Soal
-            if ($tampImgSoal!='' && $tampImgSoal != ' ') {
-                // jika gambar tidak null 
-                $imgSoal=base_url().'/assets/images/'.$tampImgSoal;
-            } 
 
+
+
+            
 
             if ($tingkat == '3') {
                 $kesulitan = 'Sulit';
@@ -162,11 +142,11 @@
                 'mapel'=>$mapel,
                 'bab'=> $bab,
                 'pembahasan' => $pembahasan,
-                'videoBahas'=>$videoBahas,
+                // 'videoBahas'=>$videoBahas,
                 'UUID'=>$UUID,
                 'jawaban'=>$jawaban_benar,
-                'isiJawaban'=>$isiJawaban,
-                'imgJawaban'=>$imgJawaban
+                // 'isiJawaban'=>$isiJawaban,
+                // 'imgJawaban'=>$imgJawaban
                 );
           }
         // 
@@ -183,13 +163,7 @@
         //     redirect(site_url('welcome'));
         // }
         #END Cek USer#
-          $this->load->view('soal/v-soal-all2',$data);
-
-  //         if ($this->session->userdata('id_admin')) {
-  //         $this->load->view('admin/layout/header');
-  //         $this->load->view('soal/daftar_soal',$data);
-  //         $this->load->view('admin/layout/footer');
-  // }
+        $this->load->view('soal/v-soal-all2', $data);
 
         
     }
