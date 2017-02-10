@@ -1,67 +1,62 @@
+<!-- Page Content -->
+      <div id="content" class="page">
 
-            <!-- Inner Page Banner Area End Here -->           
-            <!-- Faq Page Area Start Here -->
-            <div class="faq-page-area">
-                <div class="container">
-                    <div class="row panel-group" id="faq-accordian">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="faq-box-wrapper">
-                                <div class="faq-box-item panel panel-default">
-                                    <div class="panel-heading ">
+        <!-- Toolbar -->
+        <div id="toolbar" class="primary-color">
+          <div class="open-left" id="open-left" data-activates="slide-out-left">
+            <i class="ion-android-menu"></i>
+          </div>
+          <span class="title">Passing Grade</span>
+          <div class="open-right" id="open-right" data-activates="slide-out">
+            <i class="ion-android-person"></i>
+          </div>
+        </div>
+        
+        <!-- Article Content -->
+        <div class="animated fadeinup delay-1">
+          <div class="page-content">
+            <!-- With Left Icon -->
+          <h4 class="p-20">Mata Pelajaran</h4>
+          <form action="<?= base_url() ?>index.php/workout1/next" method="post">
+          <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
+          <?php $ke=0; ?>
 
-                                    <?php $ke=0; ?>
-
-                                    <?php $universitas; ?>
-                                    <?php foreach ($data as $univ) : ?>
-                                        <?php $universitas=$univ['universitas']; 
+            <?php $universitas; ?>
+            <?php foreach ($data as $univ) : ?>
+                <?php $universitas=$univ['universitas']; 
                                                 ?>
-                                        <?php if ($ke==0): ?>
-                                        <div class="panel-title faq-box-title">
-                                            <h3>
-                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#<?=$univ['id_passing']?>"><span class="faq-box-count"></span><?=$univ['universitas']?>
-                                                </a>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <div aria-expanded="false" id="<?=$univ['id_passing']?>" role="tabpanel" class="panel-collapse collapse " >
-                                        <div class="panel-body faq-box-body" >
-                                                <?php $ke=1; ?>
-                                                <?php elseif($universitas!=$olduniversitas): ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="faq-box-wrapper">
-                                <div class="faq-box-item panel panel-default">
-                                    <div class="panel-heading">
-                                        <div class="panel-title faq-box-title">
-                                            <h3>
-                                                <a aria-expanded="false" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#<?=$univ['id_passing']?>"><span class="faq-box-count"></span><?=$univ['universitas']?>
-                                                </a>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <div aria-expanded="false" id="<?=$univ['id_passing']?>" role="tabpanel" class="panel-collapse collapse">
-                                        <div class="panel-body faq-box-body">
-                                        <?php endif ?>
-                                        <form action="" method="post">
-            <!-- Body Info -->
-                                        <a href="" class="dropdown-item" ><i class="ion-ios-book-outline"></i><em><?=$univ['prodi']?>&nbsp&nbsp|&nbsp&nbsp<?=$univ['passinggrade']?>%</em><a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>" class="view-all-accent-btn" style="margin-left: 2px;">Set Prodi</a></a>
-
-            <!-- /Body info -->
-            
-                            </form>
-                            <?php $olduniversitas=$universitas; ?>
+                <?php if ($ke==0): ?>
+            <!-- Header Info -->
+            <li>
+              <div class="collapsible-header"><i class="ion-android-options"></i><?=$univ['universitas']?></div>
+              <div class="collapsible-body"></div>
+            <!-- /Header Info -->
+            <?php $ke=1; ?>
+            <?php elseif($universitas!=$olduniversitas): ?>
+            <!-- Footer info -->
+            </li>
+            <!-- Footer Info -->
+            <!-- Header Info -->            
+            <li>
+              <div class="collapsible-header"><i class="ion-android-cloud"></i><?=$univ['universitas']?></div>
+               <!-- /Header Info -->
+              <?php endif ?>
+              <!-- Body Info -->
+              
+                <!-- <div class="collapsible-body"><p><?=$pel['judul_bab']?></p></div> -->
+                <div class="collapsible-body"><p></i><?=$univ['prodi']?>&nbsp&nbsp|&nbsp&nbsp<?=$univ['passinggrade']?>%<a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>" class="waves-effect waves-light btn primary-color" style="margin-left: 15px;">Set Prodi</a></p></div>
+              
+              <!-- /Body info -->
+              <?php $olduniversitas=$universitas; ?>
            <?php endforeach ?>
+              <!-- Footer info -->
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+            </li>
+             <!-- Footer Info --> 
+          </ul>          
+          </form>
+          </div>
+        </div> 
+      
+         
+      </div> <!-- End of Page Content -->

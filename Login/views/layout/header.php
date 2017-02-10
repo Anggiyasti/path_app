@@ -1,43 +1,123 @@
-<html class="frontend">
-    <!-- START Head -->
-    <head>
-        <!-- START META SECTION -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Adminre frontend</title>
-        <meta name="author" content="pampersdry.info">
-        <meta name="description" content="Adminre is a clean and flat backend and frontend theme build with twitter bootstrap 3.1.1">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Halo - Mobile Template</title>
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <!-- Icons -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" media="all" rel="stylesheet" type="text/css">
+    <!-- Styles -->
+    <link href="<?php echo base_url('assets/app/halo/css/keyframes.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/app/halo/css/materialize.min.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/app/halo/css/swiper.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/app/halo/css/swipebox.min.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/app/halo/css/style.css')?>" rel="stylesheet" type="text/css">
 
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo base_url('assets/adminre/image/touch/apple-touch-icon-144x144-precomposed.png')?>">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo base_url('assets/adminre/image/touch/apple-touch-icon-144x144-precomposed.png')?>">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url('assets/adminre/image/touch/apple-touch-icon-114x114-precomposed.png')?>">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url('assets/adminre/image/touch/apple-touch-icon-72x72-precomposed.png')?>">
-        <link rel="apple-touch-icon-precomposed" href="<?php echo base_url('assets/adminre/image/touch/apple-touch-icon-57x57-precomposed.png')?>">
-        <link rel="shortcut icon" href="<?php echo base_url('assets/adminre/image/favicon.ico')?>">
-        <!--/ END META SECTION -->
+    <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
+    <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
+    <script type="text/javascript" src="<?= base_url('assets/library/jquery/preview.js') ?>"></script>
+    <script>
+     var base_url = "<?php echo base_url();?>" ;
+ </script>
+ <script>
+var Preview = {
+  delay: 150,        // delay after keystroke before updating
 
-        <!-- START STYLESHEETS -->
-        <!-- Plugins stylesheet : optional -->
-        
-        <link rel="stylesheet" href="<?php echo base_url('assets/adminre/plugins/selectize/css/selectize.min.css')?>">
-        <!--/ Plugins stylesheet -->
+  preview: null,     // filled in by Init below
+  buffer: null,      // filled in by Init below
 
-        <!-- Application stylesheet : mandatory -->
-        <link rel="stylesheet" href="<?php echo base_url('assets/adminre/library/bootstrap/css/bootstrap.min.css')?>">
-        <link rel="stylesheet" href="<?php echo base_url('assets/adminre/stylesheet/layout.min.css')?>">
-        <link rel="stylesheet" href="<?php echo base_url('assets/adminre/stylesheet/uielement.min.css')?>">
-        <!--/ Application stylesheet -->
-        <!-- END STYLESHEETS -->
+  timeout: null,     // store setTimout id
+  mjRunning: false,  // true when MathJax is processing
+  mjPending: false,  // true when a typeset has been queued
+  oldText: null,     // used to check if an update is needed
 
-        <!-- START JAVASCRIPT SECTION - Load only modernizr script here -->
-        <script src="<?php echo base_url('assets/adminre/library/modernizr/js/modernizr.min.js')?>"></script>
-        <!--/ END JAVASCRIPT SECTION -->
-    </head>
-    <!--/ END Head -->
-    <!-- START Body -->
-    <body>
-        <!-- START Template Main -->
-        <section id="main" role="main">
-            <!-- START Template Container -->
-    
+  //
+  //  Get the preview and buffer DIV's
+  //
+  Init: function () {
+    this.preview = document.getElementById("MathPreview");
+    this.buffer = document.getElementById("MathBuffer");
+  },
+
+  //
+  //  Switch the buffer and preview, and display the right one.
+  //  (We use visibility:hidden rather than display:none since
+  //  the results of running MathJax are more accurate that way.)
+  //
+  SwapBuffers: function () {
+    var buffer = this.preview, preview = this.buffer;
+    this.buffer = buffer; this.preview = preview;
+    buffer.style.visibility = "hidden"; buffer.style.position = "absolute";
+    preview.style.position = ""; preview.style.visibility = "";
+  },
+
+  //
+  //  This gets called when a key is pressed in the textarea.
+  //  We check if there is already a pending update and clear it if so.
+  //  Then set up an update to occur after a small delay (so if more keys
+  //    are pressed, the update won't occur until after there has been 
+  //    a pause in the typing).
+  //  The callback function is set up below, after the Preview object is set up.
+  //
+  Update: function () {
+    if (this.timeout) {clearTimeout(this.timeout)}
+    this.timeout = setTimeout(this.callback,this.delay);
+  },
+
+  //
+  //  Creates the preview and runs MathJax on it.
+  //  If MathJax is already trying to render the code, return
+  //  If the text hasn't changed, return
+  //  Otherwise, indicate that MathJax is running, and start the
+  //    typesetting.  After it is done, call PreviewDone.
+  //  
+  CreatePreview: function () {
+    Preview.timeout = null;
+    if (this.mjPending) return;
+    var text = document.getElementById("MathInput").value;
+    if (text === this.oldtext) return;
+    if (this.mjRunning) {
+      this.mjPending = true;
+      MathJax.Hub.Queue(["CreatePreview",this]);
+    } else {
+      this.buffer.innerHTML = this.oldtext = text;
+      this.mjRunning = true;
+      MathJax.Hub.Queue(
+ ["Typeset",MathJax.Hub,this.buffer],
+ ["PreviewDone",this]
+      );
+    }
+  },
+
+  //
+  //  Indicate that MathJax is no longer running,
+  //  and swap the buffers to show the results.
+  //
+  PreviewDone: function () {
+    this.mjRunning = this.mjPending = false;
+    this.SwapBuffers();
+  }
+
+};
+
+//
+//  Cache a callback to the CreatePreview action
+//
+Preview.callback = MathJax.Callback(["CreatePreview",Preview]);
+Preview.callback.autoReset = true;  // make sure it can run more than once
+
+</script>
+
+  </head>
+
+  <body>
+    <div class="m-scene" id="main"> <!-- Main Container -->
+
+      <!-- Sidebars -->
+      <!-- Right Sidebar -->
+     
+      <!-- End of Sidebars -->

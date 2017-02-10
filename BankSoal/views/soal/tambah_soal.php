@@ -1,19 +1,71 @@
-<!--  -->
 
-        <!-- START Template Header -->
-        
-        <!--/ END Template Header -->
-
-        <!-- START Template Sidebar (Left) -->
-        <!-- <aside class="sidebar sidebar-left sidebar-menu">
-             
-        </aside> -->
-        <!--/ END Template Sidebar (Left) -->
 
         <!-- START Template Main -->
         <section id="main" role="main">
             <!-- START Template Container -->
             <div class="container-fluid">
+
+<!-- Priview -->
+ <div class="modal fade " id="modalpriview" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+
+   <!-- Start Panel Priview -->
+   <div class="panel panel-teal">
+    <!-- Start heading -->
+    <div class="panel-heading ">
+      <div class="panel-toolbar">
+       <h4 class="modal-title ">Priview Soal</h4>
+      </div>
+       <div class="panel-toolbar text-right">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+    <!-- End heading -->
+    <!-- Start body priview -->
+    <div class="panel-body ">
+    <label class="">Sumber :</label> <a id="prevSumber"  ></a> <br>
+    <label> judul  :</label> <a id="prevJudul" ></a> <br>
+    <label>Soal   : </label>
+    <!-- img -->
+    <div class="col-sm-12">
+      <img id="previewSoal2" style="max-width: 200px; max-height: 125px;  " class="img" src="" alt="" />
+    </div>
+    <!-- img -->
+    <div class="prevSoal col-sm-12">
+
+    </div>
+    <!-- pilihan jawaban -->
+    <div class="col-sm-12">
+      <ol type="A">
+        <li id="a"></li>
+        <li id="b"></li>
+        <li id="c"></li>
+        <li id="d"></li>
+        <li id="e"></li>
+      </ol>
+    </div>
+    <!-- jawaban -->
+    <div class="col-sm-12"> 
+      <label>Jawaban : </label> <a id="prevJawaban"></a>
+    </div>
+    
+    </div>
+    <!-- END body priview -->
+
+    <!-- Start footer priview -->
+    <div class="panel-footer hidden-xs">
+     <button type="submit" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Keluar</button>
+    </div>
+    <!-- end footer priview -->
+
+   </div>
+    <!-- END panel Priview -->
+
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+            
                 <!-- Page Header -->
                 <div class="page-header page-header-block">
                     <div class="page-header-section">
@@ -713,6 +765,7 @@
                                             <!-- <label class="col-sm-3 control-label">Button</label> -->
                                             <div class="col-sm-9">
                                                 <button type="submit" class="btn btn-primary">Simpan</button>
+                                                <a class="btn btn-info" onclick="priview()">Priview Soal</a>
                                                 <!-- <button type="reset" class="btn btn-danger">Reset button</button> -->
                                             </div>
                                         </div> 
@@ -1472,3 +1525,33 @@ function ValidateSingleInput(oInput) {
 
     });
 </script>
+
+
+<script type="text/javascript">
+
+    // priview soal sebelum di upload
+      function priview() {
+        var mapel = $('select#id_mapel').text();
+        var judul = $("input[name=judul_soal]").val();
+        var sumber  = $("input[name=sumber]").val();
+        var soal  = CKEDITOR.instances.editor1.getData();
+        var jawaban = $('select[name=jawaban_benar]').val();
+        var a  =$("textarea[name=a]").val();
+        var b  =$("textarea[name=b]").val();
+        var c  =$("textarea[name=c]").val();
+        var d  =$("textarea[name=d]").val();
+        var e  =$("textarea[name=e]").val();
+        $("#prevSumber").text(sumber);
+        $("#prevJudul").text(judul);
+        $('li#a').text(a);
+        $('li#b').text(b);
+        $('li#c').text(c);
+        $('li#d').text(d);
+        $('li#e').text(e);
+        $('div.prevSoal').html(soal);
+        $('a#prevJawaban').text(jawaban);
+        $('#modalpriview').modal('show'); // show bootstrap modal
+      
+      }
+</script>
+<!--END Script drop down depeden  -->

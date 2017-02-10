@@ -27,7 +27,7 @@
 
                         </ul>
                         <!-- tambah soal -->
-                         <a class="btn btn-sm  btn-inverse btn-outline" style="height: 29px;" href="<?= base_url(); ?>index.php/banksoal/formsoal" title="Tambah Data Soal" ><i class="ico-plus"></i></a>
+                         <a class="btn btn-sm  btn-inverse btn-outline" style="height: 29px;" href="<?php echo base_url('index.php/banksoal/form_tambahsoal')?>" title="Tambah Data Soal" ><i class="ico-plus"></i></a>
                     </div>
                 </div>
             </div>

@@ -1,71 +1,38 @@
+ <!-- Page Content -->
+      <div id="content" class="grey-blue login">
 
+        <!-- Toolbar -->
+        <div id="toolbar" class="tool-login primary-color animated fadeindown">
+          <a href="javascript:history.back()" class="open-left">
+            <i class="ion-android-arrow-back"></i>
+          </a>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="login-form animated fadeinup delay-2 z-depth-1">
 
-<div class="courses-page-area3" >
-                <div class="container" >
-                    <div class="row" > 
-                        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12" style="width: 100%;">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="section-divider" ></div>
-                                    <div class="course-details-inner" >
-                                        <div class="leave-comments" >
-                                            <h3 class="sidebar-title">Login</h3>
-                                            <div class="row">
-                                                <div class="contact-form" id="review-form"> 
-                                                    <?php echo form_open('Login/login_user'); ?>
-                                                    <?php echo validation_errors(); ?>
-                                                        <fieldset>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <label>Email address *</label>
-                                                                    <input type="text" name="username" value="<?php echo set_value('email') ?>" onfocus="if (this.value=='Username/Email') this.value = ''" onblur="if (this.value=='') this.value = 'Email'" class="form-control"/>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <label>Password *</label>
-                                                                    <input type="password" name="password" onfocus="if (this.value=='password') this.value = ''" onblur="if (this.value=='') this.value = 'password'" class="form-control"/>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <a href="<?php echo base_url('index.php/forgot')?>" class="page-login-forgot"><i class="ion-ios-eye"></i>Forgot Credentials | </a>
-                                                                    <a href="<?php echo base_url('index.php/registrasi')?>" class="page-login-create">Create Account<i class="ion-android-create"></i></a>
-                                                                    <div class="clear"></div>
-                                                                    
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <button class="default-full-width-btn" type="submit" value="Login">Login</button>
-                                                                    
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    
-                                                                    <button class="default-full-width-btn" type="submit" value="">Cancel</button>
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                    <?php echo form_close(); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                                       
-                    </div>
-                </div>
-            </div>
+          <h1>Login</h1>
+          <?php echo form_open('login/login_user'); ?>
+          <?php echo validation_errors(); ?>
+          <div class="input-field">
+            <i class="ion-android-contact prefix"></i> 
+            <input type="text" name="username" value="<?php echo set_value('email') ?>" onfocus="if (this.value=='Username/Email') this.value = ''" onblur="if (this.value=='') this.value = 'Email'" class="validate"/>
+            <label for="login">Email address *</label>
+          </div>
 
+          <div class="input-field" style="margin-bottom:20px;">
+            <i class="ion-android-lock prefix"></i> 
+            <input type="password" name="password" onfocus="if (this.value=='password') this.value = ''" onblur="if (this.value=='') this.value = 'password'" class="validate"/>
+            <label for="login-psw">Password *</label>
+          </div>
 
+          
+          <button class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" type="submit" value="Login">Login</button>
+          <button class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" type="submit" value="">Cancel</button>
+          <span>Don't have an account? <a href="<?php echo base_url('index.php/registrasi')?>" class="primary-text">Create Account |</a> <a href="<?php echo base_url('index.php/forgot')?>" class="primary-text">Forgot Credentials </a> 
+          <?php echo form_close(); ?>
+        </div><!-- End of Main Contents -->
+        </div>
+      
+       
+   

@@ -8,6 +8,7 @@ class Passinggrade extends MX_Controller {
         $this->load->helper('url');
         $this->murl = 'assets/adminre/';
         $this->load->model('Mpassing');
+        $this->load->model('login/Loginmodel');
         $this->load->helper(array('form', 'url', 'file', 'html'));
         $this->load->library('form_validation');
     }
@@ -164,44 +165,50 @@ class Passinggrade extends MX_Controller {
     // fungsi untuk menampilkan berdasarkan universitas
     public function univ()
     {
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getpassing();
         // $this->load->view('template/header');
         // $this->load->view('workout1/v-header');
         // $this->load->view('v-univ', $data);
 
-        $this->load->view('template/siswa/v-head');
+        $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('v-universitas',$data);
-        $this->load->view('template/siswa/v-footer');
+        $this->load->view('template/siswa2/v-footer');
         
     }
 
     //fungsi untuk memilih prodi
     public function pilih_prodi()
     {
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->tampil_prodi();
         // $this->load->view('template/header');
         // $this->load->view('workout1/v-header');
         // $this->load->view('v-pilih-prodi', $data);
 
 
-        $this->load->view('template/siswa/v-head');
+        $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('v-pilih-programstudi',$data);
-        $this->load->view('template/siswa/v-footer');        
+        $this->load->view('template/siswa2/v-footer');        
     }
 
     // fungsi untuk menampilkan  prodi berdasarkan pilihan 
     public function prodi($prodi)
     {   
        $prodii = urldecode($prodi);
+       $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getprodi($prodii);
         $data['prodi'] = $prodii;
        //  $this->load->view('template/header');
        //  $this->load->view('workout1/v-header');
        //  $this->load->view('v-prodi', $data);
 
-        $this->load->view('template/siswa/v-head');
+        // $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('v-programstudi',$data);
-        $this->load->view('template/siswa/v-footer');  
+        $this->load->view('template/siswa2/v-footer');  
         
     }
 

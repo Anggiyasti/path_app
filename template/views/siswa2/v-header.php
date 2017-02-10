@@ -116,186 +116,26 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
 
   <body>
     <div class="m-scene" id="main"> <!-- Main Container -->
-
-      <!-- Sidebars -->
-      <!-- Right Sidebar -->
-      <ul id="slide-out" class="side-nav">
-        <li class="sidenav-header">
-          <!-- Srearch bar -->
-          <nav class="transparent no-shadow">
-            <div class="nav-wrapper">
-              <form>
-                <div class="input-field">
-                  <input id="search" type="search" required>
-                  <label for="search"><i class="ion-android-search"></i></label>
-                  <i class="ion-android-close"></i>
-                </div>
-              </form>
-            </div>
-          </nav>
-        </li>
-        <!-- Tabs -->
-        <li>
-          <ul class="tabs">
-            <li class="tab col s3"><a class="active" href="#sidebar1">Social</a></li>
-            <li class="tab col s3"><a href="#sidebar2">Chat</a></li>
-          </ul>
-        </li>
-        <li id="sidebar1" class="p-20">
-          <!-- Twitter -->
-          <div class="twitter">
-            <h6 class="follow-us"><i class="ion-social-twitter"></i> Follow us on Twitter</h6>
-            <div class="tweet">
-              <h3>@Codnauts</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <a href="#">#tempor</a>.</p>
-            </div>
-            <div class="tweet">
-              <h3>@Codnauts</h3>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in <a href="#">#voluptate</a> culpa qui officia deserunt mollit anim.</p>
-            </div>
-            <div class="tweet">
-              <h3>@Codnauts</h3>
-              <p>At vero eos et accusamus et iusto odio <a href="#">#dignissimos</a> <a href="#">#ducimus</a> qui blanditiis praesentium.</p>
-            </div>
-          </div>
-          <!-- Facebook -->
-          <div class="facebook">
-            <h6 class="follow-us">Notifications</h6>
-            <div class="face-notification">
-              <img src="img/user2.jpg" alt="" class="cricle">
-              <div>
-                <p>Mike Green</p>
-                <span>Sent you a message</span>
-                <span class="small">Today at 16:48</span>
-              </div>
-            </div>
-            <div class="face-notification">
-              <img src="img/user.jpg" alt="" class="cricle">
-              <div>
-                <p>Lara Connors</p>
-                <span>Post a photo with you</span>
-                <span class="small">Today at 14:26</span>
-              </div>
-            </div>
-            <div class="face-notification">
-              <img src="img/user3.jpg" alt="" class="cricle">
-              <div>
-                <p>Mike Green</p>
-                <span>Post something...</span>
-                <span class="small">Yesterday at 03:19</span>
-              </div>
-            </div>
-          </div>
-
-        </li>
-        <li id="sidebar2" class="p-20">
-          <!-- Chat -->
-          <div class="chat-sidebar">
-            <div class="chat-img">
-              <img src="img/user.jpg" alt="" class="cricle">
-              <span class="dot green"></span>
-            </div>
-            <div class="chat-message">
-              <p>Mike Green</p>
-              <span>Sent you a message</span>
-              <span class="small">online</span>
-            </div>
-          </div>
-
-          <div class="chat-sidebar">
-            <div class="chat-img">
-              <img src="img/user2.jpg" alt="" class="cricle">
-              <span class="dot green"></span>
-            </div>
-            <div class="chat-message">
-              <p>Lora Bell</p>
-              <span>6 New messages</span>
-              <span class="small">online</span>
-            </div>
-          </div>
-
-          <div class="chat-sidebar">
-            <div class="chat-img">
-              <img src="img/user3.jpg" alt="" class="cricle">
-              <span class="dot orange"></span>
-            </div>
-            <div class="chat-message">
-              <p>Tony Lee</p>
-              <span>Away from keyboard.</span>
-              <span class="small">Away</span>
-            </div>
-          </div>
-
-          <div class="chat-sidebar">
-            <div class="chat-img">
-              <img src="img/user4.jpg" alt="" class="cricle">
-              <span class="dot grey"></span>
-            </div>
-            <div class="chat-message">
-              <p>Jim Connor</p>
-              <span>Is offline.</span>
-              <span class="small">offline</span>
-            </div>
-          </div>
-
-          <div class="chat-sidebar">
-            <div class="chat-img">
-              <img src="img/user5.jpg" alt="" class="cricle">
-              <span class="dot green"></span>
-            </div>
-            <div class="chat-message">
-              <p>Sara Lower</p>
-              <span>Sent you a message</span>
-              <span class="small">online</span>
-            </div>
-          </div>
-
-          <div class="chat-sidebar">
-            <div class="chat-img">
-              <img src="img/user.jpg" alt="" class="cricle">
-              <span class="dot grey"></span>
-            </div>
-            <div class="chat-message">
-              <p>Mick Pole</p>
-              <span>Is offline.</span>
-              <span class="small">offline</span>
-            </div>
-          </div>
-
-          <div class="chat-sidebar">
-            <div class="chat-img">
-              <img src="img/user3.jpg" alt="" class="cricle">
-              <span class="dot green"></span>
-            </div>
-            <div class="chat-message">
-              <p>James Tree</p>
-              <span>Awaiting your reply.</span>
-              <span class="small">online</span>
-            </div>
-          </div>
-        </li>
-      </ul>
+      
       <!-- Left Sidebar -->
       <ul id="slide-out-left" class="side-nav collapsible">
         <li>
           <div class="sidenav-header primary-color">
-            <div class="nav-social">
-              <i class="ion-social-facebook"></i>
-              <i class="ion-social-twitter"></i>
-              <i class="ion-social-tumblr"></i>
-            </div>
+            
             <div class="nav-avatar">
-              <img class="circle avatar" src="img/user.jpg" alt="">
+            <?php foreach ($siswa as $s): ?>
+              <img class="circle avatar" src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" alt="">
               <div class="avatar-body">
-                <h3>Halo</h3>
-                <p>Material Mobile</p>
+                <h3>Halo <?=$this->session->userdata['username'];?></h3>
+                <p><?=$s->jurusan?> <?=$s->univ ?></p>
 
               </div>
+              <?php endforeach ?>   
             </div>
           </div>
         </li>
         <li><a href="<?php echo base_url('index.php')?>" class="no-child"><i class="ion-android-home"></i> Home</a></li>
-        <li><a href="<?php echo base_url('index.php/Siswa/Profilesiswa')?>" class="no-child"><i class="ion-android-person"></i> profile Setting</a></li>
+        <li><a href="<?php echo base_url('index.php/Siswa/Profilesiswa')?>" class="no-child"><i class="ion-android-person"></i> Profile Setting</a></li>
 
         <li>
           <div class="collapsible-header">

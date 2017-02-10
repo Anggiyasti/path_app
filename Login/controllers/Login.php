@@ -105,7 +105,7 @@ class Login extends MX_Controller
                 $guru = $this->Loginmodel->get_guru($this->session->userdata['id_guru']);
 
                   
-                redirect('guru');
+                redirect('cek_login_guru');
                 }  
             
         }
@@ -124,7 +124,7 @@ class Login extends MX_Controller
                
 
                    
-                redirect('admin');
+                redirect('cek_login_admin');
                 } 
 
             
@@ -151,7 +151,7 @@ class Login extends MX_Controller
             // $this->load->view('template/siswa/v-head');
             // $this->load->view('siswa/home',$data);
             // $this->load->view('template/siswa/v-footer');
-        $this->load->view('template/siswa2/v-header');
+            $this->load->view('template/siswa2/v-header',$data);
             $this->load->view('siswa/home2',$data);
             $this->load->view('template/siswa2/v-footer');
             
@@ -161,12 +161,26 @@ class Login extends MX_Controller
             redirect('Login');
         }
     }
+    
     function cek_login_guru(){
         if ($this->session->userdata('id_guru')) {
         $data['mapel']  = $this->Loginmodel->getMapel();
-        $this->load->view('guru/layout/header',$data);
-        $this->load->view('guru/layout/nav');
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/layout/nav',$data);
         $this->load->view('guru/layout/footer');
+    }
+    else{
+            redirect('Login');
+        }
+
+
+}
+function cek_login_admin(){
+        if ($this->session->userdata('id_admin')) {
+        
+        $this->load->view('admin/layout/header');
+        $this->load->view('admin/layout/nav');
+        $this->load->view('admin/layout/footer');
     }
     else{
             redirect('Login');

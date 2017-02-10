@@ -19,11 +19,11 @@ class Guru extends MX_Controller {
         if ($this->session->userdata('id_guru')) {
             # code...
         
-        $this->load->view('guru/layout/header');
-        $this->load->view('guru/layout/nav');
-        $this->load->view('guru/layout/footer');
+        $this->load->view('layout/header');
+        $this->load->view('layout/nav');
+        $this->load->view('layout/footer');
     }
-    else{
+        else{
             redirect('login');
         }
 
