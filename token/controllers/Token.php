@@ -16,14 +16,9 @@ class Token extends MX_Controller {
 
 	public function index(){
 		// $this->load->view('v-header');
-		//hak akses jika admin
-    if ($this->session->userdata('id_admin')) {
 		$this->load->view('admin/layout/header');
 		$this->load->view('v-daftar-token');
 		$this->load->view('admin/layout/footer');
-	} else {
-		redirect('login');
-	}
 	}
 
 
@@ -100,7 +95,15 @@ class Token extends MX_Controller {
 			$row[] = $date_diaktifkan;
 			$row[] = $date_kadaluarsa;
 			$row[] = $sisa_aktif->days." Hari";
+			if ($list->tokenStatus==1) {
+				$row[] = "Aktif";
 			$row[] = '<a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$list->tokenid."'".')"><i class="ico-remove"></i></a>';
+			}else{
+				$row[] = "non-aktif";
+			$row[] = '<a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$list->tokenid."'".')"><i class="ico-remove"></i></a>'.' <a class="btn btn-sm btn-info"  title="Aktifkan" onclick="update_token('."'".$list->tokenid."'".')"><i class="ico-file-check"></i></a>';
+
+			}
+
 			$data[] = $row;
 			$no = $no+1;
 		}
@@ -144,7 +147,7 @@ class Token extends MX_Controller {
 			$token_kosong = $this->token_model->token_kosong($param_token);
 			$i = 0;
 			foreach ($token_kosong as $value) {
-			//masukan ke array, ambil id tokenya update sama id mahasiswa
+			//masukan ke array, ambil id tokennya update sama id siswa
 				$token_update = array("id_token"=>$value->id,
 					"siswaID"=>$post['id'][$i]);
 				$i++;
@@ -158,15 +161,15 @@ class Token extends MX_Controller {
 	function isi_token(){
 		if ($this->input->post()) {
 			$post =$this->input->post();
-			$data = array("kode_token" => $post['kode_token']);
+			$data = array("kode_token" => $post['kode_token'],
+				"id_siswa"=>$this->msiswa-> get_siswaid());
+
 			$hasil_token = $this->token_model->get_token_to_set($data);
 			if($hasil_token){
-				//kalo tokenya ada.
-				$data_update = array("kode_token"=> $post['kode_token'],
-					"id_siswa" => $this->msiswa-> get_siswaid());
-				$this->token_model->set_token_single($data_update);
+				//kalo tokennya ada.
+				$this->token_model->set_token_single($data);
 				$report_ajax = 1;
-				$this->session->set_userdata('token',30);
+				$this->session->set_userdata('token','Aktif');
 				echo json_encode($report_ajax);
 			}else{
 				//kalo tokenya enggak ada.
@@ -200,14 +203,31 @@ class Token extends MX_Controller {
 	}
 
 	function settoken(){
+		$token = $this->session->userdata('token');
+		if ($token=='BelumAktif') {
+			$pesan = "<span>Maaf Token belum aktif,</span><br> silahkan aktifkan dengan cara memasukan nomor token yang sudah dikirim admin";
+		}elseif ($token=='Habis') {
+			$pesan = "<span>Maaf Token anda sudah habis,</span><br> silahkan isi terlebih dahulu token anda";
+		}else{
+			$pesan = "<span>Maaf anda tidak memiliki Token,</span><br> silahkan lakukan permintaan pada admin untuk mengirim token";
+
+		}
+		
 		$this->load->view('token/header');
-		$this->load->view('v-set-token');
+		$this->load->view('v-set-token', $pesan);
 	}
 
 	function drop_token(){
 		if ($this->input->post()) {
 			$post = $this->input->post();
 			$this->token_model->drop_token($post);
+		}
+	}
+
+	function aktifkan_token(){
+		if ($this->input->post()) {
+			$post = $this->input->post();
+			$this->token_model->update_token($post);
 		}
 	}
 }

@@ -1,25 +1,10 @@
 <main>
     <div class="page-content container clear-fix">
         <div class="container-404">
-        <div class="footer-area-top" style="background-color: white; margin-top: 0;">
-            <p style="color: black"><span>Maaf:(</span><br>untuk mengakses halaman, silahkan tambahkan Token Terlebih dahulu!</p>
-            <center> 
-                                    <div class="newsletter-area">
-                                        <div class="input-group stylish-input-group">
-                                            <input type="text" name="kode_token" placeholder="Masukan Kode Token" class="form-control">
-                                            <span class="input-group-addon">
-                                                <button type="submit" class="isi_button">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true">Isi</i>
-                                                    <img src="">
-                                                </button>  
-                                            </span>
-                                        </div>
-                                    </div>                                    
-            </center>
-             </div>
+            <p><span>Maaf:(</span><br>untuk mengakses halaman, silahkan tambahkan Token Terlebih dahulu!</p>
+            <center>    <input type="text" name="kode_token" style="width: 40%;margin-bottom: 10px" placeholder="Masukan Kode Token"><button class="isi_button">Isi</button></center>
         </div>
     </div>
-
 </main>
 
 
@@ -30,7 +15,7 @@
         $.ajax({
             type:'POST',
             data:{kode_token:kode_token},
-            url:base_url+"index.php/token/isi_token",
+            url:base_url+"token/isi_token",
             dataType:"TEXT",
             success:function(data){
                 console.log(data);

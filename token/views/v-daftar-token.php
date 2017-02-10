@@ -194,7 +194,7 @@
             <th>Mulai</th>
             <th>Finish</th>
             <th>Sisa Aktif</th>
-
+            <th>Status</th>
             <th width="15%">Aksi</th>
           </tr>
         </thead>
@@ -272,7 +272,8 @@ $('.simpan_token').click(function(){
 $('.send-token').click(function(){
   $('.kirim_token').toggle('show');
   dataTableToken.ajax.reload(null,false); 
-  dataTableSiswa.ajax.reload(null,false); 
+  dataTableSiswa.ajax.reload(null,false);
+  dataRekapToken.ajax.reload(null,false); 
 });
 
 $('.set_token').click(function(){
@@ -419,6 +420,9 @@ function get_stok(){
 
 function reload(){
   get_stok();
+  dataTableToken.ajax.reload(null,false); 
+  dataTableSiswa.ajax.reload(null,false); 
+  dataRekapToken.ajax.reload(null,false); 
 }
 
 
@@ -446,6 +450,36 @@ function drop_token(data){
       },
       error:function(){
         sweetAlert("Oops...", "Data gagal terhapus!", "error");
+      }
+
+    });
+  });
+}
+function update_token(data){
+
+  url = base_url+"token/aktifkan_token";
+  swal({
+    title: "Yakin akan aktifkan Token?",
+    text: "Anda tidak dapat membatalkan ini.",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Ya,Aktifkan token",
+    closeOnConfirm: false
+  },
+  function(){
+    var datas = {id:data};
+    $.ajax({
+      dataType:"text",
+      data:datas,
+      type:"POST",
+      url:url,
+      success:function(){
+        swal("Diaktifkan!", "Token berhasil diaktikan.", "success");
+        dataRekapToken.ajax.reload(null,false)
+      },
+      error:function(){
+        sweetAlert("Oops...", "Token gagal diaktikan!", "error");
       }
 
     });
