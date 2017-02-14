@@ -88,7 +88,7 @@ class Login extends MX_Controller
                     
 
                     
-                redirect('Login/cek_login_siswa');
+                redirect('login/cek_login_siswa');
                 }  
         }   elseif ($guru = $this->Loginmodel->login_guru($username,$password)) {
                 $sees_data= array();

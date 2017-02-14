@@ -43,7 +43,6 @@
               <?php endif ?>
               <!-- Body Info -->
               
-                <!-- <div class="collapsible-body"><p><?=$pel['judul_bab']?></p></div> -->
                 <div class="collapsible-body"><p></i><?=$univ['prodi']?>&nbsp&nbsp|&nbsp&nbsp<?=$univ['passinggrade']?>%<a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>" class="waves-effect waves-light btn primary-color" style="margin-left: 15px;">Set Prodi</a></p></div>
               
               <!-- /Body info -->
