@@ -6,6 +6,7 @@ class Siswa extends MX_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model('Msiswa');
+        $this->load->model('login/Loginmodel');
         $this->load->helper(array('form', 'url', 'file', 'html'));
         $this->load->library('form_validation');
     }
@@ -79,7 +80,10 @@ class Siswa extends MX_Controller {
 
 
 	public function Profilesiswa() {
-   
+
+    if ($this->session->userdata('id_siswa')) {
+    $sis = $this->session->userdata('id_siswa');
+    $data['siswa']  = $this->Loginmodel->get_siswa($sis);   
     $data['Siswa'] = $this->Msiswa->get_siswa();
     $data['univ']=$this->Msiswa->getuniv();
     $data['email']=$this->session->userdata['email'];
@@ -88,9 +92,13 @@ class Siswa extends MX_Controller {
      //    $this->load->view('layout/sidebar');
      //    $this->load->view('profilesetsiswa',$data);
 
-    $this->load->view('template/siswa/v-head');
+    $this->load->view('template/siswa2/v-header',$data);
     $this->load->view('profile_siswa',$data);
-    $this->load->view('template/siswa/v-footer');
+    $this->load->view('template/siswa2/v-footer');
+    }
+    else{
+        redirect('Login');
+    }
     
        
     

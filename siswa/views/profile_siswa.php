@@ -32,50 +32,55 @@
 } ;
 
 ?> 
- <!-- Main Content -->
-        <div class="animated fadeinup">
-          <!-- Collapsible -->
-          <h4 class="p-20">Simple Dropdown</h4>
-          <ul class="faq collapsible animated fadeinright delay-1" data-collapsible="accordion">
-            <li>
-              <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>Profile </div>
-              <div class="collapsible-body">
-              <div>
-              <?php echo $this->session->flashdata('msg'); ?>
-              <form action="<?=base_url()?>index.php/Siswa/edit_siswa" method="post">
+ 
+ <div class="form-inputs">
+            
+
+            <h4 class="shipping-address">Profile</h4>
+            <?php echo $this->session->flashdata('msg'); ?> 
+            <form action="<?=base_url()?>index.php/Siswa/edit_siswa" method="post">
               <div class="input-field">
-                <label>Nama Depan</label>
                 <input type="text" class="validate" name="nama_depan" value="<?=$nama_depan; ?>">
                 <?php echo form_error('nama_depan'); ?>
               </div>
               <div class="input-field">
-                <label>Nama Belakang</label>
                 <input type="text" class="validate" name="nama_belakang" value="<?=$nama_belakang; ?>">
                 <?php echo form_error('nama_belakang'); ?>
               </div>
-              </form>
+           
+            <div class="input-field">
+              <input type="text" class="validate" name="alamat" value="<?=$alamat; ?>">
+            <?php echo form_error('alamat'); ?>
             </div>
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>Some tips</div>
-              <div class="collapsible-body"><p>Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>Places near you</div>
-              <div class="collapsible-body"><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>Suggestions</div>
-              <div class="collapsible-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-            </li>
-          </ul>
-          
-          
+            <div class="input-field">
+              <input type="text" class="validate" name="nama_sekolah" value="<?=$namaskul; ?>">
+               <?php echo form_error('nama_sekolah'); ?>
+            </div>
+            <div class="input-field">
+              <input type="email" class="validate" name="email" value="<?=$email; ?>">
+              <?php echo form_error('email'); ?>
+            </div>
+            <div class="input-field">
+              <input type="text" class="validate" name="no_tlp" value="<?=$no; ?>">
+              <?php echo form_error('no_tlp'); ?>
+            </div>
+            <div class="input-field">
+              <input type="text" class="validate" name="" value="<?=$univ; ?>" disabled>
+            </div>
+            <div class="input-field">
+              <input type="text" class="validate" name="" value="<?=$jur; ?>" disabled>
+            </div>
+            <div class="input-field">
+              <textarea placeholder="Comment" class="textarea validate" id="form-message" name="biografi" rows="8" cols="20"><?=$bio; ?></textarea>
+            </div>
 
-         
-        </div> <!-- End of Main Contents -->
+            <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
+            <button class="waves-effect waves-light btn-large primary-color width-100" name="update"> Submit</button>
+          <!--   <input type="submit"    value="Update"  > -->
 
+            <!-- <a class="waves-effect waves-light btn-large primary-color width-100" href="index.html">Purchase</a> -->
+          </form>
+          </div>
 
 
 <script type="text/javascript">
