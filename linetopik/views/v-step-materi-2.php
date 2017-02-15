@@ -1,5 +1,4 @@
  <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>">
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <div class="courses1-area">
     <div class="container">    
         <h2 class="title-default-left">Path - Topik</h2> 
@@ -23,13 +22,26 @@
                                     </div>
                                     <div class="media-body">
                                         <!-- Untuk menampung staus step disable or enable -->
-                                        <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" hidden="true" >
+                                        <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" >
                                         <!-- // Untuk menampung staus step disable or enable  -->
                                         <a href="<?=$key['link'];?>" class="media-heading"  id="font-<?=$i;?>" ><?=$key['namaStep']?></a>
-
-                                        <main>
+                                      <!--   <p class="media-text"><span class="text-primary semibold">Service Page</span> has been edited by Tamara Moon.</p>
+                                        <p class="media-meta">Just Now</p> -->
+                                    </div>
+                                </li>       
+                            <?php 
+                            $i ++;
+                            endforeach ?>
+                            </ul>
+                            <!-- menampung nilai panjang array -->
+                            <input id="n" type="text"  value="<?=$i;?>" hidden="true">
+                            <!-- END Tieme line -->
+                
+            </div>
+            <div class="grid-col grid-col-9">
+                <main>
                     <!-- post item -->
-                    <div class="blog-post" id="l" hidden="true">
+                    <div class="blog-post">
                         <article>
                         <div class="post-info">
                             <div class="date-post"><div class="day"><?=$tgl?></div><div class="month"><?=$bulan?></div></div>
@@ -48,54 +60,8 @@
                   
 
                 </main>
-                                      <!--   <p class="media-text"><span class="text-primary semibold">Service Page</span> has been edited by Tamara Moon.</p>
-                                        <p class="media-meta">Just Now</p> -->
-                                    </div>
-                                </li>       
-                            <?php 
-                            $i ++;
-                            endforeach ?>
-                            </ul>
-                            <!-- menampung nilai panjang array -->
-                            <input id="n" type="text"  value="<?=$i;?>" hidden="true">
-                            <!-- END Tieme line -->
-                
             </div>
-            <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> -->
-                <main>
-                    <!-- post item -->
-                    <!-- <div class="blog-post">
-                        <article>
-                        <div class="post-info">
-                            <div class="date-post"><div class="day"><?=$tgl?></div><div class="month"><?=$bulan?></div></div>
-                            <div class="post-info-main">
-                                Nama Step : Step : <?=$key['namaStep']?>
-                                <div class="author-post">Nama Materi:' <?= $datMateri['judulMateri']; ?> '</div>
-                            </div>
-                            <div class="comments-post">Materi :</div>
-                        </div>
-                         <p><?= $datMateri['isiMateri']; ?></p>
-                            
-                        </article>
-                       
-                    </div> -->
-                    <!-- / post item -->
-                    <!-- <hr class="divider-color" /> -->
 
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="contact-us-info2">   
-                                <ul>
-                                    <li><i class="fa fa-map-marker" aria-hidden="true"></i>Nama Materi: ' <?= $datMateri['judulMateri']; ?> '</li>
-                                    <li><i class="fa fa-phone" aria-hidden="true"></i>Materi :
-                                    <p><?= $datMateri['isiMateri']; ?></p></li>
-                                </ul>
-                            </div>  
-                        </div>  
-                  
-
-                </main>
-            <!-- </div>
- -->
         </div>
     </div>
     <!-- / content -->
@@ -117,11 +83,4 @@
            
         }
     });
-
-    $(document).ready(function () {
-        var status = $("#status-"+i).val();
-        $("#status").click(function () {
-            $("#l").show();
-        });
-
 </script>

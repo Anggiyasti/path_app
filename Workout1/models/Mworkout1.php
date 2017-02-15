@@ -8,8 +8,10 @@ class Mworkout1 extends CI_Model
 	// get mapel
 	public function getdaftarmapel(){
     	$this->db->distinct();
-		$this->db->select()->from('tb_mata_pelajaran');
-		$this->db->where('status = 1');
+		$this->db->select('m.id_mapel, m.nama_mapel, m.alias_mapel, b.id_mapel, b.id_bab, b.judul_bab, m.gambar');
+        $this->db->from('tb_mata_pelajaran m');
+        $this->db->join('tb_bab b', 'm.id_mapel = b.id_mapel');
+		$this->db->where('m.status = 1');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
     }
@@ -289,6 +291,18 @@ class Mworkout1 extends CI_Model
          
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    // get mapel dan bab untuk report setelah workout
+    public function getmapelbab($bab) {
+        $this->db->distinct();
+        $this->db->select('id_bab');
+        $this->db->from('tb_grafik_report grafik');
+        $this->db->where('grafik.id_latihan', $bab);
+
+        $query = $this->db->get();
+        $soal = $query->result_array();
+        return $soal[0]['id_bab'];
     }
 
 

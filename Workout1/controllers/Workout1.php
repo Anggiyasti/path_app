@@ -10,7 +10,8 @@ class Workout1 extends MX_Controller
     {
         parent::__construct();
         $this->load->model('Mworkout1');
-         $this->load->model('siswa/msiswa');
+        $this->load->model('siswa/msiswa');
+        $this->load->model('login/Loginmodel');
     }
 
     public function index()
@@ -18,30 +19,43 @@ class Workout1 extends MX_Controller
         $token = $this->msiswa->get_token();
         if ($this->session->userdata('id_siswa')) {
             if ($token) {
-                //memiliki token
-                $date1 = new DateTime($token['tanggal_diaktifkan']);
-                $date_diaktifkan = $date1->format('d-M-Y');
-                $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
+        //memiliki token
+        $date1 = new DateTime($token['tanggal_diaktifkan']);
+        // cek dulu statusna udah di aktivin atau belum
+                if ($token['status']==1) {
+                    # udah diaktifin
+                 $date_diaktifkan = $date1->format('d-M-Y');
+                 $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
 
-                $date1 = new DateTime(date("d-M-Y"));
-                $date2 = new DateTime($date_kadaluarsa);
-                $sisa_aktif = $date2->diff($date1)->days;
-                
-                if ($sisa_aktif != 0) {
-                    $this->session->set_userdata(array('token'=>TRUE,'sisa'=>$sisa_aktif));
+                 $date1 = new DateTime(date("d-M-Y"));
+                 $date2 = new DateTime($date_kadaluarsa);
+                 $sisa_aktif = $date2->diff($date1)->days;
+                         if ($sisa_aktif != 0) {
+                            //token aktif
+                            $this->session->set_userdata(array('token'=>'Aktif','sisa'=>$sisa_aktif));
+                            $data['mapel'] = $this->Mworkout1->getdaftarmapel();
+                            $sis = $this->session->userdata('id_siswa');
+                            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+                                    $this->load->view('template/siswa2/v-header', $data);
+                                    $this->load->view('template_baru/v-wo-bab', $data);
+                                    $this->load->view('template/siswa2/v-footer');
+                        }else{
+                            //token habis
+                            $this->session->set_userdata(array('token'=>'Habis'));
+                            $this->settoken();
+                        }
                 }else{
-                    //token habis
-                    $this->session->set_userdata(array('token'=>FALSE));
+                    // token belum diaktifkan
+                    $this->session->set_userdata(array('token'=>'BelumAktif'));
+                    $this->settoken();
                 }
-                $data['mapel'] = $this->Mworkout1->getdaftarmapel();
-                $this->load->view('template/siswa/v-head');
-                $this->load->view('v-show-mapel', $data);
-                $this->load->view('template/siswa/v-footer');
             }else{
-                //tidak memiliki token
-                $this->session->set_userdata(array('token'=>0));
+                // belum terdaftar di token
+                $this->session->set_userdata(array('token'=>'TidakAda'));
                 $this->settoken();
             }
+
+
         } else {
             redirect('login');
         }
@@ -50,9 +64,11 @@ class Workout1 extends MX_Controller
     // untuk menampilkan halaman isi token bila kosong
     function settoken(){
         // $this->load->view('token/v-header');
-        $this->load->view('template/siswa/v-head');
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('token/v-set-token');
-        $this->load->view('template/siswa/v-footer');
+        $this->load->view('template/siswa2/v-footer');
     }
 
     public function chart()
@@ -66,9 +82,9 @@ class Workout1 extends MX_Controller
     $noo = urldecode($no);
     
             $data['bab'] = $this->Mworkout1->get_mapel_bab($noo);
-            $this->load->view('template/siswa/v-head');
-            $this->load->view('v-pilih-bab', $data);
-            $this->load->view('template/siswa/v-footer');
+            $this->load->view('template/siswa2/v-header');
+            $this->load->view('template_baru/v-wo-bab', $data);
+            $this->load->view('template/siswa2/v-footer');
     }
 
     // fungsi mulai workout
@@ -89,11 +105,14 @@ class Workout1 extends MX_Controller
     }
 
     // fungsi untuk menampilkan form kesulitan dan jumlah soal
-    function next() {
-        $data['bab'] = $this->input->post('id_bab');
-        $this->load->view('template/siswa/v-head');
-        $this->load->view('v-pilih-next', $data);
-        $this->load->view('template/siswa/v-footer');
+    function next($bab) {
+        $data['bab'] = $bab;
+        // var_dump($data);
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('template_baru/v-wo-next', $data);
+        $this->load->view('template/siswa2/v-footer');
     }
 
     // fungsi untuk menampilkan form kesulitan dan jumlah soal
@@ -155,7 +174,7 @@ class Workout1 extends MX_Controller
     }
 
     $hasil['durasi_pengerjaan'] = $this->input->post('durasi');
-     $mudah = 4;
+    $mudah = 4;
     $sedang = 5;
     $sulit = 6;
 
@@ -172,10 +191,16 @@ class Workout1 extends MX_Controller
 //
     $result = $this->Mworkout1->inputreport($hasil);
     $result1 = $this->Mworkout1->insertst($id_latihan,$hasil1,$hasil2);
+
     $this->Mworkout1->updatelatihan($id_latihan);
     $this->session->unset_userdata('id_latihan');
-    redirect(base_url('index.php/workout1'));
+    // redirect(base_url('login'));
+         $id_bab = $this->Mworkout1->getmapelbab($id_latihan);
+   
+    $this->reportmapel($id_bab);
     }
+
+
 
     public function reportmapel($mapel) {
     
@@ -183,14 +208,16 @@ class Workout1 extends MX_Controller
     $data['latihan'] = $this->Mworkout1->get_latihan($this->session->userdata['username']);
     $data['mapel'] = $this->Mworkout1->get_nama_mapel_bab($mapel);
     $data['bab'] = $this->Mworkout1->get_nama_bab($mapel);
+    $sis = $this->session->userdata('id_siswa');
+    $data['siswa']  = $this->Loginmodel->get_siswa($sis);
 
 
         // $this->load->view('template/header');
         // $this->load->view('v-header');
         // $this->load->view('Videoback/layout/header');
-        $this->load->view('template/siswa/v-head');
-        $this->load->view('v-report', $data);
-        $this->load->view('template/siswa/v-footer');
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('template_baru/v-wo-report2', $data);
+        $this->load->view('template/siswa2/v-footer');
     }
 
     // fungsi tambah workout
@@ -292,19 +319,23 @@ class Workout1 extends MX_Controller
     public function pilihreport()
     {
         $data['mapel'] = $this->Mworkout1->getdaftarmapel();
-        $this->load->view('template/siswa/v-head');
-        $this->load->view('v-mapel-report', $data);
-        $this->load->view('template/siswa/v-footer');
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('template_baru/v-wo-report', $data);
+        $this->load->view('template/siswa2/v-footer');
     }
 
-
+    // detail report + chart
     public function detailreport($id)
     {
         $data['report'] = $this->Mworkout1->get_report_detail($this->session->userdata['username'], $id);
         $data['latihan'] = $this->Mworkout1->get_latihan($this->session->userdata['username']);
-        $this->load->view('template/siswa/v-head');
-        $this->load->view('v-detail-report', $data);
-        $this->load->view('template/siswa/v-footer');
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('template_baru/v-report-detail', $data);
+        $this->load->view('template/siswa2/v-footer');
     }
 
     // fungsi pilihan bab

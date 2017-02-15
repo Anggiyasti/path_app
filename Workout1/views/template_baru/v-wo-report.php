@@ -1,12 +1,12 @@
       <!-- Page Content -->
       <div id="content" class="page">
-      
+
         <!-- Toolbar -->
         <div id="toolbar" class="primary-color">
           <div class="open-left" id="open-left" data-activates="slide-out-left">
             <i class="ion-android-menu"></i>
           </div>
-          <span class="title">Workout</span>
+          <span class="title">Report Workout</span>
           <div class="open-right" id="open-right" data-activates="slide-out">
             <i class="ion-android-person"></i>
           </div>
@@ -40,7 +40,7 @@
               <?php endif ?>
               <!-- Body Info -->
               <!-- <div class="collapsible-body"><p><?=$pel['judul_bab']?></p></div> -->
-              <div class="collapsible-body"><a href="<?=base_url()?>index.php/grafikreport/greport/<?=$pel['id_bab'] ?>"><?=$pel['judul_bab']?></a></div>
+              <div class="collapsible-body"><h5><a href="<?= base_url() ?>index.php/workout1/reportmapel/<?=$pel['id_bab']?>"><?=$pel['judul_bab']?></a></h5></div>
               <!-- /Body info -->
               <?php $olduniversitas=$mp; ?>
              <?php endforeach ?>

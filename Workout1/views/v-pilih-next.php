@@ -56,8 +56,8 @@ label{
                         <a href="" class="view-all-accent-btn">Step 1</a>
                         <a href="" class="view-all-accent-btn">Step 2</a>
                     </div> -->
-                        <form action="<?= base_url() ?>index.php/workout1/start" method="post">
-                            <input type="text" name="id_bab" value="<?=$bab ?>" hidden="true">
+                        <form action="<?= base_url() ?>index.php/workout1/nextlagi" method="post">
+                            <input type="text" name="id_bab" value="<?=$bab ?>" hidden="">
                             <div>
                                 <h3 class="item-title">Tingkat Kesulitan</h3>
                             </div>

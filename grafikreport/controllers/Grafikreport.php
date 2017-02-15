@@ -6,16 +6,17 @@ class Grafikreport extends MX_Controller {
 	public function __construct() {
        parent::__construct();
 		$this->load->model('Mgrafik');
+        $this->load->model('workout1/Mworkout1');
+        $this->load->model('login/Loginmodel');
     }
 
 	public function index() {
-		$data['mapel'] = $this->Mgrafik->getdaftarmapel();
-		// $this->load->view('template/header');
-  //       $this->load->view('v-header');
-		// $this->load->view('pilih_mapel', $data);
-            $this->load->view('template/siswa/v-head');
-            $this->load->view('v-mapel',$data);
-            $this->load->view('template/siswa/v-footer'); 
+		$data['mapel'] = $this->Mworkout1->getdaftarmapel();
+		$sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('pilih_mapel', $data);
+        $this->load->view('template/siswa2/v-footer');
 	}
 
 	// fungsi pilihan bab

@@ -5,43 +5,61 @@
             width: 100%;
             color: green;
         }
-    </style>    
-
-<!-- Courses 1 Area Start Here -->
-<div class="courses1-area">
-    <div class="container">    
-        <h2 class="title-default-left">Report Detail</h2> 
-    </div>
-    <div id="shadow-carousel" class="container">
-            <?php if ($report == array()): ?>
-                <h4>Tidak ada Report Latihan.</h4>
-            <?php else: ?>
-                <?php foreach ($report as $reportitem): ?>
-                    <div>Pelajaran &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['nama_mapel'] ?></div>
-                    <div>Bab &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp :&nbsp&nbsp&nbsp<?= $reportitem['judul_bab'] ?></div>
-                    <div>Level &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :&nbsp&nbsp
-                        <?php if ($reportitem['kesulitan'] == '1') { ?>
-                            Mudah
-                        <?php } elseif ($reportitem['kesulitan'] == '2') { ?>
-                            Sedang
-                        <?php } else { ?>
-                            Sulit
-                        <?php } ?>
-                    </div>
-                    <div>Tanggal Pengerjaan&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['tgl_pengerjaan'] ?></div>
-                    <div>Score &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp<?= $reportitem['score'] ?></div>
-                        
-                <?php endforeach ?>
-               
-            <?php endif ?>
-         </div>    
-         <div class="chart">
+    </style>        
+      <!-- Page Content -->
+      <div id="content" class="page">
+      
+        <!-- Toolbar -->
+        <div id="toolbar" class="primary-color">
+          <div class="open-left" id="open-left" data-activates="slide-out-left">
+            <i class="ion-android-menu"></i>
+          </div>
+          <span class="title">Report Workout</span>
+          <div class="open-right" id="open-right" data-activates="slide-out">
+            <i class="ion-android-person"></i>
+          </div>
+        </div>
+        
+        <!-- Article Content -->
+        <div class="animated fadeinup delay-1">
+          <div class="page-content">
+            <!-- With Left Icon -->
+          <h4 class="p-20">Report Detail</h4>
+          <?php if ($report == array()): ?>
+            <h3>Tidak ada Report Latihan.</h3>
+          <?php else: ?>
+          <?php foreach ($report as $reportitem): ?>
+            <div class="blog-preview p-20">
+              <div class="media-body">
+                <ul class="course-feature">
+                  <li>Pelajaran : <?= $reportitem['nama_mapel'] ?></li>
+                  <li>Bab : <?= $reportitem['judul_bab'] ?></li>
+                  <li>Level :
+                    <?php if ($reportitem['kesulitan'] == '1') { ?>
+                      Mudah
+                    <?php } elseif ($reportitem['kesulitan'] == '2') { ?>
+                      Sedang
+                    <?php } else { ?>
+                      Sulit
+                    <?php } ?>
+                  </li>
+                  <li>Tanggal Pengerjaan : <?= $reportitem['tgl_pengerjaan'] ?></li>
+                  <li>Score : <?= $reportitem['score'] ?></li>
+                </ul>
+              </div>
+            </div>
+          <?php endforeach ?>
+          <?php endif ?>
+           <div class="chart">
             <div id="chartContainer">
             </div>
         </div>
-    </div>
-</div>
-<script src="<?= base_url('assets/plugins/canvasjs.min.js') ?>"></script>
+          </div>
+        </div> 
+      
+         
+      </div> <!-- End of Page Content -->
+      <script src="<?= base_url('assets/plugins/canvasjs.min.js') ?>"></script>
 <script type="text/javascript">
 
     window.onload = function() {
@@ -96,4 +114,5 @@
                 }
 
 </script>
+
 

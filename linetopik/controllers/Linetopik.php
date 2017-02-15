@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  	{
  		$this->load->model('Mlinetopik');
  		$this->load->model('Workout1/Mworkout1');
+        $this->load->model('login/Loginmodel');
  		$this->load->library('parser');
  	}
 
@@ -19,9 +20,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
      		$data['mapel'] = $this->load->Mworkout1->getdaftarmapel();
-     		$this->load->view('template/siswa/v-head');
-     		$this->load->view('v-line-mapel', $data);
-            $this->load->view('template/siswa/v-footer');
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+     		$this->load->view('template/siswa2/v-header', $data);
+     		$this->load->view('t-baru/v-line-bab', $data);
+            $this->load->view('template/siswa2/v-footer');
+
      	} else {
             redirect('login');
         }
@@ -33,9 +37,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if ($this->session->userdata('id_siswa')) {
             $data['bab'] = $this->Mworkout1->get_mapel_bab($no);
             $data['mapel'] = $no;
-            $this->load->view('template/siswa/v-head');
+            $this->load->view('template/header');
+            $this->load->view('workout1/v-header');
             $this->load->view('v-line-bab', $data);
-            $this->load->view('template/siswa/v-footer');
         } else {
             redirect('login');
         }
@@ -115,12 +119,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $step = $log;
 
  		}
-
- 		$this->load->view('template/siswa/v-head');
- 		// $this->load->view('workout1/v-header');
- 		// $this->load->view('v-line-topik', $data);
-        $this->load->view('v-line-topik-2', $data);
-        $this->load->view('template/siswa/v-footer');
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+ 		$this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('t-baru/v-line-topik', $data);
+        $this->load->view('template/siswa2/v-footer');
     } else {
             redirect('login');
     }
@@ -204,9 +207,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
           // END get data time untuk side bar
          
-        $this->load->view('template/siswa/v-head');
-        $this->load->view('v-step-materi-2', $data);
-        $this->load->view('template/siswa/v-footer');
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('t-baru/v-step-materi', $data);
+        $this->load->view('template/siswa2/v-footer');
         } else {
                 redirect('login');
         }
@@ -317,12 +322,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $data['stepUUID']     = $tampStep['UUID'];
         if ($benar >= $minBenar ) {
           $data['hasil'] = "Selamat Anda Lulus";
-             $id = $this->session->userdata['id_siswa'];
-             $this->logLine($stepID, $id);
+             
+             $this->logLine($stepID);
          } else {
           $data['hasil'] = "Selamat Anda Gagal, Silahkan Coba Lagi";
-          $id = $this->session->userdata['id_siswa'];
-             $this->logLine($stepID, $id);
          }
          
          // redirect('/linetopik/timeLine/'.$UUID);
@@ -353,7 +356,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // pengecekan disable atau enable step
                 if ($step == true || $urutan == '1' ) {
                     $icon='ico-movie ';
-                    $link = base_url('index.php/linetopik/step_video/'.$UUID);
+                    $link = base_url('index.php/linetopik/step_video/').$UUID;
                     $status ="enable";
                 } else {
                     $icon='ico-movie';
@@ -367,7 +370,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // pengecekan disable atau enable step
                 if ($step == true || $urutan == '1' ) {
                     $icon ='ico-file6';
-                    $link = base_url('index.php/linetopik/step_materi/'.$UUID);
+                    $link = base_url('index.php/linetopik/step_materi/').$UUID;
                     $status ="enable";
                 } else {
                    $icon='ico-file6';
@@ -381,7 +384,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 if ($step == true || $urutan == '1' ) {
                    $icon ='ico-pencil';
                   $latihanID = $rows['latihanID'];
-                   $link = base_url('index.php/linetopik/create_session_id_latihan/'.$latihanID);
+                   $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
                    $status ="enable";
                 } else {
                   $icon='ico-pencil';
@@ -400,17 +403,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'icon' =>$icon,
                 'link' => $link,
                 'status'=>$status);
-            $id = $this->session->userdata['id_siswa'];
-            $log=$this->Mlinetopik->get_log($stepID, $id);
+            $log=$this->Mlinetopik->get_log($stepID);
             $step = $log;
 
         }
 
       // END step line data
 
-        $this->load->view('template/siswa/v-head');
+        $this->load->view('template/header');
         $this->load->view('v-hasil-quiz', $data);
-        $this->load->view('template/siswa/v-footer');
 
     }
 
@@ -487,193 +488,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'icon' =>$icon,
                 'link' => $link,
                 'status'=>$status);
-            $id = $this->session->userdata['id_siswa'];
-            $log=$this->Mlinetopik->get_log($stepID,$id);
+            $log=$this->Mlinetopik->get_log($stepID);
             $step = $log;
 
         }
-        $this->load->view('template/siswa/v-head');
+        $this->load->view('template/header');
+        $this->load->view('workout1/v-header');
         // $this->load->view('v-step-materi', $data);
         $this->load->view('v-line-topik-2', $data);
-        $this->load->view('template/siswa/v-footer');
         // END step line
     }
-
-
-    public function timeline($UUID)
-    {
-         $dat=$this->Mlinetopik->get_topic_step($UUID);
-        $data['datline']=array();
-         $step=false;
-        foreach ($dat as $rows) {
-            $data['namaTopik']=$rows['namaTopik'];
-            $data['deskripsi']=$rows['deskripsi'];
-            $tampJenis = $rows['jenisStep'];
-            $UUID = $rows['stepUUID'];
-            $stepID = $rows['stepID'];
-            $urutan = $rows ['urutan'];
-           if ($tampJenis == '1') {
-                $jenis='Video';
-                
-                if ($step == true || $urutan == '1' ) {
-                    $icon='ico-movie';
-                    $link = base_url('index.php/linetopik/step_video/'.$UUID);
-                    $status ="enable";
-                    
-                } else {
-                    $icon ='ico-movie';
-                    $link = 'javascript:void(0)';
-                    $status ="disable";
-                }
-
-            }else if ($tampJenis == '2') {
-                $jenis='Materi';
-                
-                if ($step == true || $urutan == '1' ) {
-                    $icon ='ico-file6';
-                    $link = base_url('index.php/linetopik/step_materi/'.$UUID);
-                    $status ="enable";
-                } else {
-                    $icon ='ico-file6';
-                    $link = 'javascript:void(0)';
-                    $status ="disable";
-                }
-            }else{
-                $jenis='Latihan';
-                if ($step == true || $urutan == '1' ) {
-                   $icon ='ico-pencil';
-                  $latihanID = $rows['latihanID'];
-                   $link = base_url('index.php/linetopik/create_session_id_latihan/'.$latihanID);
-                   $status ="enable";
-                } else {
-                    $icon ='ico-pencil';
-                    $link = 'javascript:void(0)';
-                    $status ="disable";
-                }
-            }
-            $data['datline'][]=array(
-                'namaStep'=> $rows['namaStep'],
-                'jenisStep'=>$jenis,
-                'icon' =>$icon,
-                'link' => $link,
-                'bab'=>$rows['judul_bab'],
-                'status'=>$status);
-            $id = $this->session->userdata['id_siswa'];
-            $log=$this->Mlinetopik->get_log($stepID, $id);
-            $step = $log;
-            $babID = $rows['babID'];
-        }
-        $data['topik']=$this->Mlinetopik->get_topik($babID);
-          // END get data time untuk side bar
-
-        $this->load->view('template/siswa/v-head');
-        $this->load->view('v-oneline', $data);
-        $this->load->view('template/siswa/v-footer');
-        // END step line
-         
-    }
-
-
-    // view step video
-    public function step_video($UUID)
-    {
-        // pengecekan jika snip url
-        $snip=$this->Mlinetopik->get_stepLog($UUID);
-        if ($snip==false) {
-          redirect('/login');
-        }
-        //get stepID untuk save log
-         $stepID= $this->Mlinetopik->get_stepID($UUID);
-        // save log step line
-        $this->logLine($stepID);
-         $data['datVideo']=$this->Mlinetopik->get_datvideo($UUID);
-         // get UUID TOPIK
-         $data['UUID']=$data['datVideo']['UUID'];
-         // Start get tanggal dan bulan
-            $timestamp = strtotime($data['datVideo']['date_created']);
-            $data['tgl']=date("d", $timestamp);
-            $data['bulan']=date("M", $timestamp);
-         // END get tanggal dan bulan
-         //Start get data untuk time line side bar
-           $dat=$this->Mlinetopik->get_topic_step2($UUID);
-            $data['datline']=array();
-            //menampung bolean t/f utuk disable enable step
-            $step=false;
-        foreach ($dat as $rows) {
-            $data['namaTopik']=$rows['namaTopik'];
-            $data['deskripsi']=$rows['deskripsi'];
-            $data['topikUUID']=$rows['topikUUID'];
-            $tampJenis = $rows['jenisStep'];
-            $UUID = $rows['stepUUID'];
-            $stepID = $rows['stepID'];
-            $urutan = $rows ['urutan'];
-            // Pengecekan jenis step line
-           if ($tampJenis == '1') {
-                $jenis='Video';
-                // pengecekan disable atau enable step
-                if ($step == true || $urutan == '1' ) {
-                    $icon='ico-movie ';
-                    $link = base_url('index.php/linetopik/step_video/'.$UUID);
-                    $status ="enable";
-                } else {
-                   $icon='ico-movie';
-                    $link = 'javascript:void(0)';
-                    $status ="disable";
-                }
-            }else if ($tampJenis == '2') {
-                $jenis='Materi';
-                // pengecekan disable atau enable step
-                if ($step == true || $urutan == '1' ) {
-                    $icon =' ico-file6';
-                    $link = base_url('index.php/linetopik/step_materi/'.$UUID);
-                    $status ="enable";
-                } else {
-                   $icon =' ico-file6';
-                    $link = 'javascript:void(0)';
-                    $status ="disable";
-                }
-            }else{
-                $jenis='Latihan';
-                // pengecekan disable atau enable step
-                if ($step == true || $urutan == '1' ) {
-                   $icon ='ico-pencil';
-                  $latihanID = $rows['latihanID'];
-                   $link = base_url('index.php/linetopik/create_session_id_latihan/'.$latihanID);
-                   $status ="enable";
-                } else {
-                    $icon ='ico-pencil';
-                    $link = 'javascript:void(0)';
-                    $status ="disable";
-                }
-            }
-            $data['datline'][]=array(
-                'namaStep'=> $rows['namaStep'],
-                'jenisStep'=>$jenis,
-                'icon' =>$icon,
-                'link' => $link,
-                'status'=>$status);
-            $data['bab']      = $rows['judul_bab'];
-            $data['topik']    = $rows['namaTopik'];
-            $id = $this->session->userdata['id_siswa'];
-              $log=$this->Mlinetopik->get_log($stepID, $id);
-            $step = $log;
-        }
-          // END get data time untuk side bar
-          $data['files'] = array(
-
-            APPPATH . 'modules/homepage/views/v-header-login.php',
-
-            APPPATH . 'modules/linetopik/views/v-step-video.php',
-
-            APPPATH . 'modules/homepage/views/v-footer.php',
-
-        );
-
-     
-        $this->parser->parse('templating/index', $data);
-
-    }
-
 
 
 

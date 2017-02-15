@@ -6,7 +6,7 @@
           <div class="open-left" id="open-left" data-activates="slide-out-left">
             <i class="ion-android-menu"></i>
           </div>
-          <span class="title">Workout</span>
+          <span class="title">Path</span>
           <div class="open-right" id="open-right" data-activates="slide-out">
             <i class="ion-android-person"></i>
           </div>
@@ -39,8 +39,7 @@
                <!-- /Header Info -->
               <?php endif ?>
               <!-- Body Info -->
-              <!-- <div class="collapsible-body"><p><?=$pel['judul_bab']?></p></div> -->
-              <div class="collapsible-body"><a href="<?=base_url()?>index.php/grafikreport/greport/<?=$pel['id_bab'] ?>"><?=$pel['judul_bab']?></a></div>
+              <div class="collapsible-body"><h6><a href="<?=base_url()?>index.php/linetopik/learningline/<?=$pel['id_bab'] ?>"><?=$pel['judul_bab']?></a></h6></div>
               <!-- /Body info -->
               <?php $olduniversitas=$mp; ?>
              <?php endforeach ?>
