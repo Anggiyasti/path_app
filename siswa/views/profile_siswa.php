@@ -89,11 +89,57 @@
 
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
             <!-- <button class="waves-effect waves-light btn-large primary-color width-100" name="update" type=""> Submit</button> -->
-            <input type="submit"   name="update" value="Update" class="waves-effect waves-light btn-large primary-color width-100" style="background-color: red" >
+            <input type="submit"   name="update" value="Update" class="btn-large primary-color width-100"  >
+          </form>
 
-            <a class="waves-effect waves-light btn-large width-100" href="" name="update">Purchase</a>
+          <h4 class="shipping-address">Password</h4>
+            <?php echo $this->session->flashdata('msg'); ?> 
+            <form action="<?=base_url()?>index.php/Siswa/ubahpass_siswa" method="post">
+              <div class="input-field">
+                <label>Password Lama</label>
+                <input type="password" name="" class="form-control" >
+                <?php echo form_error('password'); ?>
+              </div>
+              <div class="input-field">
+                <label>Password Baru</label>
+                <input type="password" class="form-control" name="password" id="password">
+              </div>
+           
+            <div class="input-field">
+                <label>Ulangi Password</label>
+                <input type="password" class="form-control" name="password2" class="form-control" id="password2"  required onkeyup="checkPass(); return false;">
+                <?php echo form_error('password'); ?>
+                <span id="confirmMessage" class="confirmMessage"></span>
+            </div>
+
+            <div class="input-field">
+            <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
+            <button type="reset" class="btn-large primary-color width-100">Reset</button>
+            </div>
+
+            <div class="input-field">
+            <input type="submit" class="btn-large primary-color width-100" name="update"  value="Update" >
+            </div>
+          </form>
+
+          <h4 class="shipping-address">Photo</h4>
+            <?php echo $this->session->flashdata('msg'); ?> 
+            <form action="<?=base_url()?>index.php/Siswa/upload/<?=$oldphoto; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+
+            <img id="preview" class="img-circle circle avatar" src="<?=$photo;?>" alt="" style="width: 150px; height: 150px;" />
+            <br><br>            
+            <label for="file" class="btn primary-color" >
+            Pilih Gambar
+            </label>
+            <input style="display:none;" type="file" id="file" name="photo" class="btn btn-default" required="true" onchange="ValidateSingleInput(this);" />
+            <?php echo form_error('password'); ?>
+                                                       <!--  <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>"> -->
+            <button type="submit" class="btn primary-color">Simpan</button>
           </form>
           </div>
+
+          
+       
 
 
 <script type="text/javascript">
