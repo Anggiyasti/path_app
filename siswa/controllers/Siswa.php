@@ -72,7 +72,7 @@ class Siswa extends MX_Controller {
 			else
 			{
 				 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-				redirect('Siswa/Profilesiswa');
+				redirect('siswa/Profilesiswa');
 			}
 		}
 		
