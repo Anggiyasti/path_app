@@ -32,199 +32,53 @@
 } ;
 
 ?> 
-
-
-
-                <div class="container">
-                    <div class="row"> 
-                        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
-                            <div class="row">
-
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="section-divider"></div>
-                                    <div class="course-details-inner">
-                                        <div class="leave-comments">
-                                            <h3 class="sidebar-title">Profile Setting</h3>
-                                            <div class="product-details-tab-area">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <ul>
-                                                <li class="active"><a href="#description" data-toggle="tab" aria-expanded="false">Profile</a></li>
-                                                <li><a href="#review" data-toggle="tab" aria-expanded="false">Password</a></li>
-                                                <li><a href="#add-tags" data-toggle="tab" aria-expanded="false">Photo</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade active in" id="description">
-                                                    <div class="contact-form" id="review-form">
-                                                    <?php echo $this->session->flashdata('msg'); ?> 
-                                                    <form action="<?=base_url()?>index.php/Siswa/edit_siswa" method="post">
-                                                        <fieldset>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                    <label>Nama Depan</label>
-                                                                    <input type="text" class="form-control" name="nama_depan" value="<?=$nama_depan; ?>">
-                                                                    <?php echo form_error('nama_depan'); ?>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                    <label>Nama Belakang</label>
-                                                                    <input type="text" class="form-control" name="nama_belakang" value="<?=$nama_belakang; ?>">
-                                                                    <?php echo form_error('nama_belakang'); ?>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                    <label>Alamat</label>
-                                                                    <input type="text" class="form-control" name="alamat" value="<?=$alamat; ?>">
-                                                                    <?php echo form_error('alamat'); ?>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                    <label>Nama Sekolah</label>
-                                                                    <input type="text" class="form-control" name="nama_sekolah" value="<?=$namaskul; ?>">
-                                                                    <?php echo form_error('nama_sekolah'); ?>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                    <label>Email</label>
-                                                                    <input type="email" class="form-control" name="email" value="<?=$email; ?>">
-                                                                    <?php echo form_error('email'); ?>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                <label>No Telepon</label>
-                                                                <input type="text" class="form-control" name="no_tlp" value="<?=$no; ?>">
-                                                                <?php echo form_error('no_tlp'); ?>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                <label>Universitas</label>
-                                                                <input type="text" class="form-control" name="" value="<?=$univ; ?>" disabled>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                <label>Jurusan</label>
-                                                                <input type="text" class="form-control" name="" value="<?=$jur; ?>" disabled>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                <label>biografi</label>
-                                                                <textarea placeholder="Comment" class="textarea form-control" id="form-message" name="biografi" rows="8" cols="20"><?=$bio; ?></textarea>
-                                                                <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
-                                                                <input type="submit" class="default-full-width-btn" name="update"  value="Update" style="color: #FFFFFF;" >
-                                                                <!-- <button type="submit" name="update" class="view-all-accent-btn">Update</button> -->
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                    </form>
-                                                </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="review">
-                                                    <div class="contact-form" id="review-form">
-                                                    <?php echo $this->session->flashdata('msg'); ?> 
-                                                    <form action="<?=base_url()?>index.php/Siswa/ubahpass_siswa" method="post">
-                                                        <fieldset>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                    <label>Password Lama</label>
-                                                                    <input type="password" name="" class="form-control" >
-                                                                    <?php echo form_error('password'); ?>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                    <label>Password Baru</label>
-                                                                    <input type="password" class="form-control" name="password" id="password">
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <div class="form-group">
-                                                                    <label>Ulangi Password</label>
-                                                                    <input type="password" class="form-control" name="password2" class="form-control" id="password2"  required onkeyup="checkPass(); return false;">
-                                                                    <?php echo form_error('password'); ?>
-                                                                    <span id="confirmMessage" class="confirmMessage"></span>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
-                                                                <button type="reset" class="default-full-width-btn">Reset</button>
-                                                                 
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                
-                                                                 <input type="submit" class="default-full-width-btn" name="update"  value="Update" style="color: #FFFFFF;" >
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                    </form>
-                                                </div>                      
-                                                </div>
-                                                <div class="tab-pane fade" id="add-tags">                           
-                                                    <div class="contact-form" id="photo">
-                                                    <?php echo $this->session->flashdata('msg'); ?> 
-                                                    <form action="<?=base_url()?>index.php/Siswa/upload/<?=$oldphoto; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                                                        <fieldset>
-                                                        <img id="preview" class="img-circle img-bordered" src="<?=$photo;?>" alt="" style="width: 150px; height: 150px;" />
-                                                        <br><br>
-                                                        <label for="file" class="default-full-width-btn" style="text-align: center;">
-                                                        Pilih Gambar
-                                                        </label>
-                                                        <input style="display:none;" type="file" id="file" name="photo" class="btn btn-default" required="true" onchange="ValidateSingleInput(this);" />
-                                                        <?php echo form_error('password'); ?>
-                                                       <!--  <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>"> -->
-                                                        <button type="submit" class="default-full-width-btn">Simpan</button>
-                                                        <div class="help-block with-errors"></div>
-
-                                                                 
-
-                                                                
-                                                                <!-- <button type="submit" name="update" class="view-all-accent-btn">Update</button> -->
-
-                                                        </fieldset>
-                                                    </form>
-                                                </div> 
-                                                </div>                                          
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
+ <!-- Main Content -->
+        <div class="animated fadeinup">
+          <!-- Collapsible -->
+          <h4 class="p-20">Simple Dropdown</h4>
+          <ul class="faq collapsible animated fadeinright delay-1" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>Profile </div>
+              <div class="collapsible-body">
+              <div>
+              <?php echo $this->session->flashdata('msg'); ?>
+              <form action="<?=base_url()?>index.php/Siswa/edit_siswa" method="post">
+              <div class="input-field">
+                <label>Nama Depan</label>
+                <input type="text" class="validate" name="nama_depan" value="<?=$nama_depan; ?>">
+                <?php echo form_error('nama_depan'); ?>
+              </div>
+              <div class="input-field">
+                <label>Nama Belakang</label>
+                <input type="text" class="validate" name="nama_belakang" value="<?=$nama_belakang; ?>">
+                <?php echo form_error('nama_belakang'); ?>
+              </div>
+              </form>
             </div>
-            <script type="text/javascript">
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>Some tips</div>
+              <div class="collapsible-body"><p>Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>Places near you</div>
+              <div class="collapsible-body"><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>Suggestions</div>
+              <div class="collapsible-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+            </li>
+          </ul>
+          
+          
+
+         
+        </div> <!-- End of Main Contents -->
+
+
+
+<script type="text/javascript">
 // load bab
 $(function(){
 

@@ -1,5 +1,24 @@
 
-<h2 class="about-title">Prodi</h2>
+<!-- Page Content -->
+      <div id="content" class="page">
+
+        <!-- Toolbar -->
+        <div id="toolbar" class="primary-color">
+          <div class="open-left" id="open-left" data-activates="slide-out-left">
+            <i class="ion-android-menu"></i>
+          </div>
+          <span class="title">Passing Grade</span>
+          <div class="open-right" id="open-right" data-activates="slide-out">
+            <i class="ion-android-person"></i>
+          </div>
+        </div>
+
+       
+        <div class="animated fadeinup delay-1">
+          <div class="page-content">
+            <!-- With Left Icon -->
+          <h4 class="p-20" style="text-align: center;">Program Studi</h4>
+
         <?php 
         $no1 = 1;
         $no2 = 2;
@@ -18,113 +37,56 @@
         $no15 = 15;
         $no16 = 16;
          ?>
-<div class="container">
-                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no1;?>"><i style="font-size: 18px;">21%-25%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no2;?>"><i style="font-size: 18px;">26%-30%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no3;?>"><i style="font-size: 18px;">31%-35%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no4;?>"><i style="font-size: 18px;">36%-40%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no5;?>"><i style="font-size: 18px;">41%-45%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no6;?>"><i style="font-size: 18px;">46%-50%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no7;?>"><i style="font-size: 18px;">51%-55%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no8;?>"><i style="font-size: 18px;">56%-60%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no9;?>"><i style="font-size: 18px;">61%-65%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no10;?>"><i style="font-size: 18px;">66%-70%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no11;?>"><i style="font-size: 18px;">71%-75%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no12;?>"><i style="font-size: 18px;">76%-80%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="service-box2">
-                                <div class="service-box-icon">
-                                    <a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no13;?>"><i style="font-size: 18px;">81%-85%</i></a>
-                                </div>                      
-                                
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
+
+
+          <div class="page-content" style="text-align: center;">
+            <div class="sizes p-b-25">
+              <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no1;?>">21%-25%</a></span>
             </div>
+            <div class="sizes p-b-25">
+              <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no2;?>">26%-30%</a></span>
+            </div>
+
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no3;?>">31%-35%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no4;?>">36%-40%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no5;?>">41%-45%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no6;?>">46%-50%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no7;?>">51%-55%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no8;?>">56%-60%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no9;?>">61%-65%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no10;?>">66%-70%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no11;?>">71%-75%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no12;?>">76%-80%</a></span>
+            </div>
+            <div class="sizes p-b-25">
+            <span class="size" ><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no13;?>">81%-85%</a></span>
+            </div>
+
+          </div>
+
+          
+        </div>
+
+
+
+          
+        </div> 

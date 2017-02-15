@@ -165,6 +165,7 @@ class Passinggrade extends MX_Controller {
     // fungsi untuk menampilkan berdasarkan universitas
     public function univ()
     {
+        if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getpassing();
@@ -175,12 +176,17 @@ class Passinggrade extends MX_Controller {
         $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('v-universitas',$data);
         $this->load->view('template/siswa2/v-footer');
-        
+    }
+    else{
+        redirect('Login');
+    }
+    
     }
 
     //fungsi untuk memilih prodi
     public function pilih_prodi()
     {
+        if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->tampil_prodi();
@@ -191,12 +197,17 @@ class Passinggrade extends MX_Controller {
 
         $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('v-pilih-programstudi',$data);
-        $this->load->view('template/siswa2/v-footer');        
+        $this->load->view('template/siswa2/v-footer');   
+        }
+    else{
+        redirect('Login');
+    }     
     }
 
     // fungsi untuk menampilkan  prodi berdasarkan pilihan 
     public function prodi($prodi)
     {   
+        if ($this->session->userdata('id_siswa')) {
        $prodii = urldecode($prodi);
        $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
@@ -206,22 +217,33 @@ class Passinggrade extends MX_Controller {
        //  $this->load->view('workout1/v-header');
        //  $this->load->view('v-prodi', $data);
 
-        // $this->load->view('template/siswa2/v-header',$data);
+        $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('v-programstudi',$data);
-        $this->load->view('template/siswa2/v-footer');  
+        $this->load->view('template/siswa2/v-footer'); 
+        }
+    else{
+        redirect('Login');
+    } 
         
     }
 
     public function passing()
     {
+        if ($this->session->userdata('id_siswa')) {
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getpassing();
         // $this->load->view('template/header');
         // $this->load->view('workout1/v-header');
         // $this->load->view('v-passinggrade');
 
-        $this->load->view('template/siswa/v-head');
+        $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('v-passgrade');
-        $this->load->view('template/siswa/v-footer');  
+        $this->load->view('template/siswa2/v-footer'); 
+        }
+    else{
+        redirect('Login');
+    }     
         
     }
     // public function hasilpassing()
@@ -245,6 +267,9 @@ class Passinggrade extends MX_Controller {
 
     public function hasilpassing($no)
     {
+        if ($this->session->userdata('id_siswa')) {
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         if ($no == 1 ) {
             $a = 21;
             $b = 25;
@@ -298,10 +323,13 @@ class Passinggrade extends MX_Controller {
         // $this->load->view('template/header');
         // $this->load->view('workout1/v-header');
         // $this->load->view('v-cobapassing',$data);
-        $this->load->view('template/siswa/v-head');
+        $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('v-hasilpassing',$data);
-        $this->load->view('template/siswa/v-footer');  
-        
+        $this->load->view('template/siswa2/v-footer');  
+         }
+    else{
+        redirect('Login');
+    }     
 
         // var_dump($data);
 
