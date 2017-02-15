@@ -16,7 +16,7 @@
     <link href="<?php echo base_url('assets/app/halo/css/swiper.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/app/halo/css/swipebox.min.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/app/halo/css/style.css')?>" rel="stylesheet" type="text/css">
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
     <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
     

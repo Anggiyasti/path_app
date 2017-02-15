@@ -88,10 +88,10 @@
             </div>
 
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
-            <button class="waves-effect waves-light btn-large primary-color width-100" name="update"> Submit</button>
-          <!--   <input type="submit"    value="Update"  > -->
+            <!-- <button class="waves-effect waves-light btn-large primary-color width-100" name="update" type=""> Submit</button> -->
+            <input type="submit"   name="update" value="Update" class="waves-effect waves-light btn-large primary-color width-100" style="background-color: red" >
 
-            <!-- <a class="waves-effect waves-light btn-large primary-color width-100" href="index.html">Purchase</a> -->
+            <a class="waves-effect waves-light btn-large width-100" href="" name="update">Purchase</a>
           </form>
           </div>
 
