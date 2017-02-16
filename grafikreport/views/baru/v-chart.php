@@ -1,66 +1,5 @@
 <script src="http://code.jquery.com/jquery-3.1.0.slim.min.js" type="text/javascript"></script>
- <style>
-
-.barfiller {
-  width: 100%;
-  height: 12px;
-  background: #fcfcfc;
-  border: 1px solid #ccc;
-  position: relative;
-  margin-bottom: 20px;
-  box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,.5);
-  -moz-box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,.5);
-}
-
-.barfiller .fill {
-  display: block;
-  position: relative;
-  width: 0px;
-  height: 100%;
-  background: #333;
-  z-index: 1;
-}
-
-.barfiller .tipWrap { display: none; }
-
-.barfiller .tip {
-  margin-top: -30px;
-  padding: 2px 4px;
-  font-size: 11px;
-  color: #fff;
-  left: 0px;
-  position: absolute;
-  z-index: 2;
-  background: #333;
-}
-
-.barfiller .tip:after {
-  border: solid;
-  border-color: rgba(0,0,0,.8) transparent;
-  border-width: 6px 6px 0 6px;
-  content: "";
-  display: block;
-  position: absolute;
-  left: 9px;
-  top: 100%;
-  z-index: 9
-}
-
-</style>
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-  $('#bar1').barfiller();
-  $('#bar2').barfiller();
-  $('#bar3').barfiller();
-  // $('#bar3').barfiller({ barColor: '#fc6' });
-  // $('#bar4').barfiller({ barColor: '#900', duration: 3000 });
-  
-});
-
-</script>
+<link rel="stylesheet" href="<?php echo base_url('assets/main-academics/academics-placeholder/style.css')?>">
       <!-- Page Content -->
       <div id="content" class="page">
       
@@ -75,46 +14,49 @@ $(document).ready(function(){
           </div>
         </div>
         
-        <!-- Article Content -->
-        <div class="animated fadeinup delay-1">
-          <div class="page-content">
+        
 
 
-          <h4 class="p-20">Grafik Workout</h4>
 
-          <?php if ($c== array()): ?>
-            <h4 align="center">Tidak ada Grafik Workout.</h4>
-            <?php else: ?>
-            <?php foreach ($c as $key) : 
-              $p = $key['score_grafik'];
-              $p2= 1;
-              if ($p == 0) { ?>
-              <?=$key['judul_bab'];?>
-              <div id="bar<?=$p2?>" class="barfiller">
-                <div class="tipWrap">
-                  <span class="tip"></span>
+<div class="sidebar-box">
+    <div class="sidebar-box-inner">
+        <h3 class="sidebar-title"><?=$mapel ?></h3>
+        <div class="sidebar-course-reviews">
+            <div class="skill-area">
+                
+                <?php if ($c== array()): ?>
+          <h4 align="center">Tidak ada Grafik Workout.</h4>
+        <?php else: ?>
+   
+          <?php foreach ($c as $key) : 
+          $p = $key['score_grafik'];
+          
+
+          if ($p == 0) { ?>
+                <div class="progress" style="height: 30px; ">
+                    <div class="lead"><?=$key['judul_bab'];?></div>
+                    <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px;" data-progress="0" class="progress-bar wow fadeInLeft  animated"></div><span>0%</span>
                 </div>
-                <span class="fill" data-percentage="0"></span>
-              </div>
-              <?php } else { ?>
-              <?=$key['judul_bab'];?>
-                <div id="bar2" class="barfiller">
-                <div class="tipWrap">
-                  <span class="tip"></span>
-                </div>
-                <span class="fill" data-percentage="<?=$p?>"></span>
-              </div>
-              <?php } ?>
-            <?php endforeach ?>
-
-          <?php endif ?>
-          </div>
-        </div>
-      </div>
+                
+        <?php } else {?>
+            <div class="progress" style="height: 30px;">
+            <div class="lead"><?=$key['judul_bab'];?></div>
+            <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px; background-color: #2196f3;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft animated"></div><span><?=$p?>%</span> 
+            </div>
+                <?php } ?>
+        <!-- End Skill Bar -->
+        <?php endforeach ?>
+   
+    <!-- End Skill Bar -->
+    <?php endif ?>
+                                                
+    </div>
+</div>
+</div>
 </div>
 
   <script src="<?php echo base_url('assets/app/halo/js/jquery-2.1.0.min.js')?>"></script>
-   <script src="<?= base_url('assets/plugins/jquery.barfiller.js')?>"></script>
+   <script src="<?php echo base_url('assets/plugins/jquery.barfiller.js')?>"></script>
     <script src="<?php echo base_url('assets/app/halo/js/jquery.swipebox.min.js')?>"></script>   
     <script src="<?php echo base_url('assets/app/halo/js/jquery.smoothState.min.js')?>"></script> 
     <script src="<?php echo base_url('assets/app/halo/js/materialize.min.js')?>"></script> 
