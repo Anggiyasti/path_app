@@ -145,32 +145,15 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
          
           <!-- Facebook -->
           <div class="facebook">
-            <h6 class="follow-us">Notifications</h6>
-            <div class="face-notification">
-              <img src="img/user2.jpg" alt="" class="cricle">
-              <div>
-                <p>Mike Green</p>
-                <span>Sent you a message</span>
-                <span class="small">Today at 16:48</span>
-              </div>
-            </div>
-            <div class="face-notification">
-              <img src="img/user.jpg" alt="" class="cricle">
-              <div>
-                <p>Lara Connors</p>
-                <span>Post a photo with you</span>
-                <span class="small">Today at 14:26</span>
-              </div>
-            </div>
-            <div class="face-notification">
-              <img src="img/user3.jpg" alt="" class="cricle">
-              <div>
-                <p>Mike Green</p>
-                <span>Post something...</span>
-                <span class="small">Yesterday at 03:19</span>
-              </div>
-            </div>
-          </div>
+         
+            <?php foreach ($logmax as $l): ?>
+                
+                <div>
+                <span class="large" ><?=$l['judul_bab']?>  <?=$l['create_by']?>  <?=$l['max']?></span>
+                </div>
+               
+              <?php endforeach ?>   
+            
 
         </li>
         <li id="sidebar2" class="p-20">
