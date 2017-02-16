@@ -231,6 +231,23 @@ function get_admin($id_admin){
 
     }
 
+    // tampil passing grade berdasarkan prodi
+    public function getlogmax() {
+        $this->db->distinct();
+        $this->db->select('m.nama_mapel, b.judul_bab, MAX( r.score ) as max, r.id_latihan, l.create_by, l.id_bab');
+        $this->db->from('tb_report_latihan r');
+        $this->db->join('tb_latihan l ','r.id_latihan = l.id_latihan');
+        $this->db->join('tb_bab  b','l.id_bab = b.id_bab');
+        $this->db->join('tb_mata_pelajaran m ', 'b.id_mapel = m.id_mapel');
+        $this->db->group_by('l.id_bab');
+        $this->db->order_by('b.judul_bab ','asc ');
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+
+
+
     //     $query = $this->db->get_where('tb_siswa',array('nama_depan'=>$nama_depan));
     //     $query = $query->result_array();
     //     if ($query) {

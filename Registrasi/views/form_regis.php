@@ -1,99 +1,68 @@
 
+<!-- Page Content -->
+      <div id="content" class="grey-blue login">
 
-<div class="courses-page-area3" >
-                <div class="container" >
-                    <div class="row" > 
-                        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12" style="width: 100%;">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="section-divider" ></div>
-                                    <div class="course-details-inner" >
-                                        <div class="leave-comments" >
-                                            <h3 class="sidebar-title">Registrasi</h3>
-                                            <div class="row">
-                                                <div class="contact-form" id="review-form"> 
-                                                <div><?php echo $this->session->flashdata('msg'); ?></div>
-                                                    <?php $attributes = array("name" => "registrationform");
-                                                    echo form_open("registrasi/register", $attributes);?>
-                                                        <fieldset>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <label>Nama Depan *</label>
-                                                                    <input type="text" name="nama_depan" placeholder="Nama Depan" value="<?php echo set_value('nama_depan'); ?>" onfocus="" class="form-control" required/>
-                                                                    <span class="text-danger"><?php echo form_error('nama_depan'); ?></span>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <label>Nama Belakang *</label>
-                                                                    <input name="nama_belakang" placeholder="Nama Belakang" type="text" value="<?php echo set_value('nama_belakang'); ?>" onfocus="" class="form-control" required/>
-                                                                    <span class="text-danger"><?php echo form_error('nama_belakang'); ?></span>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <label>Email *</label>
-                                                                    <input name="email" placeholder="Email-ID" type="text" value="<?php echo set_value('email'); ?>" onfocus="" class="form-control" required/>
-                                                                    <span class="text-danger"><?php echo form_error('email'); ?></span>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <label>Password *</label>
-                                                                    <input name="password" placeholder="Password" type="password" onfocus="" id="password" class="form-control" required/>
-                                                                    <span class="text-danger"><?php echo form_error('password'); ?></span>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <label>Confirm Password *</label>
-                                                                    <input name="cpassword" placeholder="Confirm Password" type="password" onfocus="" class="form-control" id="password2" required onkeyup="checkPass(); return false;"/>
-                                                                    <span class="text-danger"><?php echo form_error('cpassword'); ?></span>
-                                                                    <span id="confirmMessage" class="confirmMessage"></span>
-                                                                    <div class="help-block with-errors"></div>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            
-                                                            
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                    <button name="submit" type="submit" class="default-full-width-btn">Create Account </button>
-                                                                     
-                                                                    
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                <button name="cancel" type="reset" class="default-full-width-btn">Cancel</button>
-                                                                     
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="form-group">
-                                                                <a href="<?php echo base_url('index.php/login')?>" class="default-full-width-btn" style="text-align: center;">Login here </a>
-                                                                    
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                    <?php echo form_close(); ?>
-                                                    <?php echo $this->session->flashdata('msg'); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                                       
-                    </div>
-                </div>
-            </div>
+        <!-- Toolbar -->
+        <div id="toolbar" class="tool-login primary-color animated fadeindown">
+          <a href="javascript:history.back()" class="open-left">
+            <i class="ion-android-arrow-back"></i>
+          </a>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="login-form animated fadeinup delay-2 z-depth-1">
+
+          <h1>Register</h1>
+          <div><?php echo $this->session->flashdata('msg'); ?></div>
+          <?php $attributes = array("name" => "registrationform");
+          echo form_open("registrasi/register", $attributes);?>
+          <div class="input-field">
+            <i class="ion-android-contact prefix"></i> 
+            <label>Nama Depan *</label>
+            <input type="text" name="nama_depan"  value="<?php echo set_value('nama_depan'); ?>" onfocus="" class="form-control" required/>
+            <span class="text-danger"><?php echo form_error('nama_depan'); ?></span>
+          </div>
+
+          <div class="input-field">
+            <i class="ion-android-contact prefix"></i> 
+            <label>Nama Belakang *</label>
+            <input name="nama_belakang" type="text" value="<?php echo set_value('nama_belakang'); ?>" onfocus="" class="form-control" required/>
+            <span class="text-danger"><?php echo form_error('nama_belakang'); ?></span>
+          </div>
+          <div class="input-field">
+            <i class="ion-android-contact prefix"></i> 
+            <label>Email *</label>
+            <input name="email"  type="text" value="<?php echo set_value('email'); ?>" onfocus="" class="form-control" required/>
+            <span class="text-danger"><?php echo form_error('email'); ?></span>
+          </div>
+          <div class="input-field">
+            <i class="ion-android-lock prefix"></i> 
+            <label>Password *</label>
+            <input name="password"  type="password" onfocus="" id="password" class="form-control" required/>
+            <span class="text-danger"><?php echo form_error('password'); ?></span>
+          </div>
+          <div class="input-field">
+            <i class="ion-android-lock prefix"></i> 
+            <label>Confirm Password *</label>
+            <input name="cpassword" type="password" onfocus="" class="form-control" id="password2" required onkeyup="checkPass(); return false;"/>
+            <span class="text-danger"><?php echo form_error('cpassword'); ?></span>
+            <span id="confirmMessage" class="confirmMessage"></span>
+          </div>
+
+          
+          
+          <button name="submit" type="submit" class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4">Create Account </button>
+          <button name="cancel" type="reset" class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4">Cancel</button>
+          <a href="<?php echo base_url('index.php/login')?>" class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" style="text-align: center;">Login here </a>
+          
+          <?php echo form_close(); ?>
+          <?php echo $this->session->flashdata('msg'); ?>
+        </div><!-- End of Main Contents -->
+        </div>
+      
+
+
+
 
 <script type="text/javascript">
 

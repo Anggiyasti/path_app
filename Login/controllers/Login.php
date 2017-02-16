@@ -142,6 +142,8 @@ class Login extends MX_Controller
        if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $data['logmax']  = $this->Loginmodel->getlogmax();
+        // var_dump($data);
         
       
             // $this->load->view('siswa/layout/header');

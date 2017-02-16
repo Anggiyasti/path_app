@@ -16,13 +16,13 @@
           <?php echo validation_errors(); ?>
           <div class="input-field">
             <i class="ion-android-contact prefix"></i> 
-            <input type="text" name="username" value="<?php echo set_value('email') ?>" onfocus="if (this.value=='Username/Email') this.value = ''" onblur="if (this.value=='') this.value = 'Email'" class="validate"/>
+            <input type="text" name="username" value="<?php echo set_value('email') ?>" onfocus="if (this.value=='Username/Email') this.value = ''" onblur="if (this.value=='')" class="validate"/>
             <label for="login">Email address *</label>
           </div>
 
           <div class="input-field" style="margin-bottom:20px;">
             <i class="ion-android-lock prefix"></i> 
-            <input type="password" name="password" onfocus="if (this.value=='password') this.value = ''" onblur="if (this.value=='') this.value = 'password'" class="validate"/>
+            <input type="password" name="password" onfocus="if (this.value=='password') this.value = ''" onblur="if (this.value=='') " class="validate"/>
             <label for="login-psw">Password *</label>
           </div>
 
