@@ -33,13 +33,13 @@
           
 
           if ($p == 0) { ?>
-                <div class="progress" style="height: 30px; ">
+                <div class="progress" style="height: 30px; background-color: #f5f5f5 ;">
                     <div class="lead"><?=$key['judul_bab'];?></div>
-                    <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px;" data-progress="0" class="progress-bar wow fadeInLeft  animated"></div><span>0%</span>
+                    <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%;  visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px; background-color: #f5f5f5 ;" data-progress="0" class="progress-bar wow fadeInLeft animated"></div><span>0%</span>
                 </div>
                 
         <?php } else {?>
-            <div class="progress" style="height: 30px;">
+            <div class="progress" style="height: 30px; background-color: #f5f5f5 ;">
             <div class="lead"><?=$key['judul_bab'];?></div>
             <div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: <?=$p?>%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft; height: 30px; background-color: #2196f3;" data-progress="<?=$p?>" class="progress-bar wow fadeInLeft animated"></div><span><?=$p?>%</span> 
             </div>

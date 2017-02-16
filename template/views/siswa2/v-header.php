@@ -118,6 +118,79 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
 
   <body>
     <div class="m-scene" id="main"> <!-- Main Container -->
+    <!-- Right Sidebar -->
+      <ul id="slide-out" class="side-nav">
+        <li class="sidenav-header">
+          <!-- Srearch bar -->
+          <nav class="transparent no-shadow">
+            <div class="nav-wrapper">
+              <form>
+                <div class="input-field">
+                  <input id="search" type="search" required>
+                  <label for="search"><i class="ion-android-search"></i></label>
+                  <i class="ion-android-close"></i>
+                </div>
+              </form>
+            </div>
+          </nav>
+        </li>
+        <!-- Tabs -->
+        <li>
+          <ul class="tabs">
+            <li class="tab col s3"><a class="active" href="#sidebar1">Social</a></li>
+            <li class="tab col s3"><a href="#sidebar2">Chat</a></li>
+          </ul>
+        </li>
+        <li id="sidebar1" class="p-20">
+         
+          <!-- Facebook -->
+          <div class="facebook">
+            <h6 class="follow-us">Notifications</h6>
+            <div class="face-notification">
+              <img src="img/user2.jpg" alt="" class="cricle">
+              <div>
+                <p>Mike Green</p>
+                <span>Sent you a message</span>
+                <span class="small">Today at 16:48</span>
+              </div>
+            </div>
+            <div class="face-notification">
+              <img src="img/user.jpg" alt="" class="cricle">
+              <div>
+                <p>Lara Connors</p>
+                <span>Post a photo with you</span>
+                <span class="small">Today at 14:26</span>
+              </div>
+            </div>
+            <div class="face-notification">
+              <img src="img/user3.jpg" alt="" class="cricle">
+              <div>
+                <p>Mike Green</p>
+                <span>Post something...</span>
+                <span class="small">Yesterday at 03:19</span>
+              </div>
+            </div>
+          </div>
+
+        </li>
+        <li id="sidebar2" class="p-20">
+          <!-- Chat -->
+          <div class="chat-sidebar">
+            <div class="chat-img">
+              <img src="img/user.jpg" alt="" class="cricle">
+              <span class="dot green"></span>
+            </div>
+            <div class="chat-message">
+              <p>Mike Green</p>
+              <span>Sent you a message</span>
+              <span class="small">online</span>
+            </div>
+          </div>
+
+          
+        </li>
+      </ul>
+
       
       <!-- Left Sidebar -->
       <ul id="slide-out-left" class="side-nav collapsible">
