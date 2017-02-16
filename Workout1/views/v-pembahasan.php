@@ -149,7 +149,7 @@
                                                     <div class="panel-heading">                                                    
                                                         <div class="row">
                                                            <div class="col-md-6 center"></div>
-                                                           <div class="col-md-6 text-right" style="margin-top:0;"><a href="<?=base_url('index.php/workout1/pilihreport')?>" style="background-color: #00082E;" class="btn btn-sm btn-info" onclick="raguColor(<?= $i ?>)">Pembahasan Selesai</a></div>
+                                                           <div class="col-md-6 text-right" style="margin-top:0;"><a href="<?=base_url('index.php/workout1/pilihreport')?>" class="btn btn-info btn-block" style="background-color: #2196F3;" onclick="raguColor(<?= $i ?>)">Pembahasan Selesai</a></div>
                                                         </div>
                                                     </div>
                                                     <div class="panel-collapse">
@@ -251,8 +251,8 @@
                                     <div class="col-md-6 center"></div>
                                     <div class="col-md-2"></div>
                                         <div class="col-md-8 text-right"> 
-                                            <button class="view-all-accent-btn" id="btnPrev"><<</button>
-                                            <button class="view-all-accent-btn" id="btnNext">>></button>
+                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnPrev"><<</button>
+                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnNext">>></button>
                                         </div>
                                     </div>
                             </row>  

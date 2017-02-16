@@ -137,8 +137,8 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
         <!-- Tabs -->
         <li>
           <ul class="tabs">
-            <li class="tab col s3"><a class="active" href="#sidebar1">Social</a></li>
-            <li class="tab col s3"><a href="#sidebar2">Chat</a></li>
+            <li class="tab col s3"><a class="active" href="#sidebar1">Activity</a></li>
+            <li class="tab col s3"><a href="#sidebar2">Nilai</a></li>
           </ul>
         </li>
         <li id="sidebar1" class="p-20">
@@ -174,18 +174,20 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
 
         </li>
         <li id="sidebar2" class="p-20">
-          <!-- Chat -->
+          <?php foreach ($nilai as $key) : ?>
           <div class="chat-sidebar">
             <div class="chat-img">
-              <img src="img/user.jpg" alt="" class="cricle">
+              <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
               <span class="dot green"></span>
             </div>
             <div class="chat-message">
-              <p>Mike Green</p>
-              <span>Sent you a message</span>
+                <p><?=$key['judul_bab']?></p> 
+                <p><?=$key['create_by']?></p>             
+              <span><?=$key['n']?></span>
               <span class="small">online</span>
-            </div>
+            </div>            
           </div>
+          <?php endforeach ?>
 
           
         </li>

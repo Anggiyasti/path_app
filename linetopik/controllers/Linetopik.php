@@ -356,7 +356,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // pengecekan disable atau enable step
                 if ($step == true || $urutan == '1' ) {
                     $icon='ico-movie ';
-                    $link = base_url('index.php/linetopik/step_video/').$UUID;
+                    $link = base_url('index.php/linetopik/step_video/'.$UUID);
                     $status ="enable";
                 } else {
                     $icon='ico-movie';
@@ -370,7 +370,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // pengecekan disable atau enable step
                 if ($step == true || $urutan == '1' ) {
                     $icon ='ico-file6';
-                    $link = base_url('index.php/linetopik/step_materi/').$UUID;
+                    $link = base_url('index.php/linetopik/step_materi/'.$UUID);
                     $status ="enable";
                 } else {
                    $icon='ico-file6';
@@ -384,7 +384,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 if ($step == true || $urutan == '1' ) {
                    $icon ='ico-pencil';
                   $latihanID = $rows['latihanID'];
-                   $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
+                   $link = base_url('index.php/linetopik/create_session_id_latihan/'.$latihanID);
                    $status ="enable";
                 } else {
                   $icon='ico-pencil';
@@ -403,15 +403,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'icon' =>$icon,
                 'link' => $link,
                 'status'=>$status);
-            $log=$this->Mlinetopik->get_log($stepID);
+            $id = $this->session->userdata['id_siswa'];
+            $log=$this->Mlinetopik->get_log($stepID, $id);
             $step = $log;
 
         }
 
       // END step line data
-
-        $this->load->view('template/header');
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('v-hasil-quiz', $data);
+        $this->load->view('template/siswa2/v-footer');
 
     }
 

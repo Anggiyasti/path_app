@@ -23,6 +23,7 @@
                     swal('Token Berhasil di tambahkan, silahkan menikmati layanan kami !');
                 }else{
                     swal('Kode Token salah');
+                    console.log('masuk 01');
                 }
             },error:function(){
                 console.log('masuk 1');

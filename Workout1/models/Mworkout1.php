@@ -305,6 +305,21 @@ class Mworkout1 extends CI_Model
         return $soal[0]['id_bab'];
     }
 
+    // get data buat tampil nilai  tertinggi
+    public function nilai_tertinggi()
+    {
+        $query = "SELECT m.nama_mapel, b.judul_bab, max(r.score) as n, r.id_latihan, l.create_by, l.id_bab
+                FROM tb_report_latihan as r
+                JOIN tb_latihan as l
+                ON  r.id_latihan = l.id_latihan
+                JOIN tb_bab as b
+                ON l.id_bab = b.id_bab
+                JOIN tb_mata_pelajaran as m
+                ON b.id_mapel = m.id_mapel
+                group by l.id_bab order by b.judul_bab asc";
+        $result = $this->db->query($query);
+        return $result->result_array();
+    }
 
 }
 

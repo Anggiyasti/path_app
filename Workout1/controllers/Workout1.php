@@ -33,6 +33,7 @@ class Workout1 extends MX_Controller
                          if ($sisa_aktif != 0) {
                             //token aktif
                             $this->session->set_userdata(array('token'=>'Aktif','sisa'=>$sisa_aktif));
+                            $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
                             $data['mapel'] = $this->Mworkout1->getdaftarmapel();
                             $sis = $this->session->userdata('id_siswa');
                             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
@@ -110,6 +111,7 @@ class Workout1 extends MX_Controller
         // var_dump($data);
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
         $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('template_baru/v-wo-next', $data);
         $this->load->view('template/siswa2/v-footer');
@@ -210,6 +212,7 @@ class Workout1 extends MX_Controller
     $data['bab'] = $this->Mworkout1->get_nama_bab($mapel);
     $sis = $this->session->userdata('id_siswa');
     $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+    $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
 
 
         // $this->load->view('template/header');
@@ -319,6 +322,7 @@ class Workout1 extends MX_Controller
     public function pilihreport()
     {
         $data['mapel'] = $this->Mworkout1->getdaftarmapel();
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $this->load->view('template/siswa2/v-header', $data);
