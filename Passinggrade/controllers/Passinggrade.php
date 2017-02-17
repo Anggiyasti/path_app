@@ -196,7 +196,7 @@ class Passinggrade extends MX_Controller {
 
 
         $this->load->view('template/siswa2/v-header',$data);
-        $this->load->view('v-pilih-programstudi',$data);
+        $this->load->view('baru/v-pilih-programstudi',$data);
         $this->load->view('template/siswa2/v-footer');   
         }
     else{
