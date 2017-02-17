@@ -22,6 +22,7 @@
         $this->db->distinct();
 		$this->db->select()->from('tb_passing_grade');
 		$this->db->where('status', '1');
+		$this->db->group_by('universitas');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
     }
@@ -79,6 +80,17 @@
     
         $result = $this->db->query($query);
         return $result->result_array();
+    }
+
+    // tampil prodi berdasarkan univ
+    public function getpassinguniv($univ) {
+        $this->db->distinct();
+		$this->db->select()->from('tb_passing_grade');
+		$this->db->where('status', '1');
+		$this->db->where('universitas', $univ);
+		// $this->db->group_by('universitas', $univ);
+		$tampil=$this->db->get();
+		return $tampil->result_array();
     }
 
 	

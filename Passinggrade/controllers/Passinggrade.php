@@ -174,7 +174,7 @@ class Passinggrade extends MX_Controller {
         // $this->load->view('v-univ', $data);
 
         $this->load->view('template/siswa2/v-header',$data);
-        $this->load->view('v-universitas',$data);
+        $this->load->view('baru/v-univ',$data);
         $this->load->view('template/siswa2/v-footer');
     }
     else{
@@ -334,6 +334,19 @@ class Passinggrade extends MX_Controller {
         // var_dump($data);
 
         
+    }
+
+    public function set_prodi_univ($univ)
+    {
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $u = urldecode($univ);
+        $data['data']   = $this->Mpassing->getpassinguniv($u);
+        $data['univ'] = $u;
+        
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('baru/v-set-prodi',$data);
+        $this->load->view('template/siswa2/v-footer');  
     }
 
 
