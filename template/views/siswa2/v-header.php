@@ -215,8 +215,13 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
       
       <!-- Left Sidebar -->
       <ul id="slide-out-left" class="side-nav collapsible">
-        <li>
+      
           <div class="sidenav-header primary-color">
+          <div class="nav-social">
+              <i class="ion-social-facebook"></i>
+              <i class="ion-social-twitter"></i>
+              <i class="ion-social-tumblr"></i>
+            </div>
             
             <div class="nav-avatar">
             <?php foreach ($siswa as $s): ?>
