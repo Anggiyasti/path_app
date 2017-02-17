@@ -88,11 +88,16 @@ class Mworkout1 extends CI_Model
         $result = $this->db->query($query);
         //return $result->result_array();    
     }
-     public function logselesai($date,$id_siswa) {
+     public function logselesai($id_siswa) {
+        // $data = array('created_on' => date('Y-m-d H:i:s'));
+        // var_dump($data);
+        $this->db->set('tgl_selesai', 'NOW()', FALSE);
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->update('tb_log');
         // $query="UPDATE tb_log set tgl_selesai= '$date' where id_log=$id_siswa";
-        var_dump($date,$id_siswa);
-        $result = $this->db->query($query);
-        //return $result->result_array();    
+        // var_dump($date,$id_siswa);
+        // $result = $this->db->query($query);
+        // return $result->result_array();    
     }
 
     // input ke tb_report_latihan

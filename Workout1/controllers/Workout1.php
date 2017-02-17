@@ -198,7 +198,7 @@ class Workout1 extends MX_Controller
 
     $result = $this->Mworkout1->inputreport($hasil);
     $result1 = $this->Mworkout1->insertst($id_latihan,$hasil1,$hasil2);
-    $this->Mworkout1->logselesai($date,$id_siswa);
+    $this->Mworkout1->logselesai($id_siswa);
 
 
 

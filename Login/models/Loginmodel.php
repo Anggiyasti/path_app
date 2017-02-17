@@ -247,11 +247,9 @@ function get_admin($id_admin){
 
 public function getlogact()
     {
-        $query = "SELECT l.create_by, l.date_create, l.id_bab, b.judul_bab, r.tgl_pengerjaan
-                    from tb_report_latihan as r
-                    join tb_latihan as l on r.id_latihan = l.id_latihan
-                    join tb_bab as b on l.id_bab = b.id_bab
-                    order by create_by desc limit 5";
+        $query = "SELECT * from tb_log
+                    group by id_siswa
+                    order by id_siswa desc limit 5";
         $result = $this->db->query($query);
         return $result->result_array();
     }

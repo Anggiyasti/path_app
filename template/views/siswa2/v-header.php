@@ -146,10 +146,10 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
             <div class="face-notification">
               <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
               <div>
-                <? $date2 = $l['tanggal_pengerjaan'];
+                <? $date2 = $l['tgl_selesai'];
 
                 if ($date2 == null){ ?>
-                 <span><?=$l['create_by'] ?> mulai</span>
+                 <span><?=$l['id_siswa'] ?> mulai</span>
                  <?}?>
                
               </div>
@@ -158,7 +158,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
               <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
               <div> <? 
               else{?>        
-                  <span><?=$l['create_by'] ?> selesai</span>
+                  <span><?=$l['id_siswa'] ?> selesai</span>
                   <br>
                   <?}?>
                 
