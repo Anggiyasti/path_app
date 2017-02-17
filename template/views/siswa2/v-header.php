@@ -146,24 +146,29 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
             <div class="face-notification">
               <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
               <div>
-                <? $date2 = $l['tgl_selesai'];
+              <?php $selesai = $l['tgl_selesai'];
+                    $mulai =$l['tgl_mulai'];
 
-                if ($date2 == null){ ?>
-                 <span><?=$l['id_siswa'] ?> mulai</span>
-                 <?}?>
+
+              ?>
+                
+                
+                 <span><?=$l['id_siswa'] ?> mulai <?=$l['tgl_mulai']?></span>
+                
+              
                
               </div>
             </div>
             <div class="face-notification">
               <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
-              <div> <? 
-              else{?>        
-                  <span><?=$l['id_siswa'] ?> selesai</span>
-                  <br>
-                  <?}?>
+              <div>
                 
+                 <span><?=$l['id_siswa'] ?> selesai <?=$l['tgl_selesai']?></span>
+                  
+                                 
               </div>
             </div>
+            
             <?php endforeach ?>
             <div class="face-notification">
               <img src="img/user3.jpg" alt="" class="cricle">
