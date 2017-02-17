@@ -9,6 +9,8 @@ class Login extends MX_Controller
 	{
 		parent::__construct();
 		$this->load->model('Loginmodel');
+        $this->load->model('Workout1/Mworkout1');
+
 		$this->load->helper(array('form', 'url'));
 		$this->load->library(array('form_validation', 'email'));
         $this->load->library('session');
@@ -142,7 +144,12 @@ class Login extends MX_Controller
        if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-        $data['logmax']  = $this->Loginmodel->getlogmax();
+        // $data['logmax']  = $this->Loginmodel->getlogmax();
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        // $data['logmulai']  = $this->Loginmodel->getlogmulai();
+        // $data['logsel']  = $this->Loginmodel->getlogselesai();
+        $data['log']  = $this->Loginmodel->getlogact();
+
         // var_dump($data);
         
       

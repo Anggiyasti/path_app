@@ -78,9 +78,19 @@ class Mworkout1 extends CI_Model
     public function inputgrafik($data) {
         $this->db->insert('tb_grafik_report', $data);
     }
+    public function insertlog($data) {
+        $this->db->insert('tb_log', $data);
+    }
 
     public function insertst($data, $hasil,$hasil1) {
         $query="UPDATE tb_grafik_report set sub_score= $hasil , total= $hasil1 where id_latihan='$data'";
+
+        $result = $this->db->query($query);
+        //return $result->result_array();    
+    }
+     public function logselesai($date,$id_siswa) {
+        // $query="UPDATE tb_log set tgl_selesai= '$date' where id_log=$id_siswa";
+        var_dump($date,$id_siswa);
         $result = $this->db->query($query);
         //return $result->result_array();    
     }

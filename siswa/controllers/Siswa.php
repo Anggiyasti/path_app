@@ -7,6 +7,7 @@ class Siswa extends MX_Controller {
         parent::__construct();
         $this->load->model('Msiswa');
         $this->load->model('login/Loginmodel');
+        $this->load->model('Workout1/Mworkout1');
         $this->load->helper(array('form', 'url', 'file', 'html'));
         $this->load->library('form_validation');
     }
@@ -87,6 +88,7 @@ class Siswa extends MX_Controller {
     $data['Siswa'] = $this->Msiswa->get_siswa();
     $data['univ']=$this->Msiswa->getuniv();
     $data['email']=$this->session->userdata['email'];
+    $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
     
     	// $this->load->view('layout/header');
      //    $this->load->view('layout/sidebar');

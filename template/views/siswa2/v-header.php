@@ -20,7 +20,11 @@
     <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
     <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
     <script type="text/javascript" src="<?= base_url('assets/library/jquery/preview.js') ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>"></script>
+
+    <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>">
+    
+      
+    </script>
     
     <script>
      var base_url = "<?php echo base_url();?>" ;
@@ -137,22 +141,30 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
           <!-- Facebook -->
           <div class="facebook">
             <h6 class="follow-us">Notifications</h6>
+            <?php foreach ($log as $l) : ?>
+            
             <div class="face-notification">
               <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
-              <div>               
-                  <span>Selesai</span>
-                  <span class="small">Today at 16:48</span>
-              </div>
-            </div>
-
-            <div class="face-notification">
-              <img src="img/user.jpg" alt="" class="cricle">
               <div>
-                <p>Lara Connors</p>
-                <span>Post a photo with you</span>
-                <span class="small">Today at 14:26</span>
+                <? $date2 = $l['tanggal_pengerjaan'];
+
+                if ($date2 == null){ ?>
+                 <span><?=$l['create_by'] ?> mulai</span>
+                 <?}?>
+               
               </div>
             </div>
+            <div class="face-notification">
+              <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
+              <div> <? 
+              else{?>        
+                  <span><?=$l['create_by'] ?> selesai</span>
+                  <br>
+                  <?}?>
+                
+              </div>
+            </div>
+            <?php endforeach ?>
             <div class="face-notification">
               <img src="img/user3.jpg" alt="" class="cricle">
               <div>
@@ -205,8 +217,9 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
             <?php foreach ($siswa as $s): ?>
               <img class="circle avatar" src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" alt="">
               <div class="avatar-body">
-                <h3>Halo <?=$this->session->userdata['username'];?></h3>
-                <p><?=$s->jurusan?> <?=$s->univ ?></p>
+                <h3><?=$this->session->userdata['username'];?></h3>
+                <p><?=$s->jurusan?> </p>
+                <p><?=$s->univ ?></p>
 
               </div>
               <?php endforeach ?>   

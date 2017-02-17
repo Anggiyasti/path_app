@@ -175,6 +175,17 @@ class Msiswa extends CI_Model {
         }
     }
 
+      public function getlogact()
+    {
+        $query = "SELECT l.create_by, l.date_create, l.id_bab, b.judul_bab, r.tgl_pengerjaan
+                    from tb_report_latihan as r
+                    join tb_latihan as l on r.id_latihan = l.id_latihan
+                    join tb_bab as b on l.id_bab = b.id_bab
+                    group by l.create_by order by create_by desc";
+        $result = $this->db->query($query);
+        return $result->result_array();
+    }
+
 }
 
 ?>

@@ -12,6 +12,7 @@ class Workout1 extends MX_Controller
         $this->load->model('Mworkout1');
         $this->load->model('siswa/msiswa');
         $this->load->model('login/Loginmodel');
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     public function index()
@@ -136,6 +137,7 @@ class Workout1 extends MX_Controller
     $data = $this->input->post('pil');
     $id = $this->session->userdata['id_latihan'];
     $id_latihan = $this->session->userdata['id_latihan'];
+    $id_siswa = $this->session->userdata['id_siswa'];
     $level = $this->Mworkout1->levelLatihan($id_latihan)[0]->level;
     $result = $this->Mworkout1->jawabansoal($id);
     $benar = 0;
@@ -144,6 +146,7 @@ class Workout1 extends MX_Controller
     $koreksi = array();
     $idSalah = array();
     $jumlahsoal = sizeOf($result);
+
     for ($i = 0; $i < sizeOf($result); $i++) {
         $id = $result[$i]['soalid'];
             // $data[$id];
@@ -191,8 +194,14 @@ class Workout1 extends MX_Controller
 
     $hasil2 = floatval($jumlahsoal * 6);
 //
+    $date = new DateTime(date("Y-m-d H:i:s"));
+
     $result = $this->Mworkout1->inputreport($hasil);
     $result1 = $this->Mworkout1->insertst($id_latihan,$hasil1,$hasil2);
+    $this->Mworkout1->logselesai($date,$id_siswa);
+
+
+
 
     $this->Mworkout1->updatelatihan($id_latihan);
     $this->session->unset_userdata('id_latihan');
@@ -273,6 +282,13 @@ class Workout1 extends MX_Controller
             "id_latihan" => $id_latihan  
         );
          $this->Mworkout1->inputgrafik($bab);
+
+
+        $id_siswa = $this->session->userdata['id_siswa'];
+          $log = array(
+            "id_siswa" => $id_siswa  
+        );
+         $this->Mworkout1->insertlog($log);
        
         // var_dump($data);
         // $data['mm_sol']=array();
