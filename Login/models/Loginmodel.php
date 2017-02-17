@@ -278,9 +278,12 @@ function get_admin($id_admin){
     }
 
     function getlogact(){
-        
-    $query = "SELECT * FROM `tb_log`";
-        $result = $this->db->query($query);
+    $this->db->distinct();
+        $this->db->select('*');
+        $this->db->from('tb_log');
+        $this->db->order_by('tgl_selesai');
+    // $query = "SELECT * FROM tb_log ";
+        $result = $this->db->get();
         return $result->result_array();
     }
 
