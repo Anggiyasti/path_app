@@ -1,3 +1,17 @@
+   <!-- Page Content -->
+      <div id="content" class="page">
+
+        <!-- Toolbar -->
+        <div id="toolbar" class="primary-color">
+          <div class="open-left" id="open-left" data-activates="slide-out-left">
+            <i class="ion-android-menu"></i>
+          </div>
+          <span class="title">Workout</span>
+          <div class="open-right" id="open-right" data-activates="slide-out">
+            <i class="ion-android-person"></i>
+          </div>
+        </div>
+
 <main>
     <div class="page-content container clear-fix">
         <div class="container-404">

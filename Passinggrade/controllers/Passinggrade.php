@@ -218,7 +218,7 @@ class Passinggrade extends MX_Controller {
        //  $this->load->view('v-prodi', $data);
 
         $this->load->view('template/siswa2/v-header',$data);
-        $this->load->view('v-programstudi',$data);
+        $this->load->view('baru/v-programstudi',$data);
         $this->load->view('template/siswa2/v-footer'); 
         }
     else{
@@ -238,7 +238,7 @@ class Passinggrade extends MX_Controller {
         // $this->load->view('v-passinggrade');
 
         $this->load->view('template/siswa2/v-header',$data);
-        $this->load->view('v-passgrade');
+        $this->load->view('baru/v-passing');
         $this->load->view('template/siswa2/v-footer'); 
         }
     else{
@@ -324,7 +324,7 @@ class Passinggrade extends MX_Controller {
         // $this->load->view('workout1/v-header');
         // $this->load->view('v-cobapassing',$data);
         $this->load->view('template/siswa2/v-header', $data);
-        $this->load->view('v-hasilpassing',$data);
+        $this->load->view('baru/v-hasilpassing',$data);
         $this->load->view('template/siswa2/v-footer');  
          }
     else{

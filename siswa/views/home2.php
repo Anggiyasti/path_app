@@ -1,7 +1,7 @@
 <div id="content" class="bg-v-2">
 
         <!-- Toolbar -->
-        <div id="toolbar" class="primary-color">
+        <div id="toolbar" style="background-color: #19305B;">
           <div class="open-left" id="open-left" data-activates="slide-out-left">
             <i class="ion-android-menu"></i>
           </div>

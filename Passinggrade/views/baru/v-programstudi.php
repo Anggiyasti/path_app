@@ -1,4 +1,6 @@
-<!-- Page Content -->
+
+
+                <!-- Page Content -->
       <div id="content" class="page">
 
         <!-- Toolbar -->
@@ -20,29 +22,38 @@
               <i class="ion-social-twitter"></i>
             </span>
           </div>
-            <div class="banner-title"><?=$univ?></div>
+            <div class="banner-title">Prodi <?=$prodi?></div>
           </div>
          </div>
         
         <!-- Article Content -->
         
         <div class="animated fadeinup delay-1">
-        <?php foreach ($data as $univ) : ?>
+        
           <!-- Daily Activity-->
           <div class="activities">
+           <?php foreach ($data as $univ) : ?>
             <div class="activity animated fadeinright delay-1">
-              <p><?=$univ['prodi']?></p>
-              <span class="activity-time text-small text-light"><i class="ion-android-done"></i> <span class=""><?=$univ['passinggrade']?>%</span></span>
+              <p><?=$univ['universitas']?></p>
+             
+              <span class="activity-time text-small text-light"><i class="ion-android-done"></i> <span class=""> <?=$univ['prodi']?>  | <?=$univ['passinggrade']?>%</span></span>
               <span class="activity-type">
+             
+            
                 
-                  <a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>">
+                 
                     <i class="ion-android-radio-button-on"></i>
-                  </a>
+                
                 
               </span>
             </div>
+             <?php endforeach ?> 
           </div>
-          <?php endforeach ?>
+        
         </div>
         
-      </div>
+      </div> 
+
+
+
+

@@ -1,4 +1,9 @@
-<!-- Page Content -->
+
+
+
+
+
+                <!-- Page Content -->
       <div id="content" class="page">
 
         <!-- Toolbar -->
@@ -20,29 +25,44 @@
               <i class="ion-social-twitter"></i>
             </span>
           </div>
-            <div class="banner-title"><?=$univ?></div>
+            <div class="banner-title"></div>
           </div>
          </div>
         
         <!-- Article Content -->
         
         <div class="animated fadeinup delay-1">
-        <?php foreach ($data as $univ) : ?>
+        
           <!-- Daily Activity-->
           <div class="activities">
+           
             <div class="activity animated fadeinright delay-1">
-              <p><?=$univ['prodi']?></p>
-              <span class="activity-time text-small text-light"><i class="ion-android-done"></i> <span class=""><?=$univ['passinggrade']?>%</span></span>
+             <?php if ($data == array()): ?>
+            <h4>Tidak ada Passing Grade.</h4>
+            <?php else: ?>
+            <?php foreach ($data as $p): ?>
+              <p><?= $p['universitas'] ?></p>
+             
+              <span class="activity-time text-small text-light"><i class="ion-ios-arrow-forward"></i><span>Program Studi : </span>  <span class=""> <?= $p['prodi'] ?></span></span><br>
+              <span class="activity-time text-small text-light"><i class="ion-ios-arrow-forward"></i><span>Passing Grade : </span> <span class=""> <?= $p['passinggrade'] ?>%</span></span>
               <span class="activity-type">
+             
+            
                 
-                  <a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>">
+                 
                     <i class="ion-android-radio-button-on"></i>
-                  </a>
+                
                 
               </span>
             </div>
+             <?php 
+            endforeach ?>
+             <?php endif ?>
           </div>
-          <?php endforeach ?>
+        
         </div>
         
-      </div>
+      </div> 
+
+
+
