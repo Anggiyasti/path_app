@@ -22,7 +22,7 @@
     <script type="text/javascript" src="<?= base_url('assets/library/jquery/preview.js') ?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url('assets/adminre/library/jquery/js/jquery.min.js')?>">
-    
+    // kkkkk
       
     </script>
     

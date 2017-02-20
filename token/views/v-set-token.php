@@ -16,7 +16,7 @@
     <div class="page-content container clear-fix">
         <div class="container-404">
             <p><span>Maaf:(</span><br>untuk mengakses halaman, silahkan tambahkan Token Terlebih dahulu!</p>
-            <center>    <input type="text" name="kode_token" style="width: 40%;margin-bottom: 10px" placeholder="Masukan Kode Token"><button class="isi_button">Isi</button></center>
+            <center>    <input type="text" name="kode_token" style="width: 40%;margin-bottom: 10px" placeholder="Masukan Kode Token"><button class="btn primary-color">Isi</button></center>
         </div>
     </div>
 </main>

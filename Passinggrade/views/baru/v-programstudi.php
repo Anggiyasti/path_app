@@ -41,8 +41,9 @@
              
             
                 
-                 
+                 <a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>">
                     <i class="ion-android-radio-button-on"></i>
+                  </a>
                 
                 
               </span>

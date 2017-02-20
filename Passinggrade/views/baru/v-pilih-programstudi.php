@@ -35,7 +35,7 @@
               </div>
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/prodi/<?=$row['prodi']?>"><?=$row['prodi'];?></a></p>
-                <p class="small m-0">7 new arrivals.</p>
+                
               </div>
             </div>
           </div>

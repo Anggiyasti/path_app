@@ -76,7 +76,6 @@
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no3;?>">31%-35%</a></p>
               
-                <p class="small m-0">7 new arrivals.</p>
               </div>
               
             </div>
@@ -89,7 +88,6 @@
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no4;?>">36%-40%</a></p>
               
-                <p class="small m-0">7 new arrivals.</p>
               </div>
               
             </div>
@@ -102,7 +100,7 @@
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no5;?>">41%-45%</a></p>
               
-                <p class="small m-0">7 new arrivals.</p>
+                
               </div>
               
             </div>
@@ -115,7 +113,7 @@
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no6;?>">46%-50%</a></p>
               
-                <p class="small m-0">7 new arrivals.</p>
+           
               </div>
               
             </div>
@@ -127,8 +125,7 @@
               </div>
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no7;?>">51%-55%</a></p>
-              
-                <p class="small m-0">7 new arrivals.</p>
+        
               </div>
               
             </div>
@@ -140,8 +137,7 @@
               </div>
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no8;?>">56%-60%</a></p>
-              
-                <p class="small m-0">7 new arrivals.</p>
+   
               </div>
               
             </div>
@@ -154,7 +150,6 @@
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no9;?>">61%-65%</a></p>
               
-                <p class="small m-0">7 new arrivals.</p>
               </div>
               
             </div>
@@ -167,7 +162,7 @@
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no11;?>">71%-75%</a></p>
               
-                <p class="small m-0">7 new arrivals.</p>
+      
               </div>
               
             </div>
@@ -180,7 +175,7 @@
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no12;?>">76%-80%</a></p>
               
-                <p class="small m-0">7 new arrivals.</p>
+
               </div>
               
             </div>
@@ -193,7 +188,7 @@
               <div class="c-widget-body">
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/hasilpassing/<?=$no13;?>">81%-85%</a></p>
               
-                <p class="small m-0">7 new arrivals.</p>
+
               </div>
               
             </div>

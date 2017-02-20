@@ -30,7 +30,7 @@
             <span class="text-danger"><?php echo form_error('nama_belakang'); ?></span>
           </div>
           <div class="input-field">
-            <i class="ion-android-contact prefix"></i> 
+            <i class="ion-at prefix"></i> 
             <label>Email *</label>
             <input name="email"  type="text" value="<?php echo set_value('email'); ?>" onfocus="" class="form-control" required/>
             <span class="text-danger"><?php echo form_error('email'); ?></span>
