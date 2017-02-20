@@ -40,7 +40,7 @@
               <?php endif ?>
               <!-- Body Info -->
               <!-- <div class="collapsible-body"><p><?=$pel['judul_bab']?></p></div> -->
-              <div class="collapsible-body"><a href="<?= base_url() ?>index.php/workout1/reportmapel/<?=$pel['id_bab']?>" style="margin-left: 55px;"><?=$pel['judul_bab']?></a></div>
+              <div class="collapsible-body"><h6><a href="<?= base_url() ?>index.php/workout1/reportmapel/<?=$pel['id_bab']?>" style="margin-left: 55px;"><?=$pel['judul_bab']?></a></h6></div>
               <!-- /Body info -->
               <?php $olduniversitas=$mp; ?>
              <?php endforeach ?>

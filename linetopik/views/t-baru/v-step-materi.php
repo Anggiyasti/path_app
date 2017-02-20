@@ -51,14 +51,14 @@
                     <ul class="media-list media-list-feed grid-col grid-col-3" >
                       <li  class="media">
                         <div class="media-object pull-left ">
-                          <i href="<?=$key['link'];?>"  class="<?=$key['icon']?> " id="ico-<?=$i;?>"></i>
+                          <!-- <i href="<?=$key['link'];?>"  class="<?=$key['icon']?> " id="ico-<?=$i;?>"></i> -->
                         </div>
                       </li>
                     </ul>
                   </span>
                   <!-- end icon -->
 
-                  <div class="dot z-depth-1" style="border: 4px solid red; top: 27px;">
+                  <div class="dot z-depth-1" style="border: 4px solid red; top: 27px;" id="ico-<?=$i;?>">
                   </div>
                   <p>
                     <a href="<?=$key['link'];?>#ini" class="media-heading"  id="font-<?=$i;?>" ><?=$key['namaStep']?></a>
@@ -73,17 +73,6 @@
               <!-- menampung nilai panjang array -->
               <input id="n" type="text"  value="<?=$i;?>" hidden="true">
               <!-- END Tieme line -->
-
-                <div class="contact">
-                  <span class="date">6 - 7 pm</span>
-                  <div class="dot z-depth-1">
-                  </div>
-                  <p>
-                    Thomas Smith
-                  </p>
-                  <span>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.</span>
-                </div>
-
 
               </div>
             </div>
@@ -115,7 +104,10 @@
         var status = $("#status-"+i).val();
         
             if (status=="disable") {
-                 $("#ico-"+i).css("background","red");
+                 // $("#ico-"+i).css("background","red");
+                 // $("#font-"+i).css("color","red");
+                 // dot z-depth-1
+                 $("#ico-"+i).css("border","4px solid black ");
                  $("#font-"+i).css("color","red");
             } 
            

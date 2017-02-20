@@ -154,15 +154,15 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                 
                 
                 <!--  <span><?=$l['id_siswa'] ?> mulai <?=$l['tgl_mulai']?></span> -->
-                <span><?=$l['id_siswa'] ?> selesai <?=$l['tgl_selesai']?></span>
-              
+                <!-- <span><?=$l['nama_depan'] ?> selesai belajar <?=$l['tgl_selesai']?></span> -->
+                <span><?=$l['nama_depan'] ?> selesai belajar</span>
                
               </div>
             </div>
             <div class="face-notification">
               <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
               <div>
-                 <span><?=$l['id_siswa'] ?> mulai <?=$l['tgl_mulai']?></span>
+                 <span><?=$l['nama_depan'] ?> mulai belajar</span>
                  
                   
                                  

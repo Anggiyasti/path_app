@@ -39,7 +39,7 @@
                <!-- /Header Info -->
               <?php endif ?>
               <!-- Body Info -->
-              <div class="collapsible-body"><h6><a href="<?=base_url()?>index.php/linetopik/learningline/<?=$pel['id_bab'] ?>"><?=$pel['judul_bab']?></a></h6></div>
+              <div class="collapsible-body"><h6><a href="<?=base_url()?>index.php/linetopik/learningline/<?=$pel['id_bab'] ?>" style="margin-left: 55px;"><?=$pel['judul_bab']?></a></h6></div>
               <!-- /Body info -->
               <?php $olduniversitas=$mp; ?>
              <?php endforeach ?>

@@ -18,8 +18,8 @@
             <!-- With Left Icon -->
             <div class="blog-preview p-20">
             <?php foreach ($bab as $reportitem): ?>
-                <h4 class="uppercase">Mapel : <?= $reportitem['nama_mapel'] ?></h4>
-                <h4 class="uppercase">Bab : <?= $reportitem['judul_bab'] ?></h4>
+                <h4 class="uppercase">Mapel&nbsp&nbsp&nbsp: <?= $reportitem['nama_mapel'] ?></h4>
+                <h4 class="uppercase">Bab&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp: <?= $reportitem['judul_bab'] ?></h4>
             <?php endforeach ?>
             </div>
             <div class="blog-preview p-20">
@@ -29,9 +29,9 @@
                 <?php foreach ($report as $reportitem): ?>
                   <div class="media-body">
                     <ul class="course-feature">
-                        <li>Time : <?= $reportitem['tgl_pengerjaan'] ?></li>
+                        <li>Time&nbsp&nbsp&nbsp:&nbsp<?= $reportitem['tgl_pengerjaan'] ?></li>
                         <?php if ($reportitem['kesulitan'] == '1') { ?>
-                            <li>Level : Mudah</li>
+                            <li>Level&nbsp&nbsp&nbsp:&nbspMudah</li>
                         <?php } elseif ($reportitem['kesulitan'] == '2') { ?>
                             <li>Level : Sedang</li>
                         <?php } else { ?>

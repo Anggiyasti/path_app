@@ -25,7 +25,11 @@
             <?php if ($ke==0): ?>
             <!-- Header Info -->
             <li>
-              <div class="collapsible-header"><i class="ion-android-options"></i><?=$pel['nama_mapel']?></div>
+              <div class="collapsible-header">
+                <i >
+                <img src="<?= base_url('./assets/icon/Bindo.png') ?>" style="margin-top: 7px;"></i>
+                <?=$pel['nama_mapel']?>
+              </div>
               <div class="collapsible-body"></div>
             <!-- /Header Info -->
             <?php $ke=1; ?>
@@ -35,7 +39,10 @@
             <!-- Footer Info -->
             <!-- Header Info -->            
             <li>
-              <div class="collapsible-header"><i class="ion-android-cloud"></i><?=$pel['nama_mapel']?></div>
+              <div class="collapsible-header">
+              <i >
+                <img src="<?= base_url('./assets/icon/Bindo.png') ?>" style="margin-top: 7px;"></i>
+              <?=$pel['nama_mapel']?></div>
                <!-- /Header Info -->
               <?php endif ?>
               <!-- Body Info -->
