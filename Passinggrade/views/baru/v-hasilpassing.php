@@ -35,12 +35,13 @@
         
           <!-- Daily Activity-->
           <div class="activities">
-           
-            <div class="activity animated fadeinright delay-1">
-             <?php if ($data == array()): ?>
+           <?php if ($data == array()): ?>
             <h4>Tidak ada Passing Grade.</h4>
             <?php else: ?>
             <?php foreach ($data as $p): ?>
+           
+            <div class="activity animated fadeinright delay-1">
+            
               <p><?= $p['universitas'] ?></p>
              
               <span class="activity-time text-small text-light"><i class="ion-ios-arrow-forward"></i><span>Program Studi : </span>  <span class=""> <?= $p['prodi'] ?></span></span><br>
@@ -54,10 +55,11 @@
                 
                 
               </span>
-               <?php 
+               
+            </div>
+            <?php 
             endforeach ?>
              <?php endif ?>
-            </div>
             
           </div>
         
