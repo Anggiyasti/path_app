@@ -54,10 +54,11 @@
                 
                 
               </span>
-            </div>
-             <?php 
+               <?php 
             endforeach ?>
              <?php endif ?>
+            </div>
+            
           </div>
         
         </div>
