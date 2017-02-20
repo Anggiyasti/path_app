@@ -27,7 +27,7 @@
             <li>
               <div class="collapsible-header">
                 <i >
-                <img src="<?= base_url('./assets/icon/Bindo.png') ?>" style="margin-top: 7px;"></i>
+                <img src="<?= base_url('./assets/icon/'. $pel['gambar']) ?>" style="margin-top: 7px;"></i>
                 <?=$pel['nama_mapel']?>
               </div>
               <div class="collapsible-body"></div>
@@ -41,7 +41,7 @@
             <li>
               <div class="collapsible-header">
               <i >
-                <img src="<?= base_url('./assets/icon/Bindo.png') ?>" style="margin-top: 7px;"></i>
+                <img src="<?= base_url('./assets/icon/'. $pel['gambar']) ?>" style="margin-top: 7px;"></i>
               <?=$pel['nama_mapel']?></div>
                <!-- /Header Info -->
               <?php endif ?>
