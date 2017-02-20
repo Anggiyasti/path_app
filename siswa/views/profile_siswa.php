@@ -1,3 +1,6 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <?php 
 
   foreach ($Siswa as $row) {
@@ -46,7 +49,7 @@
           </div>
         </div>
  
- <div class="form-inputs">
+        <div class="form-inputs">
             
 
             <h4 class="shipping-address">Profile</h4>
@@ -121,6 +124,18 @@
             <input type="submit" class="btn-large primary-color width-100" name="update"  value="Update" >
             </div>
           </form>
+           
+          <div class="notification notification-danger" id="notif" hidden="true">
+            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+            <h4>Silahkan cek type extension gambar!</h4>
+            <p>Type yang bisa di upload hanya .jpeg|.gif|.jpg|.png|.bmp</p>
+          </div>
+
+          <div class="notification notification-danger" id="size" hidden="true">
+            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+            <h4>Silahkan cek ukuran gambar!</h4>
+            <p>Ukuran yang bisa di upload maksimal 100Kb! </p>
+          </div>
 
           <h4 class="shipping-address">Photo</h4>
             <?php echo $this->session->flashdata('msg'); ?> 
@@ -132,6 +147,7 @@
             Pilih Gambar
             </label>
             <input style="display:none;" type="file" id="file" name="photo" class="btn btn-default" required="true" onchange="ValidateSingleInput(this);" />
+             <label class="btn primary-color"  onclick="restImgSoal()">Reset</label>
             <?php echo form_error('password'); ?>
                                                        <!--  <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>"> -->
             <button type="submit" class="btn primary-color">Simpan</button>
@@ -141,7 +157,7 @@
           
        
 
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 // load bab
 $(function(){
@@ -231,14 +247,24 @@ $("#jurusan").html(respond);
 
     }
 
+  function restImgSoal() {
+      $("input[name=photo]").val("");
+      $('#preview').attr('src', "");
+      $('#file').text("");
+      $('#filetypeSoal').text("");
+      $('#filesizeSoal').text("");
+    }
 
 
 </script>   
+<!-- start script js validation extension -->
 <script type="text/javascript">
  var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];    
+
 function ValidateSingleInput(oInput) {
     if (oInput.type == "file") {
         var sFileName = oInput.value;
+        console.log(sFileName);
          if (sFileName.length > 0) {
             var blnValid = false;
             for (var j = 0; j < _validFileExtensions.length; j++) {
@@ -250,13 +276,21 @@ function ValidateSingleInput(oInput) {
             }
              
             if (!blnValid) {
-             $('#warningupload').modal('show');
+             $('#notif').show();
                 // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
                 // oInput.value = "";
                 return false;
             }
+
+            file = oInput.files[0];
+            if (file.size > 103000 ) {
+               $('#size').show();
+               return false;
+            } 
+            
         }
     }
     return true;
 }
 </script>
+<!-- END -->

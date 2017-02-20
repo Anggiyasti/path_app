@@ -2,6 +2,44 @@
 
         <!-- START Template Main -->
         <section id="main" role="main">
+                 <!-- Start Modal salah upload type gambar -->
+<div class="modal fade" id="warningupload" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center text-danger">Peringatan</h2>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-center">Silahkan cek type extension gambar!</h3>
+        <h5 class="text-center">Type yang bisa di upload hanya .jpeg|.gif|.jpg|.png|.bmp</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+         <!-- Start Modal salah upload size gambar -->
+<div class="modal fade" id="warninguploadsize" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center text-danger">Peringatan</h2>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-center">Silahkan cek ukuran gambar!</h3>
+        <h5 class="text-center">Ukuran yang bisa di upload maksimal 400Kb! </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
             <!-- START Template Container -->
             <div class="container-fluid">
 
@@ -185,6 +223,8 @@
                                     </label>
 
                                     <input style="display:none;" type="file" id="fileSoal" name="gambarSoal" onchange="ValidateSingleInput(this);"/>
+
+                                    <label class="btn btn-danger"  onclick="restImgSoal()">Reset</label>
 
                                 </div>
 
@@ -371,7 +411,7 @@
                                     </label>
 
                                     <input style="display:none;" type="file" id="fileA" name="gambar1" onchange="ValidateSingleInput(this);"/>
-
+                                    
                                 </div>
 
                             </div>
@@ -440,6 +480,7 @@
                                     </label>
 
                                     <input style="display:none;" type="file" id="fileB" name="gambar2" onchange="ValidateSingleInput(this);"/>
+                                  
 
                                 </div>
 
@@ -512,6 +553,7 @@
                                     </label>
 
                                     <input style="display:none;" type="file" id="fileC" name="gambar3" onchange="ValidateSingleInput(this);"/>
+                           
 
                                 </div>
 
@@ -660,6 +702,7 @@
                                     </label>
 
                                     <input style="display:none;" type="file" id="fileE" name="gambar5" onchange="ValidateSingleInput(this);"/>
+
 
                                 </div>
 
@@ -839,6 +882,22 @@ $("#id_bab").html(respond);
 })
 
 </script> 
+<script type="text/javascript">
+  function restImgSoal() {
+      $("input[name=gambarSoal]").val("");
+      $('#previewSoal').attr('src', "");
+      $('#filenameSoal').text("");
+      $('#filetypeSoal').text("");
+      $('#filesizeSoal').text("");
+    }
+    function restImgJawaban() {
+      $("input[name=gambarSoal]").val("");
+      $('#previewSoal').attr('src', "");
+      $('#filenameSoal').text("");
+      $('#filetypeSoal').text("");
+      $('#filesizeSoal').text("");
+    }
+</script>
 
     <script type="text/javascript">
 
@@ -1205,6 +1264,11 @@ function ValidateSingleInput(oInput) {
                 // oInput.value = "";
                 return false;
             }
+            file = oInput.files[0];
+            if (file.size > 410000 ) {
+               $('#warninguploadsize').modal('show');
+               return false;
+            } 
         }
     }
     return true;
@@ -1470,31 +1534,6 @@ function ValidateSingleInput(oInput) {
 
 </script>
 <script type="text/javascript">
- var _validFileExtensions = [".mp4"];    
-function ValidateSingleInput(oInput) {
-    if (oInput.type == "file") {
-        var sFileName = oInput.value;
-         if (sFileName.length > 0) {
-            var blnValid = false;
-            for (var j = 0; j < _validFileExtensions.length; j++) {
-                var sCurExtension = _validFileExtensions[j];
-                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                    blnValid = true;
-                    break;
-                }
-            }
-             
-            if (!blnValid) {
-                $('#warningupload').modal('show');
-                // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
-                // oInput.value = "";
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
 // Strat  event untuk pilihan jenis input  
  $(document).ready(function () {
         $("#up_server").click(function () {
