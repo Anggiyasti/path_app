@@ -827,6 +827,10 @@ public function upload_video(){
         } else {
           $alias_mapel = htmlspecialchars($this->input->post('alias_mapel'));
           $nama_mapel = htmlspecialchars($this->input->post('nama_mapel'));
+          $part1 = htmlspecialchars($this->input->post('part1'));
+          $part2 = htmlspecialchars($this->input->post('part2'));
+          $part3 = htmlspecialchars($this->input->post('part3'));
+          $part4 = htmlspecialchars($this->input->post('part4'));
                  
            $datamapel= array(
                        array(
