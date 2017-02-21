@@ -13,10 +13,11 @@
         </div>
         
         <!-- Article Content -->
-        <div class="animated fadeinup delay-1">
-          <div class="page-content">
+        <div class="row">
+              <div class="col s12">
+
             <!-- With Left Icon -->
-          <h4 class="p-20">Mata Pelajaran</h4>
+          <h4 class="uppercase" align="center">Mata Pelajaran</h4>
           <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
           <?php $ke=0; ?>
           <?php $mp; ?>
@@ -48,7 +49,7 @@
               <!-- Body Info -->
               <!-- <div class="collapsible-body"><p><?=$pel['judul_bab']?></p></div> -->
               <div class="collapsible-body">
-                <a href="<?= base_url() ?>index.php/workout1/next/<?=$pel['id_bab']?>" style="margin-left: 55px;"><?=$pel['judul_bab']?></a>
+                <h6><a href="<?= base_url() ?>index.php/workout1/next/<?=$pel['id_bab']?>" style="margin-left: 55px;"><?=$pel['judul_bab']?></a></h6>
               </div>
               <!-- /Body info -->
               <?php $olduniversitas=$mp; ?>
@@ -59,7 +60,7 @@
              <!-- Footer Info --> 
           </ul>          
           </div>
-        </div> 
+          </div>
       
          
       </div> <!-- End of Page Content -->

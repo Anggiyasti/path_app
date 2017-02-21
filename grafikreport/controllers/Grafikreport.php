@@ -32,9 +32,11 @@ class Grafikreport extends MX_Controller {
             // $d = $this->input->post('');
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Mgrafik->get_siswa($sis);
-            $data['bab'] = $this->Mgrafik->get_mapel_bab($no);
-            $data['c'] = $this->Mgrafik->chart_model($no);
-            $data['mapel'] = $no;
+            $mapel = urldecode($no);
+            $data['bab'] = $this->Mgrafik->get_mapel_bab($mapel);
+            $data['c'] = $this->Mgrafik->chart_model($mapel);
+             $data['total'] = $this->Mgrafik->chart_total($mapel);
+            $data['mapel'] = $mapel;
             // $this->load->view('template/header');
             // $this->load->view('v-header');
             

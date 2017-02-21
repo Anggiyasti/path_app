@@ -13,10 +13,10 @@
         </div>
         
         <!-- Article Content -->
-        <div class="animated fadeinup delay-1">
-          <div class="page-content">
+        <div class="row">
+              <div class="col s12">
             <!-- With Left Icon -->
-          <h4 class="p-20">Mata Pelajaran</h4>
+          <h4 class="uppercase" align="center">Mata Pelajaran</h4>
           <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
           <?php foreach ($mapel as $pel) : ?>
             <li>

@@ -149,7 +149,7 @@
                                                     <div class="panel-heading">                                                    
                                                         <div class="row">
                                                            <div class="col-md-6 center"></div>
-                                                           <div class="col-md-6 text-right" style="margin-top:0;"><a href="<?=base_url('index.php/workout1/pilihreport')?>" class="btn btn-info btn-block" style="background-color: #2196F3;" onclick="raguColor(<?= $i ?>)">Pembahasan Selesai</a></div>
+                                                           <div class="col-md-6 text-right" style="margin-top:0;"><a href="<?= base_url() ?>index.php/workout1/reportmapel/<?=$key['id_bab']?>" class="btn btn-info btn-block" style="background-color: #2196F3;" onclick="raguColor(<?= $i ?>)">Pembahasan Selesai</a></div>
                                                         </div>
                                                     </div>
                                                     <div class="panel-collapse">
