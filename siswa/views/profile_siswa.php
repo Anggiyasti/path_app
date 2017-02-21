@@ -26,6 +26,12 @@
 
     $bio = $row['biografi'];
 
+    $facebook = $row['facebook'];
+
+    $twitter = $row['twitter'];
+
+    $instagram = $row['instagram'];
+
     // $universitas = $row['univ'];
 
     $photo=base_url().'assets/images/siswa/'.$row['photo'];
@@ -56,28 +62,29 @@
             <?php echo $this->session->flashdata('msg'); ?> 
             <form action="<?=base_url()?>index.php/Siswa/edit_siswa" method="post">
               <div class="input-field">
-                <input type="text" class="validate" name="nama_depan" value="<?=$nama_depan; ?>">
+
+                <input type="text" class="validate" name="nama_depan" placeholder="Nama Depan" value="<?=$nama_depan; ?>">
                 <?php echo form_error('nama_depan'); ?>
               </div>
               <div class="input-field">
-                <input type="text" class="validate" name="nama_belakang" value="<?=$nama_belakang; ?>">
+                <input type="text" class="validate" name="nama_belakang" placeholder="Nama Belakang" value="<?=$nama_belakang; ?>">
                 <?php echo form_error('nama_belakang'); ?>
               </div>
            
             <div class="input-field">
-              <input type="text" class="validate" name="alamat" value="<?=$alamat; ?>">
+              <input type="text" class="validate" placeholder="Alamat" name="alamat" value="<?=$alamat; ?>">
             <?php echo form_error('alamat'); ?>
             </div>
             <div class="input-field">
-              <input type="text" class="validate" name="nama_sekolah" value="<?=$namaskul; ?>">
+              <input type="text" class="validate" placeholder="Nama Selolah" name="nama_sekolah" value="<?=$namaskul; ?>">
                <?php echo form_error('nama_sekolah'); ?>
             </div>
             <div class="input-field">
-              <input type="email" class="validate" name="email" value="<?=$email; ?>">
+              <input type="email" class="validate" placeholder="email" value="<?=$email; ?>">
               <?php echo form_error('email'); ?>
             </div>
             <div class="input-field">
-              <input type="text" class="validate" name="no_tlp" value="<?=$no; ?>">
+              <input type="text" class="validate" placeholder="no Telepon" name="no_tlp" value="<?=$no; ?>">
               <?php echo form_error('no_tlp'); ?>
             </div>
             <div class="input-field">
@@ -87,7 +94,32 @@
               <input type="text" class="validate" name="" value="<?=$jur; ?>" disabled>
             </div>
             <div class="input-field">
-              <textarea placeholder="Comment" class="textarea validate" id="form-message" name="biografi" rows="8" cols="20"><?=$bio; ?></textarea>
+              <textarea placeholder="Biografi" class="textarea validate" id="form-message" name="biografi" rows="8" cols="20"><?=$bio; ?></textarea>
+            </div>
+
+            <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
+            <!-- <button class="waves-effect waves-light btn-large primary-color width-100" name="update" type=""> Submit</button> -->
+            <input type="submit"   name="update" value="Update" class="btn-large primary-color width-100"  >
+          </form>
+
+
+
+          <h4 class="shipping-address">Sosial Media</h4>
+            <?php echo $this->session->flashdata('msg'); ?> 
+            <form action="<?=base_url()?>index.php/Siswa/edit_sosmed" method="post">
+              <div class="input-field">
+
+                <input type="text" class="validate" name="facebook" placeholder="Facebook" value="<?=$facebook; ?>">
+                <?php echo form_error('facebook'); ?>
+              </div>
+              <div class="input-field">
+                <input type="text" class="validate" name="twitter" placeholder="Twitter" value="<?=$twitter; ?>">
+                <?php echo form_error('twitter'); ?>
+              </div>
+           
+            <div class="input-field">
+              <input type="text" class="validate" placeholder="Instagram" name="instagram" value="<?=$instagram; ?>">
+            <?php echo form_error('instagram'); ?>
             </div>
 
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">

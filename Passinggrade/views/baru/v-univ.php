@@ -1,4 +1,4 @@
-<!-- Page Content -->
+Page Content -->
       <div id="content" class="grey-blue">
 
         <!-- Toolbar -->
@@ -20,9 +20,11 @@
               <i class="ion-social-twitter"></i>
             </span>
           </div>
-            <div class="banner-title">Journal</div>
+            <!-- <div class="banner-title">Journal</div> -->
           </div>
          </div>
+         <div style="width: 100%; height: 30%; background-color: #19305B; "><p style="color: #ffffff; font-size: 25px; padding-left: 3%; " >Journal</p></div>
+
 
         <?php foreach ($data as $univ) : ?>
        <!-- Profile Content -->
@@ -44,4 +46,4 @@
           <?php endforeach ?>
       
          
-      </div> <!-- End of Page Content -->
+      </div> <!-- End of Page Content

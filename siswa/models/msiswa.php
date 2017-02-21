@@ -22,7 +22,7 @@ class Msiswa extends CI_Model {
 
 		$id_siswa=$this->session->userdata['email'] ;	
 
-		$this->db->select('id_siswa,nama_depan,nama_belakang,password,email,alamat,no_tlp,nama_sekolah,status,photo, jurusan, univ,biografi');
+		$this->db->select('id_siswa,nama_depan,nama_belakang,password,email,alamat,no_tlp,nama_sekolah,status,photo, jurusan, univ,biografi,facebook,twitter,instagram');
 
 		$this->db->from('tb_siswa');
 
@@ -57,6 +57,24 @@ class Msiswa extends CI_Model {
 				'biografi' => $j,
 				
 
+
+			);
+		$this->db->where('id_siswa', $g);
+		return $this->db->update('tb_siswa', $arr);
+	}
+
+
+	public function update_sosmed() {
+		$a  =  $this->input->post('facebook');
+		$b  =  $this->input->post('twitter');
+		$c  =  $this->input->post('instagram');
+		$g  =  $this->input->post('id_siswa');
+		
+
+		$arr = array(
+				'facebook' => $a,
+				'twitter'=> $b,
+				'instagram'=> $c,
 
 			);
 		$this->db->where('id_siswa', $g);

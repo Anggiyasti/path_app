@@ -78,6 +78,24 @@ class Siswa extends MX_Controller {
 		}
 		
 	}
+    public function edit_sosmed() {
+        if ($this->input->post('update')) 
+        {
+            $this->Msiswa->update_sosmed();
+            
+            if ($this->db->affected_rows())
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
+                redirect('Siswa/Profilesiswa');
+            }
+            else
+            {
+                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
+                redirect('siswa/Profilesiswa');
+            }
+        }
+        
+    }
 
 
 	public function Profilesiswa() {
@@ -105,6 +123,8 @@ class Siswa extends MX_Controller {
        
     
 }
+
+
 
 public function ubahpass_siswa() {
         if ($this->input->post('update')) 

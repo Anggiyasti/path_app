@@ -214,23 +214,29 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
       <ul id="slide-out-left" class="side-nav collapsible">
       
           <div class="sidenav-header primary-color">
+           <?php foreach ($siswa as $s): ?>
           <div class="nav-social">
-              <i class="ion-social-facebook"></i>
-              <i class="ion-social-twitter"></i>
-              <i class="ion-social-tumblr"></i>
+
+              <a href="<?= $s->facebook ?>" class="ion-social-facebook " style="padding-right: 20px; color: white; float: left;" ></a>
+           <a href="<?= $s->twitter ?>" class="ion-social-twitter" style="padding-right: 20px; color: white; float: left; " ></a>
+           <a href="<?= $s->instagram ?>" class="ion-social-tumblr" style="padding-right: 20px; color: white; float: left; " ></a>
+           <div style="clear: both;"></div>
             </div>
             
-            <div class="nav-avatar">
-            <?php foreach ($siswa as $s): ?>
-              <img class="circle avatar" src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" alt="">
+            
+            <div class="nav-avatar" >
+
+           
+              <img class="circle avatar" src="<?= base_url('./assets/images/siswa/'. $s->photo) ?>" >
               <div class="avatar-body">
                 <h3><?=$this->session->userdata['username'];?></h3>
                 <p><?=$s->jurusan?> </p>
                 <p><?=$s->univ ?></p>
 
               </div>
-              <?php endforeach ?>   
+                
             </div>
+            <?php endforeach ?> 
           </div>
         </li>
         <li><a href="<?php echo base_url('index.php')?>" class="no-child"><i class="ion-android-home"></i> Home</a></li>
