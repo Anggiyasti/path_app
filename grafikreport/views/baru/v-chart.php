@@ -18,10 +18,11 @@
 
 
 
-<div class="sidebar-box">
-    <div class="sidebar-box-inner">
-        <h3 class="sidebar-title"><?=$mapel ?></h3>
-        <div class="sidebar-course-reviews">
+<div class="row">
+              <div class="col s12">
+        <h4 class="uppercase" align="center"><?=$mapel ?> </h4>
+        <h6 class="uppercase" align="center">Rata-rata <?=$total?> %</h6>
+       <!--  <div class="sidebar-course-reviews"> -->
             <div class="skill-area">
                 
                 <?php if ($c== array()): ?>
@@ -51,7 +52,7 @@
     <?php endif ?>
                                                 
     </div>
-</div>
+<!-- </div> -->
 </div>
 </div>
 

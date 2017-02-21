@@ -98,6 +98,28 @@ class Mgrafik extends CI_Model
         return $result->result_array();
     }
 
+    // get data buat grafik bar
+    public function chart_total($data)
+    {
+
+        $this->db->distinct();
+        $this->db->select('ROUND(SUM(g.sub_score) / SUM(g.total) * 100)/count(g.id_bab) as total_grafik');
+        $this->db->from('tb_grafik_report g');
+        $this->db->join('tb_bab b', 'g.id_bab=b.id_bab');
+        $this->db->join('tb_mata_pelajaran m', 'b.id_mapel=m.id_mapel');
+        $this->db->where('m.nama_mapel', $data);
+
+        // $query = $this->db->get();
+        // $soal = $query->result_array();
+        // return $soal[0]['id_bab'];
+        // $query = " SELECT m.nama_mapel, b.judul_bab, g.total as tot, ROUND(SUM(g.sub_score) / SUM(g.total) * 100) AS score_grafik, SUM( total ) AS total, ROUND(SUM(g.sub_score) / SUM(g.total) * 100)/count(g.id_bab) as total_grafikk FROM tb_grafik_report as g RIGHT JOIN tb_bab as b ON g.id_bab = b.id_bab JOIN tb_mata_pelajaran as m ON b.id_mapel = m.id_mapel WHERE m.nama_mapel = '$data' order by b.judul_bab asc";
+         $query = $this->db->get();
+        $soal = $query->result_array();
+        return $soal[0]['total_grafik'];
+    }
+
+   
+
    
 }
 

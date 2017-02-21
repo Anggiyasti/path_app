@@ -21,20 +21,32 @@
         </div>
         
         <!-- Article Content -->
-        <div class="animated fadeinup delay-1">
-          <div class="page-content">
+        <div class="row">
+              <div class="col s12">
             <!-- With Left Icon -->
-          <h4 class="p-20">Report Detail</h4>
+          <h4 class="uppercase" align="center">Report Detail</h4>
           <?php if ($report == array()): ?>
             <h3>Tidak ada Report Latihan.</h3>
           <?php else: ?>
           <?php foreach ($report as $reportitem): ?>
-            <div class="blog-preview p-20">
-              <div class="media-body">
-                <ul class="course-feature">
-                  <li>Pelajaran : <?= $reportitem['nama_mapel'] ?></li>
-                  <li>Bab : <?= $reportitem['judul_bab'] ?></li>
-                  <li>Level :
+            <?php 
+                      //Buat daftar nama hari dalam bahasa indonesia
+                      $day = date('D', strtotime($reportitem['tgl_pengerjaan']));
+                      $dayList = array(
+                                  'Sun' => 'Minggu',
+                                  'Mon' => 'Senin',
+                                  'Tue' => 'Selasa',
+                                  'Wed' => 'Rabu',
+                                  'Thu' => 'Kamis',
+                                  'Fri' => 'Jumat',
+                                  'Sat' => 'Sabtu'
+                                );
+                       ?>
+              <div class="activity animated fadeinright delay-1">
+                <ul class="course-feature" style="margin-top: 0;">
+                  <li>Pelajaran&nbsp&nbsp&nbsp:&nbsp<?= $reportitem['nama_mapel'] ?></li>
+                  <li>Bab&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?= $reportitem['judul_bab'] ?></li>
+                  <li>Level&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:
                     <?php if ($reportitem['kesulitan'] == '1') { ?>
                       Mudah
                     <?php } elseif ($reportitem['kesulitan'] == '2') { ?>
@@ -43,15 +55,21 @@
                       Sulit
                     <?php } ?>
                   </li>
-                  <li>Tanggal Pengerjaan : <?= $reportitem['tgl_pengerjaan'] ?></li>
-                  <li>Score : <?= $reportitem['score'] ?></li>
+                  <li>Hari/Tgl&nbsp&nbsp&nbsp&nbsp&nbsp : <?php echo $dayList[$day]; ?> / <?php 
+                          $d=strtotime($reportitem['tgl_pengerjaan'] );
+                          echo date("d-m-Y", $d);  ?>
+                  </li>
+                  <li>Waktu&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <?php 
+                          $d=strtotime($reportitem['tgl_pengerjaan'] );
+                          echo date("H:i:s", $d);  ?>
+                  </li>
+                  <li>Score&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <?= $reportitem['score'] ?></li>
                 </ul>
               </div>
-            </div>
           <?php endforeach ?>
           <?php endif ?>
            <div class="chart">
-            <div id="chartContainer">
+            <div id="chartContainer" style="height: 200px;padding-top: 0px;">
             </div>
         </div>
           </div>
@@ -80,10 +98,6 @@
                     //report.konstanta =  report.durasi * report.jumlah_soal;
                     report.score = data.jmlh_benar;
                     var chart = new CanvasJS.Chart("chartContainer", {
-                        title: {
-                            fontColor: "black",
-                            text: "Bab : " + data.judul_bab + " - Score : " + report.score
-                        },
                         animationEnabled: true,
                         theme: "theme1",
                         backgroundColor: "white",
@@ -97,7 +111,7 @@
                                 indexLabelLineColor: "darkgrey",
                                 toolTipContent: "Jumlah : {y} ",
                                 dataPoints: [
-                                    {y: data.jmlh_benar, indexLabel: "Poin {y}"},
+                                    {y: data.jmlh_benar, indexLabel: "Benar {y}"},
                                     {y: data.jmlh_salah, indexLabel: "Salah {y}"},
                                     {y: data.jmlh_kosong, indexLabel: "Kosong {y}"}
 
