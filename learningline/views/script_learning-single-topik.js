@@ -19,8 +19,8 @@ $(document).ready(function(){
 function drop_topik(idtopik){
 	url = base_url+"index.php/learningline/drop_topik";
 	swal({
-		title: "Yakin akan hapus Topik?",
-		text: "Jika anda menghapus topik, step juga akan terhapus",
+		title: "Yakin akan hapus Session?",
+		text: "Jika anda menghapus Session, step juga akan terhapus",
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonColor: "#DD6B55",
@@ -35,7 +35,7 @@ function drop_topik(idtopik){
 			type:"POST",
 			url:url,
 			success:function(){
-				swal("Terhapus!", "Topik berhasil dihapus.", "success");
+				swal("Terhapus!", "Session berhasil dihapus.", "success");
 				dataTableLearning.ajax.reload(null,false);
 			},
 			error:function(){

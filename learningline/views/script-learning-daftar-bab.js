@@ -63,7 +63,7 @@ function updatestatus(id,status){
 }
 function detail_topik(data){
 	$('.detail_step').modal('show');
-	judul = " <h4 class='modal-title' style='display: inline'>Daftar Step</h4>";
+	judul = " <h4 class='modal-title' style='display: inline'>Daftar Quis</h4>";
 	$('.detail_step .modal-header').html(judul);
 	$(".detail_step a").attr("href", base_url+"index.php/learningline/formstep/"+data);
 	
@@ -86,7 +86,7 @@ function detail_topik(data){
 //detail bab
 function detail_bab(data){
 	$('.detail_topik').modal('show');
-	judul = " <h4 class='modal-title' style='display: inline'>Daftar Topik</h4>";
+	judul = " <h4 class='modal-title' style='display: inline'>Daftar Session</h4>";
 	$('.detail_topik .modal-header').html(judul);
 	$(".detail_topik a").attr("href", base_url+"index.php/learningline/formtopik/"+data);
 	var url = base_url+"index.php/learningline/ajax_get_list_topik/"+data;
@@ -108,8 +108,8 @@ function detail_bab(data){
 function drop_topik(idtopik){
 	url = base_url+"index.php/learningline/drop_topik";
 	swal({
-		title: "Yakin akan hapus Topik?",
-		text: "Jika anda menghapus topik, step juga akan terhapus",
+		title: "Yakin akan hapus Session?",
+		text: "Jika anda menghapus Session, step juga akan terhapus",
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonColor: "#DD6B55",
@@ -124,7 +124,7 @@ function drop_topik(idtopik){
 			type:"POST",
 			url:url,
 			success:function(){
-				swal("Terhapus!", "Topik berhasil dihapus.", "success");
+				swal("Terhapus!", "Session berhasil dihapus.", "success");
 				tabel.ajax.reload(null,false);
 			},
 			error:function(){

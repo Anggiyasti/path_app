@@ -70,7 +70,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h3 class="semibold mt0 text-accent text-center">Daftar Step <?=$namaTopik?></h3>
+            <h3 class="semibold mt0 text-accent text-center">Daftar Quis <?=$namaTopik?></h3>
           </div>
           <div class="modal-body">
             <table class="daftarsteptable table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
@@ -79,7 +79,7 @@
                   <!-- <th width="3%">ID Step</th> -->
                   <th width="3%">Urutan</th>
 
-                  <th>Nama step</th>
+                  <th>Nama Quis</th>
 
                   <th>Jenis Materi</th>
                   <th width="20%">Aksi</th>
@@ -124,7 +124,7 @@
       <!-- Start Body modal -->
       <form  class="panel panel-default form-horizontal form-bordered form-line"  method="post" >
        <div  class="form-group">
-        <label class="col-sm-3 control-label">Nama Topik</label>
+        <label class="col-sm-3 control-label">Nama Session</label>
         <div class="col-sm-8">
          <!-- stkt = soal tingkat -->
          <input type="text" class="form-control" value="<?=$namaTopik?>" disabled="true">
@@ -142,7 +142,7 @@
    </div>
 
    <div  class="form-group">
-    <label class="col-sm-3 control-label">Nama Step</label>
+    <label class="col-sm-3 control-label">Nama Quis</label>
     <div class="col-sm-7">
       <input type="text" class="form-control" name="namastep">
     </div>
@@ -150,10 +150,10 @@
   </div>
 
   <div  class="form-group">
-    <label class="col-sm-3 control-label">Jenis Step</label>
+    <label class="col-sm-3 control-label">Jenis Quis</label>
     <div class="col-sm-3">
       <select class="form-control" name="select_jenis">
-        <option value="0">-- Pilih Jenis Step --</option>
+        <option value="0">-- Pilih Jenis Quis --</option>
         <option value="1">Video</option>
         <option value="2">Materi</option>
         <option value="3">Latihan</option>

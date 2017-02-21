@@ -75,7 +75,7 @@
  </div>
 
 <div  class="form-group">
-  <label class="col-sm-3 control-label">Nama Topik</label>
+  <label class="col-sm-3 control-label">Nama Session</label>
   <div class="col-sm-8">
 
    <input type="text" class="form-control" name="nama_topik" value="<?=$judul?>">

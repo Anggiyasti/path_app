@@ -88,10 +88,10 @@ $('.simpan_step').click(function(){
 			url:url,
 			type:"POST",
 			success:function(){
-				swal('Step berhasil ditambahkan');
+				swal('Quis berhasil ditambahkan');
 				$('.form-line')[0].reset();
 				swal({
-					title: "Step berhasil ditambahkan!",
+					title: "Quis berhasil ditambahkan!",
 					text: "Tambahkan baru, atau selesai?",
 					type: "warning",
 					showCancelButton: true,
@@ -103,7 +103,7 @@ $('.simpan_step').click(function(){
 				},
 				function(isConfirm){
 					if (isConfirm) {
-						swal("selesai", "Anda akan dialihkan ke daftar step", "success");
+						swal("selesai", "Anda akan dialihkan ke daftar Quis", "success");
 						window.location.href = base_url+"index.php/learningline/step/"+data.topikID;
 					} else {
 						swal("Tambah Data", "silahkan ambahkan data");

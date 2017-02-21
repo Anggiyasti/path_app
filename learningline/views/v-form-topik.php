@@ -6,7 +6,7 @@
  <div class="col-md-12">
   <div class="panel panel-default">
    <div class="panel-heading">
-    <h3 class="panel-title">Tambah Learning Topik</h3>
+    <h3 class="panel-title">Tambah Session</h3>
     <div class="panel-toolbar text-right">
       <a class="btn btn-success" 
       href="<?= base_url(); ?>index.php/learningline/learningline" 
@@ -35,10 +35,10 @@
 </div>
 
 <div  class="form-group">
-  <label class="col-sm-3 control-label">Nama Topik</label>
+  <label class="col-sm-3 control-label">Nama Session</label>
   <div class="col-sm-8">
 
-   <input type="text" class="form-control" name="namatopik">
+   <input type="text" class="form-control" name="namaTopik">
  </div>
 </div>
 
@@ -46,7 +46,7 @@
   <label class="col-sm-3 control-label">Urutan</label>
   <div class="col-sm-8">
 
-   <input type="text" class="form-control" name="urt">
+   <input type="text" class="form-control" name="urutan">
  </div>
 </div>
 
@@ -67,7 +67,7 @@
 <div  class="form-group">
   <label class="col-sm-3 control-label">Deskripsi</label>
   <div class="col-sm-8">
-    <textarea class="form-control" name="des"></textarea>
+    <textarea class="form-control" name="deskripsi"></textarea>
   </div>
 </div>
 

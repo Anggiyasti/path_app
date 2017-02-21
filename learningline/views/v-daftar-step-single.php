@@ -46,7 +46,7 @@
                     <thead>
                         <tr>
                             <th width="10%">Id</th>
-                            <th>Step</th>
+                            <th>Quis</th>
                             <th>jenis</th>
                             <th width="20%">Aksi</th>
                         </tr>

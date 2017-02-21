@@ -82,7 +82,7 @@ $('.simpanlearning').click(function(){
   {babID:$('input[name=select_bab]').val(),
   statusLearning:1,
   deskripsi:$('textarea[name=deskripsi]').val(),
-  namaTopik:$('input[name=nama_topik]').val(),
+  namaTopik:$('input[name=namaTopik]').val(),
   urutan:$('input[name=urutan]').val()
 };
   if (data.statusLearning=="kosongundefined" || data.namaTopik=="") {
@@ -95,10 +95,10 @@ $('.simpanlearning').click(function(){
       url:url,
       type:"POST",
       success:function(){
-        swal('Topik berhasil ditambahkan');
+        swal('Session berhasil ditambahkan');
         $('.form-topik')[0].reset();
         swal({
-          title: "Topik berhasil ditambahkan!",
+          title: "Session berhasil ditambahkan!",
           text: "Tambahkan baru, atau selesai?",
           type: "warning",
           showCancelButton: true,
@@ -110,7 +110,7 @@ $('.simpanlearning').click(function(){
         },
         function(isConfirm){
           if (isConfirm) {
-            swal("selesai", "Anda akan dialihkan ke daftar topik", "success");
+            swal("selesai", "Anda akan dialihkan ke daftar Session", "success");
             link = base_url+"learningline/topik/"+data.babID;
             window.location.href = link;
             console.log(link);
