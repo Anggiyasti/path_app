@@ -110,7 +110,9 @@
                         <tr>
                             <th>id</th>
                             <th>Nama Mapel</th>
+                            <th>part</th>
                             <th>Judul Bab</th>
+
 <!--                             <th>Bab</th>
  -->                        <th>learning Line</th>
                             <th width="15%">Aksi</th>

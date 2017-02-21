@@ -35,10 +35,26 @@ class Learningline extends MX_Controller {
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
+			$a = $list_item['part'];
+              if ($a  == '1') {
+                  $pp = 'Path1';
+              } elseif ($a  == '2') {
+                  $pp = 'Path2';
+              }elseif ($a  == '3') {
+                  $pp = 'Path3';
+              }elseif ($a  == '4') {
+                  $pp = 'Path4';
+              }else{
+              	$pp = '';
+              }
 			// $no++;
 			$row = array();
 			$row[] = $list_item['id_bab'];			
 			$row[] = $list_item['nama_mapel'];
+
+         
+             
+			$row[] = $pp;
 			$row[] = $list_item['judul_bab'];
 			// $row[] = $list_item['judulbab'];
 			if ($list_item['statusLearningLine']==1) {

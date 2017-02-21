@@ -105,7 +105,7 @@ class Learningmodel extends CI_Model{
 
 	// ambil semua bab
 	public function get_bab_for_topik(){
-		$this->db->select('b.id_bab, m.nama_mapel,b.judul_bab,b.statusLearningLine');
+		$this->db->select('b.id_bab, m.nama_mapel,m.part,b.judul_bab,b.statusLearningLine');
 		$this->db->from('tb_bab b');
 		$this->db->join('tb_mata_pelajaran m',' m.id_mapel = b.id_mapel');
 		$this->db->where('b.status',1);
