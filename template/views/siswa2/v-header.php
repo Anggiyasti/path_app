@@ -173,10 +173,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
             <div class="face-notification">
               <img src="img/user3.jpg" alt="" class="cricle">
               <div>
-                <p>Mike Green</p>
-                <span>Post something...</span>
-                <span class="small">Yesterday at 03:19</span>
-              </div>
+                
             </div>
           </div>
 
