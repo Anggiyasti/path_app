@@ -213,7 +213,7 @@ class Modelbank extends CI_Model
 	
 	
 	public function insert_mapel($datamapel) {
-        $this->db->insert('tb_mata_pelajaran', $datamapel);
+        $this->db->insert_batch('tb_mata_pelajaran', $datamapel);
     }
     public function insert_bab($databab) {
         $this->db->insert('tb_bab', $databab);

@@ -54,6 +54,28 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Part</label>
+                                        <div class="col-sm-5">
+                                            <span class="checkbox custom-checkbox custom-checkbox-inverse">
+                                                <input type="checkbox" name="part1" id="customcheckbox1" value="1" />
+                                                <label for="customcheckbox1">&nbsp;&nbsp;1</label>
+                                            </span>
+                                            <span class="checkbox custom-checkbox">
+                                                <input type="checkbox" name="part2" value="2" id="customcheckbox2" />
+                                                <label for="customcheckbox2">&nbsp;&nbsp;2</label>
+                                            </span>
+                                            <span class="checkbox custom-checkbox custom-checkbox-inverse">
+                                                <input type="checkbox" name="part3" id="customcheckbox3" value="3" />
+                                                <label for="customcheckbox3">&nbsp;&nbsp;3</label>
+                                            </span>
+                                            <span class="checkbox custom-checkbox">
+                                                <input type="checkbox" name="part4" value="4" id="customcheckbox4" />
+                                                <label for="customcheckbox4">&nbsp;&nbsp;4</label>
+                                            </span>
+                                        </div>
+                                    </div>
+
                                     <div class="panel-footer">
                                         <div class="form-group no-border">
                                             <!-- <label class="col-sm-3 control-label">Button</label> -->

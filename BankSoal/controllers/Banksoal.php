@@ -828,11 +828,37 @@ public function upload_video(){
           $alias_mapel = htmlspecialchars($this->input->post('alias_mapel'));
           $nama_mapel = htmlspecialchars($this->input->post('nama_mapel'));
                  
-           $datamapel = array(
-            'alias_mapel' => $alias_mapel,
-            'nama_mapel' => $nama_mapel
-           );
-
+           $datamapel= array(
+                       array(
+                        'alias_mapel' => $alias_mapel,
+                        'nama_mapel' => $nama_mapel,
+                         'part' => '1',
+                         'part' => $part1,
+                         
+                      ),
+                       array(
+                          'alias_mapel' => $alias_mapel,
+                          'nama_mapel' => $nama_mapel,
+                           'part' => '2',
+                           'part' => $part2,
+                           
+                       ),
+                       array(
+                        'alias_mapel' => $alias_mapel,
+                        'nama_mapel' => $nama_mapel,
+                         'part' => '3',
+                         'part' => $part3,
+                         
+                      ),
+                       array(
+                          'alias_mapel' => $alias_mapel,
+                          'nama_mapel' => $nama_mapel,
+                           'part' => '4',
+                           'part' => $part4,
+                           
+                       ),
+                  
+                 );
            //call fungsi insert soal
            $this->Modelbank->insert_mapel($datamapel);
            $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Berhasil</div>');
