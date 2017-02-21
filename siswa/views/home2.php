@@ -3,6 +3,7 @@
         <!-- Toolbar -->
         <div id="toolbar" style="background-color: #19305B;">
           <div class="open-left" id="open-left" data-activates="slide-out-left">
+
             <i class="ion-android-menu"></i>
           </div>
           <span class="title">Halo</span>
@@ -18,7 +19,9 @@
           <div class="swiper-container slider-sliced">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
+
                 <div class="slider-bottom-right valign-wrapper">
+                
                   <div class="valign center-align width-100 p-b-5em">
                     <h2 class="uppercase">Halo</h2>
                     <p>Is a mobile website, developed to make your life easer!</p>

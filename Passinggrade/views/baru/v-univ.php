@@ -1,4 +1,4 @@
-Page Content -->
+<!-- Page Content -->
       <div id="content" class="grey-blue">
 
         <!-- Toolbar -->
@@ -14,17 +14,16 @@ Page Content -->
 
          <!-- Hero Header -->
         <div class="h-banner animated fadeindown">
-          <div class="parallax bg-9">
+          <div class="parallax bg-9" >
             <div class="floating-button animated bouncein delay-3">
             <span class="btn-floating resize btn-large waves-effect waves-light accent-color btn z-depth-1">
               <i class="ion-social-twitter"></i>
             </span>
           </div>
-            <!-- <div class="banner-title">Journal</div> -->
+            <div class="banner-title"></div>
           </div>
          </div>
-         <div style="width: 100%; height: 30%; background-color: #19305B; "><p style="color: #ffffff; font-size: 25px; padding-left: 3%; " >Journal</p></div>
-
+         <div style="width: 100%; height: 30%; background-color: #19305B; "><p style="color: #ffffff; font-size: 25px; padding-left: 3%;" >Journal</p></div>
 
         <?php foreach ($data as $univ) : ?>
        <!-- Profile Content -->
@@ -46,4 +45,4 @@ Page Content -->
           <?php endforeach ?>
       
          
-      </div> <!-- End of Page Content
+      </div> <!-- End of Page Content -->
