@@ -72,6 +72,18 @@ class Modelbank extends CI_Model
         return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
     }
 
+    // data paginataion all soal
+    function data_soal_filter($number,$offset, $data){
+        $this->db->select('id_bank, sumber, kesulitan, judul_soal, jawaban_benar, UUID, publish, random, soal, gambar_soal, pembahasan, bab.judul_bab, mapel.id_mapel, mapel.nama_mapel');
+        // $this->db->from('tb_bank_soal bs');
+        $this->db->join('tb_bab bab','bab.id_bab=bs.id_bab');
+        $this->db->join('tb_mata_pelajaran mapel', 'mapel.id_mapel = bab.id_mapel' );
+        $this->db->where('bs.publish','1');
+        $this->db->where('mapel.nama_mapel', $data);
+        $this->db->order_by('bs.id_bank', 'desc');
+        return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
+    }
+
 	public function insert_soal($dataSoal) {
         $this->db->insert('tb_bank_soal', $dataSoal);
     }

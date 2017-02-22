@@ -1,59 +1,4 @@
-<div class="m-scene" id="main"> <!-- Main Container -->
-      
-      <!-- Left Sidebar -->
-      <ul id="slide-out-left" class="side-nav collapsible">
-        <li>
-          <div class="sidenav-header primary-color">
-            
-            <div class="nav-avatar">
-           <!--  <?php foreach ($siswa as $s): ?> -->
-              <img class="circle avatar" src="" alt="">
-              <div class="avatar-body">
-                <!-- <h3>Halo <?=$this->session->userdata['username'];?></h3>
-                <p><?=$s->jurusan?> <?=$s->univ ?></p> -->
 
-              </div>
-              <!-- <?php endforeach ?> -->   
-            </div>
-          </div>
-        </li>
-        <li><a href="<?php echo base_url('index.php')?>" class="no-child"><i class="ion-android-home"></i> Home</a></li>
-        <li><a href="<?php echo base_url('index.php/Siswa/Profilesiswa')?>" class="no-child"><i class="ion-android-person"></i> Profile Setting</a></li>
-
-        <li>
-          <div class="collapsible-header">
-            <i class="ion-android-list"></i>Workout 
-          </div>
-          <div class="collapsible-body">
-            <ul class="collapsible">
-              <li>
-                <a href="<?= base_url('index.php/workout1') ?>">Workout</a>
-                <a href="<?= base_url('index.php/workout1/pilihreport') ?>">Report</a>
-                <a href="<?= base_url('index.php/grafikreport') ?>">Grafik Report</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <div class="collapsible-header">
-            <i class="ion-android-document"></i> Passing Grade 
-          </div>
-          <div class="collapsible-body">
-            <ul class="collapsible">
-              <li>
-                <a href="<?= base_url('index.php/passinggrade/univ') ?>">Universitas</a>   
-                <a href="<?= base_url('index.php/passinggrade/pilih_prodi') ?>">Prodi</a> 
-                <a href="<?= base_url('index.php/passinggrade/passing') ?>">Passing Grade</a>
-              </li>
-            </ul>
-          </div>  
-        </li>
-        
-        <li><a href="<?= base_url('index.php/linetopik') ?>" class="no-child"><i class="ion-social-rss"></i> Path </a></li>
-        <li><a href="<?php echo base_url('index.php/Login/logout_siswa')?>" class="no-child"><i class="ion-android-exit"></i> Logout</a></li>
-        
-      </ul>
-      <!-- End of Sidebars -->
 
       <!-- Page Content -->
       <div id="content" class="page">
@@ -70,8 +15,10 @@
         </div>
         
         <!-- Article Content -->
-        <div class="animated fadeinup delay-1">
-          <div class="page-content">
+         <div class="row">
+              <div class="col s12">
+              <div class="activities">
+              <div class="activity animated fadeinright delay-1">
             <!-- With Left Icon -->
           <!-- <h4 class="p-20">Workout</h4> -->
           <form action="<?= base_url() ?>index.php/workout1/start" method="post">
@@ -118,8 +65,7 @@
           </form>
           </div>
         </div> 
+        </div>
+        </div>
       
-         <div id="canvas"></div>
-
       </div> <!-- End of Page Content -->
-      </div>

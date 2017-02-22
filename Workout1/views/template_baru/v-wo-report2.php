@@ -16,12 +16,10 @@
         <div class="row">
               <div class="col s12">
             <!-- With Left Icon -->
-            <div class="share center-align m-t-30">
             <?php foreach ($bab as $reportitem): ?>
-                <h4 class="uppercase">Mapel&nbsp&nbsp&nbsp: <?= $reportitem['nama_mapel'] ?></h4>
-                <h4 class="uppercase">Bab&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <?= $reportitem['judul_bab'] ?></h4>
+                <h4 class="uppercase" align="center"><?= $reportitem['nama_mapel'] ?></h4>
+                <h4 class="uppercase" align="center"><?= $reportitem['judul_bab'] ?></h4>
             <?php endforeach ?>
-            </div>
 
             <div class="activities">
                 <?php if ($report == array()): ?>

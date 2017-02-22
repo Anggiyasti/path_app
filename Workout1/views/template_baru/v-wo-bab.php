@@ -17,7 +17,7 @@
               <div class="col s12">
 
             <!-- With Left Icon -->
-          <h4 class="uppercase" align="center">Mata Pelajaran</h4>
+          <h4  align="center" style="padding-top: 10px; padding-bottom: 10px;">Mata Pelajaran</h4>
           <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
           <?php $ke=0; ?>
           <?php $mp; ?>

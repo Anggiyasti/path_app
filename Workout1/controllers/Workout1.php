@@ -208,7 +208,7 @@ class Workout1 extends MX_Controller
     // redirect(base_url('login'));
          $id_bab = $this->Mworkout1->getmapelbab($id_latihan);
    
-    redirect('workout1/reportmapel/'.$id_bab);
+    redirect('workout1/detailreport/'.$id_latihan);
     }
 
 

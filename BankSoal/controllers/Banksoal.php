@@ -34,13 +34,14 @@
 
   public function listsoal()
     {
+
         // code u/pagination
        $this->load->database();
         $jumlah_data = $this->Modelbank->jumlah_data();
        
         $config['base_url'] = base_url().'index.php/banksoal/listsoal/';
         $config['total_rows'] = $jumlah_data;
-        $config['per_page'] = 2;
+        $config['per_page'] = 10;
 
         // Start Customizing the “Digit” Link
         $config['num_tag_open'] = '<li>';
@@ -79,6 +80,58 @@
         $from = $this->uri->segment(3);
         $this->pagination->initialize($config);     
         $list = $this->Modelbank->data_soal($config['per_page'],$from);
+
+        $this->tampSoal($list);
+    }
+
+public function listfilter($data)
+    {
+
+        // code u/pagination
+       $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data();
+       
+        $config['base_url'] = base_url().'index.php/banksoal/listsoal/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 10;
+
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
+        
+        $from = $this->uri->segment(3);
+        $this->pagination->initialize($config);     
+        $list = $this->Modelbank->data_soal_filter($config['per_page'],$from, $data);
 
         $this->tampSoal($list);
     }
@@ -204,6 +257,8 @@
         //     redirect(site_url('welcome'));
         // }
         #END Cek USer#
+          $data['mapel']=$this->Modelbank->getmapel();
+    $data['data'] = $this->Modelbank->getsoal();
       if     ($this->session->userdata('id_admin')) {
           $this->load->view('admin/layout/header');
           $this->load->view('soal/v-soal-all2', $data);
@@ -1137,9 +1192,10 @@ public function uploadbab(){
         $data['data'] = $this->Modelbank->filter_soal_all($mapel, $pel, $kesulitan);
         $data['mapel']=$this->Modelbank->getmapel();
 
-        $this->load->view('admin/layout/header');
-        $this->load->view('vfilter', $data);
-        $this->load->view('admin/layout/footer');   
+        // $this->load->view('admin/layout/header');
+        // $this->load->view('soal/v-filter-baru', $data);
+        // $this->load->view('admin/layout/footer');   
+        redirect('banksoal/listfilter/'.$pel);
       
       } elseif ($pel && $mapel) {
         $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
@@ -1147,7 +1203,7 @@ public function uploadbab(){
         $data['mapel']=$this->Modelbank->getmapel();
 
         $this->load->view('admin/layout/header');
-        $this->load->view('vfilter', $data);
+        $this->load->view('soal/v-filter-baru', $data);
         $this->load->view('admin/layout/footer');
         
       } else {
@@ -1155,9 +1211,10 @@ public function uploadbab(){
         $data['data'] = $this->Modelbank->filter_soal_pel($pel);
         $data['mapel']=$this->Modelbank->getmapel();
         
-        $this->load->view('admin/layout/header');
-        $this->load->view('vfilter', $data);
-        $this->load->view('admin/layout/footer');
+        redirect('banksoal/listfilter/').$pel;
+        // $this->load->view('admin/layout/header');
+        // $this->load->view('soal/v-filter-baru', $data);
+        // $this->load->view('admin/layout/footer');
 
         
       }

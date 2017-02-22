@@ -79,7 +79,7 @@ MathJax.Hub.Config({
                 <div class="table-responsive">
 
                     <div >
-                    <a href="javascript:void(0);" onclick="add_soal()" class="btn btn-primary"><i class="glyphicon glyphicon-plus fa-1x"></i> FILTER</a>   
+                    <a href="javascript:void(0);" onclick="add_soal()" class="btn btn-primary"><i class="glyphicon glyphicon-plus fa-1x"></i> FILTER Soal</a>   
 
                                          
                     </div
