@@ -286,7 +286,8 @@ class Workout1 extends MX_Controller
 
         $id_siswa = $this->session->userdata['id_siswa'];
           $log = array(
-            "id_siswa" => $id_siswa  
+            "id_siswa" => $id_siswa,
+            "id_bab" => $idbab  
         );
          $this->Mworkout1->insertlog($log);
        
