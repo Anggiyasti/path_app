@@ -20,13 +20,12 @@ class Learningmodel extends CI_Model{
 	}
 
 		//fungsi ambil topik by id bab
-	public function get_topik_by_babid($data){
-		$this->db->select('t.urutan,t.id,t.statusLearning,t.namaTopik, b.judul_bab, m.nama_mapel');
+	public function get_topik_by_mapelid($data){
+		$this->db->select('t.urutan,t.id,t.status,t.namaTopik,t.part, m.nama_mapel');
 		
 		$this->db->from('tb_line_topik t');
-		$this->db->join('tb_bab b','t.babID = b.id_bab');
-		$this->db->join('tb_mata_pelajaran m',' m.id_mapel = b.id_mapel');
-		$this->db->where('b.id_bab',$data);
+		$this->db->join('tb_mata_pelajaran  m ','m.id_mapel = t.id_mapel');
+		$this->db->where(' m.id_mapel ',$data);
 		$this->db->where('t.status',1);
 
 		$query = $this->db->get();
@@ -74,24 +73,59 @@ class Learningmodel extends CI_Model{
 		return $query->result_array();
 	}
 
-	function get_bab_by_id($data){
+	// fungi ambil semua step berdasarkan id topik tertentu
+	public function get_bab($data){
+		$this->db->select('b.judul_bab, b.id_bab');
+		$this->db->from('tb_mata_pelajaran m');
+		$this->db->join('tb_bab b','m.id_mapel=b.id_mapel');
+		$this->db->where('m.id_mapel',$data);
+		$this->db->where('m.status',1);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	function get_bab_by_mapel($data){
         $query = "SELECT 
-        bab.id_bab, mapel.nama_mapel, bab.judul_bab
-        FROM
-        (SELECT  * FROM  tb_bab
-        WHERE 
-        id_bab =  $data ) AS bab
-        JOIN tb_mata_pelajaran AS mapel
-        ON mapel.id_mapel = bab.id_mapel";
+         mapel.id_mapel,mapel.nama_mapel,mapel.part
+        FROM tb_mata_pelajaran AS mapel
+        WHERE id_mapel = $data";
         $result = $this->db->query($query);
         return $result->result_array();
     }
 
+                      public function baba($data)
+	{
+		$this->db->select('ls.judul_bab, ls.id_bab');
+		$this->db->from('tb_mata_pelajaran tp');
+		$this->db->join('tb_bab ls','tp.id_mapel=ls.id_mapel');
+		$this->db->where('tp.nama_mapel',$data);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
     function get_topik_byid($data){
-		$query = "SELECT topik.id,bab.id_bab as babID, mapel.id_mapel as mapelID, namaTopik, statusLearning,topik.urutan,deskripsi, nama_mapel, judul_bab 
+		$query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel,bab.judul_bab, statusLearning,topik.urutan,deskripsi, nama_mapel ,bab.id_bab
+		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = 72) AS topik 
+		JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = topik.id_mapel
+		JOIN tb_bab AS bab ON mapel.id_mapel = bab.id_mapel";
+
+		$result = $this->db->query($query);
+		if ($result->result_array()==array()) {
+			return false;
+		} else {
+			return $result->result_array()[0];
+		}
+		
+
+	}
+
+	function get_topik_byid1($data){
+		$query = "SELECT topik.id,bab.id_bab as babID, mapel.id_mapel as mapelID, mapel.nama_mapel, namaTopik, statusLearning,topik.urutan,deskripsi, nama_mapel, judul_bab 
 		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
 		JOIN tb_bab AS bab ON topik.babID = bab.id_bab
-		JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = bab.id_mapel";
+		JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = bab.id_mapel
+
+		";
 
 		$result = $this->db->query($query);
 		if ($result->result_array()==array()) {
@@ -105,10 +139,9 @@ class Learningmodel extends CI_Model{
 
 	// ambil semua bab
 	public function get_bab_for_topik(){
-		$this->db->select('b.id_bab, m.nama_mapel,m.part,b.judul_bab,b.statusLearningLine');
-		$this->db->from('tb_bab b');
-		$this->db->join('tb_mata_pelajaran m',' m.id_mapel = b.id_mapel');
-		$this->db->where('b.status',1);
+		$this->db->select('m.id_mapel,m.nama_mapel,m.part,m.status');
+		$this->db->from('tb_mata_pelajaran m');
+		$this->db->where('m.status',1);
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -260,6 +293,20 @@ class Learningmodel extends CI_Model{
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+
+		function get_bab_by_id($data){
+        $query = "SELECT 
+        bab.id_bab, mapel.nama_mapel, bab.judul_bab
+        FROM
+        (SELECT  * FROM  tb_bab
+        WHERE 
+        id_bab =  $data ) AS bab
+        JOIN tb_mata_pelajaran AS mapel
+        ON mapel.id_mapel = bab.id_mapel";
+        $result = $this->db->query($query);
+        return $result->result_array();
+    }
+
 
 }
 ?>

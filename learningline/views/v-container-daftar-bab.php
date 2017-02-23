@@ -28,6 +28,7 @@
                                 <thead>
                                     <tr>
                                         <th width="50%">Session</th>
+                                        <th>Part</th>
                                         <th>Urutan Tampil</th>
                                         <th>Status</th>
                                         <th width="20%">Aksi</th>
@@ -60,7 +61,7 @@
           <div class="modal-body">
               <div class="panel panel-default">
                  <div class="panel-heading">
-                     <h3 class="panel-title">Tabel Quis</h3> 
+                     <h3 class="panel-title">Tabel Step</h3> 
                      <div class="panel-toolbar text-right">
                         <a class="btn btn-success" 
                         href="" 
@@ -73,7 +74,7 @@
                         <thead>
                             <tr>
                                 <th width="10%">No Urut</th>
-                                <th>Quis</th>
+                                <th>Step</th>
                                 <th>jenis</th>
                                 <th width="20%">Aksi</th>
                             </tr>
@@ -108,13 +109,11 @@
                 <table class="daftarbab table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
                     <thead>
                         <tr>
-                            <th>id</th>
+                     
                             <th>Nama Mapel</th>
                             <th>part</th>
-                            <th>Judul Bab</th>
-
 <!--                             <th>Bab</th>
- -->                        <th>learning Line</th>
+ -->                        <th>Status Mapel</th>
                             <th width="15%">Aksi</th>
                         </tr>
                     </thead>

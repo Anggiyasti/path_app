@@ -35,39 +35,26 @@ class Learningline extends MX_Controller {
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
-			$a = $list_item['part'];
-              if ($a  == '1') {
-                  $pp = 'Path1';
-              } elseif ($a  == '2') {
-                  $pp = 'Path2';
-              }elseif ($a  == '3') {
-                  $pp = 'Path3';
-              }elseif ($a  == '4') {
-                  $pp = 'Path4';
-              }else{
-              	$pp = '';
-              }
+		
 			// $no++;
-			$row = array();
-			$row[] = $list_item['id_bab'];			
+			$row = array();		
 			$row[] = $list_item['nama_mapel'];
 
          
              
-			$row[] = $pp;
-			$row[] = $list_item['judul_bab'];
+			$row[] = $list_item['part'];
 			// $row[] = $list_item['judulbab'];
-			if ($list_item['statusLearningLine']==1) {
+			if ($list_item['status']==1) {
 				$row[] = "<input type='checkbox' 
-				class='switchery' checked onclick='update_learning_bab(".$list_item['id_bab'].",".$list_item['statusLearningLine'].")'>";
+				class='switchery' checked onclick='update_learning_bab(".$list_item['id_mapel'].",".$list_item['status'].")'>";
 			} else {
 				$row[] = "<input type='checkbox' 
-				class='switchery' unchecked onclick='update_learning_bab(".$list_item['id_bab'].",".$list_item['statusLearningLine'].")'>";
+				class='switchery' unchecked onclick='update_learning_bab(".$list_item['id_mapel'].",".$list_item['status'].")'>";
 			}
 			
 			
 			$row[] = '
-			<a class="btn btn-sm btn-success"  title="Detail" onclick="detail_bab('."'".$list_item['id_bab']."'".')"><i class="ico-file-plus2"></i></a>';
+			<a class="btn btn-sm btn-success"  title="Detail" onclick="detail_bab('."'".$list_item['id_mapel']."'".')"><i class="ico-file-plus2"></i></a>';
 
 			$data[] = $row;
 
@@ -83,12 +70,13 @@ class Learningline extends MX_Controller {
 
 	//FUNGSI MENAMBAHKAN TOPIK
 	public function formtopik($data){
-		$bab_meta = $this->learningmodel->get_bab_by_id($data)[0];
+		$bab_meta = $this->learningmodel->get_bab_by_mapel($data)[0];
 		$data = array(
-			'judul_halaman' => " - Add Learning Line Topik Untuk ".$bab_meta['judul_bab'],
+			'judul_halaman' => " - Add Learning Line Topik Untuk ".$bab_meta['nama_mapel'],
 			'mapel'=>$bab_meta['nama_mapel'],
-			'bab'=>$bab_meta['judul_bab'],
-			'id'=>$bab_meta['id_bab']
+			'part'=>$bab_meta['part'],
+			'id_mapel'=>$bab_meta['id_mapel']
+			
 			);
 		// hak akses jika admin
 		if ($this->session->userdata('id_admin')) {
@@ -114,6 +102,18 @@ class Learningline extends MX_Controller {
 
 		// $this->loadparser($data);
 	}
+
+	public function step1($data)
+	{
+		$metadata['mapel'] = $this->learningmodel->get_topik_byid($data);
+
+		$pel = $this->learningmodel->get_topik_byid($data)['nama_mapel'];
+		$metadata['bab'] = $this->learningmodel->baba($pel);
+		// $metadata['i'] ="helo";
+		// var_dump($metadata);
+		$this->load->view('step1', $metadata);
+
+	}
 	//FUNGSI MENAMBAHKAN TOPIK
 
 	//FUNGSI TAMBAHKAN LINE STEP
@@ -124,9 +124,42 @@ class Learningline extends MX_Controller {
 			'judul_halaman' => " - Add Learning Line Step untuk ".$metadata['namaTopik'],
 			'namaTopik' => $metadata['namaTopik'],
 			'id'=>$metadata['id'],
+			'mapel'=>$metadata['nama_mapel'],
+			'id_mapel'=>$metadata['id_mapel'],
+			// 'id_bab'=>$metadata['id_bab']
+			
+			);
+		$mapel= $this->learningmodel->get_topik_byid($data)['id_mapel'];
+		$data['bab'] = $this->learningmodel->get_bab($mapel);
+		// var_dump($dataa);
+
+		if ($this->session->userdata('id_admin')) {
+		$this->load->view('admin/layout/header');
+		$this->load->view('v-form-step',$data);
+		$this->load->view('script_learning-form-step.js',$data);
+		$this->load->view('admin/layout/footer');
+	}
+		if ($this->session->userdata('id_guru')) {
+		$this->load->view('guru/layout/header');
+		$this->load->view('v-form-step',$data);
+		$this->load->view('script_learning-form-step.js',$data);
+		$this->load->view('guru/layout/footer');
+	}
+
+	}
+
+	public function formstep2($data, $id_bab){
+		$metadata = $this->learningmodel->get_topik_byid($data);
+		// $a['bab'] = $id_bab;
+		// var_dump($a);
+		$data = array(
+			'judul_halaman' => " - Add Learning Line Step untuk ".$metadata['namaTopik'],
+			'namaTopik' => $metadata['namaTopik'],
+			'id'=>$metadata['id'],
 			'babID'=>$metadata['babID'],
 			'mapel'=>$metadata['nama_mapel'],
 			'bab'=>$metadata['judul_bab'],
+			'bb' => $id_bab
 			);
 
 		if ($this->session->userdata('id_admin')) {
@@ -143,16 +176,48 @@ class Learningline extends MX_Controller {
 	}
 
 	}
+
+	public function formstep3($data){
+		$metadata = $this->learningmodel->get_topik_byid($data);
+		// $a['bab'] = $id_bab;
+		// var_dump($a);
+		$data = array(
+			'judul_halaman' => " - Add Learning Line Step untuk ".$metadata['namaTopik'],
+			'namaTopik' => $metadata['namaTopik'],
+			'id'=>$metadata['id'],
+			'id_bab'=>$metadata['id_bab'],
+			'mapel'=>$metadata['nama_mapel'],
+			'bab'=>$metadata['judul_bab'],
+			'bb' => $this->input->post('bab')
+			);
+
+		if ($this->session->userdata('id_admin')) {
+		$this->load->view('admin/layout/header');
+		$this->load->view('v-form-step',$data);
+		$this->load->view('script_learning-form-step.js',$data);
+		$this->load->view('admin/layout/footer');
+	}
+		if ($this->session->userdata('id_guru')) {
+		$this->load->view('guru/layout/header');
+		$this->load->view('v-form-step',$data);
+		$this->load->view('script_learning-form-step.js',$data);
+		$this->load->view('guru/layout/footer');
+	}
+
+	}
+
+
+
 	//FUNGSI TAMBAHKAN LINE STEP
 
 	// TB-TOPIK //
 	function ajax_insert_line_topik(){
 			// $data = $this->input->post();
 		$data = array(
-			'babID'=>$this->input->post('babID'),
-			'statusLearning'=>$this->input->post('statusLearning'),
+			'id_mapel'=>$this->input->post('id_mapel'),
 			'deskripsi'=>$this->input->post('deskripsi'),
 			'namaTopik'=>$this->input->post('namaTopik'),
+			'part'=>$this->input->post('part'),			
 			'status'=>1,
 			'urutan'=>$this->input->post('urutan'),
 			'UUID'=>uniqid(),
@@ -165,14 +230,14 @@ class Learningline extends MX_Controller {
 	
 
 	function topik($byid){
-		$metadata = $this->learningmodel->get_bab_by_id($byid)[0];
+		$metadata = $this->learningmodel->get_bab_by_mapel($byid)[0];
 
 
 		// var_dump($metadata);
 		$data = array(
 			'judul_halaman' => " - Daftar Topik",
 			'mapel'=>$metadata['nama_mapel'],
-			'bab'=>$metadata['judul_bab'],
+			// 'bab'=>$metadata['judul_bab'],
 			);
 
 		if ($this->session->userdata('id_admin')) {
@@ -199,9 +264,9 @@ class Learningline extends MX_Controller {
 			'judul_halaman' => " - Daftar Step",
 			'namaTopik' => $metadata['namaTopik'],
 			'id'=>$metadata['id'],
-			'id_bab'=>$metadata['babID'],
+			'id_mapel'=>$metadata['id_mapel'],
 			'mapel'=>$metadata['nama_mapel'],
-			'bab'=>$metadata['judul_bab'],
+			
 			);
 
 		if ($this->session->userdata('id_admin')) {
@@ -229,21 +294,23 @@ class Learningline extends MX_Controller {
 	// DAFTAR STEP
 
 	public function ajax_get_list_topik($babid){
-		$list = $this->learningmodel->get_topik_by_babid($babid);
+		$list = $this->learningmodel->get_topik_by_mapelid($babid);
 		$data = array();
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
 			// $no++;
+
 			$row = array();
 			$row[] = $list_item['namaTopik'];
+			$row[] = $list_item['part'];
 			$row[] = $list_item['urutan'];
-			if ($list_item['statusLearning']==1) {
+			if ($list_item['status']==1) {
 				$row[] = "<input type='checkbox' 
-				class='switchery' checked onclick='updatestatus(".$list_item['id'].",".$list_item['statusLearning'].")'>";
+				class='switchery' checked onclick='updatestatus(".$list_item['id'].",".$list_item['status'].")'>";
 			} else {
 				$row[] = "<input type='checkbox' 
-				class='switchery' unchecked onclick='updatestatus(".$list_item['id'].",".$list_item['statusLearning'].")'>";
+				class='switchery' unchecked onclick='updatestatus(".$list_item['id'].",".$list_item['status'].")'>";
 			}			
 			
 			
@@ -372,6 +439,7 @@ class Learningline extends MX_Controller {
 	if($this->input->post('latihanID')){
 		$data = array(
 			'namaStep'=>$this->input->post('namastep'),
+			'id_bab'=>$this->input->post('id_bab'),
 			'jenisStep'=>$this->input->post('select_jenis'),
 			'videoID'=>$this->input->post('videoID'),
 			'MateriID'=>$this->input->post('materiID'),
@@ -425,6 +493,7 @@ class Learningline extends MX_Controller {
 }
 
 function ajax_get_materi($data){
+		// $=htmlspecialchars($this->input->get('keycari'));
 		$list = $this->learningmodel->get_materi_babID($data);
 		$data = array();
 

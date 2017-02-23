@@ -79,8 +79,9 @@ $('input[name=urutan]').keyup(function () {
 
 $('.simpanlearning').click(function(){
   data = 
-  {babID:$('input[name=select_bab]').val(),
+  {id_mapel:$('input[name=id_mapel]').val(),
   statusLearning:1,
+  part:$('input[name=part]').val(),
   deskripsi:$('textarea[name=deskripsi]').val(),
   namaTopik:$('input[name=namaTopik]').val(),
   urutan:$('input[name=urutan]').val()
@@ -111,7 +112,7 @@ $('.simpanlearning').click(function(){
         function(isConfirm){
           if (isConfirm) {
             swal("selesai", "Anda akan dialihkan ke daftar Session", "success");
-            link = base_url+"learningline/topik/"+data.babID;
+            link = base_url+"learningline/topik/"+data.id_mapel;
             window.location.href = link;
             console.log(link);
           } else {

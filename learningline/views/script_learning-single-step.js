@@ -147,8 +147,8 @@ function latihan_detail(id, url){
 function drop_step(idstep){
 	url = base_url+"index.php/learningline/drop_step";
 	swal({
-		title: "Yakin akan hapus Quis?",
-		text: "Jika anda menghapus Quis",
+		title: "Yakin akan hapus Step?",
+		text: "Jika anda menghapus Step",
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonColor: "#DD6B55",
@@ -163,7 +163,7 @@ function drop_step(idstep){
 			type:"POST",
 			url:url,
 			success:function(){
-				swal("Terhapus!", "Quis berhasil dihapus.", "success");
+				swal("Terhapus!", "Step berhasil dihapus.", "success");
 				reload();
 			},
 			error:function(){

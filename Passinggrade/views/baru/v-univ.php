@@ -16,7 +16,7 @@
         <div class="h-banner animated fadeindown">
           <div class="parallax bg-9" >
             <div class="floating-button animated bouncein delay-3">
-            <span class="btn-floating resize btn-large waves-effect waves-light accent-color btn z-depth-1">
+            <span class="btn-floating resize btn-large waves-effect waves-light twitter btn z-depth-1">
               <i class="ion-social-twitter"></i>
             </span>
           </div>
@@ -24,8 +24,10 @@
           </div>
          </div>
          <div style="width: 100%; height: 30%; background-color: #19305B; "><p style="color: #ffffff; font-size: 25px; padding-left: 3%;" >Journal</p></div>
+        <?php echo $this->session->flashdata('msg'); ?> 
 
         <?php foreach ($data as $univ) : ?>
+
        <!-- Profile Content -->
         <div class="animated fadeinup delay-1">
           

@@ -3,7 +3,7 @@
 
 <?php 
 
-  foreach ($Siswa as $row) {
+  foreach ($sis as $row) {
     $id_siswa = $row['id_siswa'];
 
     $nama_depan = $row['nama_depan'];
@@ -32,7 +32,7 @@
 
     $instagram = $row['instagram'];
 
-    // $universitas = $row['univ'];
+    $universitas = $row['univ'];
 
     $photo=base_url().'assets/images/siswa/'.$row['photo'];
 
@@ -80,7 +80,7 @@
                <?php echo form_error('nama_sekolah'); ?>
             </div>
             <div class="input-field">
-              <input type="email" class="validate" placeholder="email" value="<?=$email; ?>">
+              <input type="email" class="validate" placeholder="email" name="email" value="<?=$email; ?>">
               <?php echo form_error('email'); ?>
             </div>
             <div class="input-field">
@@ -93,9 +93,7 @@
             <div class="input-field">
               <input type="text" class="validate" name="" value="<?=$jur; ?>" disabled>
             </div>
-            <div class="input-field">
-              <textarea placeholder="Biografi" class="textarea validate" id="form-message" name="biografi" rows="8" cols="20"><?=$bio; ?></textarea>
-            </div>
+            
 
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
             <!-- <button class="waves-effect waves-light btn-large primary-color width-100" name="update" type=""> Submit</button> -->
@@ -104,7 +102,7 @@
 
 
 
-          <h4 class="shipping-address">Sosial Media</h4>
+         <h4 class="shipping-address">Sosial Media</h4>
             <?php echo $this->session->flashdata('msg'); ?> 
             <form action="<?=base_url()?>index.php/Siswa/edit_sosmed" method="post">
               <div class="input-field">
@@ -124,20 +122,20 @@
 
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
             <!-- <button class="waves-effect waves-light btn-large primary-color width-100" name="update" type=""> Submit</button> -->
-            <input type="submit"   name="update" value="Update" class="btn-large primary-color width-100"  >
-          </form>
+          <input type="submit"   name="update" value="Update" class="btn-large primary-color width-100"  >
+          </form> 
 
           <h4 class="shipping-address">Password</h4>
             <?php echo $this->session->flashdata('msg'); ?> 
             <form action="<?=base_url()?>index.php/Siswa/ubahpass_siswa" method="post">
               <div class="input-field">
                 <label>Password Lama</label>
-                <input type="password" name="" class="form-control" >
+                <input type="password" name="" class="form-control" required>
                 <?php echo form_error('password'); ?>
               </div>
               <div class="input-field">
                 <label>Password Baru</label>
-                <input type="password" class="form-control" name="password" id="password">
+                <input type="password" class="form-control" name="password" id="password" required>
               </div>
            
             <div class="input-field">
@@ -172,17 +170,25 @@
           <h4 class="shipping-address">Photo</h4>
             <?php echo $this->session->flashdata('msg'); ?> 
             <form action="<?=base_url()?>index.php/Siswa/upload/<?=$oldphoto; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-
+            <div class="input-field">
             <img id="preview" class="img-circle circle avatar" src="<?=$photo;?>" alt="" style="width: 150px; height: 150px;" />
-            <br><br>            
+            <br><br>  
+            </div>  
+                  
             <label for="file" class="btn primary-color" >
             Pilih Gambar
             </label>
+            
             <input style="display:none;" type="file" id="file" name="photo" class="btn btn-default" required="true" onchange="ValidateSingleInput(this);" />
+            
              <label class="btn primary-color"  onclick="restImgSoal()">Reset</label>
             <?php echo form_error('password'); ?>
+            
+            <br><br> 
                                                        <!--  <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>"> -->
-            <button type="submit" class="btn primary-color">Simpan</button>
+            <div class="input-field">
+            <button type="submit" class="btn-large primary-color width-100">Simpan</button>
+            </div>
           </form>
           </div>
 

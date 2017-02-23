@@ -18,7 +18,7 @@
                         <thead>
                     <tr>
                         <th width="10%">Id</th>
-                        <th>Quis</th>
+                        <th>Step</th>
                         <th>jenis</th>
                         <th width="20%">Aksi</th>
                     </tr>
@@ -48,7 +48,7 @@
 
                     <!-- <li><span>{tingkat}</span></li> -->
                     <li><?=$mapel ?></li>
-                    <li><?=$bab ?></li>
+                    <!-- <li><?=$bab ?></li> -->
                     <li><a class="btn btn-success" 
                         href="<?= base_url("index.php/learningline/formtopik/".$this->uri->segment(3)); ?>" 
                         target="_blank"
@@ -61,6 +61,7 @@
                 <thead>
                     <tr>
                         <th width="50%">Session</th>
+                         <th>part</th>
                         <th>Urutan Tampil</th>
                         <th>Status</th>
                         <th width="20%">Aksi</th>

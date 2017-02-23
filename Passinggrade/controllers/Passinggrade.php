@@ -172,7 +172,10 @@ class Passinggrade extends MX_Controller {
         // $this->load->view('template/header');
         // $this->load->view('workout1/v-header');
         // $this->load->view('v-univ', $data);
+      
 
+
+        
         $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('baru/v-univ',$data);
         $this->load->view('template/siswa2/v-footer');
@@ -338,16 +341,66 @@ class Passinggrade extends MX_Controller {
 
     public function set_prodi_univ($univ)
     {
+
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $u = urldecode($univ);
         $data['data']   = $this->Mpassing->getpassinguniv($u);
         $data['univ'] = $u;
+
         
         $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('baru/v-set-prodi',$data);
-        $this->load->view('template/siswa2/v-footer');  
+        $this->load->view('template/siswa2/v-footer'); 
+
     }
+
+
+        //PENCARIAN 
+    public function cari()
+    {  
+        if ($this->session->userdata('id_siswa')) {
+        $kunciCari=htmlspecialchars($this->input->get('keycari'));
+         $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        
+        
+        
+         $data['data']=$this->Mpassing->get_topik_byprodi($kunciCari);
+
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('baru/v-search');
+        $this->load->view('template/siswa2/v-footer'); 
+        // END step line
+            }
+    else{
+        redirect('Login');
+    }  
+    }
+        
+    public function cari2()
+    {  
+        if ($this->session->userdata('id_siswa')) {
+        $kunciCari=htmlspecialchars($this->input->get('keycari'));
+         $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        
+        
+        
+         $data['data']=$this->Mpassing->get_topik_byprodi($kunciCari);
+
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('baru/v-search-prodi', $data);
+        $this->load->view('template/siswa2/v-footer'); 
+        // END step line
+            }
+    else{
+        redirect('Login');
+    }  
+    }
+       
+
+    
 
 
 
