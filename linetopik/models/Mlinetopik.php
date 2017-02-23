@@ -150,7 +150,7 @@
     // get topik untuk side bar by namatopik
     public function get_topik_bynama($kunciCari)
     {
-        $this->db->select('id,UUID,namaTopik');
+        $this->db->select('id,z,namaTopik');
         $this->db->from('tb_line_topik');
         $this->db->like('namaTopik',$kunciCari);
         $this->db->where('status',1);

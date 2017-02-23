@@ -266,6 +266,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                 <a href="<?= base_url('index.php/passinggrade/univ') ?>">Universitas</a>   
                 <a href="<?= base_url('index.php/passinggrade/pilih_prodi') ?>">Prodi</a> 
                 <a href="<?= base_url('index.php/passinggrade/passing') ?>">Passing Grade</a>
+                <a href="<?= base_url('index.php/passinggrade/cari') ?>">Cari Program Studi</a>
               </li>
             </ul>
           </div>  

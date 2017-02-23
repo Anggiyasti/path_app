@@ -31,7 +31,7 @@ function updatestatus(id,status){
 	}
 
 	swal({
-		title: "Anda Akan Merubah status learning?",
+		title: "Anda Akan Merubah status Mapel?",
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonColor: "#DD6B55",
@@ -47,7 +47,7 @@ function updatestatus(id,status){
 				dataType:"TEXT",
 				type:'POST',
 				success:function(){
-					swal("Berhasil diupdate!", "status learning diaktifkan.", "success");
+					swal("Berhasil diupdate!", "status Mapel diaktifkan.", "success");
 					tabel.ajax.reload(null,false);
 				},
 				error:function(){
@@ -63,9 +63,10 @@ function updatestatus(id,status){
 }
 function detail_topik(data){
 	$('.detail_step').modal('show');
-	judul = " <h4 class='modal-title' style='display: inline'>Daftar Quis</h4>";
+	judul = " <h4 class='modal-title' style='display: inline'>Daftar Step</h4>";
 	$('.detail_step .modal-header').html(judul);
-	$(".detail_step a").attr("href", base_url+"index.php/learningline/formstep/"+data);
+	// $(".detail_step a").attr("href", base_url+"index.php/learningline/formstep/"+data);
+	$(".detail_step a").attr("href", base_url+"index.php/learningline/step1/"+data);
 	
 
 	var url = base_url+"index.php/learningline/ajax_list_ge_step/"+data;
@@ -152,7 +153,7 @@ function update_learning_bab(id,status){
 	}
 
 	swal({
-		title: "Anda Akan Merubah status learning?",
+		title: "Anda Akan Merubah status Mapel?",
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonColor: "#DD6B55",
@@ -168,7 +169,7 @@ function update_learning_bab(id,status){
 				dataType:"TEXT",
 				type:'POST',
 				success:function(){
-					swal("Berhasil diupdate!", "status learning diaktifkan.", "success");
+					swal("Berhasil diupdate!", "status Mapel diaktifkan.", "success");
 					tabel.ajax.reload(null,false);
 				},
 				error:function(){

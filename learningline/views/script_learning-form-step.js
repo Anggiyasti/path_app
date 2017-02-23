@@ -30,6 +30,7 @@ $('select[name=select_jenis]').change(function(){
 
 $('.simpan_step').click(function(){
 	var form = {
+		urutan:$('select[name=id_bab]').val(),
 		urutan:$('input[name=urutan]').val(),
 		namastep:$('input[name=namastep]').val(),
 		select_jenis:$('select[name=select_jenis]').val(),
@@ -88,10 +89,10 @@ $('.simpan_step').click(function(){
 			url:url,
 			type:"POST",
 			success:function(){
-				swal('Quis berhasil ditambahkan');
+				swal('Step berhasil ditambahkan');
 				$('.form-line')[0].reset();
 				swal({
-					title: "Quis berhasil ditambahkan!",
+					title: "Step berhasil ditambahkan!",
 					text: "Tambahkan baru, atau selesai?",
 					type: "warning",
 					showCancelButton: true,
@@ -103,7 +104,7 @@ $('.simpan_step').click(function(){
 				},
 				function(isConfirm){
 					if (isConfirm) {
-						swal("selesai", "Anda akan dialihkan ke daftar Quis", "success");
+						swal("selesai", "Anda akan dialihkan ke daftar Step", "success");
 						window.location.href = base_url+"index.php/learningline/step/"+data.topikID;
 					} else {
 						swal("Tambah Data", "silahkan ambahkan data");

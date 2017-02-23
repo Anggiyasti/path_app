@@ -1,5 +1,13 @@
-<!-- Page Content -->
-      <div id="content" class="grey-blue">
+    <!-- Search bar -->
+          
+              <div class="nav-wrapper">
+                
+              </div>
+
+
+
+                <!-- Page Content -->
+      <div id="content" class="page">
 
         <!-- Toolbar -->
         <div id="toolbar" class="primary-color">
@@ -20,28 +28,19 @@
               <i class="ion-social-twitter"></i>
             </span>
           </div>
-            <div class="banner-title">Journal</div>
+            <div class="banner-title"></div>
           </div>
          </div>
-
-       <?php foreach ($data as $row): ?>
-       <!-- Profile Content -->
+        
+        <!-- Article Content -->
+        
         <div class="animated fadeinup delay-1">
-          
-          <div class="card m-t-40 animated fadeinup delay-2">
-            <div class="c-widget">
-              <div class="c-widget-figure primary-color">
-                <i class="ion-android-mail"></i>
-              </div>
-              <div class="c-widget-body">
-                <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/prodi/<?=$row['prodi']?>"><?=$row['prodi'];?></a></p>
-                
-              </div>
-            </div>
-          </div>
-          </div>
-
-          <?php endforeach ?>
-      
-         
-      </div> <!-- End of Page Content -->
+        
+          <!-- Daily Activity-->
+          <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggrade/cari2"  accept-charset="utf-8" enctype="multipart/form-data">
+                  <div class="input-field">
+                    <input type="search" class="search-field" placeholder="Search"  name="keycari" title="Search for:">
+                    <label for="search"></label>
+                    <i class="ion-android-close"></i>
+                  </div>
+                </form>

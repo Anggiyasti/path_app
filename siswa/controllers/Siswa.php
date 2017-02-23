@@ -49,7 +49,7 @@ class Siswa extends MX_Controller {
             
             if ($this->db->affected_rows())
             {
-                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
+                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">prodi berhasil diupdate </div>');
                 redirect('passinggrade/univ');
             }
             else
@@ -73,7 +73,7 @@ class Siswa extends MX_Controller {
 			else
 			{
 				 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-				redirect('siswa/Profilesiswa');
+				redirect('Siswa/Profilesiswa');
 			}
 		}
 		
@@ -91,7 +91,7 @@ class Siswa extends MX_Controller {
             else
             {
                  $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-                redirect('siswa/Profilesiswa');
+                redirect('Siswa/Profilesiswa');
             }
         }
         
@@ -103,10 +103,11 @@ class Siswa extends MX_Controller {
     if ($this->session->userdata('id_siswa')) {
     $sis = $this->session->userdata('id_siswa');
     $data['siswa']  = $this->Loginmodel->get_siswa($sis);   
-    $data['Siswa'] = $this->Msiswa->get_siswa();
+    $data['sis'] = $this->Msiswa->get_siswa();
     $data['univ']=$this->Msiswa->getuniv();
     $data['email']=$this->session->userdata['email'];
     $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+    $data['log']  = $this->Loginmodel->getlogact();
     
     	// $this->load->view('layout/header');
      //    $this->load->view('layout/sidebar');
@@ -146,15 +147,24 @@ public function ubahpass_siswa() {
     }
 
     public function passwordsiswa() {
-   
-    $data['Siswa'] = $this->Msiswa->get_siswa();
+
+   if ($this->session->userdata('id_siswa')) {
+    $sis = $this->session->userdata('id_siswa');
+    $data['sis'] = $this->Msiswa->get_siswa();
+    $data['siswa']  = $this->Loginmodel->get_siswa($sis); 
+    $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+    $data['log']  = $this->Loginmodel->getlogact();  
     // $data['email']=$this->session->userdata['email'];
         // $this->load->view('layout/header');
         // $this->load->view('layout/sidebar');
         // $this->load->view('profilesetsiswa',$data);
-    $this->load->view('template/siswa/v-head');
+    $this->load->view('template/siswa2/v-header',$data);
     $this->load->view('profile_siswa',$data);
-    $this->load->view('template/siswa/v-footer');
+    $this->load->view('template/siswa2/v-footer');
+    }
+    else{
+        redirect('Login');
+    }
        
     
 }
@@ -175,13 +185,17 @@ public function upload($oldphoto) {
 
 
             $data['error'] = array('error' => $this->upload->display_errors());
-            $data['siswa'] = $this->Msiswa->get_siswa();
+            $data['sis'] = $this->Msiswa->get_siswa();
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis); 
+            $data['log']  = $this->Loginmodel->getlogact();
+
          //    $this->load->view('layout/header');
         	// $this->load->view('layout/sidebar');
         	// $this->load->view('profilesetsiswa',$data);
-            $this->load->view('template/siswa/v-head');
+             $this->load->view('template/siswa2/v-header',$data);
             $this->load->view('profile_siswa',$data);
-            $this->load->view('template/siswa/v-footer');
+            $this->load->view('template/siswa2/v-footer');
 
             // $this->load->view('beranda/main_view',$error);,
         } else {

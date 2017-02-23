@@ -18,7 +18,7 @@
         <div class="h-banner animated fadeindown">
           <div class="parallax bg-9">
             <div class="floating-button animated bouncein delay-3">
-            <span class="btn-floating resize btn-large waves-effect waves-light accent-color btn z-depth-1">
+            <span class="btn-floating resize btn-large waves-effect waves-light twitter btn z-depth-1">
               <i class="ion-social-twitter"></i>
             </span>
           </div>

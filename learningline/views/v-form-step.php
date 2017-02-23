@@ -70,7 +70,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h3 class="semibold mt0 text-accent text-center">Daftar Quis <?=$namaTopik?></h3>
+            <h3 class="semibold mt0 text-accent text-center">Daftar Step <?=$namaTopik?></h3>
           </div>
           <div class="modal-body">
             <table class="daftarsteptable table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
@@ -79,7 +79,7 @@
                   <!-- <th width="3%">ID Step</th> -->
                   <th width="3%">Urutan</th>
 
-                  <th>Nama Quis</th>
+                  <th>Nama Step</th>
 
                   <th>Jenis Materi</th>
                   <th width="20%">Aksi</th>
@@ -97,7 +97,7 @@
         </div>
       </div>
     </div>
-    <input type="hidden" name="babID" value=<?=$babID ?>>
+    <input type="hidden" name="id_mapel"  id="id_mapel">
     <!-- TABEL KONTEN 1 . FORM LEARNINGNLINE -->
     <div class="row">
      <div class="col-md-12">
@@ -109,7 +109,8 @@
             <br>
             <li><span><a href="<?=base_url('learningline')?>"><i class="ico-list"></i></a></span></li>
             <li><span><?=$mapel?></span></li>
-            <li><?=$bab?></li> 
+           
+            
             <li class="active"><a href="#"><?=$namaTopik?></a></li>        
 
           </ol><br>
@@ -133,6 +134,36 @@
        </div>
      </div>
 
+  
+
+
+<!--  <div class="form-group">
+   <label class="col-sm-3 control-label">BAB</label>
+      <div class="col-sm-8"> -->
+   <!--    <input type="hidden" class="form-control"  name="mapelID" value="<?=$mapelID?>" disabled="true"> -->
+      
+        
+  <!--       <select class='form-control' name="id_bab" >
+        <option>--Pilih Bab--</option>
+        <?php foreach ($bab as $key) : ?>
+
+        <option><?=$key['judul_bab']?></option>
+        <?php endforeach ?>
+        </select>
+      
+      </div>
+  </div> -->
+  <div  class="form-group">
+        <label class="col-sm-3 control-label">Bab</label>
+        <div class="col-sm-8">
+         <!-- stkt = soal tingkat -->
+          <input type="text" class="form-control" value="<?=$bb?>" disabled="true">
+         <input type="hidden" class="form-control" name="id" value="<?=$id?>" disabled="true">
+         <input type="hidden" name="babID" value=<?=$bb ?>>
+
+       </div>
+     </div>
+
      <div  class="form-group">
       <label class="col-sm-3 control-label">Urutan</label>
       <div class="col-sm-8">
@@ -142,7 +173,7 @@
    </div>
 
    <div  class="form-group">
-    <label class="col-sm-3 control-label">Nama Quis</label>
+    <label class="col-sm-3 control-label">Nama Step</label>
     <div class="col-sm-7">
       <input type="text" class="form-control" name="namastep">
     </div>
@@ -150,10 +181,10 @@
   </div>
 
   <div  class="form-group">
-    <label class="col-sm-3 control-label">Jenis Quis</label>
+    <label class="col-sm-3 control-label">Jenis Step</label>
     <div class="col-sm-3">
       <select class="form-control" name="select_jenis">
-        <option value="0">-- Pilih Jenis Quis --</option>
+        <option value="0">-- Pilih Jenis Step --</option>
         <option value="1">Video</option>
         <option value="2">Materi</option>
         <option value="3">Latihan</option>

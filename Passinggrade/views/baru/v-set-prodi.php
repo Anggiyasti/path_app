@@ -1,5 +1,9 @@
 <!-- Page Content -->
+
       <div id="content" class="page">
+      
+
+
 
         <!-- Toolbar -->
         <div id="toolbar" class="primary-color">
@@ -16,7 +20,7 @@
         <div class="h-banner animated fadeindown">
           <div class="parallax bg-9">
             <div class="floating-button animated bouncein delay-3">
-            <span class="btn-floating resize btn-large waves-effect waves-light accent-color btn z-depth-1">
+            <span class="btn-floating resize btn-large waves-effect waves-light twitter btn z-depth-1">
               <i class="ion-social-twitter"></i>
             </span>
           </div>
@@ -38,11 +42,19 @@
                   <a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>">
                     <i class="ion-android-radio-button-on"></i>
                   </a>
+                  <!-- <a class="waves-effect waves-light btn-large modal-trigger primary-color width-100 m-b-20" href="#modal1">Modal simple</a> -->
+
+                  <!-- <a href="<?=base_url()?>index.php/siswa/update_siswa/<?=$univ['prodi']?>/<?=$univ['universitas']?>" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a> -->
+                 
                 
               </span>
             </div>
+      
+
+        
           </div>
           <?php endforeach ?>
         </div>
         
       </div>
+     
