@@ -166,9 +166,9 @@ public function upload($oldphoto) {
         unlink(FCPATH . "./assets/images/siswa/" . $oldphoto);
         $config['upload_path'] = './assets/images/siswa';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
-        $config['max_size'] = 100;
-        $config['max_width'] = 1024;
-        $config['max_height'] = 768;
+        $config['max_size'] = 580;
+        $config['max_width'] = 2500;
+        $config['max_height'] = 1500;
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('photo')) {
@@ -176,12 +176,11 @@ public function upload($oldphoto) {
 
             $data['error'] = array('error' => $this->upload->display_errors());
             $data['siswa'] = $this->Msiswa->get_siswa();
+            $this->Msiswa->update_photo_default();
          //    $this->load->view('layout/header');
         	// $this->load->view('layout/sidebar');
         	// $this->load->view('profilesetsiswa',$data);
-            $this->load->view('template/siswa/v-head');
-            $this->load->view('profile_siswa',$data);
-            $this->load->view('template/siswa/v-footer');
+            redirect('siswa/Profilesiswa');
 
             // $this->load->view('beranda/main_view',$error);,
         } else {

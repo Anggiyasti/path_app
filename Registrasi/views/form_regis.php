@@ -13,7 +13,7 @@
         <div class="login-form animated fadeinup delay-2 z-depth-1">
 
           <h1>Register</h1>
-          <div><?php echo $this->session->flashdata('msg'); ?></div>
+            <div><?php echo $this->session->flashdata('msg'); ?> </div>
           <?php $attributes = array("name" => "registrationform");
           echo form_open("registrasi/register", $attributes);?>
           <div class="input-field">

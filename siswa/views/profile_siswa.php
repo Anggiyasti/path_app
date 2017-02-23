@@ -166,7 +166,7 @@
           <div class="notification notification-danger" id="size" hidden="true">
             <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
             <h4>Silahkan cek ukuran gambar!</h4>
-            <p>Ukuran yang bisa di upload maksimal 100Kb! </p>
+            <p>Ukuran yang bisa di upload maksimal 500Kb! </p>
           </div>
 
           <h4 class="shipping-address">Photo</h4>
@@ -315,7 +315,7 @@ function ValidateSingleInput(oInput) {
             }
 
             file = oInput.files[0];
-            if (file.size > 103000 ) {
+            if (file.size > 508000 ) {
                $('#size').show();
                return false;
             } 

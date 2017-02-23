@@ -139,6 +139,16 @@ class Msiswa extends CI_Model {
         redirect(site_url('siswa/Profilesiswa'));
     }
 
+    public function update_photo_default() {
+        $data = array(
+            'photo' => "male.png"
+        );
+        $id_siswa = $this->session->userdata['email'];
+        $this->db->where('email', $id_siswa);
+        $this->db->update('tb_siswa', $data);
+        redirect(site_url('login'));
+    }
+
     // function get_reportlatihan_siswa($id_siswa) {
     //     $this->db->select('*');
     //     $this->db->from('tb_report_latihan');

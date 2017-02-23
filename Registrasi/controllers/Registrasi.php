@@ -68,20 +68,22 @@ class Registrasi extends MX_Controller
                 if ($this->registrasi_model->sendEmail($this->input->post('email')))
                 {
                     // successfully sent mail
-                    $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please confirm the mail sent to your Email-ID!!!</div>');
+                    $this->session->set_flashdata('msg','<div class="notification notification-success">You are Successfully Registered! Please confirm the mail sent to your Email-ID!!!</div>');
                     redirect('registrasi');
                 }
                 else
                 {
                     // error
-                    $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
+                    $this->session->set_flashdata('msg','<div class="notification notification-danger">
+                        <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+                        <p>Oops! Error.  Please try again later!!!</p></div>');
                     redirect('registrasi');
                 }
             }
             else
             {
                 // error
-                $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
+                $this->session->set_flashdata('msg','<div class="notification notification-danger>Oops! Error.  Please try again later!!!</div>');
                 redirect('registrasi');
             }
         }
