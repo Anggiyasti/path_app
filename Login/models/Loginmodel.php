@@ -279,8 +279,9 @@ function get_admin($id_admin){
 
     function getlogact(){
     $this->db->distinct();
-        $this->db->select('*, s.nama_depan, s.photo');
-        $this->db->from('tb_log l');
+        $this->db->select('*, s.nama_depan, s.photo, b.judul_bab');
+        $this->db->from('tb_bab b');
+        $this->db->join('tb_log l', 'b.id_bab = l.id_bab');
         $this->db->join('tb_siswa s', 'l.id_siswa = s.id_siswa');
         $this->db->order_by('tgl_selesai');
     // $query = "SELECT * FROM tb_log ";

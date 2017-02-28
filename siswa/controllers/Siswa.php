@@ -185,14 +185,14 @@ public function upload($oldphoto) {
 
 
             $data['error'] = array('error' => $this->upload->display_errors());
-<<<<<<< HEAD
+
             $data['siswa'] = $this->Msiswa->get_siswa();
             $this->Msiswa->update_photo_default();
          //    $this->load->view('layout/header');
         	// $this->load->view('layout/sidebar');
         	// $this->load->view('profilesetsiswa',$data);
             redirect('siswa/Profilesiswa');
-=======
+
             $data['sis'] = $this->Msiswa->get_siswa();
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Loginmodel->get_siswa($sis); 
@@ -204,7 +204,6 @@ public function upload($oldphoto) {
              $this->load->view('template/siswa2/v-header',$data);
             $this->load->view('profile_siswa',$data);
             $this->load->view('template/siswa2/v-footer');
->>>>>>> 131b7f598f50b78d8d50ff2527085a5870dda9fc
 
             // $this->load->view('beranda/main_view',$error);,
         } else {
