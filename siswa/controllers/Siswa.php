@@ -50,12 +50,12 @@ class Siswa extends MX_Controller {
             if ($this->db->affected_rows())
             {
                  $this->session->set_flashdata('msg','<div class="alert alert-success text-center">prodi berhasil diupdate </div>');
-                redirect('passinggrade/univ');
+                redirect('passinggrade/univ_wilayah/1');
             }
             else
             {
-                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-                redirect('Siswa/Profilesiswa');
+                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">prodi sudah pernah diambil</div>');
+                redirect('passinggrade/univ_wilayah/1');
             }
         
     }

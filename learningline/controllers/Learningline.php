@@ -111,7 +111,12 @@ class Learningline extends MX_Controller {
 		$metadata['bab'] = $this->learningmodel->baba($pel);
 		// $metadata['i'] ="helo";
 		// var_dump($metadata);
+
+		
+		$this->load->view('admin/layout/header');
 		$this->load->view('step1', $metadata);
+		// $this->load->view('script_learning-form-step.js',$data);
+		$this->load->view('admin/layout/footer');
 
 	}
 	//FUNGSI MENAMBAHKAN TOPIK
@@ -131,6 +136,7 @@ class Learningline extends MX_Controller {
 			);
 		$mapel= $this->learningmodel->get_topik_byid($data)['id_mapel'];
 		$data['bab'] = $this->learningmodel->get_bab($mapel);
+
 		// var_dump($dataa);
 
 		if ($this->session->userdata('id_admin')) {
@@ -266,6 +272,7 @@ class Learningline extends MX_Controller {
 			'id'=>$metadata['id'],
 			'id_mapel'=>$metadata['id_mapel'],
 			'mapel'=>$metadata['nama_mapel'],
+			'bab'=>$metadata['judul_bab'],
 			
 			);
 
@@ -438,7 +445,7 @@ class Learningline extends MX_Controller {
 	
 	if($this->input->post('latihanID')){
 		$data = array(
-			'namaStep'=>$this->input->post('namastep'),
+			'namaStep'=>$this->input->post('namaStep'),
 			'id_bab'=>$this->input->post('id_bab'),
 			'jenisStep'=>$this->input->post('select_jenis'),
 			'videoID'=>$this->input->post('videoID'),
@@ -456,7 +463,8 @@ class Learningline extends MX_Controller {
 			);
 	}else{ 
 		$data = array(
-			'namaStep'=>$this->input->post('namastep'),
+			'namaStep'=>$this->input->post('namaStep'),
+			'id_bab'=>$this->input->post('id_bab'),
 			'jenisStep'=>$this->input->post('select_jenis'),
 			'videoID'=>$this->input->post('videoID'),
 			'MateriID'=>$this->input->post('materiID'),

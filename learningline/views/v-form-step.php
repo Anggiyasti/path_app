@@ -157,8 +157,8 @@
         <label class="col-sm-3 control-label">Bab</label>
         <div class="col-sm-8">
          <!-- stkt = soal tingkat -->
-          <input type="text" class="form-control" value="<?=$bb?>" disabled="true">
-         <input type="hidden" class="form-control" name="id" value="<?=$id?>" disabled="true">
+          <input type="text" class="form-control" value="<?=$bb?>" name="id_bab"  disabled="true">
+         <input type="hidden" class="form-control" name="id_bab" value="<?=$id?>" disabled="true">
          <input type="hidden" name="babID" value=<?=$bb ?>>
 
        </div>
@@ -175,7 +175,7 @@
    <div  class="form-group">
     <label class="col-sm-3 control-label">Nama Step</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" name="namastep">
+      <input type="text" class="form-control" name="namaStep">
     </div>
     <a title="Lihat Daftar Step" class="btn btn-success lihat_step"><i class="ico-list-alt"></i></a>
   </div>

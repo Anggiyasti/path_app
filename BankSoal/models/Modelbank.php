@@ -68,6 +68,8 @@ class Modelbank extends CI_Model
         $this->db->join('tb_bab bab','bab.id_bab=bs.id_bab');
         $this->db->join('tb_mata_pelajaran mapel', 'mapel.id_mapel = bab.id_mapel' );
         $this->db->where('bs.publish','1');
+        $this->db->where('bab.status','1');
+        $this->db->where('mapel.status','1');
         $this->db->order_by('bs.id_bank', 'desc');
         return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
     }

@@ -34,7 +34,7 @@
                         <li><?=$namaTopik  ?></li>
 
                         <li><a class="btn btn-success" 
-                            href="<?= base_url("index.php/learningline/formstep/".$this->uri->segment(3)); ?>" 
+                            href="<?= base_url("index.php/learningline/step1/".$this->uri->segment(3)); ?>" 
                             target="_blank"
                             title="Tambah Data" ><i class="ico-plus"></i></a></li>       
                         </ol><br>

@@ -30,9 +30,9 @@ $('select[name=select_jenis]').change(function(){
 
 $('.simpan_step').click(function(){
 	var form = {
-		urutan:$('select[name=id_bab]').val(),
+		id_bab:$('input[name=id_bab]').val(),
 		urutan:$('input[name=urutan]').val(),
-		namastep:$('input[name=namastep]').val(),
+		namaStep:$('input[name=namaStep]').val(),
 		select_jenis:$('select[name=select_jenis]').val(),
 		jumlah_benar:$('input[name=jumlahBenar]').val(),
 		jumlah_soal_sedang:$('input[name=sedang]').val(),
@@ -56,7 +56,8 @@ $('.simpan_step').click(function(){
 		data = {
 			materiID:$('input[name=materi]:checked').val(),
 			urutan:form.urutan,
-			namastep:form.namastep,
+			id_bab:form.id_bab,
+			namaStep:form.namaStep,
 			select_jenis:form.select_jenis,
 			topikID:<?=$this->uri->segment(3)?>,
 			status_depedensi:form.status_depedensi
@@ -66,7 +67,8 @@ $('.simpan_step').click(function(){
 		data = {
 			latihanID:"ada",
 			urutan:form.urutan,
-			namastep:form.namastep,
+			id_bab:form.id_bab,
+			namaStep:form.namaStep,
 			select_jenis:form.select_jenis,
 			topikID:<?=$this->uri->segment(3)?>,
 			jumlah_benar:form.jumlah_benar,
