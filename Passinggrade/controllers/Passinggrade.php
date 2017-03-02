@@ -169,6 +169,7 @@ class Passinggrade extends MX_Controller {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getpassing();
+        $data['dataa']= $this->Mpassing->tampilphoto(); 
         // $this->load->view('template/header');
         // $this->load->view('workout1/v-header');
         // $this->load->view('v-univ', $data);
@@ -193,6 +194,7 @@ class Passinggrade extends MX_Controller {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->tampil_prodi();
+        $data['dataa']= $this->Mpassing->tampilphoto(); 
         // $this->load->view('template/header');
         // $this->load->view('workout1/v-header');
         // $this->load->view('v-pilih-prodi', $data);
@@ -216,6 +218,7 @@ class Passinggrade extends MX_Controller {
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getprodi($prodii);
         $data['prodi'] = $prodii;
+        $data['dataa']= $this->Mpassing->tampilphoto(); 
        //  $this->load->view('template/header');
        //  $this->load->view('workout1/v-header');
        //  $this->load->view('v-prodi', $data);
@@ -236,6 +239,7 @@ class Passinggrade extends MX_Controller {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getpassing();
+        $data['dataa']= $this->Mpassing->tampilphoto(); 
         // $this->load->view('template/header');
         // $this->load->view('workout1/v-header');
         // $this->load->view('v-passinggrade');
@@ -273,6 +277,7 @@ class Passinggrade extends MX_Controller {
         if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $data['dataa']= $this->Mpassing->tampilphoto(); 
         if ($no == 1 ) {
             $a = 21;
             $b = 25;
@@ -347,6 +352,7 @@ class Passinggrade extends MX_Controller {
         $u = urldecode($univ);
         $data['data']   = $this->Mpassing->getpassinguniv($u);
         $data['univ'] = $u;
+        $data['dataa']= $this->Mpassing->tampilphoto(); 
 
         
         $this->load->view('template/siswa2/v-header', $data);
@@ -363,6 +369,7 @@ class Passinggrade extends MX_Controller {
         $kunciCari=htmlspecialchars($this->input->get('keycari'));
          $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $data['dataa']= $this->Mpassing->tampilphoto(); 
         
         
         
@@ -384,6 +391,7 @@ class Passinggrade extends MX_Controller {
         $kunciCari=htmlspecialchars($this->input->get('keycari'));
          $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $data['dataa']= $this->Mpassing->tampilphoto(); 
         
         
         

@@ -43,19 +43,6 @@ class MPaketsoal extends CI_Model {
 		return $query->row();
 
 	}
-	//random buat bab
-	public function get_soal_bybab( $param ) {
-		$this->db->select('*');
-		// $this->db->where( 'kesulitan', $param['kesulitan'] );
-		$this->db->from( 'tb_bank_soal b' );
-		
-		$this->db->join(' tb_bab bab ',' bab.id_bab = b.id_bab');
-		$this->db->where( 'bab.id_bab', $param );
-
-
-		$query = $this->db->get();
-		return $query->result_array();
-	}
 
 
 

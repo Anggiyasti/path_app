@@ -419,7 +419,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                     <li >
                         <a href="javascript:void(0);" data-toggle="submenu" data-target="#learning" data-parent=".topmenu">
                             <span class="figure"><i class="ico-book"></i></span>
-                            <span class="text">Learning line</span>
+                            <span class="text">Path</span>
                             <span class="arrow"></span>
                         </a>
                         <!-- START 2nd Level Menu -->
@@ -427,8 +427,29 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                             <li class="submenu-header ellipsis">Forms</li>
                             <li >
                                 <a href="<?=base_url('index.php/learningline')?>">
-                                    <span class="text">Lihat Learning Line</span>
+                                    <span class="text">Part 1</span>
                                 </a>
+                            </li>
+                             <li >
+                                <a href="#">
+                                    <span class="text">Part 2</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0);" data-target="#subbanksoal" data-toggle="submenu">
+                                    <span class="text">Part 3</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul id="subbanksoal" class="submenu collapse ">
+                                    <li ><a href="<?= base_url('index.php/paketsoal/tambahpaketsoal');?>"><span class="text">Tambah Paket</span>
+                                    </a></li>
+                                    <li><a href="<?=base_url('index.php/banksoal/allsoal')?>"><span class="text">Tambah Try Out</span>
+                                    </a></li>
+                                    <li><a href="javascript:void(0);" onclick="add_soal()"><span class="text">Daftar Try Out</span>
+                                    </a></li>
+
+
+                                  </ul>
                             </li>
                             
                         </ul>
@@ -497,6 +518,15 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
                             
                            
                         </ul>
+                        <!--/ END 2nd Level Menu -->
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('index.php/template/slide')?>" data-toggle="submenu"  data-parent=".topmenu">
+                            <span class="figure"><i class="ico-book"></i></span>
+                            <span class="text">Ubah Slider</span>
+                            <span class="arrow"></span>
+                        </a>
+                        
                         <!--/ END 2nd Level Menu -->
                     </li>
                      <li>

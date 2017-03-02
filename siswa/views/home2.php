@@ -19,6 +19,9 @@
           <div class="swiper-container slider-sliced">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
+              <?php foreach ($data as $d ) :?>
+              <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
+             <?php endforeach ?>
 
                 <div class="slider-bottom-right valign-wrapper">
                 
@@ -29,6 +32,10 @@
                 </div>
               </div>
               <div class="swiper-slide">
+
+              <?php foreach ($dataa as $d ) :?>
+              <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
+             <?php endforeach ?>
                 <div class="slider-bottom-left valign-wrapper">
                   <div class="valign left-align width-100 p-b-5em">
                     <h2 class="uppercase">Halo</h2>
@@ -37,6 +44,9 @@
                 </div>
               </div>
               <div class="swiper-slide">
+              <?php foreach ($dataaa as $d ) :?>
+              <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
+             <?php endforeach ?>
                 <div class="slider-bottom-right valign-wrapper">
                   <div class="valign right-align width-100 p-b-5em">
                     <h2 class="uppercase">Halo</h2>

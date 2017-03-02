@@ -27,6 +27,7 @@ class Learningmodel extends CI_Model{
 		$this->db->join('tb_mata_pelajaran  m ','m.id_mapel = t.id_mapel');
 		$this->db->where(' m.id_mapel ',$data);
 		$this->db->where('t.status',1);
+		$this->db->where('t.part',1);
 
 		$query = $this->db->get();
 		return $query->result_array();
@@ -105,7 +106,7 @@ class Learningmodel extends CI_Model{
 
     function get_topik_byid($data){
 		$query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel,bab.judul_bab, statusLearning,topik.urutan,deskripsi, nama_mapel ,bab.id_bab
-		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = 72) AS topik 
+		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = '$data') AS topik 
 		JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = topik.id_mapel
 		JOIN tb_bab AS bab ON mapel.id_mapel = bab.id_mapel";
 
@@ -142,6 +143,7 @@ class Learningmodel extends CI_Model{
 		$this->db->select('m.id_mapel,m.nama_mapel,m.part,m.status');
 		$this->db->from('tb_mata_pelajaran m');
 		$this->db->where('m.status',1);
+		$this->db->where('m.part',1);
 		$query = $this->db->get();
 		return $query->result_array();
 	}

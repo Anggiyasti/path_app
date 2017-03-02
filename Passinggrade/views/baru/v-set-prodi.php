@@ -18,7 +18,9 @@
 
          <!-- Hero Header -->
         <div class="h-banner animated fadeindown">
-          <div class="parallax bg-9">
+          <div class="parallax bg-9"> <div>  <?php foreach ($dataa as $d ) :?>
+              <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
+             <?php endforeach ?></div>
             <div class="floating-button animated bouncein delay-3">
             <span class="btn-floating resize btn-large waves-effect waves-light twitter btn z-depth-1">
               <i class="ion-social-twitter"></i>

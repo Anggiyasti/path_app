@@ -149,6 +149,9 @@ class Login extends MX_Controller
         // $data['logmulai']  = $this->Loginmodel->getlogmulai();
         // $data['logsel']  = $this->Loginmodel->getlogselesai();
         $data['log']  = $this->Loginmodel->getlogact();
+        $data['data']= $this->Loginmodel->tampilphoto();
+        $data['dataa']= $this->Loginmodel->tampilphoto2(); 
+        $data['dataaa']= $this->Loginmodel->tampilphoto3();   
 
         // var_dump($data);
         

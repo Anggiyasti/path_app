@@ -49,6 +49,7 @@
                             </div>
                             <!--/ panel heading/header -->
                             <!-- panel body -->
+                          
                             <div class="panel-body">
                                 <form class="form-horizontal form-bordered" action="<?=base_url()?>index.php/learningline/formstep3/<?=$mapel['id']?>" method="post">
                                 <?php echo $this->session->flashdata('msg'); ?>

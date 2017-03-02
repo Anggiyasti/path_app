@@ -1,3 +1,4 @@
+<section id="main" role="main">
 <!-- Bootstrap modal -->
 
 <div class="modal fade" id="modal_form" role="dialog">
@@ -349,6 +350,7 @@
             </div>
 
         </div>
+        </section>
 
         <script type="">
 

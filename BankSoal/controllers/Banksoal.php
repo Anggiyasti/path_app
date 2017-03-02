@@ -297,7 +297,7 @@ public function listfilter($data)
           $judul_bab = htmlspecialchars($this->input->post('judul_bab'));
           $sumber = htmlspecialchars($this->input->post('sumber'));
           $random = htmlspecialchars($this->input->post('random'));
-          //$pembahasan = htmlspecialchars($this->input->post('pembahasan'));
+          $pembahasan = htmlspecialchars($this->input->post('pembahasan'));
           $publish = htmlspecialchars($this->input->post('publish'));
           if ($this->session->userdata('id_admin')) {
             $create_by = $this->session->userdata['username'];
@@ -327,7 +327,7 @@ public function listfilter($data)
             'id_bab' => $judul_bab,
             'sumber' => $sumber,
             'random' => $random,
-            //'pembahasan' => $pembahasan,
+            'pembahasan' => $pembahasan,
             'publish' => $publish,
             'create_by' => $create_by,
             'UUID' => $UUID   

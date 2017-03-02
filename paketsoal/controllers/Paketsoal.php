@@ -8,8 +8,8 @@ class paketsoal extends MX_Controller
 	public function __construct() {
 		$this->load->library( 'parser' );
 		$this->load->model( 'mpaketsoal' );
-		// $this->load->model( 'banksoal/Modelbank' );
-		// $this->load->model( 'latihan/mlatihan' );
+		$this->load->model( 'Banksoal/Modelbank' );
+		$this->load->model( 'latihan/mlatihan' );
 
 		$this->load->library( 'form_validation' );
 		$this->load->helper( array( 'form', 'url' ) );
@@ -123,28 +123,21 @@ class paketsoal extends MX_Controller
 	}
 
 	#daftar paket soal
-	function tambahpaketsoal() {		
+	function tambahpaketsoal() {
+	if ($this->session->userdata('id_admin')) {
 		$data['paket_soal'] = $this->load->mpaketsoal->getpaketsoal();
-		$data['judul_halaman'] = "Buat Paket Soal";
-		$data['files'] = array(
-			APPPATH.'modules/paketsoal/views/v-create-paket-soal.php',
-			);
+
+		$this->load->view('admin/layout/header');
+          $this->load->view('v-create-paket-soal', $data);
+          $this->load->view('admin/layout/footer');
+
+			}		
+	else{
+
+	}
 		
-		$hakAkses=$this->session->userdata['HAKAKSES'];
-		if ($hakAkses=='admin') {
-        // jika admin
-			$this->parser->parse('admin/v-index-admin', $data);
 
-
-		} elseif($hakAkses=='guru'){
-                    // jika guru
-			$this->load->view('templating/index-b-guru', $data);  
-
-
-		}else{
-            // jika siswa redirect ke welcome
-			redirect(site_url('welcome'));
-		}
+		
 	}
 	##
 
@@ -400,7 +393,7 @@ public function get_soal_byid_paket($idpaket){
 		#
 function ajax_get_soal_byid( $bab ) {
 
-	$list = $soal=$this->mpaketsoal->get_soal_bybab( $bab );
+	$list = $soal=$this->mlatihan->get_soal_bybab( $bab );
 	$data = array();
 
 
@@ -411,8 +404,8 @@ function ajax_get_soal_byid( $bab ) {
 		$row = array();
 
 		$row[] = "<span class='checkbox custom-checkbox custom-checkbox-inverse'>
-		<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_bank']." value=".$list_soal['id_bank'].">
-		<label for="."soal".$list_soal['id_bank'].">&nbsp;&nbsp;</label>
+		<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_soal']." value=".$list_soal['id_soal'].">
+		<label for="."soal".$list_soal['id_soal'].">&nbsp;&nbsp;</label>
 	</span>";
 	$row[] = $list_soal['judul_soal'];
 	$row[] = $list_soal['sumber'];
@@ -420,13 +413,13 @@ function ajax_get_soal_byid( $bab ) {
 	$row[] = $list_soal['soal'];
 
 	if ($list_soal['kesulitan']=='0') {
-		$row[] = "Mu";
+		$row[] = "Mudah";
 	} else if($list_soal['kesulitan']=='1'){
-		$row[] = "Se";
+		$row[] = "Sedang";
 	}else{
-		$row[] = "Su";
+		$row[] = "Sulit";
 	}
-	$row[]='<a class="btn btn-success soal-'.$list_soal['id_bank'].'" title="lihat soal" onclick=detail_soal('.$list_soal['id_bank'].') data-todo='."'".json_encode($list_soal)."'".'> <i class="ico ico-eye"></i></a>';
+	$row[]='<a class="btn btn-success soal-'.$list_soal['id_soal'].'" title="lihat soal" onclick=detail_soal('.$list_soal['id_soal'].') data-todo='."'".json_encode($list_soal)."'".'> <i class="ico ico-eye"></i></a>';
 	$data[] = $row;
 	$n++;
 

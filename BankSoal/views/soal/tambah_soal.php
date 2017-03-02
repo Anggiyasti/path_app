@@ -731,7 +731,14 @@
 
                                     <!-- untuk preview video -->
 
-            <div  class="form-group prv_video" hidden="true">
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Link Pembahasan</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="pembahasan" class="form-control" >
+                                        </div>
+                                    </div>
+
+     <!--        <div  class="form-group prv_video" hidden="true">
 
                 <div class="row" style="margin:1%;"> 
 
@@ -765,10 +772,10 @@
 
                 </div>
 
-            </div>
+            </div> -->
             <!-- upload ke server -->
 
-            <div id="upload" class="form-group server">
+            <!-- <div id="upload" class="form-group server">
 
                 <label class="col-sm-2">Pembahasan</label>
 
@@ -786,7 +793,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
 
                                     
                                     <div class="form-group">

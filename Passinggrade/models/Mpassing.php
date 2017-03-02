@@ -124,6 +124,15 @@
         return $query->result_array();
     }
 
+       public function tampilphoto() {
+        $this->db->distinct();
+        $this->db->select('id,gambar');
+        $this->db->from('tb_gambar_front');
+        $this->db->where('id', '4');
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
 
 
 
