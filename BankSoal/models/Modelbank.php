@@ -22,17 +22,43 @@ class Modelbank extends CI_Model
 
 		$option="<option value='0'>--pilih--</pilih>";
 
+		$this->db->select('*');
+		$this->db->from('tb_bab');
+        $this->db->where('id_mapel',$id);
+        $this->db->where('status','1');
 		$this->db->order_by('judul_bab','ASC');
-		$bab= $this->db->get_where('tb_bab',array('id_mapel'=>$id));
+		$bab = $this->db->get();
+		if ($bab->result_array()==array()) {
 
+		$option.= "<option value=''>KOSONG</option>";
+			
+		}
+		else{
 		foreach ($bab->result_array() as $data ){
 		$option.= "<option value='$data[id_bab]'>$data[judul_bab]</option>";
+	}
 
 		}
 
 		return $option;
 
 		}
+		// function getbab($id){
+
+		// $option="<option value='0'>--pilih--</pilih>";
+
+		// $this->db->order_by('judul_bab','ASC');
+		// $bab= $this->db->get_where('tb_bab',array('id_mapel'=>$id));
+
+		// foreach ($bab->result_array() as $data ){
+		// $option.= "<option value='$data[id_bab]'>$data[judul_bab]</option>";
+
+		// }
+
+		// return $option;
+
+		// }
+
 
 		// get mapel 
 	function getmapel(){

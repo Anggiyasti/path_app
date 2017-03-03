@@ -133,6 +133,7 @@
                             <div class="panel-body">
                                 <form class="form-horizontal form-bordered" action="<?=base_url()?>index.php/Banksoal/uploadsoal" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                                 <?php echo $this->session->flashdata('msg'); ?>
+                                <?php echo validation_errors(); ?>
                                     
                                     
                                     
@@ -162,7 +163,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2">Judul Soal</label>
                                         <div class="col-sm-5">
-                                            <input type="text" name="judul_soal" class="form-control" >
+                                            <input type="text" name="judul_soal" class="form-control" value="<?php echo set_value('judul_soal'); ?>" >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -234,7 +235,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2">Sumber</label>
                                         <div class="col-sm-5">
-                                            <input name="sumber" id="sumber" type="text" class="form-control">
+                                            <input name="sumber" id="sumber" type="text" class="form-control" value="<?php echo set_value('sumber'); ?>">
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -351,6 +352,7 @@
                         </div>
 
                          <!-- Start input jawaban A -->
+                         <div><?php echo $this->session->flashdata('pesan'); ?></div>
 
                         <div class="form-group">
 
@@ -360,7 +362,7 @@
 
                             <div class="col-sm-5 piltext">
 
-                               <textarea name="a"  class="form-control" rows="2"> </textarea>
+                               <textarea name="a"  class="form-control" rows="2" value="<?php echo   set_value('a'); ?>"  required="true"> </textarea>
 
                             </div>
 
@@ -431,7 +433,7 @@
 
                             <div class="col-sm-5 piltext">
 
-                               <textarea name="b" class="form-control"> </textarea>
+                               <textarea name="b" class="form-control" value="<?php echo set_value('b'); ?>"> </textarea>
 
                             </div>
 
@@ -502,7 +504,7 @@
 
                             <div class="col-sm-5 piltext" >
 
-                               <textarea name="c" class="form-control"> </textarea>
+                               <textarea name="c" class="form-control" value="<?php echo set_value('c'); ?>"> </textarea>
 
                             </div>
 
@@ -577,7 +579,7 @@
 
                             <div class="col-sm-5 piltext" >
 
-                               <textarea name="d" class="form-control"> </textarea>
+                               <textarea name="d" class="form-control" value="<?php echo set_value('d'); ?>"> </textarea>
 
                             </div>
 
@@ -651,7 +653,7 @@
 
                             <div class="col-sm-5 piltext" >
 
-                               <textarea name="e" class="form-control"> </textarea>
+                               <textarea name="e" class="form-control" value="<?php echo set_value('e'); ?>"> </textarea>
 
                             </div>
 

@@ -214,6 +214,19 @@ class Msiswa extends CI_Model {
         return $result->result_array();
     }
 
+
+
+    
+
+    public function get_siswa_blm_ikutan_to() {
+        $query = "SELECT s.id_siswa, s.nama_depan,s.nama_belakang 
+                    FROM tb_siswa s 
+                    WHERE s.status = 1
+        ";
+        $result = $this->db->query($query);
+        return $result->result_array();
+    }
+
 }
 
 ?>

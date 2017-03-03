@@ -86,11 +86,9 @@ class MPaketsoal extends CI_Model {
 
 		SELECT paket.id_paket FROM tb_paket paket
 
-		JOIN `tb_mm-tryoutpaket` mm ON mm.`id_paket` = paket.`id_paket`
+		JOIN `tb_mm_tryoutpaket` mm ON mm.`id_paket` = paket.`id_paket`
 
-		WHERE id_tryout = $id_to AND paket.id_paket 
-
-		)";
+		WHERE id_tryout = $id_to AND paket.id_paket )";
 
 		$result = $this->db->query($query);
 
@@ -270,11 +268,11 @@ class MPaketsoal extends CI_Model {
 
 
 
-		$this->db->insert_batch('tb_mm-paketbank',$mmpaket);
+		$this->db->insert_batch('tb_mm_paket_bank',$mmpaket);
 
 		echo "masuk model";
 
-		var_dump($mmpaket);
+		// var_dump($mmpaket);
 
 	}
 
@@ -286,11 +284,11 @@ class MPaketsoal extends CI_Model {
 
 
 
-		$this->db->select('*,mpaket.id_soal as id_soal_fk, soal.id_soal as id_soal ');
+		$this->db->select('*,mpaket.id_soal as id_soal_fk, soal.id_bank as id_soal ');
 
-		$this->db->from('tb_banksoal soal');
+		$this->db->from('tb_bank_soal soal');
 
-		$this->db->join('tb_mm-paketbank mpaket','mpaket.id_soal = soal.id_soal');
+		$this->db->join('tb_mm_paket_bank mpaket ','mpaket.id_soal = soal.id_bank');
 
 		$this->db->where('id_paket',$idpaket);
 
@@ -402,7 +400,7 @@ class MPaketsoal extends CI_Model {
 
 		$this->db->where('id',$id);
 
-		$this->db->delete('tb_mm-paketbank');
+		$this->db->delete('tb_mm_paket_bank');
 
 	}
 
@@ -476,9 +474,9 @@ class MPaketsoal extends CI_Model {
 
 		$this->db->select('*');
 
-		$this->db->from('tb_mm-paketbank paketbank');
+		$this->db->from('tb_mm_paket_bank paketbank');
 
-		$this->db->join('tb_banksoal bank','paketbank.id_soal = bank.id_soal');
+		$this->db->join('tb_bank_soal bank ',' paketbank.id_soal = bank.id_bank');
 
 		$this->db->where('paketbank.id_paket',$idpaket);
 
@@ -490,14 +488,58 @@ class MPaketsoal extends CI_Model {
 
 	public function get_jumlah_soal($idpaket){
 		$this->db->select('id');
-		$this->db->from('tb_mm-paketbank paketbank');
-		$this->db->join('tb_banksoal bank','paketbank.id_soal = bank.id_soal');
+		$this->db->from('tb_mm_paket_bank paketbank');
+		$this->db->join('tb_bank_soal bank ',' paketbank.id_soal = bank.id_bank');
 
 		$this->db->where('paketbank.id_paket',$idpaket);
 
 		$query = $this->db->get();
 
 		return $query->num_rows();
+	}
+
+
+	#ambil soal yang belum terdaftar dalam paket soal.
+    public function get_soal_terdaftar($data){
+       $paket = $data['id_paket'];
+       $id_bab = $data['id_bab'];   
+              
+        $myquery ="SELECT * FROM tb_bank_soal as bank
+            WHERE bank.publish = 1
+            AND bank.id_bab = $id_bab
+			AND bank.jawaban_benar <>''
+            AND bank.id_bank NOT IN
+            (
+             SELECT pb.id_soal
+             FROM tb_bank_soal b
+             JOIN tb_mm_paket_bank pb 
+             ON pb.id_soal= b.id_bank
+             JOIN tb_paket p ON
+             p.id_paket = pb.id_paket
+            AND p.id_paket = $paket)"
+            ;
+
+    $result = $this->db->query($myquery);
+    
+    return $result->result_array();
+    }
+
+    public function scBab($mapel)
+	{
+		$this->db->select('id_bab,judul_bab');
+		$this->db->from('tb_bab');
+		$this->db->where('id_mapel', $mapel);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	public function scPelajaran()
+	{
+		$this->db->select('id_mapel,nama_mapel');
+        $this->db->from('tb_mata_pelajaran');
+                // $this->db->where('status',1);
+                // $this->db->limit(5);
+		$query = $this->db->get();
+		return $query->result_array();
 	}
 
 

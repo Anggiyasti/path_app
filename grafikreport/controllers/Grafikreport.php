@@ -48,9 +48,9 @@ class Grafikreport extends MX_Controller {
             // $this->load->view('v-chart2', $data);
             // $this->load->view('bab_grafik', $data);
 
-             $sis = $this->session->userdata('id_siswa');
-        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-        $this->load->view('template/siswa2/v-header', $data);
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('baru/v-chart',$data);
             // $this->load->view('template/siswa2/v-footer'); 
         }
@@ -66,8 +66,8 @@ class Grafikreport extends MX_Controller {
         // $this->load->view('template/header');
         // $this->load->view('v-header');
         // $this->load->view('Videoback/layout/header');
-    $this->load->view('template/header');
-            $this->load->view('v-header');
+        $this->load->view('template/header');
+        $this->load->view('v-header');
         $this->load->view('v-greport', $data);
     }
 
