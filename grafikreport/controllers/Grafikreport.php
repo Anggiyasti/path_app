@@ -39,7 +39,11 @@ class Grafikreport extends MX_Controller {
              // $data['total'] = $this->Mgrafik->chart_total($mapel);
             $t = $this->Mgrafik->hitung_total($mapel)[0]['total_grafik'];
             $t2 = $this->Mgrafik->hitung_bab($mapel)[0]['jumlah'];
+            if ($t == '' && $t2 == '') {
+                $data['total'] = 0;
+            } else { 
             $data['total'] = $t / $t2;
+        }
             // var_dump($t, $t2, $total);
             $data['mapel'] = $mapel;
             // $this->load->view('template/header');

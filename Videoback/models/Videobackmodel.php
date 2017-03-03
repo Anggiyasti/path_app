@@ -9,14 +9,14 @@ class Videobackmodel extends CI_Model
 	// get bab
 	function getbab($provId){
 
-		$kabupaten="<option value='0'>--pilih--</pilih>";
+		$kabupaten="<h1>Tidk</h1>";
 
 		$this->db->order_by('judul_bab','ASC');
 		$kab= $this->db->get_where('tb_bab',array('id_mapel'=>$provId));
 
 		foreach ($kab->result_array() as $data ){
 		// $kabupaten.= "<option value='$data[id_bab]'>$data[judul_bab]</option>";
-		$kabupaten.= "<option value='$data[id_bab]'>$data[judul_bab]</option>";
+		$kabupaten.= "<h1>$data[judul_bab]</h1>";
 
 		}
 
