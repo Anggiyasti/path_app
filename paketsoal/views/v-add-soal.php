@@ -1,3 +1,5 @@
+<section id="main" role="main">
+
  <!-- START ROW -->
 
  <div class="row">
@@ -60,13 +62,13 @@
 
             <div class="row">
 
-              <div class="row-col-sm-12">
+               <div class="row-col-sm-12">
 
                <div class="col-sm-4">
 
                 <select name="" id="tingkatID" class="form-control">
 
-                 <option value="">Tingkat</option>
+                 <option value="">Mata Pelajaran</option>
 
                </select>
 
@@ -76,7 +78,7 @@
 
               <select name="" id="pelajaranID" class="form-control">
 
-               <option value="">Pelajaran</option>
+               <option value="">BAB</option>
 
              </select>
 
@@ -100,19 +102,11 @@
 
             <div class="row-col-sm-12">
 
-             <div class="col-sm-4">
-
-              <select name="" id="babID" class="form-control">
-
-               <option value="">Bab</option>
-
-             </select>
-
-           </div>
+             
 
 
 
-           <div class="col-sm-4">
+           <!-- <div class="col-sm-4">
 
             <select name="" id="subBabId" class="form-control">
 
@@ -121,7 +115,7 @@
            </select>
 
          </div>
-
+ -->
        </div>
 
      </div>
@@ -337,6 +331,7 @@
 </div>
 
 <!-- END ROW --> 
+   </section>
 
 
 
@@ -374,7 +369,7 @@
 
       $.ajax({
 
-        url: "<?php echo site_url('videoback/getPelajaran'); ?>",
+        url: "<?php echo site_url('paketsoal/getbab'); ?>",
 
         type: 'POST',
         dataType: "json",
@@ -389,7 +384,7 @@
 
          $.each(msg, function(key, val) {
 
-          sc+='<option value="'+val.id+'">'+val.keterangan+'</option>';
+          sc+='<option value="'+val.id_bab+'">'+val.judul_bab+'</option>';
 
         });
 
@@ -446,19 +441,19 @@ function loadTingkat(){
 
    data: tingkat_id,
 
-   url: "<?= base_url() ?>index.php/videoback/getTingkat",
+   url: "<?= base_url() ?>index.php/paketsoal/getPelajaran",
 
 
 
    success: function(data){
 
-    $('#tingkatID').html('<option value="">Tingkat</option>');
+    $('#tingkatID').html('<option value="">Mata Pelajaran</option>');
 
     $.each(data, function(i, data){
 
-     $('#tingkatID').append("<option value='"+data.id+"'>"+data.aliasTingkat+"</option>");
+     $('#tingkatID').append("<option value='"+data.id_mapel+"'>"+data.nama_mapel+"</option>");
 
-     return idTingkat=data.id;
+     return idTingkat=data.id_mapel;
 
    });
 
@@ -512,13 +507,13 @@ $('#babID').change(function(){
 
 
 
-$('#subBabId').change(function(){
+$('#pelajaranID').change(function(){
 
  $('.soal').empty();
 
 
 
- var idSubBab = $('#subBabId').val();
+ var idSubBab = $('#pelajaranID').val();
 
  if (idSubBab=="") {
 
@@ -563,15 +558,15 @@ $('.tambahsoal').click(function(){
 
 
 
-    url: "<?php echo base_url() ?>index.php/videoback/getPelajaran/"+tingkatID,
+    url: "<?php echo base_url() ?>index.php/paketsoal/getbab/"+tingkatID,
 
     success: function(data){
 
-     $('#pelajaranID').html('<option value="">Mata Pelajaran</option>');
+     $('#pelajaranID').html('<option value="">BAB </option>');
 
      $.each(data, function(i, data){
 
-      $('#pelajaranID').append("<option value='"+data.id+"'>"+data.keterangan+"</option>");
+      $('#pelajaranID').append("<option value='"+data.id_bab+"'>"+data.judul_bab+"</option>");
 
     });
 
@@ -591,11 +586,11 @@ function loadbab(mapelID){
   $.ajax({
     type: "POST",
     dataType: "json",
-    url: "<?php echo base_url() ?>index.php/videoback/getBab/"+mapelID,
+    url: "<?php echo base_url() ?>index.php/paketsoal/getbab/"+mapelID,
     success: function(data){
       $('#babID').html('<option value="">Bab Pelajaran</option>');
       $.each(data, function(i, data){
-        $('#babID').append("<option value='"+data.id+"'>"+data.judulBab+"</option>");
+        $('#babID').append("<option value='"+data.id_bab+"'>"+data.judul_bab+"</option>");
       });
     } 
   });
@@ -632,8 +627,8 @@ function loadsubbab(babID) {
 
 //# Load soal ke tabel yang belum ada
 
-function addsoal(subBabId){
-  var url = base_url+"index.php/paketsoal/ajax_unregistered_soal/"+paket+"/"+subBabId;
+function addsoal(pelajaranID){
+  var url = base_url+"index.php/paketsoal/ajax_unregistered_soal/"+paket+"/"+pelajaranID;
   console.log(url);
   list_soal = $('#oplistsoal').DataTable({ 
    "ajax": {
@@ -652,7 +647,7 @@ function addsoal(subBabId){
 
 function tambahkansoal(){
   var idsoal = [];
-  var idSubBab = $('#subBabId').val();
+  var pelajaranID = $('#pelajaranID').val();
   var id_paket =$('#id_paket').val();
 
   $(':checkbox:checked').each(function(i){
@@ -665,7 +660,7 @@ function tambahkansoal(){
      type: "POST",
      dataType:'text',
      data: {data:idsoal,
-      idSubBab:idSubBab,
+      pelajaranID:pelajaranID,
       id_paket:id_paket},
       success: function(data,respone)
       {   

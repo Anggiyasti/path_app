@@ -279,13 +279,21 @@ public function listfilter($data)
     $UUID = uniqid();
     //set validation rules
         $judul_soal  = $this->form_validation->set_rules('judul_soal', 'Nama Depan', 'trim|required');
+
+
         
         $this->form_validation->set_rules('sumber', 'Email ID', 'trim|required');
+        $this->form_validation->set_rules('a', 'Description', 'trim|required');
+        $this->form_validation->set_rules('b', 'Description', 'trim|required');
+        $this->form_validation->set_rules('c', 'Description', 'trim|required');
+        $this->form_validation->set_rules('d', 'Description', 'trim|required');
+        $this->form_validation->set_rules('e', 'Description', 'trim|required');
         
         //validate form input
         if ($this->form_validation->run() == FALSE) {
             // gagal
-            site_url('banksoal');
+          $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Gagal, Isi Semua Field</div>');
+            redirect(site_url('banksoal/form_tambahsoal'));
         } else {
           $judul_soal = htmlspecialchars($this->input->post('judul_soal'));
           $soal = $this->input->post('editor1');
@@ -332,6 +340,7 @@ public function listfilter($data)
             'create_by' => $create_by,
             'UUID' => $UUID   
            );
+
 
            //call fungsi insert soal
            $this->Modelbank->insert_soal($dataSoal);

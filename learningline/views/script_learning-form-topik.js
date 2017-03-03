@@ -47,6 +47,20 @@ function load_pelajaran(tingkatID) {
    }
  });
 }
+
+
+function load_pelajaran1(id_mapel) {
+  $.ajax({
+    type: "POST",
+    url: "<?php echo base_url() ?>index.php/paketsoal/getPelajaran/" + id_mapel,
+    success: function (data) {
+     $('select[name=select_mapel]').html('<option value="">-- Pilih Mata Pelajaran  --</option>');
+     $.each(data, function (i, data) {
+      $('select[name=select_mapel]').append("<option value='" + data.id_mapel + "'>" + data.nama_mapel + "</option>");
+    });
+   }
+ });
+}
 /*## -------------------------------LOAD PELAJARAN-------------------------------##*/
 
 

@@ -290,7 +290,7 @@ function get_admin($id_admin){
     }
 
 
-      // tampil passing prodi
+      // tampil slide foto
     public function tampilphoto() {
         $this->db->distinct();
         $this->db->select('id,gambar');

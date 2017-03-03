@@ -100,7 +100,7 @@ class paketsoal extends MX_Controller
 			}
 			
 			$row = array();
-			$row[] = $list_soal['id_soal'];
+			$row[] = $list_soal['id_bank'];
 			$row[] = $list_soal['judul_soal'];
 			$row[] = $list_soal['sumber'];
 			$row[] = $list_soal['soal'];
@@ -234,36 +234,40 @@ class paketsoal extends MX_Controller
 		$jumlah_soal = (int)$paket_soal['jumlah_soal'];
 
 		$data['judul_halaman'] = "Tambahkan Bank Soal";
+		if ($this->session->userdata('id_admin')) {
+
 		if (!$paket_soal==array()) {
 			$data['listadd_soal']=$this->load->mpaketsoal->soal_by_paketID($idpaket);
 			$data['panelheading'] = "Soal Untuk Paket soal ".$paket_soal['nm_paket'];
 			$data['id_paket']=$idpaket;
+			$data['mapel']=$this->Modelbank->getmapel();
 			
-			$data['files'] = array(
-				APPPATH.'modules/paketsoal/views/v-add-soal.php',
-				);	
+			// $data['files'] = array(
+			// 	APPPATH.'modules/paketsoal/views/v-add-soal.php',
+			// 	);	
+			$this->load->view('admin/layout/header');
+          	$this->load->view('v-add-soal.php', $data);
+          	$this->load->view('admin/layout/footer');
 		} else {
-			$data['files'] = array(
-				APPPATH . 'modules/templating/views/v-data-notfound.php',
-				);
+			// $data['files'] = array(
+			// 	APPPATH . 'modules/templating/views/v-data-notfound.php',
+			// 	);
+			$this->load->view('admin/layout/header');
+          	$this->load->view('v-data-notfound.php', $data);
+          	$this->load->view('admin/layout/footer');
 		}
 		
-		$hakAkses=$this->session->userdata['HAKAKSES'];
-		if ($hakAkses=='admin') {
-        // jika admin
-			$this->parser->parse('admin/v-index-admin', $data);
-
-
-		} elseif($hakAkses=='guru'){
-                    // jika guru
-			$this->load->view('templating/index-b-guru', $data);  
+		
 
 
 		}else{
             // jika siswa redirect ke welcome
 			redirect(site_url('welcome'));
 		}
-	}
+
+
+}
+	
 	##
 
 	#
@@ -304,16 +308,16 @@ class paketsoal extends MX_Controller
 public function addsoaltopaket()
 {
 	
-	$idSoal = $this->input->post('data');
-	$idSubbab = $this->input->post('idSubBab');
+	$id_soal = $this->input->post('data');
+	$id_bab = $this->input->post('pelajaranID');
 	$idpaket = $this->input->post('id_paket');
 
 	$mmpaket=array();
-	foreach ($idSoal as $key ) {		 
+	foreach ($id_soal as $key ) {		 
 		$mmpaket[] = array(
 			'id_paket' => $idpaket,
 			'id_soal' => $key,
-			'id_subbab' => $idSubbab);
+			'id_bab' => $id_bab);
 
 	}
 
@@ -332,11 +336,12 @@ public function dropsoalpaket($id)
 	##
 
 	#ajax untuk menampilkan soal yang sudah di pub, belum terdaftar di paket dan statusnya 1
-function ajax_unregistered_soal( $id_paket,$subBabId) {
+function ajax_unregistered_soal( $id_paket,$id_bab) {
 	$param['id_paket'] = $id_paket;
-	$param['subBabId'] = $subBabId;
+	$param['id_bab'] = $id_bab;
 	$data=array();
-	$list = $soal=$this->mbanksoal->get_soal_terdaftar($param);
+	$list = $soal=$this->mpaketsoal->get_soal_terdaftar($param);
+	
 
 		//mengambil nilai list
 	$baseurl = base_url();
@@ -351,7 +356,7 @@ function ajax_unregistered_soal( $id_paket,$subBabId) {
 			$kesulitan ="Mudah";
 		}
 		$row = array();
-		$row[] = "<span class='checkbox custom-checkbox custom-checkbox-inverse'><input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_soal']." value=".$list_soal['id_soal']."><label for="."soal".$list_soal['id_soal'].">&nbsp;&nbsp;</label></span>";
+		$row[] = "<span class='checkbox custom-checkbox custom-checkbox-inverse'><input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_bank']." value=".$list_soal['id_bank']."><label for="."soal".$list_soal['id_bank'].">&nbsp;&nbsp;</label></span>";
 		$row[] = $list_soal['judul_soal'];
 		$row[] = $list_soal['sumber'];
 		$row[] = $list_soal['soal'];
@@ -475,6 +480,18 @@ $output = array(
 echo json_encode( $output );
 
 }
+
+public function getbab( $id_mapel ) {
+        $data = $this->output
+        ->set_content_type( "application/json" )
+        ->set_output( json_encode( $this->mpaketsoal->scBab( $id_mapel ) ) ) ;
+    }
+
+public function getPelajaran() {
+        $data = $this->output
+        ->set_content_type( "application/json" )
+        ->set_output( json_encode( $this->mpaketsoal->scPelajaran() ) ) ;
+    }
 
 }
 ?>
