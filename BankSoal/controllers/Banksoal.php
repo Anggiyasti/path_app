@@ -171,15 +171,27 @@ public function listfilter($data)
             $jawaban_benar=$list_soal['jawaban_benar'];
             $isiJawaban = '';
 
-            if ($jawaban_benar != '' && $jawaban_benar != ' ') {
+             $tampJawaban = $this->Modelbank->get_jawaban($jawaban_benar,$id_bank);
+            if ($tampJawaban) {
                 //untuk menampung data sementara jawaban
-                $tampJawaban = $this->Modelbank->get_jawaban($jawaban_benar,$id_bank);
                 $isiJawaban = $tampJawaban['jawaban'];
                 $tampImgJawaban = $tampJawaban['imgJawaban'];
                 if ($tampImgJawaban != '' && $tampImgJawaban != ' ' ) {
-                     $imgJawaban=base_url().'/assets/images/jawaban/'.$tampImgJawaban;
+                     $imgJawaban=base_url().'/assets/image/jawaban/'.$tampImgJawaban;
                 }
             }
+
+            // if ($jawaban_benar != '' && $jawaban_benar != ' ') {
+                //untuk menampung data sementara jawaban
+                // $tampJawaban = $this->Modelbank->get_jawaban($jawaban_benar,$id_bank);
+                // $isiJawaban = $tampJawaban['jawaban'];
+                // $tampImgJawaban = $tampJawaban['imgJawaban'];
+                // if ($tampImgJawaban != '' && $tampImgJawaban != ' ' ) {
+                //      $imgJawaban=base_url().'/assets/images/jawaban/'.$tampImgJawaban;
+                // } else {
+
+                // }
+            // }
 
 
 
@@ -315,6 +327,18 @@ public function listfilter($data)
             # code...
           }
 
+          for ($x = 0; $x < strlen($pembahasan); $x++) {
+
+          if ($pembahasan[$x] == '=' ) {
+            $startID=$x+1;
+            $linkembed='https://www.youtube.com/embed/'.substr($pembahasan, $startID,11);
+            break;
+          }else{
+            $linkembed=$pembahasan;
+          }
+          
+        }
+
 
           $a = $this->input->post('a');
           $b = $this->input->post('b');
@@ -335,7 +359,7 @@ public function listfilter($data)
             'id_bab' => $judul_bab,
             'sumber' => $sumber,
             'random' => $random,
-            'pembahasan' => $pembahasan,
+            'pembahasan' => $linkembed,
             'publish' => $publish,
             'create_by' => $create_by,
             'UUID' => $UUID   
@@ -613,12 +637,13 @@ public function upload_video(){
   public function update_soal($UUID){
 
           // $UUID = uniqid();
+          $id_soal = $this->input->post('soalID');
            $judul_soal = htmlspecialchars($this->input->post('judul_soal'));
           $soal = $this->input->post('editor1');
            $gambarSoal = $this->input->post('gambarSoal');
            $options = htmlspecialchars($this->input->post('options'));
            $soalID = htmlspecialchars($this->input->post('soalID'));
-          $jawaban = htmlspecialchars($this->input->post('jawaban_benar'));
+          $jawaban = $this->input->post('jawaban_benar');
           $kesulitan = htmlspecialchars($this->input->post('kesulitan'));
           $id_mapel = htmlspecialchars($this->input->post('id_mapel'));
           $judul_bab = htmlspecialchars($this->input->post('judul_bab'));
@@ -628,7 +653,7 @@ public function upload_video(){
           $publish = htmlspecialchars($this->input->post('publish'));
            // $UUID = htmlspecialchars($this->input->post('UUID'));
 
-          $idA = htmlspecialchars($this->input->post('idpilA'));
+          $idA = $this->input->post('idpilA');
           $idB = htmlspecialchars($this->input->post('idpilB'));
           $idC = htmlspecialchars($this->input->post('idpilC'));
           $idD = htmlspecialchars($this->input->post('idpilD'));
@@ -661,7 +686,7 @@ public function upload_video(){
 
            $data['id_soal']=$soalID;
           if ($options == 'text') {
-                $data['jawaban'] = array(
+                $data['jawabann'] = array(
                      array(
                          'pilihan_jawaban' => 'A',
                          'jawaban' => $a,
@@ -688,17 +713,59 @@ public function upload_video(){
                          
                      )
                  );
-               
 
-               $this->Modelbank->ch_jawaban($data);
+                $data['insert'] = array(
+                     array(
+                         'pilihan_jawaban' => 'A',
+                         'jawaban' => $a,
+                         'id_soal'=> $soalID
+                         
+                     ),
+                     array(
+                         'pilihan_jawaban' => 'B',
+                         'jawaban' => $b,
+                         'id_soal'=> $soalID
+                         
+                     ),
+                     array(
+                         'pilihan_jawaban' => 'C',
+                         'jawaban' => $c,
+                         'id_soal'=> $soalID
+                         
+                     ),
+                     array(
+                         'pilihan_jawaban' => 'D',
+                         'jawaban' => $d,
+                         'id_soal'=> $soalID
+                         
+                     ),
+                     array(
+                         'pilihan_jawaban' => 'E',
+                         'jawaban' => $e,
+                         'id_soal'=> $soalID
+                         
+                     )
+                 );
+               
+               
+               // cek ada jawaban atau tidak 
+              $cek = $this->Modelbank->cek_jawaban($id_soal);
+              if ($cek) {
+                $this->Modelbank->ch_jawaban($data);
+              } else {
+                $this->Modelbank->insert_jawaban($data['insert']);
+              }
+               
 
               } else{
-               
-              $this->ch_img_jawaban($soalID);
-
+               if ($cek =  $this->Modelbank->cek_jawaban($id_soal)) {
+                  $this->ch_img_jawaban($soalID);
+                } else {
+                  $this->gambar_jawab($soalID);
+                }
 
              }
-             redirect(site_url('banksoal/daftarsoal'));
+             redirect(site_url('banksoal/listsoal'));
           // var_dump($data);
 
 

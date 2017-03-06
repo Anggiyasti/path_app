@@ -1,11 +1,31 @@
 <?php 
 
-if (!isset($piljawaban['4']['id_pilih'])) {
-    $piljawaban['4']['id_pilih']="";
-    $piljawaban['4']['jawaban']="";
-    $piljawaban['4']['gambar']="";
+if (!isset($piljawaban['0']['id_pilih'])) {
+    $piljawaban['0']['id_pilih']="";
+    $piljawaban['0']['jawaban']="";
+    $piljawaban['0']['gambar']="";
 } 
+if ( !isset($piljawaban['1']['id_pilih'])) {
+  $piljawaban['1']['id_pilih']="";
+  $piljawaban['1']['jawaban']="";
+  $piljawaban['1']['gambar']="";
+}
+if (!isset($piljawaban['2']['id_pilih'])) {
 
+  $piljawaban['2']['id_pilih']="";
+  $piljawaban['2']['jawaban']="";
+  $piljawaban['2']['gambar']="";
+}
+if (  !isset($piljawaban['3']['id_pilih'])) {
+  $piljawaban['3']['id_pilih']="";
+  $piljawaban['3']['jawaban']="";
+  $piljawaban['3']['gambar']="";  
+}
+if (!isset($piljawaban['4']['id_pilih'])) {
+  $piljawaban['4']['id_pilih']="";
+  $piljawaban['4']['jawaban']="";
+  $piljawaban['4']['gambar']="";
+}
 ?>
         <!--/ END Template Header -->
 

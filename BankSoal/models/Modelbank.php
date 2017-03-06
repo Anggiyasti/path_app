@@ -397,7 +397,7 @@ class Modelbank extends CI_Model
 
     public function ch_jawaban($data) {
         $this->db->where('id_soal',$data['id_soal']);
-        $this->db->update_batch('tb_pil_jawab', $data['jawaban'], 'pilihan_jawaban');
+        $this->db->update_batch('tb_pil_jawab', $data['jawabann'], 'pilihan_jawaban');
     }
     public function get_onesoal($UUID) {
         $this->db->where('UUID', $UUID);
@@ -520,8 +520,27 @@ class Modelbank extends CI_Model
     
 
     
+    // fungsi cek jawaban
+    public function cek_jawaban($id_soal) {
+    	$this->db->select('pilihan_jawaban, jawaban');
+		$this->db->from('tb_pil_jawab');
+		$this->db->where('id_soal', $id_soal);
+		 $query = $this->db->get();
 
-    // fungsi getkesulitan
+        if ($query->num_rows() == 1) {
+
+//            echo "ada akun";
+
+            return $query->result(); //if data is true
+
+        } else {
+
+//            echo 'tidak ada akun';
+
+            return false; //if data is wrong
+
+        }
+    }
    
 
 
