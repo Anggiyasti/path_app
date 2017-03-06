@@ -156,6 +156,7 @@ Preview.callback = MathJax.Callback(["CreatePreview",Preview]);
 Preview.callback.autoReset = true;  // make sure it can run more than once
 
 </script>
+<script>var base_url = '<?php echo base_url() ?>';var halaman = false;</script>
 <script type="text/javascript">
   
 
@@ -197,9 +198,9 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
     var wkt_akhir  =   $('#to_wktakhir').val();
     var publish;
     if ($('#to_publish:checked')==true) {
-     publish = 1;
-   } else{
      publish = 0;
+   } else{
+     publish = 1;
    }
 // pengecekan inputan pembuatan to
 // cek inputan kosong
@@ -350,9 +351,9 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
 <div class="form-group">
  <label class="col-sm-3 control-label">Publish</label>
  <div class="col-sm-8">
-  <div class="checkbox custom-checkbox">  
-   <input type="checkbox" name="publish" id="to_publish" value="1">  
-   <label for="to_publish" >&nbsp;&nbsp;</label>   
+  <div class="checkbox custom-checkbox custom-checkbox-inverse">  
+   <input type="checkbox" name="publish" id="publish" value="1">  
+   <label for="publish" >&nbsp;&nbsp;</label>   
  </div>
 </div>
 </div> 
