@@ -78,9 +78,9 @@ class MPaketsoal extends CI_Model {
 
 	public function get_paket_unregistered($id_to) {
 
-		$query = "SELECT p.deskripsi,p.id_paket, p.nm_paket FROM tb_paket p 
+		$query = "SELECT p.deskripsi,p.id_paket, p.nm_paket,p.status FROM tb_paket p 
 
-		WHERE p.id_paket NOT IN
+		WHERE p.status =1 AND p.id_paket NOT IN
 
 		(
 

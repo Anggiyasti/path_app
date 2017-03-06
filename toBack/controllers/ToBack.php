@@ -252,10 +252,10 @@ class Toback extends MX_Controller
 			$row = array();
 			$row[] = $list_to ['id_tryout'];
 			$row[] = $list_to ['nm_tryout'];
-			$row[] = $list_to['tgl_mulai'];
-			$row[] = $list_to['wkt_mulai'];
-			$row[] = $list_to['tgl_berhenti'];
-			$row[] = $list_to['wkt_berakhir'];
+			// $row[] = $list_to['tgl_mulai'];
+			// $row[] = $list_to['wkt_mulai'];
+			// $row[] = $list_to['tgl_berhenti'];
+			// $row[] = $list_to['wkt_berakhir'];
 			$row[] = $publish;
 			$row[] = '
 			<a class="btn btn-sm btn-primary"  title="Ubah" onclick="edit_TO('."'".$list_to['id_tryout']."'".')">
@@ -263,8 +263,7 @@ class Toback extends MX_Controller
 			<a class="btn btn-sm btn-success"  title="ADD PAKET to TO" href='."addPaketTo/".$list_to['UUID'].' >
 			<i class="ico-file-plus2"></i></a>
 
-			<a class="btn btn-sm btn-primary"  title="Daftar Peserta TO" onclick="show_peserta('."'".$list_to['UUID']."'".')">
-			<i class="ico-user"></i></a>
+			
 
 			<a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropTO('."'".$list_to['id_tryout']."'".')">
 			<i class="ico-remove"></i></a>
@@ -436,6 +435,72 @@ class Toback extends MX_Controller
 		->set_content_type( "application/json" )
 		->set_output( json_encode( $this->mcabang->get_all_cabang() ) );
 	}
+
+
+
+	// FUNGSI view tryout
+	public function tryout(){
+		if ($this->session->userdata('id_admin')) {
+			$this->load->view('admin/layout/header');
+			$this->load->view('v_tryout');
+			$this->load->view('admin/layout/footer');
+	}	elseif ($this->session->userdata('id_guru')) {
+			$this->load->view('guru/layout/header');
+			$this->load->view('v_tryout');
+			$this->load->view('guru/layout/footer');
+	}
+	else{
+
+	}
+}
+	// GET LIST STEP BERDASARKAN ID TOPIK
+	public function ajax_get_list_to(){
+		$list = $this->Mtoback->get_view_to();
+		
+		$data = array();
+
+		$baseurl = base_url();
+		foreach ( $list as $list_item ) {
+		
+			// $no++;
+			$row = array();		
+			$row[] = $list_item['nm_tryout'];
+			$row[] = $list_item['publish'];
+			// $row[] = $list_item['judulbab'];
+			if ($list_item['active']==1) {
+				$row[] = "<input type='checkbox' 
+				class='switchery' checked onclick='updatestatus(".$list_item['id_tryout'].",".$list_item['active'].")'>";
+			} else {
+				$row[] = "<input type='checkbox' 
+				class='switchery' unchecked onclick='updatestatus(".$list_item['id_tryout'].",".$list_item['active'].")'>";
+			}		
+			
+			
+			// $row[] = '
+			// <a class="btn btn-sm btn-success"  title="Detail" onclick="detail_bab('."'".$list_item['id_tryout']."'".')"><i class="ico-file-plus2"></i></a>';
+
+			$data[] = $row;
+
+		}
+
+		$output = array(
+			"data"=>$data,
+			);
+
+		echo json_encode($output);	
+	}
+
+
+function updateaktiv($data){
+	$this->Mtoback->updateaktiv($data);
+}
+
+function updatepasive($data){
+	$this->Mtoback->updatepasive($data);
+}
+
+
+
 
 }
 ?>

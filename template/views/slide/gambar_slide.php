@@ -51,7 +51,22 @@
                             <!--/ panel heading/header -->
                             <!-- panel body -->
                            <div class="one-half-responsive last-column" id="photo">
+
+            <div class="notification notification-danger" id="notif" hidden="true">
+            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+            <h4>Silahkan cek type extension gambar!</h4>
+            <p>Type yang bisa di upload hanya .jpeg|.gif|.jpg|.png|.bmp</p>
+          </div>
+
+          <div class="notification notification-danger" id="size" hidden="true">
+            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+            <h4>Silahkan cek ukuran gambar!</h4>
+            <p>Ukuran yang bisa di upload maksimal 2mb ! </p>
+          </div>
+
+           <?php echo $this->session->flashdata('msg'); ?> 
             <form name="form-account" action="<?=base_url()?>index.php/template/slide/gambar_slide/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+
 
 
             <div class="content">
@@ -60,7 +75,8 @@
 
              
                 <div class="input-icon">
-                    <input type="file" id="file" name="photo" class="btn " required="true"/><br>
+                <label><p>Gambar tidak boleh lebih dari 2mb (4000x6000)</p></label>
+                    <input  type="file" id="file" name="photo" class="btn " required="true" onchange="ValidateSingleInput(this);" />
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
 
@@ -82,6 +98,44 @@
 
         </section>
         <!--/ END Template Main -->
+
+
+
+<script type="text/javascript">
+ var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];    
+
+function ValidateSingleInput(oInput) {
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+        console.log(sFileName);
+         if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+             
+            if (!blnValid) {
+             $('#notif').show();
+                // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                // oInput.value = "";
+                return false;
+            }
+
+            file = oInput.files[0];
+            if (file.size > 508000 ) {
+               $('#size').show();
+               return false;
+            } 
+            
+        }
+    }
+    return true;
+}
+</script>
 
 
 

@@ -56,9 +56,10 @@ class Mtoback extends CI_Model {
 
 	public function paket_by_toID($id_to)
 	{
-		$this->db->select('mto.id as idKey ,mto.id_paket as id_paket_fk,paket.id_paket as paketID,nm_paket,deskripsi');
+		$this->db->select('mto.id as idKey ,mto.id_paket as id_paket_fk,paket.id_paket as paketID,nm_paket,deskripsi,paket.status');
 		$this->db->from('tb_paket paket');
 		$this->db->join('tb_mm_tryoutpaket mto ','mto.id_paket = paket.id_paket');
+		$this->db->where('paket.status','1');
 		$this->db->where('mto.id_tryout',$id_to);
 		$query = $this->db->get();
         return $query->result_array();
@@ -179,6 +180,33 @@ class Mtoback extends CI_Model {
 		$this->db->where('paket.id_paket',$idpaket);
 		$query = $this->db->get();
         return $query->result_array();
+	}
+
+
+	// ambil semua bab
+	public function get_view_to(){
+		$this->db->select('t.id_tryout, t.nm_tryout,t.publish,t.active');
+		$this->db->from('tb_tryout t');
+		$this->db->where('t.publish',1);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+
+	// update line bab aktiv
+	function updateaktiv($data){
+		$this->db->where('id_tryout', $data);
+		$this->db->set('active', 1);
+		$this->db->update('tb_tryout');
+	// update line topik aktiv
+	}
+
+	// update line bab passive
+	function updatepasive($data){
+		$this->db->where('id_tryout', $data);
+		$this->db->set('active', 0);
+		$this->db->update('tb_tryout');
+	// update line topik aktiv
 	}
 }
 ?>

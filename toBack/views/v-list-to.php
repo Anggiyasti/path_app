@@ -99,10 +99,10 @@
                     			<tr>
                     				<th>ID</th>
                     				<th>Nama TO</th>
-                    				<th>Tanggal Mulai</th>
+                    				<!-- <th>Tanggal Mulai</th>
                                     <th>Waktu Mulai</th>
                     				<th>Tanggal Berakhir</th>
-                                    <th>Waktu Berakhir</th>
+                                    <th>Waktu Berakhir</th> -->
                                     <th>Status Publish</th>
                     				<th>Aksi</th>
                     			</tr>

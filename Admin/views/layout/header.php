@@ -663,6 +663,8 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
                                     </a></li>
                                     <li><a href="<?= base_url('index.php/toback/listTo');?>" ><span class="text">Daftar Try Out</span>
                                     </a></li>
+                                    <li><a href="<?= base_url('index.php/toback/tryout');?>" ><span class="text">Pilih Try out Aktif </span>
+                                    </a></li>
 
 
                                   </ul>
