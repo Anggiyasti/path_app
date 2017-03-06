@@ -103,6 +103,9 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div>
+                                Score total = <?=$tot?>
+                            </div>
                          <br>
                             <div class="tags-post">
                             <a href="#" rel="tag"><?=$bab;?></a>

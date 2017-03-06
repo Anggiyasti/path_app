@@ -18,35 +18,14 @@
             <!-- With Left Icon -->
           <h4 class="p-20">Mata Pelajaran</h4>
           <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
-          <?php $ke=0; ?>
-          <?php $mp; ?>
           <?php foreach ($mapel as $pel) : ?>
-            <?php $mp=$pel['nama_mapel']; ?>
-            <?php if ($ke==0): ?>
-            <!-- Header Info -->
             <li>
-              <div class="collapsible-header"><i class="ion-android-options"></i><?=$pel['nama_mapel']?></div>
+              <div class="collapsible-header"><i class="ion-android-options"></i><a href="<?=base_url()?>index.php/linetopik/pilih_part/<?=$pel['id_mapel'] ?>"><?=$pel['nama_mapel']?></a></div>
               <div class="collapsible-body"></div>
-            <!-- /Header Info -->
-            <?php $ke=1; ?>
-            <?php elseif($mp!=$olduniversitas): ?>
-            <!-- Footer info -->
             </li>
-            <!-- Footer Info -->
-            <!-- Header Info -->            
-            <li>
-              <div class="collapsible-header"><i class="ion-android-cloud"></i><?=$pel['nama_mapel']?></div>
-               <!-- /Header Info -->
-              <?php endif ?>
-              <!-- Body Info -->
-              <div class="collapsible-body"><h6><a href="<?=base_url()?>index.php/linetopik/learningline/<?=$pel['id_bab'] ?>"><?=$pel['judul_bab']?></a></h6></div>
-              <!-- /Body info -->
-              <?php $olduniversitas=$mp; ?>
              <?php endforeach ?>
               <!-- Footer info -->
 
-            </li>
-             <!-- Footer Info --> 
           </ul>          
           </div>
         </div> 

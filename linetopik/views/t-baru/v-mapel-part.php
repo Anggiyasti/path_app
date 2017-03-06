@@ -18,35 +18,38 @@
             <!-- With Left Icon -->
           <h4 class="p-20">Mata Pelajaran</h4>
           <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
-          <?php $ke=0; ?>
-          <?php $mp; ?>
           <?php foreach ($mapel as $pel) : ?>
-            <?php $mp=$pel['nama_mapel']; ?>
-            <?php if ($ke==0): ?>
-            <!-- Header Info -->
             <li>
               <div class="collapsible-header"><i class="ion-android-options"></i><?=$pel['nama_mapel']?></div>
-              <div class="collapsible-body"></div>
-            <!-- /Header Info -->
-            <?php $ke=1; ?>
-            <?php elseif($mp!=$olduniversitas): ?>
-            <!-- Footer info -->
+              <div class="collapsible-body">
+                   <div id="test1">
+              <div class="container activity p-l-r-20">
+            <div class="row m-l-0">
+              <div class="col">
+               
+                <div class="contact">
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/learningline/<?=$pel['id_mapel'] ?>/1">Part 1</a></span>
+                  <div class="dot z-depth-1">
+                  </div>
+    
+                </div>
+
+                 <div class="contact">
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/learningline/<?=$pel['id_mapel'] ?>/2">Part 2</a></span>
+                  <div class="dot z-depth-1">
+                  </div>
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+              </div>
             </li>
-            <!-- Footer Info -->
-            <!-- Header Info -->            
-            <li>
-              <div class="collapsible-header"><i class="ion-android-cloud"></i><?=$pel['nama_mapel']?></div>
-               <!-- /Header Info -->
-              <?php endif ?>
-              <!-- Body Info -->
-              <div class="collapsible-body"><h6><a href="<?=base_url()?>index.php/linetopik/learningline/<?=$pel['id_bab'] ?>"><?=$pel['judul_bab']?></a></h6></div>
-              <!-- /Body info -->
-              <?php $olduniversitas=$mp; ?>
              <?php endforeach ?>
               <!-- Footer info -->
 
-            </li>
-             <!-- Footer Info --> 
           </ul>          
           </div>
         </div> 

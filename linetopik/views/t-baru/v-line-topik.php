@@ -18,7 +18,7 @@
           
           <div class="p-t-20">
           <ul class="tabs">
-            <li class="tab"><a class="active" href="#test1">Line Topik</a></li>
+            <li class="tab"><a class="active" href="#test1">Season</a></li>
             
           </ul>
           </div>
@@ -39,7 +39,7 @@
                       <div class="dot z-depth-1">
                       </div>
                       <p>
-                        <a  href="<?=$key['link'];?>" id="font-<?=$i;?>" ><?=$key['namaTopik']?></a>
+                        <a  href="<?=$key['link'];?>" id="font-<?=$i;?>" >Season <?=$key['namaTopik']?></a>
                       </p>
                       <span>
                         Nama Topik:' <?=$key['namaTopik']?> ' <br>
@@ -64,7 +64,7 @@
                       <div class="dot z-depth-1">
                       </div>
                       <p>
-                        <a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" ><?=$key['namaTopik']?></a>
+                        <a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" >Season <?=$key['namaTopik']?></a>
                       </p>
                       <span>
                         Nama Topik:' <?=$key['namaTopik']?> ' <br>
@@ -112,7 +112,7 @@
                               <div class="contact">
                                 <h2>
                                       <div class="number">U<span>P</span>S</div>
-                                        <p><span>Maaf:(</span><br>Step Line Belum Tersedia.</p>
+                                        <p><span>Maaf:(</span><br>Season Belum Tersedia.</p>
                                       </div></h2>
                               </div>
                                <!--  <div class="container-404">

@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  		$this->load->model('Mlinetopik');
  		$this->load->model('Workout1/Mworkout1');
         $this->load->model('login/Loginmodel');
+        $this->load->model('settingpath/mpath');
  		$this->load->library('parser');
  	}
 
@@ -19,12 +20,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  	{
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
-     		$data['mapel'] = $this->load->Mworkout1->getdaftarmapel();
+     		$data['mapel'] = $this->load->Mlinetopik->getmapeltopik();
+            $step=false;
+            $urutan = 1;
+
+            if ($step == true || $urutan == '1' ) {
+
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
      		$this->load->view('template/siswa2/v-header', $data);
-     		$this->load->view('t-baru/v-line-bab', $data);
+     		// $this->load->view('t-baru/v-line-bab', $data);
+            $this->load->view('t-baru/v-mapel-part', $data);
             $this->load->view('template/siswa2/v-footer');
+        }
 
      	} else {
             redirect('login');
@@ -45,13 +53,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }
 
- 	public function learningLine($babid)
+    // fungsi pilihan part
+    public function pilih_part($no) {
+        //hak akses jika siswa
+        if ($this->session->userdata('id_siswa')) {
+            $data['mapel'] = $this->load->Mlinetopik->getparttopik($no);
+            $data['p'] = $this->load->Mlinetopik->getparttopik($no)[0]['nama_mapel'];
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $this->load->view('template/siswa2/v-header', $data);
+            $this->load->view('t-baru/v-line-part', $data);
+            $this->load->view('template/siswa2/v-footer');
+        } else {
+            redirect('login');
+        }
+    }
+
+ 	public function learningline($mapel, $part)
  	{
  		// var_dump($data['datline']);
  		//hak akses jika siswa
     if ($this->session->userdata('id_siswa')) {    
- 		$dat=$this->Mlinetopik->get_line_topik($babid);
-        $data['topik']=$this->Mlinetopik->get_topik($babid);
+ 		$dat=$this->Mlinetopik->get_line_topik($mapel, $part);
+        $data['topik']=$this->Mlinetopik->get_topik($mapel, $part);
  		$data['datline']=array();
         // 
         $step=false;
@@ -259,7 +283,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if ($this->session->userdata('id_siswa')) { 
             if (!empty($this->session->userdata['id_latihan'])) {
                 $id = $this->session->userdata['id_latihan'];
-                $this->load->view('workout1/t-header-soal');
+                $id_siswa =  $this->session->userdata['id_siswa'];
+              $this->load->view('workout1/t-header-soal');
 
                 $query = $this->Mworkout1->get_soal($id);
                 $data['soal'] = $query['soal'];
@@ -287,6 +312,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $id_latihan = $this->session->userdata['id_latihan'];
         // $level = $this->mtesonline->levelLatihan($id_latihan)[0]->level;
         $result = $this->load->Mworkout1->jawabansoal($id);
+        $id_bab = $this->load->Mworkout1->jawabansoal($id)[0]['id_bab'];
+        $id_pel = $this->load->Mlinetopik->getmapelbab2($id_bab)[0]['id_mapel'];
+        // var_dump($id_pel, $id_bab);/
         $datQuiz = $this->Mlinetopik->get_datQuiz($id);
         $minBenar = $datQuiz ['jumlah_benar'];
         $benar = 0;
@@ -315,6 +343,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $data['jumlahBenar']  = $benar;
         $data['jumlahSalah']  = $salah;
         $data['jumlahKosong'] = $kosong;
+
+            $hasil['id_pengguna'] = $this->session->userdata['id_siswa'];
+            $hasil['jmlh_kosong'] = $kosong;
+            $hasil['jmlh_benar'] = $benar;
+            $hasil['jmlh_salah'] = $salah;
+            $hasil['total_nilai'] = $benar;
+            $hasil['durasi_pengerjaan'] = $this->input->post('durasi');
+            $hasil['id_bab'] = $id_bab;
+            $hasil['id_mapel'] = $id_pel;
+
+        $this->Mlinetopik->inputreport($hasil);
+        $this->session->unset_userdata('id_latihan');
          // cek ke lulusan
         $tampStep = $this->Mlinetopik->get_stepID2($id_latihan);
         $stepID = $tampStep['id'];
@@ -339,7 +379,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $stepUUID=$datArr['stepUUID'];
         $dat=$this->Mlinetopik->get_topic_step2($stepUUID);
         $data['data']=$datArr;
-
+        $id = $this->session->userdata['id_siswa'];
+        $data['tot']=$this->Mlinetopik->get_total()[0]['tot_path'];
         // Start step line data
         $data['datline']=array();
         // 
@@ -356,7 +397,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // pengecekan disable atau enable step
                 if ($step == true || $urutan == '1' ) {
                     $icon='ico-movie ';
-                    $link = base_url('index.php/linetopik/step_video/'.$UUID);
+                    $link = base_url('index.php/linetopik/step_video/').$UUID;
                     $status ="enable";
                 } else {
                     $icon='ico-movie';
@@ -370,7 +411,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // pengecekan disable atau enable step
                 if ($step == true || $urutan == '1' ) {
                     $icon ='ico-file6';
-                    $link = base_url('index.php/linetopik/step_materi/'.$UUID);
+                    $link = base_url('index.php/linetopik/step_materi/').$UUID;
                     $status ="enable";
                 } else {
                    $icon='ico-file6';
@@ -384,7 +425,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 if ($step == true || $urutan == '1' ) {
                    $icon ='ico-pencil';
                   $latihanID = $rows['latihanID'];
-                   $link = base_url('index.php/linetopik/create_session_id_latihan/'.$latihanID);
+                   $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
                    $status ="enable";
                 } else {
                   $icon='ico-pencil';
@@ -410,11 +451,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
       // END step line data
-        $sis = $this->session->userdata('id_siswa');
-        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-        $this->load->view('template/siswa2/v-header', $data);
+
+        $this->load->view('template/header');
         $this->load->view('v-hasil-quiz', $data);
-        $this->load->view('template/siswa2/v-footer');
 
     }
 
@@ -502,7 +541,79 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         // END step line
     }
 
+    public function hasil_part1()
+    {
+        //hak akses jika siswa
+        if ($this->session->userdata('id_siswa')) {
 
+            $data['tot']=$this->Mlinetopik->get_total();
+            $data['report']=$this->Mlinetopik->getreport();
+
+            $cek = $this->Mlinetopik->getreport()[0]['top'];
+            $cek2 = $this->Mlinetopik->getreport()[0]['id_bab'];
+            $cek3 = $this->Mlinetopik->getreport()[1]['id_bab'];
+            // for ($i=0; $i < 2; $i++) { 
+            //     $cek2 = $this->Mlinetopik->getreport();
+            //     foreach ($cek2 as $key) {
+            //         // $key['id_bab'];
+            //         var_dump($key['id_bab']);
+            //     }
+            // }
+            // var_dump($key['id_bab']);
+
+            $data['pel']=$this->Mlinetopik->get_total()[0]['nama_mapel'];
+            $mp = $this->Mlinetopik->get_total()[0]['id_mapel'];
+            $n1=$this->Mlinetopik->get_total()[0]['tot_path'];
+            $n2=$this->Mlinetopik->get_total()[0]['benar'];
+            $n3=$this->Mlinetopik->get_total()[0]['jum_soal'];
+            $n4=$this->mpath->get_set_path()[0]['nilai_awal'];
+            $n5=$this->mpath->get_set_path()[0]['nilai_akhir'];
+            $n6=$this->mpath->get_set_path()[0]['jumlah'];
+
+            $total = ($n2/$n3)*100;
+            // substr($total, 0, 3);
+            $total = 26;
+            if ($total <= 25) {
+                $n6=$this->Mlinetopik->getpath(0,25,$mp)[0]['jumlah'];
+                $data['bab'] = $n6;
+            } else if($total>25 && $total <=30) {
+                $n6=$this->Mlinetopik->getpath(25,30,$mp)[0]['jumlah'];
+                $data['bab'] = $n6;
+               
+                // var_dump($n6);
+            } else  if($total>30 && $total <=35) {
+                $n6=$this->Mlinetopik->getpath(30,35,$mp)[0]['jumlah'];
+                $data['bab'] = $n6;
+            } else  if($total>35 && $total <=40) {
+                $n6=$this->Mlinetopik->getpath(35,40,$mp)[0]['jumlah'];
+                $data['bab'] = $n6;
+            } else {
+                $n6=$this->Mlinetopik->getpath(40,100,$mp)[0]['jumlah'];
+                $data['bab'] = $n6;
+            } 
+            $data['nilai'] = $total;
+
+            // get jumlah soal 
+            $data['jum_soal'] = $this->Mlinetopik->get_soal_pendalaman1($mp)[0]['jumlah_soal'];
+            $jml_soal =$data['jum_soal'];
+            $kesulitan = $this->Mlinetopik->get_soal_pendalaman($mp)[0]['level'];
+
+            // get soal
+            $query = $this->Mlinetopik->getsoal($mp,$kesulitan,$cek2, $cek3, $jml_soal);
+            $data['soal'] = $query['soal'];
+            // var_dump($data['soal']);
+
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $this->load->view('template/siswa2/v-header', $data);
+            $this->load->view('t-baru/v-coba-path', $data);
+            $this->load->view('template/siswa2/v-footer');
+       
+
+        } else {
+            // redirect('login');
+        }
+    }
 
 
  }
