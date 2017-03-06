@@ -7,12 +7,11 @@
 
  	public function get_line_topik($babID, $urutan)
  	{
- 		$this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, bab.judul_bab, step.latihanID,step.id as stepID, step.urutan, m.nama_mapel');
+ 		$this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, step.latihanID,step.id as stepID, step.urutan');
  		$this->db->from('tb_line_topik topik');
  		$this->db->join('tb_line_step step','step.topikID=topik.id');
- 		$this->db->join('tb_bab bab','bab.id_bab=topik.babID');
-        $this->db->join('tb_mata_pelajaran m','m.id_mapel = bab.id_mapel');
- 		$this->db->where('m.id_mapel',$babID);
+        $this->db->join('tb_mata_pelajaran m','m.id_mapel = topik.id_mapel');
+ 		$this->db->where('topik.id_mapel',$babID);
         $this->db->where('topik.part', $urutan);
  		$this->db->order_by('topik.namaTopik');
  		$this->db->order_by('step.urutan', 'asc');
