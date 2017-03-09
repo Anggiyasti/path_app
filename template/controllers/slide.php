@@ -40,8 +40,8 @@
         $config['upload_path'] = './assets/app/halo/img';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
         $config['max_size'] = 2000;
-        $config['max_width'] = 4000;
-        $config['max_height'] = 6000;
+        $config['max_width'] = 700;
+        $config['max_height'] = 1050;
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('photo')) {

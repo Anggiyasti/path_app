@@ -50,7 +50,19 @@
              <?php endforeach ?>
               <!-- Footer info -->
 
-          </ul>          
+          </ul> 
+          <h4 class="p-20">Part 3</h4>
+          <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
+         
+            <li>
+              <div class="collapsible-header"><i class="ion-android-options"></i><a href="<?=base_url()?>index.php/linetopik/tryout">Part 3</a></div>
+              <div class="collapsible-body">
+                   
+              </div>
+            </li>
+            
+
+          </ul>                  
           </div>
         </div> 
       

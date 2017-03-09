@@ -409,8 +409,8 @@ function ajax_get_soal_byid( $bab ) {
 		$row = array();
 
 		$row[] = "<span class='checkbox custom-checkbox custom-checkbox-inverse'>
-		<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_soal']." value=".$list_soal['id_soal'].">
-		<label for="."soal".$list_soal['id_soal'].">&nbsp;&nbsp;</label>
+		<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_bank']." value=".$list_soal['id_bank'].">
+		<label for="."soal".$list_soal['id_bank'].">&nbsp;&nbsp;</label>
 	</span>";
 	$row[] = $list_soal['judul_soal'];
 	$row[] = $list_soal['sumber'];
@@ -424,7 +424,7 @@ function ajax_get_soal_byid( $bab ) {
 	}else{
 		$row[] = "Sulit";
 	}
-	$row[]='<a class="btn btn-success soal-'.$list_soal['id_soal'].'" title="lihat soal" onclick=detail_soal('.$list_soal['id_soal'].') data-todo='."'".json_encode($list_soal)."'".'> <i class="ico ico-eye"></i></a>';
+	$row[]='<a class="btn btn-success soal-'.$list_soal['id_bank'].'" title="lihat soal" onclick=detail_soal('.$list_soal['id_bank'].') data-todo='."'".json_encode($list_soal)."'".'> <i class="ico ico-eye"></i></a>';
 	$data[] = $row;
 	$n++;
 

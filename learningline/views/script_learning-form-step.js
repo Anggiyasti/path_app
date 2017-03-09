@@ -46,7 +46,8 @@ $('.simpan_step').click(function(){
 		data = {
 			videoID:$('input[name=video]:checked').val(),
 			urutan:form.urutan,
-			namastep:form.namastep,
+			id_bab:form.id_bab,
+			namaStep:form.namaStep,
 			select_jenis:form.select_jenis,
 			topikID:<?=$this->uri->segment(3)?>,
 			status_depedensi:form.status_depedensi

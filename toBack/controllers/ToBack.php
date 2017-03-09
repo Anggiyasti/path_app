@@ -219,12 +219,13 @@ class Toback extends MX_Controller
 	//menampilkan halaman list TO
 	public function listTO()
 	{
+		$data['tampil'] = $this->Mtoback->get_tampil_To();
 
 		if ($this->session->userdata('id_admin')) {
 		
 
 		$this->load->view('admin/layout/header');
-          $this->load->view('v-list-to.php');
+          $this->load->view('v-list-to.php',$data);
           $this->load->view('admin/layout/footer');
 
 			}		
@@ -497,6 +498,45 @@ function updateaktiv($data){
 
 function updatepasive($data){
 	$this->Mtoback->updatepasive($data);
+}
+
+//tampil to aktif
+function tampil_to(){
+	if ($this->input->post('update')) 
+		{
+			$this->Mtoback->tampilto();
+			
+			if ($this->db->affected_rows())
+			{
+				//  $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
+				// redirect('Siswa/Profilesiswa');
+			}
+			else
+			{
+				//  $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
+				// redirect('Siswa/Profilesiswa');
+			}
+		}
+
+}
+
+  public function gettampilto() {
+   
+    $data['tampil'] = $this->Mtoback->get_tampil_To();
+    
+       if ($this->session->userdata('id_admin')) {
+			$this->load->view('admin/layout/header');
+			$this->load->view('');
+			$this->load->view('admin/layout/footer');
+	}	elseif ($this->session->userdata('id_guru')) {
+			$this->load->view('guru/layout/header');
+			$this->load->view('v_tryout');
+			$this->load->view('guru/layout/footer');
+	}
+	else{
+
+	}
+    
 }
 
 

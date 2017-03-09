@@ -1,3 +1,18 @@
+<?php 
+
+  foreach ($tampil as $row) {
+    $active = $row['active'];
+
+   
+
+} ;
+
+
+
+?> 
+    
+
+
 </style>
 <section id="main" role="main">
     <!-- START MODAL EDIT TRYOUT -->
@@ -88,14 +103,21 @@
     	<div class="row">
     		<div class="container">
             <div class="col-md-11">
-    			<div class="panel panel-teal">
+
+    			<div class="panel panel-teal mt10 mb0">
+           
                     <!--Start untuk menampilkan nama tabel -->
+
                     <div class="panel-heading">
+
                     	<h3>List Try Out</h3>
                     </div>
                     <div class="panel-body">
                     	<table class="table table-striped" id="tblistTO" style="font-size: 13px">
+                      <a href="javascript:void(0);" onclick="add_soal()" class="btn btn-primary"><i class="glyphicon glyphicon-plus fa-1x"></i> TO TAMPIL</a>
+
                     		<thead>
+
                     			<tr>
                     				<th>ID</th>
                     				<th>Nama TO</th>
@@ -103,7 +125,7 @@
                                     <th>Waktu Mulai</th>
                     				<th>Tanggal Berakhir</th>
                                     <th>Waktu Berakhir</th> -->
-                                    <th>Status Publish</th>
+                            <th>Status Publish</th>
                     				<th>Aksi</th>
                     			</tr>
                     		</thead>
@@ -111,6 +133,8 @@
                     			
 
                     		</tbody>
+
+                     
                     	</table>
                     </div>
                 </div>
@@ -281,6 +305,85 @@
     function hide_e_editWkt() {
        $("#e_editWkt").hide();
     }
-    // 
+    //
+
+
+    //panggil modal
+function add_soal() {
+$('#modalsoal').modal('show'); // show bootstrap modal
+}
+
+
+$(function(){
+
+$.ajaxSetup({
+type:"POST",
+url: "<?php echo base_url('index.php/banksoal/ambil_data') ?>",
+cache: false,
+});
+
+$("#pelajaran").change(function(){
+
+var value=$(this).val();
+if(value>0){
+$.ajax({
+data:{modul:'getbab',id:value},
+success: function(respond){
+$("#bab").html(respond);
+}
+})
+}
+
+});
+
+}) 
     </script>
+
+    <!-- START Modal ADD BANK SOAL -->
+ <div class="modal fade" id="modalsoal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     <h4 class="modal-title">Form Soal</h4>
+    </div>
+
+
+    <!-- Start Body modal -->
+    <div class="modal-body">
+<form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/banksoal/filterbab" method="post" >
+                           <div class="form-group">
+                                    <label class="col-sm-3 control-label">Tampil TO</label>
+                                    <div class="col-sm-8">
+                                        <select name="kesulitan" id="kesulitan" class="form-control" value="<?=$active;?>">
+                                            <?php 
+                                            // menentukan tingkat kesulitan dengan indeks 1 - 3
+                                              $k = $active;
+                                              if ($k == '1') {
+                                                  $kk = '1';
+                                              } elseif ($k == '2') {
+                                                  $kk = '2';
+                                              }
+                                              elseif ($k == '3') {
+                                                  $kk = '3';
+                                              }else {
+                                                 $kk = '4';
+                                              }
+                                             ?>   
+                                             <td><?=$kk;?></td>
+                                <option value="<?=$active; ?>"><?=$kk; ?></option>
+                                    </div>
+                                </div>
+                                        
+     </div>
+     <!-- END BODY modla-->
+     <div class="modal-footer">
+      <input type='submit' id='hideshow' name="submit" value='Tampil' class="btn btn-primary">
+     </div>
+    </form> 
+   </div><!-- /.modal-content -->
+
+  </div><!-- /.modal-dialog -->
+ </div><!-- /.modal -->
+ <!-- END  Modal ADD BANK SOAL-->
 </section>

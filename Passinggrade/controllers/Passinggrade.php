@@ -396,10 +396,16 @@ class Passinggrade extends MX_Controller {
         
         
          $data['data']=$this->Mpassing->get_topik_byprodi($kunciCari);
-
+         if ($kunciCari == '') {
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('baru/v-search', $data);
+        $this->load->view('template/siswa2/v-footer'); 
+         }
+         else{
         $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('baru/v-search-prodi', $data);
         $this->load->view('template/siswa2/v-footer'); 
+    }
         // END step line
             }
     else{

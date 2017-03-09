@@ -180,6 +180,18 @@
         return $tampil->result_array();
     }
 
+    // ambil semua bab
+    public function get_view_to(){
+        $this->db->select('t.id_tryout, t.nm_tryout,t.publish,t.active');
+        $this->db->from('tb_tryout t');
+        $this->db->where('t.publish',1);
+        $this->db->where('t.active',1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+
+
     // get mapel
     public function getparttopik($mapel){
         $this->db->distinct();

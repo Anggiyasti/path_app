@@ -287,6 +287,16 @@ class Learningmodel extends CI_Model{
 		return $query->result_array();
 	}
 
+	function get_soal_by_id_latihan($id_latihan){
+		$this->db->select('*');
+		$this->db->from('tb_mm_sol_lat as sollat');
+		$this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
+		$this->db->where('sollat.id_latihan', $id_latihan);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+
 	//mengambil value pelajaran berdasarkan id tingkatan
 	public function scBab($tpelajaranID)
 	{

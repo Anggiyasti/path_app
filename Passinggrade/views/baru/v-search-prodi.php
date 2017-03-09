@@ -39,7 +39,7 @@
         <div class="animated fadeinup delay-1">
         
           <!-- Daily Activity-->
-          <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggrade/cari"  accept-charset="utf-8" enctype="multipart/form-data">
+          <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggrade/cari2"  accept-charset="utf-8" enctype="multipart/form-data">
                   <div class="input-field">
                     <input type="search" class="search-field" placeholder="Search"  name="keycari" title="Search for:">
                     <label for="search"></label>

@@ -169,14 +169,11 @@ class Mlatihan extends CI_Model
 	}
 	//random buat bab
 	public function get_soal_bybab( $param ) {
-		$this->db->where( 'bab.id', $param );
+		$this->db->where( 'bab.id_bab', $param );
 		// $this->db->where( 'kesulitan', $param['kesulitan'] );
-		$this->db->from( 'tb_banksoal b' );
-		$this->db->join('tb_subbab sub',
-			'b.id_subbab = sub.id');
-
+		$this->db->from( 'tb_bank_soal b' );
 		$this->db->join('tb_bab bab',
-			'bab.id = sub.babID');
+			'bab.id_bab = b.id_bab');
 
 
 		$query = $this->db->get();
@@ -186,7 +183,7 @@ class Mlatihan extends CI_Model
 	function get_soal_by_id_latihan($id_latihan){
 		$this->db->select('*');
 		$this->db->from('tb_mm_sol_lat as sollat');
-		$this->db->join('tb_banksoal as soal', 'sollat.id_soal = soal.id_soal');
+		$this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
 		$this->db->where('sollat.id_latihan', $id_latihan);
 		$query = $this->db->get();
 		return $query->result_array();

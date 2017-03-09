@@ -615,6 +615,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }
 
+    public function tryout()
+    {
+        //hak akses jika siswa
+        if ($this->session->userdata('id_siswa')) {
+            $data['to'] = $this->load->Mlinetopik->get_view_to();
+           
+
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $this->load->view('template/siswa2/v-header', $data);
+            // $this->load->view('t-baru/v-line-bab', $data);
+            $this->load->view('t-baru/v-tryout', $data);
+            $this->load->view('template/siswa2/v-footer');
+
+        } else {
+            redirect('login');
+        }
+    }
+
 
  }
 

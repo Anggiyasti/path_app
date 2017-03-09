@@ -65,17 +65,17 @@
           </div>
 
            <?php echo $this->session->flashdata('msg'); ?> 
-            <form name="form-account" action="<?=base_url()?>index.php/template/slide/gambar_slide/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <form name="form-account" action="<?=base_url()?>index.php/Slidder/gambar_slide/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
 
 
             <div class="content">
 
-            <img id="preview" class="img-bordered" src="<?=$gambar;?>" alt="" width="60%" />
+            <img id="preview" class="img-bordered" src="<?=$gambar;?>" alt="" width="700px" height="1050px" />
 
              
                 <div class="input-icon">
-                <label><p>Gambar tidak boleh lebih dari 2mb (4000x6000)</p></label>
+                <label><p>Gambar tidak boleh lebih dari 2mb (700x1050)</p></label>
                     <input  type="file" id="file" name="photo" class="btn " required="true" onchange="ValidateSingleInput(this);" />
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>

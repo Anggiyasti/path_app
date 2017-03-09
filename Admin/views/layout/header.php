@@ -329,7 +329,7 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
         <input type="text" class="form-control" name="nmpaket" id="to_nm">
       </div>
     </div>
-    <div  class="form-group">
+  <!--   <div  class="form-group">
      <label class="col-sm-3 control-label">Tanggal Mulai</label>
      <div class="col-sm-4">
       <input type="date" class="form-control" name="tglmulai" id="to_tglmulai">
@@ -346,7 +346,7 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
   <div class="col-sm-4">
     <input type="time" class="form-control" name="wktakhir" id="to_wktakhir" >
   </div>
-</div>
+</div> -->
 
 <div class="form-group">
  <label class="col-sm-3 control-label">Publish</label>

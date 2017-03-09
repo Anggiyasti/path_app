@@ -533,6 +533,44 @@ function ajax_get_materi($data){
 
 }
 
+function ajax_detail_latihan($id){
+	$list = $soal=$this->learningmodel->get_soal_by_id_latihan($id);
+	$data = array();
+		//mengambil nilai list
+	$baseurl = base_url();
+	foreach ( $list as $list_soal ) {
+		$n='1';
+		$row = array();
+
+		$row[] = "<span class='checkbox custom-checkbox custom-checkbox-inverse'>
+		<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_bank']." value=".$list_soal['id_bank'].">
+		<label for="."soal".$list_soal['id_bank'].">&nbsp;&nbsp;</label>
+	</span>";
+	$row[] = $list_soal['judul_soal'];
+	$row[] = $list_soal['sumber'];
+
+	$row[] = $list_soal['soal'];
+
+	if ($list_soal['kesulitan']=='0') {
+		$row[] = "Mudah";
+	} else if($list_soal['kesulitan']=='1'){
+		$row[] = "Sedang";
+	}else{
+		$row[] = "Sulit";
+	}
+	$row[]='<a class="btn btn-success soal-'.$list_soal['id_bank'].'" title="lihat soal" onclick=detail_soal('.$list_soal['id_bank'].') data-todo='."'".json_encode($list_soal)."'".'> <i class="ico ico-eye"></i></a>';
+	$data[] = $row;
+	$n++;
+}
+
+$output = array(
+	"data"=>$data,
+	);
+echo json_encode( $output );
+}
+
+	#
+
 function ajax_update_line_topik(){
 	$data = array(
 		'statusLearning'=>$this->input->post('statusLearning'),

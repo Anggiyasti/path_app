@@ -208,6 +208,27 @@ class Mtoback extends CI_Model {
 		$this->db->update('tb_tryout');
 	// update line topik aktiv
 	}
+
+
+	public function tampilto() {
+		$a  =  $this->input->post('active');
+
+		$arr = array(
+				'active' => $a,
+
+			);
+		$this->db->where('id', 1);
+		return $this->db->update('tb_tampil_to', $arr);
+	}
+
+
+	public function get_tampil_To()
+	{
+		$this->db->select('*');
+		$this->db->from('tb_tampil_to');
+		        $query = $this->db->get();
+        return $query->result_array();
+	}
 }
 ?>
 
