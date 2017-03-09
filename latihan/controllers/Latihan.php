@@ -188,13 +188,13 @@ class Latihan extends MX_Controller {
         // var_dump($data);
         // $data['mm_sol']=array();
         //ngecacah teru dimasukin ke relasi
-        foreach ($data['soal_random'] as $row) {
+        foreach ($idsoal as $row) {
             $data['mm_sol'] = array(
                 "id_latihan" => $id_latihan,
-                "id_soal" => $row['id_bank']
+                "id_soal" => $row
             );
             $this->Mworkout1->insert_tb_mm_sol_lat($data['mm_sol']);
-        };
+        }
 
     }
 

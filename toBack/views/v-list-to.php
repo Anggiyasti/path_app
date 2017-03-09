@@ -355,28 +355,24 @@ $("#bab").html(respond);
                            <div class="form-group">
                                     <label class="col-sm-3 control-label">Tampil TO</label>
                                     <div class="col-sm-8">
-                                        <select name="kesulitan" id="kesulitan" class="form-control" value="<?=$active;?>">
-                                            <?php 
-                                            // menentukan tingkat kesulitan dengan indeks 1 - 3
-                                              $k = $active;
-                                              if ($k == '1') {
-                                                  $kk = '1';
-                                              } elseif ($k == '2') {
-                                                  $kk = '2';
-                                              }
-                                              elseif ($k == '3') {
-                                                  $kk = '3';
-                                              }else {
-                                                 $kk = '4';
-                                              }
-                                             ?>   
-                                             <td><?=$kk;?></td>
-                                <option value="<?=$active; ?>"><?=$kk; ?></option>
+                                        <select name="active" id="active" class="form-control" value="<?=$active;?>">
+                                        <option value="0">PILIH</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </div>
                                 </div>
                                         
      </div>
      <!-- END BODY modla-->
+     <br>
      <div class="modal-footer">
       <input type='submit' id='hideshow' name="submit" value='Tampil' class="btn btn-primary">
      </div>
