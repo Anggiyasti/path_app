@@ -20,11 +20,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  	{
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
+           
      		$data['mapel'] = $this->load->Mlinetopik->getmapeltopik();
+
             $step=false;
             $urutan = 1;
 
             if ($step == true || $urutan == '1' ) {
+            $lim = $this->load->Mlinetopik->tampil_active()[0]['active'];
+            $data['to'] = $this->load->Mlinetopik->get_view_to($lim);
 
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
@@ -276,6 +280,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }
 
+    public function create_session_id_tryout($id_latihan){
+        if ($this->session->userdata('id_siswa')) { 
+            $this->session->set_userdata('id_latihan',$id_latihan);
+            $UUID=$this->Mlinetopik->get_id_paket($id_latihan);
+          
+            redirect('/linetopik/step_quiz_paket/'.$UUID, 'refresh');
+             // redirect('/tesonline/mulaitest', 'refresh');
+        } else {
+                redirect('login');
+        }
+    }
+
     // view step Quiz
      public function step_quiz($UUID)
     {
@@ -298,6 +314,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 redirect('login');
         }
     }
+    
+     // view step Quiz
+     public function step_quiz_paket($UUID)
+    {
+        
+        if ($this->session->userdata('id_siswa')) { 
+            if (!empty($this->session->userdata['id_latihan'])) {
+                $id = $this->session->userdata['id_latihan'];
+                $id_siswa =  $this->session->userdata['id_siswa'];
+              $this->load->view('workout1/t-header-soal');
+
+                $query = $this->Mworkout1->get_soalll($id);
+                $data['soal'] = $query['soal'];
+                $data['pil'] = $query['pil'];
+                $this->load->view('t-baru/v-quiz-part3', $data);
+                $this->load->view('workout1/t-footer-soal');
+            } else {
+                $this->errortest();
+            }
+        } else {
+                redirect('login');
+        }
+    }
 
     // fungsi jika test error
     public function errortest() {
@@ -308,6 +347,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     // fungsi untuk mengecek jawaban workout
     public function cekjawaban() {
         $data = $this->input->post('pil');
+
         $id = $this->session->userdata['id_latihan'];
         $id_latihan = $this->session->userdata['id_latihan'];
         // $level = $this->mtesonline->levelLatihan($id_latihan)[0]->level;
@@ -370,6 +410,76 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          
          // redirect('/linetopik/timeLine/'.$UUID);
          $this->laporanquiz($data);
+    }
+
+
+// fungsi untuk mengecek jawaban workout
+    public function cekjawaban_part3() {
+        $data = $this->input->post('pil');
+        $id = $this->load->Mlinetopik->get_paket2()[0]['id_paket'];
+        $id_latihan = $this->load->Mlinetopik->get_paket2()[0]['id_paket'];
+        // $level = $this->mtesonline->levelLatihan($id_latihan)[0]->level;
+        $result = $this->load->Mlinetopik->jawabansoal_part3($id);
+        $id_bab = $this->load->Mlinetopik->jawabansoal_part3($id)[0]['id_bab'];
+        $id_pel = $this->load->Mlinetopik->getmapelbab2($id_bab)[0]['id_mapel'];
+        // var_dump($id_latihan, $id);
+        // $datQuiz = $this->Mlinetopik->get_datQuiz($id);
+        // $minBenar = $datQuiz ['jumlah_benar'];
+        $benar = 0;
+        $salah = 0;
+        $kosong = 0;
+        $koreksi = array();
+        $idSalah = array();
+        $jumlahsoal = sizeOf($result);
+        for ($i = 0; $i < sizeOf($result); $i++) {
+            $id = $result[$i]['soalid'];
+            // $data[$id];
+            if (!isset($data[$id])) {
+                $kosong++;
+                $koreksi[] = $result[$i]['soalid'];
+                $idSalah[] = $i;
+            } else if ($data[$id] == $result[$i]['jawaban']) {
+                $benar++;
+            } else {
+                $salah++;
+                $koreksi[] = $result[$i]['soalid'];
+                $idSalah[] = $i;
+            }
+        }
+
+        $data['jumlahsoal']   = $jumlahsoal;
+        // $data['syarat']       = $minBenar;
+        $data['jumlahBenar']  = $benar;
+        $data['jumlahSalah']  = $salah;
+        $data['jumlahKosong'] = $kosong;
+
+             $hasil['id_paket']   = $id_latihan;
+            $hasil['id_pengguna'] = $this->session->userdata['id_siswa'];
+            $hasil['jmlh_kosong'] = $kosong;
+            $hasil['jmlh_benar'] = $benar;
+            $hasil['jmlh_salah'] = $salah;
+            $hasil['total_nilai'] = $benar;
+            $hasil['durasi_pengerjaan'] = $this->input->post('durasi');
+            $hasil['id_bab'] = $id_bab;
+            $hasil['id_mapel'] = $id_pel;
+
+        $this->Mlinetopik->inputrepor_part3($hasil);
+        $this->session->unset_userdata('id_latihan');
+         // cek ke lulusan
+        $tampStep = $this->Mlinetopik->get_paket($id_latihan);
+        // $stepID = $tampStep['id'];
+        // $UUID = $tampStep['UUID'];
+        $data['stepUUID']     = $tampStep['id_paket'];
+        // if ($benar >= $minBenar ) {
+        //   $data['hasil'] = "Selamat Anda Lulus";
+             
+        //      // $this->logLine($stepID);
+        //  } else {
+        //   $data['hasil'] = "Selamat Anda Gagal, Silahkan Coba Lagi";
+        //  }
+         
+         // redirect('/linetopik/timeLine/'.$UUID);
+         $this->laporanquiz_part3($data);
     }
 
     //menampilkan laporan hasil quiz
@@ -454,6 +564,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         $this->load->view('template/header');
         $this->load->view('v-hasil-quiz', $data);
+
+    }
+     //menampilkan laporan hasil quiz
+    public function laporanquiz_part3($datArr)
+    {
+
+        // $stepUUID=$datArr['stepUUID'];
+        // $dat=$this->Mlinetopik->get_topic_step2($stepUUID);
+        $data['data']=$datArr;
+        $id = $this->session->userdata['id_siswa'];
+        $data['tot']=$this->Mlinetopik->get_total_part3()[0]['tot_path'];
+        // Start step line data
+        $data['datline']=array();
+        // 
+        $step=false;
+        
+            $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        
+
+      // END step line data
+        $this->load->view('template/siswa2/v-header', $data);
+        // $this->load->view('template/header');
+        $this->load->view('t-baru/v-hasilquiz-part3', $data);
+        $this->load->view('template/siswa2/v-footer');
 
     }
 
@@ -619,7 +754,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
-            $data['to'] = $this->load->Mlinetopik->get_view_to();
+            $lim = $this->load->Mlinetopik->tampil_active()[0]['active'];
+            $data['to'] = $this->load->Mlinetopik->get_view_to($lim);
            
 
             $sis = $this->session->userdata('id_siswa');
@@ -627,6 +763,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->load->view('template/siswa2/v-header', $data);
             // $this->load->view('t-baru/v-line-bab', $data);
             $this->load->view('t-baru/v-tryout', $data);
+            $this->load->view('template/siswa2/v-footer');
+
+        } else {
+            redirect('login');
+        }
+    }
+
+    public function daftar_paket($id_try)
+    {
+        //hak akses jika siswa
+        if ($this->session->userdata('id_siswa')) {
+            $data['try'] = $this->load->Mlinetopik->get_paketsoal($id_try);
+
+
+
+
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $this->load->view('template/siswa2/v-header', $data);
+            // $this->load->view('t-baru/v-line-bab', $data);
+            $this->load->view('t-baru/v_daftar_paket', $data);
             $this->load->view('template/siswa2/v-footer');
 
         } else {

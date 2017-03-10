@@ -55,16 +55,37 @@
           <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
          
             <li>
-              <div class="collapsible-header"><i class="ion-android-options"></i><a href="<?=base_url()?>index.php/linetopik/tryout">Part 3</a></div>
+              <div class="collapsible-header"><i class="ion-android-options"></i>Part 3</div>
               <div class="collapsible-body">
+              <div id="test1">
+              <div class="container activity p-l-r-20">
+            <div class="row m-l-0">
+              <div class="col">
+               <?php   $i=0; 
+                $nm_tryout=''; ?>
+                <?php foreach ($to as $key ): ?>
+                                
+                  <?php if ($nm_tryout != $key['nm_tryout'] && $i==0): ?>
+                <div class="contact">
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/daftar_paket/<?=$key['id_tryout'] ?>" id="font-<?=$i;?>"><?=$key['nm_tryout']?></a></span>
+                  <div class="dot z-depth-1">
+                  </div>
+    
+                </div>
+                <?php endif ?>
+                                    
+  <?php endforeach ?>
+
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+              </div>
                    
               </div>
             </li>
             
 
           </ul>                  
-          </div>
-        </div> 
       
-         
-      </div> <!-- End of Page Content -->

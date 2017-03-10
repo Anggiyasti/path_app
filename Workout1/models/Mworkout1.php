@@ -58,6 +58,37 @@ class Mworkout1 extends CI_Model
         );
     }
 
+
+
+    // get soal
+     public function get_soalll($id_latihan) {
+        // $this->db->select('id_latihan as idlat, soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw');
+        // $this->db->from('tb_mm_sol_lat as sollat');
+        // $this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
+        // $this->db->where('sollat.id_latihan', $id_latihan);
+
+        $this->db->select('soal AS soal, soal.id_bank AS soalid, soal.judul_soal AS judul, soal.gambar_soal AS gambar, soal.jawaban_benar AS jaw, soal.status, soal.pembahasan');
+        $this->db->from(' tb_bank_soal AS soal');
+        $this->db->join('tb_mm_paket_bank pak ',' pak.id_soal = soal.id_bank');
+        $this->db->where('pak.id_paket', $id_latihan);
+        // $this->db->where('soal.kesulitan', $kesulitan);
+        $query = $this->db->get();
+        $soal = $query->result_array();
+
+        $this->db->select('*,id_paket as idpak, soal as soal, pil.id_soal as pilid,soal.id_bank as soalid, pil.pilihan_jawaban as pilpil, pil.jawaban as piljaw, pil.gambar as pilgam');
+        $this->db->from('tb_mm_paket_bank as pa');
+        $this->db->join('tb_bank_soal as soal', 'pa.id_soal = soal.id_bank');
+        $this->db->join('tb_pil_jawab as pil', 'soal.id_bank = pil.id_soal');
+        $this->db->where('pa.id_paket',$id_latihan);
+        $query = $this->db->get();
+        $pil = $query->result_array();
+
+        return array(
+            'soal' => $soal,
+            'pil' => $pil,
+        );
+    }
+
     public function get_soal1($mapel) {
         $this->db->distinct();
         $this->db->select()->from('tb_bank_soal');

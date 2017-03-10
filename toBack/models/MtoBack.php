@@ -221,6 +221,14 @@ class Mtoback extends CI_Model {
 		return $this->db->update('tb_tampil_to', $arr);
 	}
 
+	public function tampil_active(){
+		$this->db->select('active');
+		$this->db->from('tb_tampil_to');
+		        $query = $this->db->get();
+        return $query->result_array();
+
+	}
+
 
 	public function get_tampil_To()
 	{

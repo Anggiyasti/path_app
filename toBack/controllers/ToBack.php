@@ -508,13 +508,13 @@ function tampil_to(){
 			
 			if ($this->db->affected_rows())
 			{
-				//  $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-				// redirect('Siswa/Profilesiswa');
+				 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
+				redirect('toback/listTO');
 			}
 			else
 			{
-				//  $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-				// redirect('Siswa/Profilesiswa');
+				 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
+				redirect('toback/listTO');
 			}
 		}
 
@@ -538,6 +538,7 @@ function tampil_to(){
 	}
     
 }
+
 
 
 

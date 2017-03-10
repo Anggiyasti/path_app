@@ -18,7 +18,7 @@
           
           <div class="p-t-20">
           <ul class="tabs">
-            <li class="tab"><a class="active" href="#test1">TRYOUT</a></li>
+            <li class="tab"><a class="active" href="#test1">DAFTAR PAKET</a></li>
             
           </ul>
           </div>
@@ -28,10 +28,11 @@
             <div class="row m-l-0">
               <div class="col">
               <?php   $i=0; 
-                $nm_tryout=''; ?>
-                <?php foreach ($to as $key ): ?>
+                $nm_paket=''; 
+               ?>
+                <?php foreach ($try as $key ): ?>
                                 
-                  <?php if ($nm_tryout != $key['nm_tryout'] && $i==0): ?>
+                  <?php if ($nm_paket != $key['nm_paket'] && $i==0): ?>
                     <!-- start header line-->
                     <!-- post item -->
                     <div class="contact">
@@ -39,9 +40,13 @@
                       <div class="dot z-depth-1">
                       </div>
                       <p>
-                        <a  href="<?=base_url()?>index.php/linetopik/daftar_paket/<?=$key['id_tryout'] ?>" id="font-<?=$i;?>" ><?=$key['nm_tryout']?></a>
+                        <a  href="<?=base_url()?>index.php/linetopik/create_session_id_tryout/<?=$key['id_paket']?> " id="font-<?=$i;?>" ><?=$key['nm_paket']?></a>
                       </p>
-                      
+                      <span>
+                        Deskripsi:' <?=$key['deskripsi']?> ' <br>
+                        Jumlah Soal:' <?=$key['jumlah_soal']?> ' <br>
+                        Durasi:' <?=$key['durasi']?> '
+                      </span>
                    
                         
                     </div>
@@ -66,5 +71,4 @@
         </div>
       
       
-         
-      </div> <!-- End of Page Content -->
+

@@ -116,6 +116,17 @@
         return $query->result_array()[0]['UUID'];
     }
 
+    //get UUID step by id latihan
+    public function get_id_paket($id_latihan)
+    {
+        $this->db->select('id_paket');
+        $this->db->from('tb_paket');
+        $this->db->where('id_paket',$id_latihan);
+        $query=$this->db->get();
+        return $query->result_array()[0]['id_paket'];
+    }
+
+
 
     //get step id and UUID
     public function get_stepID2($id_latihan)
@@ -123,6 +134,16 @@
         $this->db->select('id,UUID');
         $this->db->from('tb_line_step');
         $this->db->where('latihanID',$id_latihan);
+        $query = $this->db->get();
+        return $query->result_array()[0];
+    }
+
+    //get step id and UUID
+    public function get_paket($id_latihan)
+    {
+        $this->db->select('id_paket');
+        $this->db->from('tb_paket');
+        $this->db->where('id_paket',$id_latihan);
         $query = $this->db->get();
         return $query->result_array()[0];
     }
@@ -135,6 +156,18 @@
         $this->db->where('latihanID',$latihanID);
         $query=$this->db->get();
         return $query->result_array()['0'];
+    }
+
+
+
+
+    public function jawabansoal_part3($id) {
+        $this->db->select('soal.id_bank as soalid, soal.jawaban_benar as jawaban ,soal.id_bab');
+        $this->db->from('tb_mm_paket_bank as pak');
+        $this->db->join('tb_bank_soal as soal ',' pak.id_soal = soal.id_bank');
+        $this->db->where('pak.id_paket', $id);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function get_caritopik($kunciCari)
@@ -169,6 +202,11 @@
         $this->db->insert('tb_report_quiz', $data);
     }
 
+    // input ke tb_report_latihan
+    public function inputrepor_part3($data) {
+        $this->db->insert('tb_report_quiz3', $data);
+    }
+
     // get mapel
     public function getmapeltopik(){
         $this->db->distinct();
@@ -180,16 +218,33 @@
         return $tampil->result_array();
     }
 
-    // ambil semua bab
-    public function get_view_to(){
+    // ambil semua tryoout
+    public function get_view_to($lim){
         $this->db->select('t.id_tryout, t.nm_tryout,t.publish,t.active');
         $this->db->from('tb_tryout t');
         $this->db->where('t.publish',1);
-        $this->db->where('t.active',1);
+        $this->db->limit($lim);
+        $this->db->order_by('rand()' );
         $query = $this->db->get();
         return $query->result_array();
     }
+    //limit untuk tampil tryout
+    public function tampil_active(){
+        $this->db->select('active');
+        $this->db->from('tb_tampil_to');
+                $query = $this->db->get();
+        return $query->result_array();
 
+    }
+    public function get_soal_to($lim){
+        $this->db->select('t.id_tryout, t.nm_tryout,t.publish,t.active');
+        $this->db->from('tb_tryout t');
+        $this->db->where('t.publish',1);
+        $this->db->limit($lim);
+        $this->db->order_by('rand()' );
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 
     // get mapel
@@ -221,6 +276,22 @@
             sum(r.jmlh_benar)+sum(r.jmlh_salah)+sum(r.jmlh_kosong) as jum_soal');
         $this->db->from('tb_mata_pelajaran m');
         $this->db->join('tb_report_quiz r', 'm.id_mapel=r.id_mapel');
+        $this->db->where('m.status = 1');
+        $this->db->where('r.id_pengguna', $id);
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+
+    // get jumlah total soal yang dikerjakan
+    public function get_total_part3()
+    {
+        $id = $this->session->userdata['id_siswa'];
+        $this->db->distinct();
+        $this->db->select('*, m.nama_mapel, m.id_mapel, sum(r.score) as tot_path, sum(r.jmlh_benar) as benar, 
+            sum(r.jmlh_benar)+sum(r.jmlh_salah)+sum(r.jmlh_kosong) as jum_soal ');
+        $this->db->from('tb_mata_pelajaran m ');
+        $this->db->join('tb_report_quiz3 r ',' m.id_mapel=r.id_mapel ');
         $this->db->where('m.status = 1');
         $this->db->where('r.id_pengguna', $id);
         $tampil=$this->db->get();
@@ -322,6 +393,31 @@
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
+    function get_paket2()
+    {
+       
+        $this->db->select('p.id_paket,nm_paket');
+        $this->db->from('tb_paket p');
+       
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+    function get_paketsoal($id_try)
+    {
+       
+        $this->db->select('p.id_paket,nm_paket ,deskripsi ,status ,jumlah_soal,durasi');
+        $this->db->from('tb_paket p');
+        $this->db->join('tb_mm_tryoutpaket mmtp ',' mmtp.id_paket = p.id_paket');
+        $this->db->join('tb_tryout tr ',' tr.id_tryout = mmtp.id_tryout');
+        $this->db->where('tr.id_tryout ', $id_try);
+       
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+
+
 
  }
  ?>

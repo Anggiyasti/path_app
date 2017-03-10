@@ -23,7 +23,9 @@
                 <!--START Header Modal -->
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php echo $this->session->flashdata('msg'); ?>
                     <h3 class="modal-title">Ubah Try Out</h3>
+
                 </div>
                 <!--END Header Modal -->
                 <!--START Body Modal -->
@@ -351,12 +353,12 @@ $("#bab").html(respond);
 
     <!-- Start Body modal -->
     <div class="modal-body">
-<form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/banksoal/filterbab" method="post" >
+<form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/toback/tampil_to" method="post" >
                            <div class="form-group">
                                     <label class="col-sm-3 control-label">Tampil TO</label>
                                     <div class="col-sm-8">
                                         <select name="active" id="active" class="form-control" value="<?=$active;?>">
-                                        <option value="0">PILIH</option>
+                                        <option value="0">--PILIH--</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -374,7 +376,7 @@ $("#bab").html(respond);
      <!-- END BODY modla-->
      <br>
      <div class="modal-footer">
-      <input type='submit' id='hideshow' name="submit" value='Tampil' class="btn btn-primary">
+      <input type='submit' id='hideshow' name="update" value='Tampil' class="btn btn-primary">
      </div>
     </form> 
    </div><!-- /.modal-content -->
