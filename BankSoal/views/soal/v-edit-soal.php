@@ -198,7 +198,21 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                       <span id="pesan"></span>
                                         </div>
                                     </div>
-                                    <div class="form-group" id="oldlevel">
+
+                                    <div class="form-group">
+                            <label class="col-sm-2">Kesulitan</label>
+                            <div class="col-sm-5">
+                                    <input type="text" name="kesulitan" value="<?=$banksoal['kesulitan'];?>" id='tampkesulitan' hidden="true">
+                                <select name="kesulitan" class="form-control">
+                                    <option value="">--Silahkan Pilih Tingkat Kesulitan--</option>
+                                    <option value="1" id="lvl1">Mudah</option>
+                                    <option value="2" id="lvl2">Sedang</option>
+                                    <option value="3" id="lvl3">Sulit</option>
+                                </select>
+                            </div>
+                        </div>
+
+                                    <!-- <div class="form-group" id="oldlevel">
                                         <label class="col-sm-2">Kesulitan</label>
                                         <div class="col-sm-5">
                                             <select name="kesulitan" id="kesulitan" class="form-control" value="<?=$banksoal['kesulitan']; ?>">
@@ -220,8 +234,8 @@ if (!isset($piljawaban['4']['id_pilih'])) {
     
                       <span id="pesan"></span>
                                         </div>
-                                    </div>
-
+                                    </div> -->
+<!-- 
                                     <div class="form-group" id="level" hidden="true">
                                         <label class="col-sm-2">Kesulitan</label>
                                         <div class="col-sm-5">
@@ -233,7 +247,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
     
                       <span id="pesan"></span>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group">
 
@@ -602,25 +616,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         </div>
                                     </div>
 
-                                   <div class="form-group" id="jawaban" hidden="true">
-                                        <label class="col-sm-2">Jawaban Benar</label>
-                                        <div class="col-sm-5"> -->
-                                          <input class="form-control" type="text" name="jawaban_benar" value="<?php echo $editdata->jawaban_benar; ?>">
-      
-                                           <select name="jawaban_benar" id="kesulitan" class="form-control" value="<?=$banksoal['jawaban_benar']; ?>">
-                                            <option value="A">A</option>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
-                                            <option value="D">D</option>
-                                            <option value="E">E</option>
-
-                                        </select>
-                                        <span id="pesan"></span>
-                                        </div>
-
-                                    </div>
-
+                                  
                                      <div class="form-group">
                                         <label class="col-sm-2">Link Pembahasan</label>
                                         <div class="col-sm-5">
@@ -1820,6 +1816,28 @@ function ValidateSingleInput(oInput) {
               var tamid ='#opjawaban option[value='+tampjawaban+']';
              $(tamid).attr('selected','selected');
           }else{
+          }
+
+
+           // Set option Kesulitan ###########
+          var tampkesulitan =  $('#tampkesulitan').val();
+          if (tampkesulitan != '') {
+              var tamid ='#opkesulitan option[value='+tampkesulitan+']';
+             $(tamid).attr('selected','selected');
+          }else{
+          }
+
+
+          // set option kesulitan ################
+           var tampkesulitan=$('#tampkesulitan').val();
+          if (tampkesulitan ==3) {
+            $('#lvl3').attr('selected','selected');
+          }else if (tampkesulitan==2) {
+            $('#lvl2').attr('selected','selected');
+          }else if (tampkesulitan==1) {
+            $('#lvl1').attr('selected','selected');
+          }else{
+
           }
 </script>
 

@@ -11,34 +11,12 @@
             <i class="ion-android-person"></i>
           </div>
         </div>
-        
 
-
-<!-- <div class="page-title" style="background:#2b3036">
-
-    <div class="grid-row">
-
-        <h1>Hasil Quiz</h1>
-
-    </div>
-
-</div> -->
  <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>">
     <div class="page-content grid-row">
         <div class=" grid-col-row clear-fix" >
             <div class="grid-col grid-col-3 sidebar" >
-           <!-- Pencarian -->
-                            <!-- <aside class="widget-search">
-                                <form method="get" class="search-form" action="<?=base_url()?>index.php/linetopik/cariTopik"  accept-charset="utf-8" enctype="multipart/form-data">
-                                    <label>
-                                        <span class="screen-reader-text">Search for:</span>
-                                        <input type="search" class="search-field" placeholder="Search"  name="keycari" title="Search for:">
-                                    </label>
-                                    <input type="submit" class="search-submit" value="GO">
-                                </form>
-                            </aside> -->
-                       <!-- /Pencarian -->
-                          <!-- <h2><a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"><?=$namaTopik; ?></a></h2>  -->
+          
                           <hr class="divider-big">
                                                   <!-- Start Time Line -->
                             <ul class="media-list media-list-feed grid-col grid-col-3" >
@@ -72,25 +50,12 @@
                     <div class="blog-post">
                         <article>
                         
-                        <!-- <div>
-                        <ul >
-                         <li style="">Jumlah Soal   : <?=$data['jumlahsoal'];?> Soal </li>
-                         <li>Syarat Lulus  : <?=$data['syarat'];?> Soal Benar </li>
-                         <li>Jumlah Benar  : <?=$data['jumlahBenar'];?></li>
-                         <li>Jumlah Salah  : <?=$data['jumlahSalah'];?></li>
-                         <li>Jumlah Kosong : <?=$data['jumlahKosong'];?></li>
-                         <li>Hasil : <?=$data['hasil'];?></li>
-                         <li>Ulangi Test</li>
-                         </ul>
-                        </div> -->
+                   
                         <div class="cart_totals">   
                                 
                                 <table>
                                     <tbody>
-                                        <tr class="">
-                                            <th>Syarat Lulus</th>
-                                            <!-- <td>Benar <?=$data['syarat'];?> dari <?=$data['jumlahsoal'];?> soal</td> -->
-                                        </tr>
+                                        
                                       
                                         <tr class="cart-subtotal">
                                             <th>Jumlah Benar  </th>
