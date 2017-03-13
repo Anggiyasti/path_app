@@ -357,9 +357,9 @@ class Learningline extends MX_Controller {
 				'deskripsi'=>$metatopik['deskripsi'],
 				'mapel'=>$metatopik['nama_mapel'],
 				'mapell'=>$this->Videobackmodel->provinsi(),
-				'bab'=>$metatopik['judul_bab'],
+				'part'=>$metatopik['part'],
 				'topikID'=>$metatopik['id'],
-				'babID'=>$metatopik['babID'],
+				// 'babID'=>$metatopik['babID'],
 				'mapelID'=>$metatopik['mapelID'],
 				);
 
@@ -369,7 +369,7 @@ class Learningline extends MX_Controller {
 		// $this->load->view('admin/layout/footer');
 		
 		if ($this->session->userdata('id_admin')) {
-		$this->load->view('admin/layout/header');
+		// $this->load->view('admin/layout/header');
 		$this->load->view('v-form-edit-topik',$data);
 		$this->load->view('script_learning-edit-topik.js');
 		$this->load->view('admin/layout/footer');

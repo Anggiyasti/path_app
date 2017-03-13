@@ -105,10 +105,10 @@ class Learningmodel extends CI_Model{
 	}
 
     function get_topik_byid($data){
-		$query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel,bab.judul_bab, statusLearning,topik.urutan,deskripsi, nama_mapel ,bab.id_bab
-		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = '$data') AS topik 
+		$query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel, statusLearning,topik.urutan,deskripsi, nama_mapel,mapel.part
+		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
 		JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = topik.id_mapel
-		JOIN tb_bab AS bab ON mapel.id_mapel = bab.id_mapel";
+		";
 
 		$result = $this->db->query($query);
 		if ($result->result_array()==array()) {
