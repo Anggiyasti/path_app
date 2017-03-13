@@ -56,7 +56,7 @@
 
                                     <div class="text-center">
 
-                                        <h4>Latihan tidak dapat diakses ! <a href="<?= base_url('index.php/workout1') ?>" class="text-primary">Kembali?</a></h4>
+                                        <h4>Latihan tidak dapat diakses ! <a href="<?= base_url('index.php/login') ?>" class="text-primary">Kembali?</a></h4>
 
 
 

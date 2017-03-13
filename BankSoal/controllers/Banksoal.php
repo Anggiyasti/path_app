@@ -84,14 +84,17 @@
         $this->tampSoal($list);
     }
 
-public function listfilter($data)
+    public function listfilter()
     {
+      $mapel = $this->input->post('pelajaran');
+        $bab = $this->input->post('id_bab');
+        $level = $this->input->post('kesulitan');
 
         // code u/pagination
-       $this->load->database();
-        $jumlah_data = $this->Modelbank->jumlah_data();
+        $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data_filter_bab($bab);
        
-        $config['base_url'] = base_url().'index.php/banksoal/listsoal/';
+        $config['base_url'] = base_url().'index.php/banksoal/listfilter/';
         $config['total_rows'] = $jumlah_data;
         $config['per_page'] = 10;
 
@@ -129,9 +132,21 @@ public function listfilter($data)
         $config['last_tag_close'] = '</li>';
          // END Customizing the last_link Link
         
+        // var_dump($mapel);
         $from = $this->uri->segment(3);
-        $this->pagination->initialize($config);     
-        $list = $this->Modelbank->data_soal_filter($config['per_page'],$from, $data);
+        $this->pagination->initialize($config);    
+        if ($mapel && $bab && $level) {
+           $list = $this->Modelbank->data_soal_filter1($config['per_page'],$from, $mapel, $bab, $level);
+         } else if ($mapel && $bab) {
+           $list = $this->Modelbank->data_soal_filter2($config['per_page'],$from, $mapel, $bab);
+         } else if ($mapel && $level) {
+           $list = $this->Modelbank->data_soal_filter3($config['per_page'],$from, $mapel, $level);
+         } else if ($mapel) {
+           $list = $this->Modelbank->data_soal_filter4($config['per_page'],$from, $mapel);
+         } else if ($level) {
+           $list = $this->Modelbank->data_soal_filter5($config['per_page'],$from, $level);
+         }
+        // var_dump($list); 
 
         $this->tampSoal($list);
     }
@@ -329,15 +344,15 @@ public function listfilter($data)
 
           for ($x = 0; $x < strlen($pembahasan); $x++) {
 
-          if ($pembahasan[$x] == '=' ) {
-            $startID=$x+1;
-            $linkembed='https://www.youtube.com/embed/'.substr($pembahasan, $startID,11);
-            break;
-          }else{
-            $linkembed=$pembahasan;
-          }
+            if ($pembahasan[$x] == '=' ) {
+              $startID=$x+1;
+              $linkembed='https://www.youtube.com/embed/'.substr($pembahasan, $startID,11);
+              break;
+            }else{
+              $linkembed=$pembahasan;
+            }
           
-        }
+          }
 
 
           $a = $this->input->post('a');
@@ -649,7 +664,7 @@ public function upload_video(){
           $judul_bab = htmlspecialchars($this->input->post('judul_bab'));
           $sumber = htmlspecialchars($this->input->post('sumber'));
           $random = htmlspecialchars($this->input->post('random'));
-         //  $pembahasan= htmlspecialchars($this->input->post('pembahasan'));
+          $pembahasan= htmlspecialchars($this->input->post('pembahasan'));
           $publish = htmlspecialchars($this->input->post('publish'));
            // $UUID = htmlspecialchars($this->input->post('UUID'));
 
@@ -665,6 +680,18 @@ public function upload_video(){
           $d = $this->input->post('d');
           $e = $this->input->post('e');
 
+          for ($x = 0; $x < strlen($pembahasan); $x++) {
+
+            if ($pembahasan[$x] == '=' ) {
+              $startID=$x+1;
+              $linkembed='https://www.youtube.com/embed/'.substr($pembahasan, $startID,11);
+              break;
+            }else{
+              $linkembed=$pembahasan;
+            }
+          
+          }
+
           $data['UUID'] = $UUID;
           $data['soal'] = array(
             'judul_soal' => $judul_soal,
@@ -675,8 +702,8 @@ public function upload_video(){
             'judul_bab' => $judul_bab,
             'sumber' => $sumber,
             'random' => $random,
-            'publish' => $publish
-            //'pembahasan' => $pembahasan
+            'publish' => $publish,
+            'pembahasan' => $linkembed
 
            );
 
@@ -750,19 +777,29 @@ public function upload_video(){
                
                // cek ada jawaban atau tidak 
               $cek = $this->Modelbank->cek_jawaban($id_soal);
+              // var_dump($cek);
               if ($cek) {
+                // echo "update";
                 $this->Modelbank->ch_jawaban($data);
               } else {
+                // insert 
                 $this->Modelbank->insert_jawaban($data['insert']);
               }
                
 
               } else{
-               if ($cek =  $this->Modelbank->cek_jawaban($id_soal)) {
-                  $this->ch_img_jawaban($soalID);
-                } else {
-                  $this->gambar_jawab($soalID);
-                }
+                $this->ch_img_jawaban($soalID);
+                 // cek ada jawaban atau tidak 
+              // $cek = $this->Modelbank->cek_jawaban($id_soal);
+              //  if ($cek) {
+              //   echo "update";
+              //   // update
+              //     // $this->ch_img_jawaban($soalID);
+              //   } else {
+              //     echo "insert";
+                // insert
+                  // $this->gambar_jawab($soalID);
+                // }
 
              }
              redirect(site_url('banksoal/listsoal'));

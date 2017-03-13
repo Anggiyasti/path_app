@@ -83,10 +83,27 @@ class Modelbank extends CI_Model
 		return $this->db->get('tb_tingkat_pelajaran');
 	}
 
+	// jumlah data untuk filter berdasarkan bab
+	function jumlah_data_filter_bab($id_bab){
+        $this->db->where('publish','1');
+        $this->db->where('id_bab', $id_bab);
+        return $this->db->get('tb_bank_soal')->num_rows();
+    }
+
+    // jumlah data untuk filter berdasarkan mapel dan bab
+	// function jumlah_data_filter_bab($id_mapel,$id_bab){
+ //        $this->db->where('publish','1');
+ //        $this->db->where('bab.id_bab', $id_bab);
+ //        $this->db->where('m.id_mapel', $id_bab);
+ //        $this->db->join('tb_bab bab', 'mapel.id_mapel = bab.id_mapel' );
+ //        return $this->db->get('tb_bank_soal')->num_rows();
+ //    }
+
 	function jumlah_data(){
         $this->db->where('publish','1');
         return $this->db->get('tb_bank_soal')->num_rows();
     }
+    
     // data paginataion all soal
     function data_soal($number,$offset){
         $this->db->select('id_bank, sumber, kesulitan, judul_soal, jawaban_benar, UUID, publish, random, soal, gambar_soal, pembahasan, bab.judul_bab, mapel.id_mapel, mapel.nama_mapel');
@@ -100,17 +117,70 @@ class Modelbank extends CI_Model
         return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
     }
 
-    // data paginataion all soal
-    function data_soal_filter($number,$offset, $data){
-        $this->db->select('id_bank, sumber, kesulitan, judul_soal, jawaban_benar, UUID, publish, random, soal, gambar_soal, pembahasan, bab.judul_bab, mapel.id_mapel, mapel.nama_mapel');
+    // data paginataion filter bab berdasarkan mapel, bab dan kesulitan
+    function data_soal_filter1($number,$offset, $pel, $bab, $level){
+        $this->db->select('bs.id_bank, bs.sumber, bs.kesulitan, bs.judul_soal, bs.jawaban_benar, bs.UUID, bs.publish, bs.random, bs.soal, bs.gambar_soal, bs.pembahasan, bab.judul_bab, mapel.id_mapel, mapel.nama_mapel');
         // $this->db->from('tb_bank_soal bs');
         $this->db->join('tb_bab bab','bab.id_bab=bs.id_bab');
         $this->db->join('tb_mata_pelajaran mapel', 'mapel.id_mapel = bab.id_mapel' );
         $this->db->where('bs.publish','1');
-        $this->db->where('mapel.nama_mapel', $data);
+        $this->db->where('mapel.id_mapel', $pel);
+        $this->db->where('bab.id_bab', $bab);
+        $this->db->where('bs.kesulitan', $level);
         $this->db->order_by('bs.id_bank', 'desc');
         return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
     }
+
+     // data paginataion filter bab berdasarkan mapel dan bab
+    function data_soal_filter2($number,$offset, $pel, $bab){
+        $this->db->select('bs.id_bank, bs.sumber, bs.kesulitan, bs.judul_soal, bs.jawaban_benar, bs.UUID, bs.publish, bs.random, bs.soal, bs.gambar_soal, bs.pembahasan, bab.judul_bab, mapel.id_mapel, mapel.nama_mapel');
+        // $this->db->from('tb_bank_soal bs');
+        $this->db->join('tb_bab bab','bab.id_bab=bs.id_bab');
+        $this->db->join('tb_mata_pelajaran mapel', 'mapel.id_mapel = bab.id_mapel' );
+        $this->db->where('bs.publish','1');
+        $this->db->where('mapel.id_mapel', $pel);
+        $this->db->where('bab.id_bab', $bab);
+        $this->db->order_by('bs.id_bank', 'desc');
+        return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
+    } 
+
+     // data paginataion filter bab berdasarkan mapel dan level
+    function data_soal_filter3($number,$offset, $pel, $level){
+        $this->db->select('bs.id_bank, bs.sumber, bs.kesulitan, bs.judul_soal, bs.jawaban_benar, bs.UUID, bs.publish, bs.random, bs.soal, bs.gambar_soal, bs.pembahasan, bab.judul_bab, mapel.id_mapel, mapel.nama_mapel');
+        // $this->db->from('tb_bank_soal bs');
+        $this->db->join('tb_bab bab','bab.id_bab=bs.id_bab');
+        $this->db->join('tb_mata_pelajaran mapel', 'mapel.id_mapel = bab.id_mapel' );
+        $this->db->where('bs.publish','1');
+        $this->db->where('mapel.id_mapel', $pel);
+        $this->db->where('bs.kesulitan', $level);
+        $this->db->order_by('bs.id_bank', 'desc');
+        return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
+    }
+
+     // data paginataion filter bab berdasarkan mapel
+    function data_soal_filter4($number,$offset, $pel){
+        $this->db->select('bs.id_bank, bs.sumber, bs.kesulitan, bs.judul_soal, bs.jawaban_benar, bs.UUID, bs.publish, bs.random, bs.soal, bs.gambar_soal, bs.pembahasan, bab.judul_bab, mapel.id_mapel, mapel.nama_mapel');
+        // $this->db->from('tb_bank_soal bs');
+        $this->db->join('tb_bab bab','bab.id_bab=bs.id_bab');
+        $this->db->join('tb_mata_pelajaran mapel', 'mapel.id_mapel = bab.id_mapel' );
+        $this->db->where('bs.publish','1');
+        $this->db->where('mapel.id_mapel', $pel);
+        $this->db->order_by('bs.id_bank', 'desc');
+        return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
+    }
+
+      // data paginataion filter bab berdasarkan mapel
+    function data_soal_filter5($number,$offset, $level){
+        $this->db->select('bs.id_bank, bs.sumber, bs.kesulitan, bs.judul_soal, bs.jawaban_benar, bs.UUID, bs.publish, bs.random, bs.soal, bs.gambar_soal, bs.pembahasan, bab.judul_bab, mapel.id_mapel, mapel.nama_mapel');
+        // $this->db->from('tb_bank_soal bs');
+        $this->db->join('tb_bab bab','bab.id_bab=bs.id_bab');
+        $this->db->join('tb_mata_pelajaran mapel', 'mapel.id_mapel = bab.id_mapel' );
+        $this->db->where('bs.publish','1');
+        $this->db->where('bs.kesulitan', $level);
+        $this->db->order_by('bs.id_bank', 'desc');
+        return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
+    }
+
 
 	public function insert_soal($dataSoal) {
         $this->db->insert('tb_bank_soal', $dataSoal);
@@ -522,10 +592,16 @@ class Modelbank extends CI_Model
     
     // fungsi cek jawaban
     public function cek_jawaban($id_soal) {
-    	$this->db->select('pilihan_jawaban, jawaban');
-		$this->db->from('tb_pil_jawab');
-		$this->db->where('id_soal', $id_soal);
-		 $query = $this->db->get();
+    	$this->db->distinct();
+		$this->db->select('id_soal');
+        $this->db->from('tb_pil_jawab');
+        $this->db->where('id_soal', $id_soal);
+		
+        $this->db->limit(1);
+
+
+
+        $query = $this->db->get();
 
         if ($query->num_rows() == 1) {
 

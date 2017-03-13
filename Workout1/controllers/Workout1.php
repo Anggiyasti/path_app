@@ -108,14 +108,18 @@ class Workout1 extends MX_Controller
 
     // fungsi untuk menampilkan form kesulitan dan jumlah soal
     function next($bab) {
-        $data['bab'] = $bab;
-        // var_dump($data);
-        $sis = $this->session->userdata('id_siswa');
-        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
-        $this->load->view('template/siswa2/v-header', $data);
-        $this->load->view('template_baru/v-wo-next', $data);
-        $this->load->view('template/siswa2/v-footer');
+        if ($this->session->userdata('id_siswa')) {
+            $data['bab'] = $bab;
+            // var_dump($data);
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+            $this->load->view('template/siswa2/v-header', $data);
+            $this->load->view('template_baru/v-wo-next', $data);
+            $this->load->view('template/siswa2/v-footer');
+        } else {
+            redirect('login');
+        }
     }
 
     // fungsi untuk menampilkan form kesulitan dan jumlah soal
@@ -234,6 +238,7 @@ class Workout1 extends MX_Controller
 
     // fungsi tambah workout
     public function start() {
+    if ($this->session->userdata('id_siswa')) {
         //uuid untuk soal
         $uuid_latihan = uniqid();
         //var_dump($uuid_latihan);
@@ -308,6 +313,9 @@ class Workout1 extends MX_Controller
         } else {
             redirect('workout1/errortest');
         }
+    } else {
+        redirect('login');
+    }
 
     }
 

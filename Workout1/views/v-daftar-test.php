@@ -135,9 +135,10 @@
                                                     <div class="panel-collapse">
                                                         <div class="panel-body">
                                                             <div class="row">
-                                                                <!-- <div class="col-md-1 text-left">
+                                                                <div class="col-md-1 text-left">
                                                                     <p><h4><?= $i ?>.</h4></p>
-                                                                </div> -->
+                                                                    <p><?=$key['soalid']?></p>
+                                                                </div>
                                                                 <div class="col-md-11">
                                                                     <?php if (!empty($key['gambar'])) { ?>       
                                                                             <img src="<?= base_url('./assets/uploads/' . $key['gambar']) ?>" width="100%">   
@@ -153,6 +154,7 @@
                                                                         $k = $key['soalid'];
                                                                         $pilihan = array("A", "B", "C", "D", "E");
                                                                         $indexpil = 0;
+                                                                        $jwb='';
                                                                     ?>
 
                                                                     <?php foreach ($pil as $row): ?>
@@ -174,9 +176,13 @@
                                                                                         </label>  
                                                                             </div>
                                                                             <?php
-                                                                                } else {
-                                                                                    // $indexpil = 0;
-                                                                                }
+                                                                                } else {  
+                                                                                     $indexpil = 0; 
+                                                                                    // echo "<div style=float: left; color: red>Hello</div>";
+                                                                                     ?>
+
+                                                                                    
+                                                                            <?php    }
                                                                             ?>
                                                                     <?php endforeach ?>
                                                                 </div>   

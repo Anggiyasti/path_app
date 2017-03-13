@@ -613,6 +613,14 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         <span id="pesan"></span>
                                         </div>
                                     </div>
+
+                                     <div class="form-group">
+                                        <label class="col-sm-2">Link Pembahasan</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="pembahasan" class="form-control" value="<?=$banksoal['pembahasan']; ?>" >
+                                        </div>
+                                    </div>
+
                                     
                                     
                                     

@@ -189,12 +189,15 @@ class Mworkout1 extends CI_Model
 
     //random buat bab
     public function get_random_for_latihan_bab( $param ) {
-        $this->db->where( 'id_bab', $param['id_bab'] );
-        $this->db->where( 'kesulitan', $param['kesulitan'] );
+        $this->db->where( 'b.id_bab', $param['id_bab'] );
+        $this->db->where( 'b.publish', 1 );
+        $this->db->where( 'b.kesuitan', $param['kesulitan'] );
         $this->db->order_by( 'rand()' );
         $this->db->limit( $param['jumlah_soal'] );
         $this->db->select( '*' );
-        $this->db->from( 'tb_bank_soal' );
+        $this->db->from( 'tb_bank_soal b');
+        $this->db->join('tb_pil_jawab p', 'b.id_bank=p.id_soal');
+        $this->db->group_by('b.id_bank');
         // $this->db->join('tb_bab bab',
         //     'b.id_bab = bab.id_bab');
 

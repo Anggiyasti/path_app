@@ -209,13 +209,13 @@ function a(argument) {
    <div class="modal-content">
     <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-     <h4 class="modal-title">Form Soal</h4>
+     <h4 class="modal-title">Filter Soal</h4>
     </div>
 
 
     <!-- Start Body modal -->
     <div class="modal-body">
-<form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/banksoal/filterbab" method="post" >
+<form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/banksoal/listfilter" method="post" >
                                     <div class='form-group'>
                                         <label class="col-sm-3 control-label">Mata Pelajaran</label>
                                         <div class="col-sm-8">
