@@ -602,12 +602,12 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         </div>
                                     </div>
 
-                                     <!-- <div class="form-group" id="jawaban" hidden="true">
+                                   <div class="form-group" id="jawaban" hidden="true">
                                         <label class="col-sm-2">Jawaban Benar</label>
                                         <div class="col-sm-5"> -->
-                                        <!-- <input class="form-control" type="text" name="jawaban_benar" value="<?php echo $editdata->jawaban_benar; ?>"> -->
+                                          <input class="form-control" type="text" name="jawaban_benar" value="<?php echo $editdata->jawaban_benar; ?>">
       
-                                            <!-- <select name="jawaban_benar" id="kesulitan" class="form-control" value="<?=$banksoal['jawaban_benar']; ?>">
+                                           <select name="jawaban_benar" id="kesulitan" class="form-control" value="<?=$banksoal['jawaban_benar']; ?>">
                                             <option value="A">A</option>
                                             <option value="A">A</option>
                                             <option value="B">B</option>
@@ -618,7 +618,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         </select>
                                         <span id="pesan"></span>
                                         </div>
-<<<<<<< HEAD
+
                                     </div>
 
                                      <div class="form-group">
@@ -628,9 +628,8 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         </div>
                                     </div>
 
-=======
-                                    </div> -->
->>>>>>> 9d1cc551af15d356f557adf5971656bdfa8eceab
+
+                                    </div>
                                     
                                     
                                     
