@@ -584,25 +584,13 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                         </div>
                         <!-- END input Jawaban E -->
 
-                                    <div class="form-group" id="oldjawaban">
+                                    <div class="form-group" id="">
                                         <label class="col-sm-2">Jawaban Benar</label>
                                         <div class="col-sm-5">
-                                        <!-- <input class="form-control" type="text" name="jawaban_benar" value="<?php echo $editdata->jawaban_benar; ?>"> -->
+                                        <input  type="text" id="tampjawaban" name="jawaban_benar" value="<?=$banksoal['jawaban_benar']; ?>" hidden="true">
       
-                                            <select name="jawaban_benar" id="kesulitan" class="form-control" value="<?=$banksoal['jawaban_benar']; ?>">
-                                            <option value="<?=$banksoal['jawaban_benar']; ?>"><?=$banksoal['jawaban_benar']; ?></option>
-
-                                        </select>
-                                        <span id="pesan"></span>
-                                        </div>
-                                    </div>
-
-                                     <div class="form-group" id="jawaban" hidden="true">
-                                        <label class="col-sm-2">Jawaban Benar</label>
-                                        <div class="col-sm-5">
-                                        <!-- <input class="form-control" type="text" name="jawaban_benar" value="<?php echo $editdata->jawaban_benar; ?>"> -->
-      
-                                            <select name="jawaban_benar" id="kesulitan" class="form-control" value="<?=$banksoal['jawaban_benar']; ?>">
+                                            <select name="jawaban_benar" id="opjawaban" class="form-control" value="<?=$banksoal['jawaban_benar']; ?>">
+                                           <!--  <option value="<?=$banksoal['jawaban_benar']; ?>"><?=$banksoal['jawaban_benar']; ?></option> -->
                                             <option value="A">A</option>
                                             <option value="B">B</option>
                                             <option value="C">C</option>
@@ -614,6 +602,25 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         </div>
                                     </div>
 
+                                     <!-- <div class="form-group" id="jawaban" hidden="true">
+                                        <label class="col-sm-2">Jawaban Benar</label>
+                                        <div class="col-sm-5"> -->
+                                        <!-- <input class="form-control" type="text" name="jawaban_benar" value="<?php echo $editdata->jawaban_benar; ?>"> -->
+      
+                                            <!-- <select name="jawaban_benar" id="kesulitan" class="form-control" value="<?=$banksoal['jawaban_benar']; ?>">
+                                            <option value="A">A</option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+
+                                        </select>
+                                        <span id="pesan"></span>
+                                        </div>
+<<<<<<< HEAD
+                                    </div>
+
                                      <div class="form-group">
                                         <label class="col-sm-2">Link Pembahasan</label>
                                         <div class="col-sm-5">
@@ -621,6 +628,9 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                         </div>
                                     </div>
 
+=======
+                                    </div> -->
+>>>>>>> 9d1cc551af15d356f557adf5971656bdfa8eceab
                                     
                                     
                                     
@@ -1803,5 +1813,14 @@ function ValidateSingleInput(oInput) {
         $('#modalpriview').modal('show'); // show bootstrap modal
       
       }
+
+
+       // Set option Jawaban ###########
+          var tampjawaban =  $('#tampjawaban').val();
+          if (tampjawaban != '') {
+              var tamid ='#opjawaban option[value='+tampjawaban+']';
+             $(tamid).attr('selected','selected');
+          }else{
+          }
 </script>
 

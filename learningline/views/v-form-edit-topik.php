@@ -11,7 +11,7 @@
         <li><span><a href="<?=base_url('learningline')?>"><i class="ico-list"></i></a></span></li>
         <!-- <li><span>{tingkat}</span></li> -->
         <li><?=$mapel ?></li>
-        <li><?=$bab ?></li>   
+        <!-- <li><?=$part ?></li>    -->
         <li class="active"><a href="#"><?=$judul ?></a></li>        
 
       </ol><br>
@@ -20,7 +20,7 @@
   <div class="panel-body">
     <input type="hidden" name="topikID" value="<?=$topikID?>">
     <input type="hidden" id="oldmp"  value="<?=$mapelID ?>">
-    <input type="hidden" id="id_bab"  value="<?=$babID ?>">
+    <!-- <input type="hidden" id="id_bab"  value="<?=$babID ?>"> -->
     <!-- Start Body modal -->
     <form  class="panel panel-default form-horizontal form-bordered form-topik"  method="post" >
      
@@ -55,7 +55,7 @@
      </div>
    </div>
 
-   <div class="form-group" id="bab" hidden="true">
+   <!-- <div class="form-group" id="bab" hidden="true">
         <label class="col-sm-3 control-label">Bab</label>
         <div class="col-sm-8">      
             <select name="judul_bab" id="id_bab" class="form-control" >
@@ -72,7 +72,7 @@
         <option value='0'><?=$bab?></option>
       </select>
    </div>
- </div>
+ </div> -->
 
 <div  class="form-group">
   <label class="col-sm-3 control-label">Nama Session</label>
