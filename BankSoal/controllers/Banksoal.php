@@ -31,6 +31,347 @@
   }
   }
 
+  public function filtersoal()
+    {
+      $mapel = $this->input->post('pelajaran');
+      $bab = $this->input->post('id_bab');
+      $level = $this->input->post('kesulitan');
+      if ($mapel &&$bab && $level) {
+            //list soal mapel bab level
+        $this->listsoalpelbablevel($mapel,$bab,$level);
+            
+        } else if ($mapel && $bab) {
+            //list soal mapel dan bab
+          $this->listsoalpelbab($mapel,$bab);
+        } else if($mapel && $level) {
+          $this->listsoalpellevel($mapel,$level);
+        }  else if ($mapel) {
+          $this->listsoalmapel($mapel);
+        }  else if ($level) {
+          $this->listsoallevel($level);
+        } else {
+          $this->listsoal();
+        }
+    }
+
+
+    // filter mapel
+    public function listsoalmapel($pel)
+    {
+      // var_dump($data);
+
+        // code u/pagination
+       $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data_mapel($pel);
+       
+        $config['base_url'] = base_url().'index.php/banksoal/listsoalmapel/'.$pel.'/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 10;
+
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
+        
+        $from = $this->uri->segment(4);
+        $this->pagination->initialize($config);     
+        $list = $this->Modelbank->data_soal_pel($config['per_page'],$from,$pel); 
+        $this->tampSoal($list);
+    }
+
+     public function listsoallevel($level)
+    {
+      // var_dump($data);
+
+        // code u/pagination
+       $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data_level($level);
+       
+        $config['base_url'] = base_url().'index.php/banksoal/listsoallevel/'.$level.'/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 10;
+
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
+        
+        $from = $this->uri->segment(4);
+        $this->pagination->initialize($config);     
+        $list = $this->Modelbank->data_soal_level($config['per_page'],$from,$level); 
+        $this->tampSoal($list);
+    }
+
+    // filter soal pel bab level
+    public function listsoalpelbablevel($pel, $bab, $level)
+    {
+      // var_dump($data);
+
+        // code u/pagination
+       $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data_pel_bab_level($pel, $bab, $level);
+       
+        $config['base_url'] = base_url().'index.php/banksoal/listsoalpelbablevel/'.$pel.'/'.$bab.'/'.$level.'/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 10;
+
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
+        
+        $from = $this->uri->segment(4);
+        $this->pagination->initialize($config);     
+        $list = $this->Modelbank->data_soal_pel_bab_level($config['per_page'],$from,$pel, $bab, $level); 
+        $this->tampSoal($list);
+    }
+
+
+    // filter soal pel bab level
+    public function listsoalpel($pel)
+    {
+      // var_dump($data);
+
+        // code u/pagination
+       $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data_mapel($pel);
+       
+        $config['base_url'] = base_url().'index.php/banksoal/listsoalpel/'.$pel.'/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 10;
+
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
+        
+        $from = $this->uri->segment(4);
+        $this->pagination->initialize($config);     
+        $list = $this->Modelbank->data_soal_pel($config['per_page'],$from,$pel); 
+        $this->tampSoal($list);
+    }
+
+    // filter soal mapel  bab
+    public function listsoalpelbab($pel, $bab)
+    {
+      // var_dump($data);
+
+        // code u/pagination
+       $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data_pel_bab($pel, $bab);
+       
+        $config['base_url'] = base_url().'index.php/banksoal/listsoalpelbab/'.$pel.'/'.$bab.'/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 10;
+
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
+        
+        $from = $this->uri->segment(4);
+        $this->pagination->initialize($config);     
+        $list = $this->Modelbank->data_soal_pel_bab($config['per_page'],$from,$pel, $bab); 
+        $this->tampSoal($list);
+    }
+
+     // filter soal mapel  bab
+    public function listsoalpellevel($pel, $level)
+    {
+      // var_dump($data);
+
+        // code u/pagination
+       $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data_pel_level($pel, $level);
+       
+        $config['base_url'] = base_url().'index.php/banksoal/listsoalpellevel/'.$pel.'/'.$level.'/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 10;
+
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
+        
+        $from = $this->uri->segment(4);
+        $this->pagination->initialize($config);     
+        $list = $this->Modelbank->data_soal_pel_level($config['per_page'],$from,$pel, $level); 
+        $this->tampSoal($list);
+    }
 
   public function listsoal()
     {

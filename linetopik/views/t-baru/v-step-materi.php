@@ -12,17 +12,16 @@
             <i class="ion-android-person"></i>
           </div>
         </div>
-        
+       
         <!-- Article Content -->
         <div class="animated fadeinup delay-1">
           <div class="page-content">
             <div class="p-t-20">
           <ul class="tabs">
-            <li class="tab"><a class="active" href="#test1">Timeline Bab <?= $datMateri['namaTopik']; ?></a></li>
+            <li class="tab"><a class="active" >Timeline <?= $datMateri['namaTopik']; ?></a></li>
           </ul>
           </div>
-            
-            <div id="test1">
+            <!-- <div id=""> -->
               <div class="container activity p-l-r-20">
             <div class="row m-l-0">
               <div class="col">
@@ -42,7 +41,7 @@
                   <div class="dot z-depth-1">
                   </div>
                   <p>
-                    <a href="<?=$key['link'];?>" class="media-heading"  id="font-<?=$i;?>" ><?=$key['namaStep']?></a>
+                    <a href="<?=$key['link'];?>#test" class="media-heading"  id="font-<?=$i;?>" ><?=$key['namaStep']?></a>
                   </p>
                   <!-- Untuk menampung staus step disable or enable -->
                   <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>">
@@ -55,24 +54,15 @@
               <input id="n" type="text"  value="<?=$i;?>" hidden="true">
               <!-- END Tieme line -->
 
-                <div class="contact">
-                  <span class="date">6 - 7 pm</span>
-                  <div class="dot z-depth-1">
-                  </div>
-                  <p>
-                    Thomas Smith
-                  </p>
-                  <span>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.</span>
-                </div>
-
-
               </div>
             </div>
           </div>
-        </div>
+        <!-- </div> -->
+        
+        <div id="test">
         <div class="p-t-20">
           <article>
-                        <div class="post-info">
+                        <div class="post-info" id="test">
                             <!-- <div class="date-post"><div class="day"><?=$tgl?></div><div class="month"><?=$bulan?></div></div> -->
                             <div class="post-info-main">
                                 <div class="author-post">nama Materi:' <?= $datMateri['judulMateri']; ?> '</div>
@@ -82,6 +72,7 @@
                          <p><?= $datMateri['isiMateri']; ?></p>
                             
                         </article>
+        </div>
         </div>
 
 

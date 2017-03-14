@@ -5,36 +5,52 @@
  class Mlinetopik extends CI_Model
  {
 
- 	public function get_line_topik($babID, $urutan)
- 	{
- 		$this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, step.latihanID,step.id as stepID, step.urutan');
- 		$this->db->from('tb_line_topik topik');
- 		$this->db->join('tb_line_step step','step.topikID=topik.id');
+ 	 public function get_line_topik($babID, $urutan)
+    {
+        $this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, step.latihanID,step.id as stepID, step.urutan');
+        $this->db->from('tb_line_topik topik');
+        $this->db->join('tb_line_step step','step.topikID=topik.id');
         $this->db->join('tb_mata_pelajaran m','m.id_mapel = topik.id_mapel');
- 		$this->db->where('topik.id_mapel',$babID);
+        $this->db->where('topik.id_mapel',$babID);
         $this->db->where('topik.part', $urutan);
- 		$this->db->order_by('topik.namaTopik');
- 		$this->db->order_by('step.urutan', 'asc');
- 		$query=$this->db->get();
- 		return  $query->result_array();
+        $this->db->order_by('topik.namaTopik');
+        $this->db->order_by('step.urutan', 'asc');
+        $query=$this->db->get();
+        return  $query->result_array();
 
- 	}
+    }
 
- 	// get season berdasarkan mapel dan part
- 	public function get_topik($mapel, $part)
- 	{
- 		$this->db->select('t.id,t.UUID,t.namaTopik,bab.id_bab, m.id_mapel, m.nama_mapel, t.part');
- 		$this->db->from('tb_line_topik t');
+    // get season berdasarkan mapel dan part
+    public function get_topik($mapel, $part)
+    {
+        $this->db->select('t.id,t.UUID,t.namaTopik,bab.id_bab, m.id_mapel, m.nama_mapel, t.part');
+        $this->db->from('tb_line_topik t');
         $this->db->join('tb_bab bab','bab.id_bab=t.babID');
         $this->db->join('tb_mata_pelajaran m','m.id_mapel = bab.id_mapel');
- 		$this->db->where('m.id_mapel',$mapel);
- 		$this->db->where('t.status',1);
- 		$this->db->where('t.statusLearning',1);
+        $this->db->where('m.id_mapel',$mapel);
+        $this->db->where('t.status',1);
+        $this->db->where('t.statusLearning',1);
         $this->db->where('t.part', $part);
- 		$this->db->order_by('namaTopik');
- 		$query=$this->db->get();
- 		return $query->result_array();
- 	}
+        $this->db->order_by('namaTopik');
+        $query=$this->db->get();
+        return $query->result_array();
+    }
+
+     // get season untuk part2
+    public function get_topik_p2($mapel)
+    {
+        $this->db->select('t.id,t.UUID,t.namaTopik,bab.id_bab, m.id_mapel, m.nama_mapel, t.part');
+        $this->db->from('tb_line_topik t');
+        $this->db->join('tb_bab bab','bab.id_bab=t.babID');
+        $this->db->join('tb_mata_pelajaran m','m.id_mapel = bab.id_mapel');
+        $this->db->where('m.id_mapel',$mapel);
+        $this->db->where('t.status',1);
+        $this->db->where('t.statusLearning',1);
+        $this->db->order_by('namaTopik');
+        $query=$this->db->get();
+        return $query->result_array();
+    }
+
 
  	//untuk mengecek log 
     public function get_log($stepID, $id_siswa)
@@ -86,9 +102,8 @@
          $this->db->select('namaTopik,topik.babID,topik.UUID as topikUUID,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi,step.urutan,step.id as stepID,step.latihanID,bab.judul_bab');
         $this->db->from('tb_line_topik topik');
         $this->db->join('tb_line_step step','step.topikID=topik.id');
-        $this->db->join('tb_bab bab','bab.id_bab=topik.babID');
-        $this->db->where('topik.UUID',$UUIDTopik
-            );
+        $this->db->join('tb_bab bab','bab.id_bab=step.id_bab');
+        $this->db->where('topik.UUID',$UUIDTopik);
         $this->db->order_by('topik.namaTopik');
         $this->db->order_by('step.urutan', 'asc');
         $query=$this->db->get();
