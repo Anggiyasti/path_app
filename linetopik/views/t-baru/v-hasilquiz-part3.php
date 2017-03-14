@@ -12,6 +12,47 @@
           </div>
         </div>
 
+ <a class="modal-trigger waves-effect waves-light btn-large primary-color width-100 m-b-20" href="#modal2">Modal with fixed footer</a>
+
+        <!-- Modal Structure Fixed Footer -->
+        <div id="modal2" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4>Hasil Quiz</h4>
+
+            <table>
+                                    <tbody>
+                                        
+                                      
+                                        <tr class="cart-subtotal">
+                                            <th>Jumlah Benar  </th>
+                                            <td><span class="amount"> <?=$data['jumlahBenar'];?></span></td>
+                                        </tr>
+                                        <tr class="shipping">
+                                            <th>Jumlah Salah </th>
+                                            <td>    
+                                                <?=$data['jumlahSalah'];?>      
+                                            </td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <th>Jumlah Kosong </th>
+                                            <td><span class="amount"><?=$data['jumlahKosong'];?></span></td>
+                                        </tr> 
+                                        <tr class="order-total">
+                                            <th>Total Nilai </th>
+                                            <td><span class="amount"><?=$data['totalNilai'];?></span></td>
+                                        </tr> 
+                                        <tr class="order-total">
+                                            <th>Total score</th>
+                                            <td><span class="amount"> <?=$tot?></span></td>
+                                        </tr>           
+                                    </tbody>
+                                </table>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+          </div>
+        </div>
+
  <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>">
     <div class="page-content grid-row">
         <div class=" grid-col-row clear-fix" >

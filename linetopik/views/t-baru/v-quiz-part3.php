@@ -96,6 +96,9 @@
     <div class="spinner"></div>
 </div>
 
+
+   
+
 <form action="<?= base_url('index.php/linetopik/cekjawaban_part3') ?>" method="post" id="hasil">    
     <div>
         <div class="text-center"> 
@@ -265,6 +268,7 @@
 
         <!--/ END To Top Scroller -->
 </form>
+
 <!-- /page-transitions -->
 </div>
     </section>

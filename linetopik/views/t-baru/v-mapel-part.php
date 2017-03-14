@@ -68,6 +68,9 @@
                   <?php if ($nm_tryout != $key['nm_tryout'] && $i==0): ?>
                 <div class="contact">
                   <span class="date"><a href="<?=base_url()?>index.php/linetopik/daftar_paket/<?=$key['id_tryout'] ?>" id="font-<?=$i;?>"><?=$key['nm_tryout']?></a></span>
+                  <span > <a style="margin-left: 80px;" class="waves-effect waves-light btn primary-color " href="<?=base_url()?>index.php/linetopik/report_tryout/<?=$key['id_tryout'] ?>" id="font-<?=$i;?>">Report</a></span>
+
+
                   <div class="dot z-depth-1">
                   </div>
     

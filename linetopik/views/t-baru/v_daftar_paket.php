@@ -46,7 +46,8 @@
                         Deskripsi:' <?=$key['deskripsi']?> ' <br>
                         Jumlah Soal:' <?=$key['jumlah_soal']?> ' <br>
                         Durasi:' <?=$key['durasi']?> '
-                      </span>
+                      </span><br>
+                      <span > <a class="waves-effect waves-light btn primary-color" href="<?=base_url()?>index.php/linetopik/report_paket/<?=$key['id_paket'] ?>" id="font-<?=$i;?>">Report</a></span>
                    
                         
                     </div>

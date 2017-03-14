@@ -393,6 +393,8 @@
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
+    
+    
     function get_paket2()
     {
        
@@ -411,6 +413,31 @@
         $this->db->join('tb_mm_tryoutpaket mmtp ',' mmtp.id_paket = p.id_paket');
         $this->db->join('tb_tryout tr ',' tr.id_tryout = mmtp.id_tryout');
         $this->db->where('tr.id_tryout ', $id_try);
+       
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+     function get_reporttry($id_try)
+    {
+       
+        $this->db->select('p.id_paket, nm_paket, deskripsi,jmlh_kosong,jmlh_benar,jmlh_salah,total_nilai,score');
+        $this->db->from('tb_report_quiz3 re');
+        $this->db->join('tb_paket p ',' p.id_paket = re.id_paket');
+        $this->db->join('tb_mm_tryoutpaket tr ',' tr.id_paket = p.id_paket');
+        $this->db->join('tb_tryout try ',' try.id_tryout = tr.id_tryout');
+        $this->db->where('tr.id_tryout ', $id_try);
+       
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+      function get_report_paket($id_pkt)
+    {
+       
+        $this->db->select('p.id_paket, nm_paket, deskripsi,jmlh_kosong,jmlh_benar,jmlh_salah,total_nilai,score');
+        $this->db->from('tb_report_quiz3 re');
+        $this->db->join('tb_paket p ',' p.id_paket = re.id_paket');
+        $this->db->where('p.id_paket ', $id_pkt);
        
         $tampil=$this->db->get();
         return $tampil->result_array();
