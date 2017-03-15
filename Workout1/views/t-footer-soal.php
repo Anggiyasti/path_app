@@ -53,6 +53,7 @@
 var base_url = "<?php echo base_url();?>" ;
 
 
+
     function disableF5(e) {
         if ((e.which || e.keyCode) == 116)
             e.preventDefault();
@@ -277,6 +278,10 @@ var base_url = "<?php echo base_url();?>" ;
 
 
     function kirimHasil2(){
+      if (!$("input[type=radio]:checked").length > 0) {
+            // tidak ada jawaban yg di kirim
+            swal("Dibatalkan", "Maaf, anda tidak dapat mengirimkan lembar jawaban kosong!", "error");
+          }else{
         window.onbeforeunload = null;
         swal({
           title: "Yakin selesai mengerjakan?",
@@ -301,7 +306,7 @@ var base_url = "<?php echo base_url();?>" ;
         });
        
        
-    }
+    }}
 
     function a(){
 $.ajax({
