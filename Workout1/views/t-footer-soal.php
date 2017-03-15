@@ -50,6 +50,7 @@
 </script>
 
 <script>
+var base_url = "<?php echo base_url();?>" ;
 
 
     function disableF5(e) {
@@ -272,6 +273,53 @@
        
        
     }
+
+
+
+    function kirimHasil2(){
+        window.onbeforeunload = null;
+        swal({
+          title: "Yakin selesai mengerjakan?",
+          text: "kamu tidak akan bisa kembali ke latihan ini lagi!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Ya, saya yakin!",
+          cancelButtonText: "Tidak, batalkan!",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm){
+          if (isConfirm) {
+            window.onbeforeunload = null;
+            deleteAllCookies('seconds', 'minutes', 'hours');
+            // document.getElementById("hasil").submit();
+            a();
+          } else {
+            swal("Dibatalkan", "Pengiriman LJK dibatalkan", "error");
+          }
+        });
+       
+       
+    }
+
+    function a(){
+$.ajax({
+                  type: "POST",
+                  dataType: "TEXT",
+                  url: base_url+"linetopik/cekjawaban_part3",
+                  data: $('#hasil').serialize(),
+
+                  success: function(){
+                    deleteAllCookies('seconds', 'minutes');
+                    window.localStorage.clear();
+                    window.location.href = base_url+"linetopik";
+                  },error:function(){
+                    swal('Gagal menghubungkan ke server')
+                  }
+                });
+
+}
 </script>
 
 

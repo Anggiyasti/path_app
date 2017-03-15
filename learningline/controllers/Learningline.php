@@ -191,9 +191,9 @@ class Learningline extends MX_Controller {
 			'judul_halaman' => " - Add Learning Line Step untuk ".$metadata['namaTopik'],
 			'namaTopik' => $metadata['namaTopik'],
 			'id'=>$metadata['id'],
-			'id_bab'=>$metadata['id_bab'],
+			// 'id_bab'=>$metadata['id_bab'],
 			'mapel'=>$metadata['nama_mapel'],
-			'bab'=>$metadata['judul_bab'],
+			// 'bab'=>$metadata['judul_bab'],
 			'bb' => $this->input->post('bab')
 			);
 
@@ -272,7 +272,7 @@ class Learningline extends MX_Controller {
 			'id'=>$metadata['id'],
 			'id_mapel'=>$metadata['id_mapel'],
 			'mapel'=>$metadata['nama_mapel'],
-			'bab'=>$metadata['judul_bab'],
+			'judul_bab'=>$metadata['judul_bab']
 			
 			);
 

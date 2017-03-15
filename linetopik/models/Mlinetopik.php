@@ -68,6 +68,24 @@
     	
     }
 
+     //untuk mengecek log paket
+    public function get_logpaket($paketID, $id_siswa)
+    {
+        $this->db->select('id');
+        $this->db->from('tb_log_part3');
+        $this->db->where('statuspaket','1');
+        $this->db->where('paketID',$paketID);
+        $this->db->where('penggunaID',$id_siswa);
+        $query = $this->db->get();
+        return  $query->result_array();
+        // if ($query->result_array()==array()) {
+        //     return false;
+        // } else {
+        //     return true;
+        // }
+        
+    }
+
     // get id step line by UUID
     public function get_stepID($UUID)
     {
@@ -78,10 +96,29 @@
         return $query->result_array()[0]['id'];
     }
 
+
+     // get id step line by UUID
+    public function get_paketID($id_tr)
+    {
+        $this->db->select('p.id_paket,tr.id_tryout');
+        $this->db->from('tb_paket p');
+        $this->db->join('tb_mm_tryoutpaket tbtr ',' p.id_paket = tbtr.id_paket');
+        $this->db->join('tb_tryout tr ',' tbtr.id_tryout = tr.id_tryout');
+        $this->db->where('tr.id_tryout ',$id_tr);
+        $query = $this->db->get();
+        return $query->result_array()[0]['id_tryout'];
+    }
+
     //savelog step line siswa
     public function save_log($datLog)
     {
         $this->db->insert('tb_line_log',$datLog);
+    }
+
+     //savelog paket
+    public function save_logpaket($datLog)
+    {
+        $this->db->insert('tb_log_part3',$datLog);
     }
 
     public function get_datMateri($UUID)

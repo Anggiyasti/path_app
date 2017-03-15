@@ -234,7 +234,8 @@
 
                                                 <div class="col-md-12" style="">
                                                     <hr> 
-                                                    <button type="button" class="btn btn-info btn-block" style="background-color: #002147;" onclick="kirimHasil();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
+                                                    <button type="button" class="btn btn-info btn-block" style="background-color: #002147;" onclick="kirimHasil2();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
+                                                    
                                                 </div>
                                         </div>
                                         <div></div> 

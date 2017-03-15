@@ -30,7 +30,7 @@
 
                         
                         <li><?=$mapel  ?></li>
-                        <li><?=$bab  ?></li>
+                        <li><?=$judul_bab?></li>
                         <li><?=$namaTopik  ?></li>
 
                         <li><a class="btn btn-success" 
