@@ -5,7 +5,7 @@
  class Mlinetopik extends CI_Model
  {
 
- 	 public function get_line_topik($babID, $urutan)
+     public function get_line_topik($babID, $urutan)
     {
         $this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, step.latihanID,step.id as stepID, step.urutan');
         $this->db->from('tb_line_topik topik');
@@ -52,20 +52,20 @@
     }
 
 
- 	//untuk mengecek log 
+    //untuk mengecek log 
     public function get_log($stepID, $id_siswa)
     {
-    	$this->db->select('id');
-    	$this->db->from('tb_line_log');
-    	$this->db->where('stepID',$stepID);
+        $this->db->select('id');
+        $this->db->from('tb_line_log');
+        $this->db->where('stepID',$stepID);
         $this->db->where('penggunaID',$id_siswa);
-    	$query = $this->db->get();
-    	if ($query->result_array()==array()) {
-    		return true;
-    	} else {
-    		return false;
-    	}
-    	
+        $query = $this->db->get();
+        if ($query->result_array()==array()) {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
      //untuk mengecek log paket
@@ -104,7 +104,7 @@
         $this->db->join('tb_tryout tr ',' tbtr.id_tryout = tr.id_tryout');
         $this->db->where('tr.id_tryout ',$id_tr);
         $query = $this->db->get();
-        return $query->result_array()[0]['id_tryout'];
+        return $query->result_array()[0]['id_paket'];
     }
 
     //savelog step line siswa

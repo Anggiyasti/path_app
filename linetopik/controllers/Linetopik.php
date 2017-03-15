@@ -6,22 +6,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  class Linetopik extends MX_Controller
  {
 
- 	function __construct()
- 	{
- 		$this->load->model('Mlinetopik');
- 		$this->load->model('Workout1/Mworkout1');
+    function __construct()
+    {
+        $this->load->model('Mlinetopik');
+        $this->load->model('Workout1/Mworkout1');
         $this->load->model('login/Loginmodel');
         $this->load->model('settingpath/mpath');
- 		$this->load->library('parser');
- 	}
+        $this->load->library('parser');
+    }
 
 
- 	public function index()
- 	{
+    public function index()
+    {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
            
-     		$data['mapel'] = $this->load->Mlinetopik->getmapeltopik();
+            $data['mapel'] = $this->load->Mlinetopik->getmapeltopik();
 
             $step=false;
             $urutan = 1;
@@ -32,18 +32,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-     		$this->load->view('template/siswa2/v-header', $data);
-     		// $this->load->view('t-baru/v-line-bab', $data);
+            $this->load->view('template/siswa2/v-header', $data);
+            // $this->load->view('t-baru/v-line-bab', $data);
             $this->load->view('t-baru/v-mapel-part', $data);
             $this->load->view('template/siswa2/v-footer');
         }
 
-     	} else {
+        } else {
             redirect('login');
         }
     }
 
- 	// fungsi pilihan bab
+    // fungsi pilihan bab
     public function pilih_bab_report($no) {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }
 
- 	public function learningline($mapel, $part)
+    public function learningline($mapel, $part)
     {
         // var_dump($data['datline']);
         //hak akses jika siswa
@@ -868,13 +868,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
             
-            $stepID = $this->Mlinetopik->get_paketID($id_try);
-            $id = $this->session->userdata['id_siswa'];
-            $x=$this->Mlinetopik->get_log($stepID, $id);
-            
-
+            $stepID = $this->Mlinetopik->get_paketID($id_try);            
             $data['try'] = $this->load->Mlinetopik->get_paketsoal($id_try);
             $dat=$this->Mlinetopik->get_paketsoal($id_try);
+            $data['datline']=array();
             $on =1;
            
 
@@ -887,18 +884,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
 
 
-            if ($step == true && $on == 1) {
+                if ($step == true) {
                 $icon ='ico-pencil';
                 $latihanID = $rows['id_paket'];
                     $link = base_url('index.php/linetopik/create_session_id_tryout/'.$latihanID);
                     $status ="enable";
-                    $on =0;
+                    $on =1;
                
                 } 
                 else {
                     $icon ='ico-pencil';
                     $link = 'javascript:void(0)';
-                $status ="disable";
+                    $status ="disable";
                     
                      
                     
@@ -916,7 +913,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 
                 // var_dump($step);
 
-        }
+            }
 
 
 
