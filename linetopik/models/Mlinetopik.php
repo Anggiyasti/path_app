@@ -73,15 +73,13 @@
     {
         $this->db->select('id');
         $this->db->from('tb_log_part3');
-        // $this->db->where('statuspaket','1');
         $this->db->where('paketID',$paketID);
         $this->db->where('penggunaID',$id_siswa);
         $query = $this->db->get();
-        // return  $query->result_array();
         if ($query->result_array()==array()) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
         
     }

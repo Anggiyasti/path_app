@@ -245,12 +245,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $log=$this->Mlinetopik->get_logpaket($paket_id, $id);
         // pengecekan log step line
         
-        if ($log == false) {
+        if ($log == true) {
             
             $datLog = array(
                 'penggunaID'=>$this->session->userdata['id_siswa'],
-                'paketID'=>$paket_id,
-                'statuspaket'=>'1');
+                'paketID'=>$paket_id);
             //jika log belum ada maka save log
             $this->Mlinetopik->save_logpaket($datLog);
         }else{
@@ -491,7 +490,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         // if ($benar >= $minBenar ) {
         //   $data['hasil'] = "Selamat Anda Lulus";
              
-        //      // $this->logLine($stepID);
+              // $this->logLine($stepID);
         //  } else {
         //   $data['hasil'] = "Selamat Anda Gagal, Silahkan Coba Lagi";
         //  }
@@ -868,21 +867,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
+            
+            $stepID = $this->Mlinetopik->get_paketID($id_try);
+            $id = $this->session->userdata['id_siswa'];
+            $x=$this->Mlinetopik->get_log($stepID, $id);
+            
+
             $data['try'] = $this->load->Mlinetopik->get_paketsoal($id_try);
             $dat=$this->Mlinetopik->get_paketsoal($id_try);
-            $stepID = $this->Mlinetopik->get_paketID($id_try);
-            $this->logpaket($stepID);
-            $step=false;
+            $on =1;
+           
 
             foreach ($dat as $rows) {
             $data['nm_paket']=$rows['nm_paket'];
             $data['deskripsi']=$rows['deskripsi'];
+            $id = $this->session->userdata['id_siswa'];
+            $log=$this->Mlinetopik->get_logpaket($stepID, $id);
+            $step = $log;
+            
 
-            if ($step == true) {
+
+            if ($step == true && $on == 1) {
                 $icon ='ico-pencil';
                 $latihanID = $rows['id_paket'];
                     $link = base_url('index.php/linetopik/create_session_id_tryout/'.$latihanID);
                     $status ="enable";
+                    $on =0;
                
                 } 
                 else {
@@ -903,9 +913,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'link' => $link,
                 'status'=>$status
                 );
-                $id = $this->session->userdata['id_siswa'];
-                $log=$this->Mlinetopik->get_logpaket($stepID, $id);
-                $step = $log;
+                
                 // var_dump($step);
 
         }
