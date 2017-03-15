@@ -88,51 +88,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  			$UUID = $rows['stepUUID'];
             $stepID = $rows['stepID'];
             $urutan = $rows ['urutan'];
-            // pengecekan jenis step line
- 			if ($tampJenis == '1') {
-                // jika step line video
- 				$jenis='Video';
-                // pengecekan disable atau enable step
-                if ($step == true || $urutan == '1' ) {
-                    $icon='ico-movie ';
-                    $link = base_url('index.php/linetopik/step_video/'.$UUID);
-                    $status ="enable";
-                } else {
-                    $icon='ico-movie';
-                    $link = 'javascript:void(0)';
-                    $status ="disable";
-                }
-
- 			}else if ($tampJenis == '2') {
-                // jika step line Materi atau modul
- 				$jenis='Materi';
-                // 587496e2a4f33
- 				// pengecekan disable atau enable step
-                if ($step == true || $urutan == '1' ) {
-                    $icon ='ico-file6';
-                    $link = base_url('index.php/linetopik/step_materi/'.$UUID);
-                    // $link = base_url('index.php/linetopik/step_materi/587496e2a4f33');
-                    $status ="enable";
-                } else {
-                   $icon='ico-file6';
-                   $link = 'javascript:void(0)';
-                   $status ="disable";
-                }
- 			}else{
                 // jika step line latihan atau quiz
  				$jenis='Latihan';
                 // pengecekan disable atau enable step
                 if ($step == true || $urutan == '1' ) {
                    $icon ='ico-pencil';
                   $latihanID = $rows['latihanID'];
-                   $link = base_url('index.php/linetopik/create_session_id_latihan/'.$latihanID);
+                   $link = base_url('index.php/linetopik/step_part1/'.$UUID);
                    $status ="enable";
                 } else {
                   $icon='ico-pencil';
                  $link = 'javascript:void(0)';
                  $status ="disable";
                 }
- 			}
+ 			
  			$data['datline'][]=array(
                 'namaTopik'=>$rows['namaTopik'],
                 'deskripsi'=>$rows['deskripsi'],
@@ -253,7 +222,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $log=$this->Mlinetopik->get_log($step_id, $id);
         // pengecekan log step line
         
-        if ($log == false) {
+        if ($log == true) {
             
             $datLog = array(
                 'penggunaID'=>$this->session->userdata['id_siswa'],
@@ -811,6 +780,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             // redirect('login');
         }
     }
+
+    // View step part 1
+    public function step_part1($UUID)
+    {
+        if ($this->session->userdata('id_siswa')) { 
+            $stepID= $this->Mlinetopik->get_stepID($UUID);
+            $id = $this->session->userdata['id_siswa'];
+            $x=$this->Mlinetopik->get_log($stepID, $id);
+         
+         // get UUID TOPIK
+        // $data['UUID']=$data['datMateri']['UUID'];
+        
+          //Start get data untuk time line side bar
+        $dat=$this->Mlinetopik->get_topic_step2($UUID);
+        $data['datline']=array();
+        $on =1;
+        
+        foreach ($dat as $rows) {
+            $data['namaTopik']=$rows['namaTopik'];
+            $data['deskripsi']=$rows['deskripsi'];
+            $tampJenis = $rows['jenisStep'];
+            $UUID = $rows['stepUUID'];
+            $stepID = $rows['stepID'];
+            $urutan = $rows ['urutan'];
+            $id = $this->session->userdata['id_siswa'];
+            $log=$this->Mlinetopik->get_log($stepID, $id);
+            $step = $log;
+                $jenis='Latihan';
+                if ($step == true && $on == 1) {
+                    $icon ='ico-pencil';
+                    $latihanID = $rows['latihanID'];
+                    $link = base_url('index.php/linetopik/create_session_id_latihan/'.$latihanID);
+                    $status ="enable";
+                    $on =0;
+                } else {
+                    $icon ='ico-pencil';
+                    $link = 'javascript:void(0)';
+                    $status ="disable";
+                }
+            
+            $data['datline'][]=array(
+                'namaStep'=> $rows['namaStep'],
+                'jenisStep'=>$jenis,
+                'icon' =>$icon,
+                'link' => $link,
+                'status'=>$status);
+            $data['bab']      = $rows['judul_bab'];
+            $data['topik']    = $rows['namaTopik'];
+            
+        }
+          // END get data time untuk side bar
+         
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('t-baru/v-step-part1', $data);
+        $this->load->view('template/siswa2/v-footer');
+        } else {
+                redirect('login');
+        }
+    }
+
 
     public function tryout()
     {

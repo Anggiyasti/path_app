@@ -271,7 +271,7 @@
                             <label class="col-sm-2">Soal</label>
                              <div class="col-sm-10">
 
-                                 <textarea  name="editor1" class="form-control" id="">
+                                 <textarea  name="editor1" class="form-control" >
 
                                      
 
@@ -362,7 +362,7 @@
 
                             <div class="col-sm-5 piltext">
 
-                               <textarea name="a"  class="form-control" rows="2" value="<?php echo   set_value('a'); ?>"  required="true"> </textarea>
+                               <textarea name="a"  class="form-control" rows="2" value="<?php echo   set_value('a'); ?>"  required="true" id="pilA"></textarea>
 
                             </div>
 
@@ -433,7 +433,7 @@
 
                             <div class="col-sm-5 piltext">
 
-                               <textarea name="b" class="form-control" value="<?php echo set_value('b'); ?>"> </textarea>
+                               <textarea name="b" class="form-control" value="<?php echo set_value('b'); ?>" id="pilB" required="true"></textarea>
 
                             </div>
 
@@ -504,7 +504,7 @@
 
                             <div class="col-sm-5 piltext" >
 
-                               <textarea name="c" class="form-control" value="<?php echo set_value('c'); ?>"> </textarea>
+                               <textarea name="c" class="form-control" value="<?php echo set_value('c'); ?>" id="pilC" required="true"></textarea>
 
                             </div>
 
@@ -579,7 +579,7 @@
 
                             <div class="col-sm-5 piltext" >
 
-                               <textarea name="d" class="form-control" value="<?php echo set_value('d'); ?>"> </textarea>
+                               <textarea name="d" class="form-control" value="<?php echo set_value('d'); ?>" id="pilD" required="true"></textarea>
 
                             </div>
 
@@ -653,7 +653,7 @@
 
                             <div class="col-sm-5 piltext" >
 
-                               <textarea name="e" class="form-control" value="<?php echo set_value('e'); ?>"> </textarea>
+                               <textarea name="e" class="form-control" value="<?php echo set_value('e'); ?>" id="pilE" required="true"></textarea>
 
                             </div>
 
@@ -719,7 +719,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2">Jawaban Benar</label>
                                         <div class="col-sm-5">
-                                            <select name="jawaban_benar" id="kesulitan" class="form-control">
+                                            <select name="jawaban_benar" id="benar" class="form-control">
                                             <option value="A">A</option>
                                             <option value="B">B</option>
                                             <option value="C">C</option>
@@ -736,7 +736,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2">Link Pembahasan</label>
                                         <div class="col-sm-5">
-                                            <input type="text" name="pembahasan" class="form-control" >
+                                            <input type="text" name="pembahasan" class="form-control" id="pembahasan" >
                                         </div>
                                     </div>
 
@@ -1601,5 +1601,175 @@ function ValidateSingleInput(oInput) {
         $('#modalpriview').modal('show'); // show bootstrap modal
       
       }
+        
+       $(document).ready(function () {
+         // customcheckbox1
+        $("#kesulitan").change(function(){ 
+          var judul = $("input[name=judul_soal]").val();
+          
+          // var publish  =$("input[name=publish]").val(); 
+          // console.log(pembahasan, publish); 
+            if (judul) {
+              // swal('Kosong');
+            } else {
+              swal('Judul Tidak Boleh Kosong');
+            }
+        });
+
+        $("#sumber").keyup(function(){ 
+          var judul = $("input[name=judul_soal]").val();
+            if (judul) {
+              // swal('Kosong');
+            } else {
+              swal('Judul Tidak Boleh Kosong');
+            }
+        });
+
+        $("#pilA").keyup(function(){ 
+          var soal  = CKEDITOR.instances.editor1.getData();
+            if (soal) {
+              // swal('Kosong');
+            } else {
+              swal('Soal Tidak Boleh Kosong');
+            }
+        });
+
+        $("#pilB").keyup(function(){ 
+          var a  =$("textarea[name=a]").val();
+            if (a) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban A Boleh Kosong');
+            }
+        });
+
+         $("#pilC").keyup(function(){ 
+          var b  =$("textarea[name=b]").val();
+          var a  =$("textarea[name=a]").val();
+            if (a) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban A Boleh Kosong');
+            }
+
+            if (b) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban B Tidak Boleh Kosong');
+            }
+        });
+
+        $("#pilD").keyup(function(){ 
+          var c  =$("textarea[name=c]").val();
+          var b  =$("textarea[name=b]").val();
+          var a  =$("textarea[name=a]").val();
+            if (a) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban A Boleh Kosong');
+            }
+            
+            if (b) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban B Tidak Boleh Kosong');
+            }
+            if (c) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban C Tidak Boleh Kosong');
+            }
+        });
+
+        $("#pilE").keyup(function(){ 
+          var d  =$("textarea[name=d]").val();
+          var c  =$("textarea[name=c]").val();
+          var b  =$("textarea[name=b]").val();
+          var a  =$("textarea[name=a]").val();
+            if (a) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban A Tidak Boleh Kosong');
+            }
+            
+            if (b) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban B Tidak Boleh Kosong');
+            }
+            if (c) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban C Tidak Boleh Kosong');
+            }
+            if (d) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban D Tidak Boleh Kosong');
+            }
+        });
+
+         $("#pembahasan").keyup(function(){ 
+          var e =$("textarea[name=e]").val();
+            if (e) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban E Tidak Boleh Kosong');
+            }
+        });
+
+          $("#customcheckbox1").change(function(){ 
+          var pembahasan = $("input[name=pembahasan]").val(); 
+          var d  =$("textarea[name=d]").val();
+          var c  =$("textarea[name=c]").val();
+          var b  =$("textarea[name=b]").val();
+          var a  =$("textarea[name=a]").val();
+          var e  =$("textarea[name=e]").val();
+            if (a) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban A Tidak Boleh Kosong');
+            }
+            
+          // console.log(pembahasan)
+          //   if (pembahasan) {
+          //     // swal('Kosong');
+          //   } else {
+          //     // swal('Pembahasan Tidak Boleh Kosong');
+          //   }
+        });
+          
+        $("#benar").change(function(){ 
+          var d  =$("textarea[name=d]").val();
+          var c  =$("textarea[name=c]").val();
+          var b  =$("textarea[name=b]").val();
+          var a  =$("textarea[name=a]").val();
+          var e  =$("textarea[name=e]").val();
+            if (a) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban A Tidak Boleh Kosong');
+            }
+            
+            if (b) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban B Tidak Boleh Kosong');
+            }
+            if (c) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban C Tidak Boleh Kosong');
+            }
+            if (d) {
+              // swal('Kosong');
+            } else {
+              swal('Jawaban D Tidak Boleh Kosong');
+            }
+        });
+
+
+      });
+
 </script>
 <!--END Script drop down depeden  -->

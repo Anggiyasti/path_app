@@ -61,9 +61,9 @@
         $this->db->where('penggunaID',$id_siswa);
     	$query = $this->db->get();
     	if ($query->result_array()==array()) {
-    		return false;
-    	} else {
     		return true;
+    	} else {
+    		return false;
     	}
     	
     }
