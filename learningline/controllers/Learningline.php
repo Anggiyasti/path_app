@@ -105,9 +105,9 @@ class Learningline extends MX_Controller {
 
 	public function step1($data)
 	{
-		$metadata['mapel'] = $this->learningmodel->get_topik_byid($data);
+		$metadata['mapel'] = $this->learningmodel->get_bab_by_topikid($data);
 
-		$pel = $this->learningmodel->get_topik_byid($data)['nama_mapel'];
+		$pel = $this->learningmodel->get_bab_by_topikid($data)['nama_mapel'];
 		$metadata['bab'] = $this->learningmodel->baba($pel);
 		// $metadata['i'] ="helo";
 		// var_dump($metadata);
