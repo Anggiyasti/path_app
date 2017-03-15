@@ -74,22 +74,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
  	public function learningline($mapel, $part)
- 	{
- 		// var_dump($data['datline']);
- 		//hak akses jika siswa
+    {
+        // var_dump($data['datline']);
+        //hak akses jika siswa
     if ($this->session->userdata('id_siswa')) {    
- 		$dat=$this->Mlinetopik->get_line_topik($mapel, $part);
+        $dat=$this->Mlinetopik->get_line_topik($mapel, $part);
         $data['topik']=$this->Mlinetopik->get_topik($mapel, $part);
- 		$data['datline']=array();
+        $data['datline']=array();
         // 
         $step=false;
- 		foreach ($dat as $rows) {
- 			$tampJenis = $rows['jenisStep'];
- 			$UUID = $rows['stepUUID'];
+        foreach ($dat as $rows) {
+            $tampJenis = $rows['jenisStep'];
+            $UUID = $rows['stepUUID'];
             $stepID = $rows['stepID'];
             $urutan = $rows ['urutan'];
                 // jika step line latihan atau quiz
- 				$jenis='Latihan';
+                $jenis='Latihan';
                 // pengecekan disable atau enable step
                 if ($step == true || $urutan == '1' ) {
                    $icon ='ico-pencil';
@@ -101,30 +101,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                  $link = 'javascript:void(0)';
                  $status ="disable";
                 }
- 			
- 			$data['datline'][]=array(
+            
+            $data['datline'][]=array(
                 'namaTopik'=>$rows['namaTopik'],
                 'deskripsi'=>$rows['deskripsi'],
- 				'namaStep'=> $rows['namaStep'],
-                'bab'=>$rows['judul_bab'],
- 				'jenisStep'=>$jenis,
- 				'icon' =>$icon,
- 				'link' => $link,
+                'namaStep'=> $rows['namaStep'],
+                // 'bab'=>$rows['judul_bab'],
+                'jenisStep'=>$jenis,
+                'icon' =>$icon,
+                'link' => $link,
                 'status'=>$status);
             $id = $this->session->userdata['id_siswa'];
             $log=$this->Mlinetopik->get_log($stepID, $id);
             $step = $log;
 
- 		}
+        }
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
- 		$this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('t-baru/v-line-topik', $data);
         $this->load->view('template/siswa2/v-footer');
     } else {
             redirect('login');
     }
- 	}
+    }
 
     // View step Materi
         public function step_materi($UUID)
@@ -404,6 +404,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              $this->logLine($stepID);
          } else {
           $data['hasil'] = "Selamat Anda Gagal, Silahkan Coba Lagi";
+          $this->logLine($stepID);
          }
          
          // redirect('/linetopik/timeLine/'.$UUID);

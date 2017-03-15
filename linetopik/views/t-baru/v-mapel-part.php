@@ -34,8 +34,15 @@
     
                 </div>
 
+                <div class="contact">
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/reportpart1/<?=$pel['id_mapel']?>">Report</a></span>
+                  <div class="dot z-depth-1" style="border-color: green">
+                  </div>
+    
+                </div>
+
                  <div class="contact">
-                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/learningline/<?=$pel['id_mapel'] ?>/2">Part 2</a></span>
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/line_simulasi/<?=$pel['id_mapel'] ?>/2">Part 2</a></span>
                   <div class="dot z-depth-1">
                   </div>
                   
@@ -50,45 +57,9 @@
              <?php endforeach ?>
               <!-- Footer info -->
 
-          </ul> 
-          <h4 class="p-20">Part 3</h4>
-          <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
-         
-            <li>
-              <div class="collapsible-header"><i class="ion-android-options"></i>Part 3</div>
-              <div class="collapsible-body">
-              <div id="test1">
-              <div class="container activity p-l-r-20">
-            <div class="row m-l-0">
-              <div class="col">
-               <?php   $i=0; 
-                $nm_tryout=''; ?>
-                <?php foreach ($to as $key ): ?>
-                                
-                  <?php if ($nm_tryout != $key['nm_tryout'] && $i==0): ?>
-                <div class="contact">
-                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/daftar_paket/<?=$key['id_tryout'] ?>" id="font-<?=$i;?>"><?=$key['nm_tryout']?></a></span>
-                  <span > <a style="margin-left: 80px;" class="waves-effect waves-light btn primary-color " href="<?=base_url()?>index.php/linetopik/report_tryout/<?=$key['id_tryout'] ?>" id="font-<?=$i;?>">Report</a></span>
-
-
-                  <div class="dot z-depth-1">
-                  </div>
-    
-                </div>
-                <?php endif ?>
-                                    
-  <?php endforeach ?>
-
-                 
-              </div>
-            </div>
+          </ul>          
           </div>
-        </div>
-              </div>
-                   
-              </div>
-            </li>
-            
-
-          </ul>                  
+        </div> 
       
+         
+      </div> <!-- End of Page Content -->
