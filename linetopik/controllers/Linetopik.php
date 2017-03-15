@@ -464,7 +464,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $id_bab = $this->load->Mlinetopik->jawabansoal_part3($id)[0]['id_bab'];
         $id_pel = $this->load->Mlinetopik->getmapelbab2($id_bab)[0]['id_mapel'];
         // $level = $this->Mworkout1->levelLatihan($id_latihan)[0]->level;
-        // var_dump($id_latihan, $id);
+        var_dump($id_latihan, $id);
         // $datQuiz = $this->Mlinetopik->get_datQuiz($id);
         // $minBenar = $datQuiz ['jumlah_benar'];
         $benar = 0;
@@ -497,13 +497,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $data['jumlahKosong'] = $kosong;
         $data['totalNilai'] = $benar;
 
-        // if ($level == "mudah") {
-        // $data['score'] = floatval($benar * ($jumlahsoal * 10) / ($this->input->post('durasi') / 60));
-        // } else if ($level == "sedang") {
-        // $data['score'] = floatval($benar * ($jumlahsoal * 20) / ($this->input->post('durasi') / 60));
-        // } else {
-        // $data['score'] = floatval($benar * ($jumlahsoal * 30) / ($this->input->post('durasi') / 60));
-        // }
+    
 
              $hasil['id_paket']   = $id_latihan;
             $hasil['id_pengguna'] = $this->session->userdata['id_siswa'];
@@ -538,7 +532,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          $this->logpaket($stepID);
          $this->laporanquiz_part3($data);
          }else{
-            redirect(base_url('index.php/linetopik/daftar_paket'));
+            redirect(base_url('index.php/linetopik/tryout'));
         }
 
 
