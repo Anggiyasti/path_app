@@ -651,11 +651,11 @@
 
         
         $this->form_validation->set_rules('sumber', 'Email ID', 'trim|required');
-        $this->form_validation->set_rules('a', 'Description', 'trim|required');
-        $this->form_validation->set_rules('b', 'Description', 'trim|required');
-        $this->form_validation->set_rules('c', 'Description', 'trim|required');
-        $this->form_validation->set_rules('d', 'Description', 'trim|required');
-        $this->form_validation->set_rules('e', 'Description', 'trim|required');
+        // $this->form_validation->set_rules('a', 'Description', 'trim|required');
+        // $this->form_validation->set_rules('b', 'Description', 'trim|required');
+        // $this->form_validation->set_rules('c', 'Description', 'trim|required');
+        // $this->form_validation->set_rules('d', 'Description', 'trim|required');
+        // $this->form_validation->set_rules('e', 'Description', 'trim|required');
         
         //validate form input
         if ($this->form_validation->run() == FALSE) {
@@ -683,7 +683,8 @@
             # code...
           }
 
-          for ($x = 0; $x < strlen($pembahasan); $x++) {
+          if ($pembahasan) {
+              for ($x = 0; $x < strlen($pembahasan); $x++) {
 
             if ($pembahasan[$x] == '=' ) {
               $startID=$x+1;
@@ -693,6 +694,10 @@
               $linkembed=$pembahasan;
             }
           
+          }
+          } else {
+            $pembahasan = '';
+            $linkembed = $pembahasan;
           }
 
 
@@ -867,7 +872,7 @@ public function upload_video(){
     public function gambar_jawab($soalID){
       $config2['upload_path'] = './assets/images/jawaban/';
         $config2['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $config2['max_size'] = 100;
+        $config2['max_size'] = 500;
         $config2['max_width'] = 1024;
         $config2['max_height'] = 768;
         $this->load->library('upload', $config2);
