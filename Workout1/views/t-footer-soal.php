@@ -190,6 +190,7 @@ var base_url = "<?php echo base_url();?>" ;
 
 
 
+
 //     deleteAllCookies('hours','seconds', 'minutes');
 
 //        deleteAllCookies();
@@ -197,6 +198,8 @@ var base_url = "<?php echo base_url();?>" ;
 //    countdown(0, true);
 
     countup(0, 0, 0, true);
+    
+    countdown(<?php foreach ($paket as $row) {echo $row['durasi']; } ?>, true);
 
 
 

@@ -5,7 +5,7 @@
  class Mlinetopik extends CI_Model
  {
 
-     public function get_line_topik($babID, $urutan)
+ 	 public function get_line_topik($babID, $urutan)
     {
         $this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, step.latihanID,step.id as stepID, step.urutan');
         $this->db->from('tb_line_topik topik');
@@ -52,20 +52,20 @@
     }
 
 
-    //untuk mengecek log 
+ 	//untuk mengecek log 
     public function get_log($stepID, $id_siswa)
     {
-        $this->db->select('id');
-        $this->db->from('tb_line_log');
-        $this->db->where('stepID',$stepID);
+    	$this->db->select('id');
+    	$this->db->from('tb_line_log');
+    	$this->db->where('stepID',$stepID);
         $this->db->where('penggunaID',$id_siswa);
-        $query = $this->db->get();
-        if ($query->result_array()==array()) {
-            return true;
-        } else {
-            return false;
-        }
-        
+    	$query = $this->db->get();
+    	if ($query->result_array()==array()) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    	
     }
 
      //untuk mengecek log paket
@@ -103,8 +103,13 @@
         $this->db->join('tb_mm_tryoutpaket tbtr ',' p.id_paket = tbtr.id_paket');
         $this->db->join('tb_tryout tr ',' tbtr.id_tryout = tr.id_tryout');
         $this->db->where('tr.id_tryout ',$id_tr);
+        $this->db->order_by('p.id_paket',' ASC');
+
+        
+
+
         $query = $this->db->get();
-        return $query->result_array()[0]['id_paket'];
+        return $query->result_array();
     }
 
     //savelog step line siswa
@@ -119,6 +124,13 @@
         $this->db->insert('tb_log_part3',$datLog);
     }
 
+
+     //savelog paket
+    public function save_logtry($datLog)
+    {
+        $this->db->insert('tb_log_tryout',$datLog);
+    }
+
     public function get_datMateri($UUID)
     {
         $this->db->select('namaStep,namaTopik,judulMateri,isiMateri,materi.date_created,topik.UUID');
@@ -129,6 +141,14 @@
         $query=$this->db->get();
         return $query->result_array()[0];
     }
+
+    public function durasipaket($id_paket) {
+    $this->db->select('durasi');
+    $this->db->from('tb_paket');
+    $this->db->where('id_paket', $id_paket);
+    $query = $this->db->get();
+    return $query->result_array();
+}
 
     // get step line berdasarkan UUID step dan info tingkat mp dan bab
     public function get_topic_step2($UUID)
@@ -278,6 +298,22 @@
         $query = $this->db->get();
         return $query->result_array();
     }
+
+   // ambil semua tryoout
+    public function get_to($lim){
+        $this->db->select('t.id_try, t.nm_try');
+        $this->db->from('tb_log_tryout t');
+       
+        $query = $this->db->get();
+        if ($query->result_array()==array()) {
+            return true;
+        } else {
+            return false;
+        }
+        
+
+    }
+
     //limit untuk tampil tryout
     public function tampil_active(){
         $this->db->select('active');

@@ -22,20 +22,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if ($this->session->userdata('id_siswa')) {
            
             $data['mapel'] = $this->load->Mlinetopik->getmapeltopik();
+            $lim = $this->load->Mlinetopik->tampil_active()[0]['active'];
+            $data['to'] = $this->load->Mlinetopik->get_view_to($lim);
+            $a =$this->load->Mlinetopik->get_view_to($lim)[0]['id_tryout'];
+            var_dump($a);
+            $this->logtry($a);
 
             $step=false;
             $urutan = 1;
 
             if ($step == true || $urutan == '1' ) {
-            $lim = $this->load->Mlinetopik->tampil_active()[0]['active'];
+            
             $data['to'] = $this->load->Mlinetopik->get_view_to($lim);
-
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-            $this->load->view('template/siswa2/v-header', $data);
-            // $this->load->view('t-baru/v-line-bab', $data);
-            $this->load->view('t-baru/v-mapel-part', $data);
-            $this->load->view('template/siswa2/v-footer');
+            // $this->load->view('template/siswa2/v-header', $data);
+            // // $this->load->view('t-baru/v-line-bab', $data);
+            // $this->load->view('t-baru/v-mapel-part', $data);
+            // $this->load->view('template/siswa2/v-footer');
         }
 
         } else {
@@ -260,6 +264,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
     }
 
+
+     // save log step
+    public function logtry($id_try)
+    {
+        $id = $this->session->userdata['id_siswa'];
+
+        
+        // pengecekan log step line
+        
+      
+            
+            $data = array(
+                'id_siswa'=>$id
+                'id_try'=>$id_try );
+            //jika log belum ada maka save log
+            $this->Mlinetopik->save_logtry($data);
+       
+
+     
+        
+    }
+
     public function create_session_id_latihan($id_latihan){
         if ($this->session->userdata('id_siswa')) { 
             $this->session->set_userdata('id_latihan',$id_latihan);
@@ -317,6 +343,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $id = $this->session->userdata['id_latihan'];
                 $id_siswa =  $this->session->userdata['id_siswa'];
                 $this->load->view('workout1/t-header-soal');
+
+                $data['paket'] = $this->Mlinetopik->durasipaket($id);
 
                 $query = $this->Mworkout1->get_soalll($id);
                 $data['id'] =$this->Mworkout1->get_soalll($id);
@@ -867,24 +895,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
-            
-            $stepID = $this->Mlinetopik->get_paketID($id_try);            
+
+                        
             $data['try'] = $this->load->Mlinetopik->get_paketsoal($id_try);
             $dat=$this->Mlinetopik->get_paketsoal($id_try);
             $data['datline']=array();
             $on =1;
-           
-
-            foreach ($dat as $rows) {
+          
+            $i=0;
+            foreach ($dat as $rows ) {
             $data['nm_paket']=$rows['nm_paket'];
             $data['deskripsi']=$rows['deskripsi'];
+            $stepID = $this->Mlinetopik->get_paketID($id_try)[$i]['id_paket'];
+            // var_dump($stepID);
             $id = $this->session->userdata['id_siswa'];
             $log=$this->Mlinetopik->get_logpaket($stepID, $id);
             $step = $log;
             
 
-
-                if ($step == true) {
+                if ($step == true && $on =1) {
                 $icon ='ico-pencil';
                 $latihanID = $rows['id_paket'];
                     $link = base_url('index.php/linetopik/create_session_id_tryout/'.$latihanID);
@@ -910,7 +939,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'link' => $link,
                 'status'=>$status
                 );
-                
+                $i++;
                 // var_dump($step);
 
             }
