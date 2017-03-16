@@ -49,7 +49,7 @@
                         Durasi:' <?=$key['durasi']?> '
                       </span><br>
                       <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>">
-                      <!-- <a class="waves-effect waves-light btn primary-color" href="<?=base_url()?>index.php/linetopik/report_paket/<?=$key['id_paket'] ?>" id="font-<?=$i;?>">Report</a> -->
+                      <a class="waves-effect waves-light btn primary-color" href="<?=base_url()?>index.php/linetopik/report_paket/<?=$key['id_paket'] ?>" id="font-<?=$i;?>">Report</a>
 
 
 

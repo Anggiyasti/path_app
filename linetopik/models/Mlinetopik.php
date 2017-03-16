@@ -68,6 +68,22 @@
     	
     }
 
+
+    //untuk mengecek log 
+    public function get_cek_logtry($id_siswa)
+    {
+        $this->db->select('id_siswa,id_try,nm_try');
+        $this->db->from('tb_log_tryout');
+        $this->db->where('id_siswa',$id_siswa);
+        $query = $this->db->get();
+        if ($query->result_array()==array()) {
+            return false;
+        } else {
+            return true;
+        }
+        
+    }
+
      //untuk mengecek log paket
     public function get_logpaket($paketID, $id_siswa)
     {
@@ -128,7 +144,7 @@
      //savelog paket
     public function save_logtry($datLog)
     {
-        $this->db->insert('tb_log_tryout',$datLog);
+        $this->db->insert_batch('tb_log_tryout',$datLog);
     }
 
     public function get_datMateri($UUID)
@@ -295,6 +311,17 @@
         $this->db->where('t.publish',1);
         $this->db->limit($lim);
         $this->db->order_by('rand()' );
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // ambil semua tryoout
+    public function get_to_log($id){
+        $this->db->select('t.id_try,t.nm_try');
+        $this->db->from('tb_log_tryout t');
+        $this->db->where('t.id_siswa',$id);
+        // $this->db->limit($lim);
+        // $this->db->order_by('rand()' );
         $query = $this->db->get();
         return $query->result_array();
     }

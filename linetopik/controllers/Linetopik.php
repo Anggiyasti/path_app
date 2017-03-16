@@ -23,23 +23,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
            
             $data['mapel'] = $this->load->Mlinetopik->getmapeltopik();
             $lim = $this->load->Mlinetopik->tampil_active()[0]['active'];
-            $data['to'] = $this->load->Mlinetopik->get_view_to($lim);
-            $a =$this->load->Mlinetopik->get_view_to($lim)[0]['id_tryout'];
-            var_dump($a);
-            $this->logtry($a);
+            
+            $id = $this->session->userdata['id_siswa'];
+
+            // $this->logtry($id,$lim);
+
 
             $step=false;
             $urutan = 1;
 
             if ($step == true || $urutan == '1' ) {
-            
-            $data['to'] = $this->load->Mlinetopik->get_view_to($lim);
+            $log=$this->Mlinetopik->get_cek_logtry($id);
+            $cek = $log;
+
+                if ($cek == true) {           
+                    $data['to'] = $this->load->Mlinetopik->get_to_log($id);
+                    }
+                else{
+                    $this->logtry($id,$lim);
+                    $data['to'] = $this->load->Mlinetopik->get_to_log($id);
+
+                    }
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-            // $this->load->view('template/siswa2/v-header', $data);
-            // // $this->load->view('t-baru/v-line-bab', $data);
-            // $this->load->view('t-baru/v-mapel-part', $data);
-            // $this->load->view('template/siswa2/v-footer');
+            $this->load->view('template/siswa2/v-header', $data);
+            // $this->load->view('t-baru/v-line-bab', $data);
+            $this->load->view('t-baru/v-mapel-part', $data);
+            $this->load->view('template/siswa2/v-footer');
+
         }
 
         } else {
@@ -265,26 +276,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
 
-     // save log step
-    public function logtry($id_try)
-    {
-        $id = $this->session->userdata['id_siswa'];
-
-        
-        // pengecekan log step line
-        
-      
-            
-            $data = array(
-                'id_siswa'=>$id
-                'id_try'=>$id_try );
-            //jika log belum ada maka save log
-            $this->Mlinetopik->save_logtry($data);
-       
-
-     
-        
-    }
+    
 
     public function create_session_id_latihan($id_latihan){
         if ($this->session->userdata('id_siswa')) { 
@@ -999,6 +991,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         } else {
             redirect('login');
         }
+    }
+
+     //save log step
+    public function logtry($id,$lim)
+    {
+       // var_dump($id);
+
+        
+        // pengecekan log step line
+        $logto= $this->load->Mlinetopik->get_view_to($lim); 
+                $i=0;
+                
+                for ($i=0; $i < $lim; $i++) { 
+                        $data = array(
+                
+                    array(
+                        
+                    'id_siswa'=>$id,
+                    'id_try'=>$logto[$i]['id_tryout'],
+                    'nm_try'=>$logto[$i]['nm_tryout']
+                    ));
+                    $this->Mlinetopik->save_logtry($data);
+               
+                     }      
     }
 
 
