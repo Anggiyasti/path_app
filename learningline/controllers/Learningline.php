@@ -266,7 +266,7 @@ class Learningline extends MX_Controller {
 
 	function step($topikID){
 
-		$metadata = $this->learningmodel->get_topik_byid($topikID);
+		$metadata = $this->learningmodel->get_step_tampil($topikID);
 		// $metadata = $this->learning_model->get_step_by_id_topik($topikID)[0];
 		$data = array(
 			'judul_halaman' => " - Daftar Step",

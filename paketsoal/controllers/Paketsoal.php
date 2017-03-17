@@ -417,9 +417,9 @@ function ajax_get_soal_byid( $bab ) {
 
 	$row[] = $list_soal['soal'];
 
-	if ($list_soal['kesulitan']=='0') {
+	if ($list_soal['kesulitan']=='1') {
 		$row[] = "Mudah";
-	} else if($list_soal['kesulitan']=='1'){
+	} else if($list_soal['kesulitan']=='2'){
 		$row[] = "Sedang";
 	}else{
 		$row[] = "Sulit";
