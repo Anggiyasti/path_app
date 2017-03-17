@@ -236,20 +236,22 @@ class Learningline extends MX_Controller {
 	
 
 	function topik($byid){
+		// var_dump($byid);
 		$metadata = $this->learningmodel->get_bab_by_mapel($byid)[0];
 
 
-		// var_dump($metadata);
+		
 		$data = array(
 			'judul_halaman' => " - Daftar Topik",
 			'mapel'=>$metadata['nama_mapel'],
 			// 'bab'=>$metadata['judul_bab'],
 			);
+		// var_dump($data);
 
 		if ($this->session->userdata('id_admin')) {
 		$this->load->view('admin/layout/header');
 		$this->load->view('v-daftar-topik-single.php',$data);
-		$this->load->view('script_learning-single-topik.js');
+		$this->load->view('script_learning-single-topik.js',$data);
 		$this->load->view('admin/layout/footer');
 	}
 		elseif ($this->session->userdata('id_guru')) {
@@ -360,7 +362,7 @@ class Learningline extends MX_Controller {
 				'part'=>$metatopik['part'],
 				'topikID'=>$metatopik['id'],
 				// 'babID'=>$metatopik['babID'],
-				'mapelID'=>$metatopik['mapelID'],
+				'mapelID'=>$metatopik['id_mapel'],
 				);
 
 		// $this->load->view('v-header');
@@ -369,7 +371,7 @@ class Learningline extends MX_Controller {
 		// $this->load->view('admin/layout/footer');
 		
 		if ($this->session->userdata('id_admin')) {
-		// $this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/header');
 		$this->load->view('v-form-edit-topik',$data);
 		$this->load->view('script_learning-edit-topik.js');
 		$this->load->view('admin/layout/footer');

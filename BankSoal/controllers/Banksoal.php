@@ -1340,43 +1340,13 @@ public function upload_video(){
             site_url('banksoal');
         } else {
           $alias_mapel = htmlspecialchars($this->input->post('alias_mapel'));
-          $nama_mapel = htmlspecialchars($this->input->post('nama_mapel'));
-          $part1 = htmlspecialchars($this->input->post('part1'));
-          $part2 = htmlspecialchars($this->input->post('part2'));
-          $part3 = htmlspecialchars($this->input->post('part3'));
-          $part4 = htmlspecialchars($this->input->post('part4'));
-                 
-           $datamapel= array(
-                       array(
-                        'alias_mapel' => $alias_mapel,
-                        'nama_mapel' => $nama_mapel,
-                         'part' => '1',
-                         'part' => $part1,
-                         
-                      ),
-                       array(
-                          'alias_mapel' => $alias_mapel,
-                          'nama_mapel' => $nama_mapel,
-                           'part' => '2',
-                           'part' => $part2,
-                           
-                       ),
-                       array(
-                        'alias_mapel' => $alias_mapel,
-                        'nama_mapel' => $nama_mapel,
-                         'part' => '3',
-                         'part' => $part3,
-                         
-                      ),
-                       array(
-                          'alias_mapel' => $alias_mapel,
-                          'nama_mapel' => $nama_mapel,
-                           'part' => '4',
-                           'part' => $part4,
-                           
-                       ),
-                  
-                 );
+            $nama_mapel = htmlspecialchars($this->input->post('nama_mapel'));
+                   
+           $datamapel = array(
+            'alias_mapel' => $alias_mapel,
+            'nama_mapel' => $nama_mapel,
+            'part'=>1,
+           );
            //call fungsi insert soal
            $this->Modelbank->insert_mapel($datamapel);
            $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Berhasil</div>');

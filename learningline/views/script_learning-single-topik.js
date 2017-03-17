@@ -1,6 +1,7 @@
 <script>
-var babID = <?=$this->uri->segment(3);?>;
-var url = base_url + "index.php/learningline/ajax_get_list_topik/"+babID;
+// var base_url = "<?php echo base_url();?>" ;
+var id_mapel = <?=$this->uri->segment(3);?>;
+var url = base_url + "index.php/learningline/ajax_get_list_topik/"+id_mapel;
 
 $(document).ready(function(){
 		dataTableLearning = $('.daftartopik ').DataTable({

@@ -19,7 +19,7 @@
   </div>
   <div class="panel-body">
     <input type="hidden" name="topikID" value="<?=$topikID?>">
-    <input type="hidden" id="oldmp"  value="<?=$mapelID ?>">
+    <input type="hidden" id="oldmp" name="id_mapel"  value="<?=$mapelID ?>">
     <!-- <input type="hidden" id="id_bab"  value="<?=$babID ?>"> -->
     <!-- Start Body modal -->
     <form  class="panel panel-default form-horizontal form-bordered form-topik"  method="post" >
@@ -30,7 +30,7 @@
       <div class="col-sm-8">
                                        <!--  <input class="form-control" type="text" name="id_mapel" value="<?php echo $editdata->id_mapel; ?>"> -->
                         
-           <select class='form-control' name="pelajaran" id='pelajaran'>
+           <select class='form-control' name="id_mapel" id='id_mapel'>
            <option value='0'><?=$mapel?></option>
             <?php 
             foreach ($mapell as $m) {
@@ -44,7 +44,7 @@
    <div  class="form-group" id="oldmapel">
       <label class="col-sm-3 control-label">Mata Pelajaran</label>
       <div class="col-sm-8">
-        <select class='form-control' name="pelajaran" id='pelajaran'>
+        <select class='form-control' name="id_mapel" id='id_mapel'>
            <option value='0'><?=$mapel?></option>
             <?php 
             foreach ($mapell as $m) {
@@ -137,7 +137,7 @@ url: "<?php echo base_url('index.php/videoback/ambil_data') ?>",
 cache: false,
 });
 
-$("#pelajaran").change(function(){
+$("#id_mapel").change(function(){
 
 var value=$(this).val();
 if(value>0){

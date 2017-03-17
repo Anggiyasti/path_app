@@ -1,13 +1,16 @@
 <script>
 $('.update_topik').click(function(){
 	data = 
-	{babID:$('#id_bab').val(),
+	{
 	statusLearning:1,
 	deskripsi:$('textarea[name=deskripsi]').val(),
 	namaTopik:$('input[name=nama_topik]').val(),
 	urutan:$('input[name=urutan]').val(),
 	topikID:$('input[name=topikID]').val(),
+	mapelID:$('input[name=id_mapel]').val(),
+
 };
+
 if (data.statusLearning=="kosongundefined" || data.namaTopik=="") {
 	swal('Silahkan lengkapi data');
 }else{
@@ -34,7 +37,7 @@ if (data.statusLearning=="kosongundefined" || data.namaTopik=="") {
 			function(isConfirm){
 				if (isConfirm) {
 					swal("selesai", "Anda akan dialihkan ke daftar topik", "success");
-					window.location.href = base_url+"learningline/topik/"+data.babID;
+					window.location.href = base_url+"learningline/topik/"+data.mapelID;
 				} else {
           // swal("Cancelled", "Your imaginary file is safe :)", "error");
       }
@@ -47,4 +50,6 @@ if (data.statusLearning=="kosongundefined" || data.namaTopik=="") {
 	});
 }
 })
+
+console(data);
 </script>
