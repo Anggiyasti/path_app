@@ -96,12 +96,15 @@
     <div class="spinner"></div>
 </div>
 
-<form action="<?= base_url('index.php/linetopik/cekjawaban') ?>" method="post" id="hasil_part1">    
+<form action="<?= base_url('index.php/linetopik/cekjawaban_part2') ?>" method="post" id="hasil_part2">    
     <div>
         <div class="text-center"> 
             <h4><span class="color-red-dark" id="timer"></span></h4>
         </div>
         <input type="text" hidden="true" id="durasi" value="" name="durasi" />
+         <input type="text" name="id_sim" value="<?=$id_sim?>" hidden="true">
+         <input type="text" name="id_quiz" value="<?=$uuid_quiz?>" hidden="true">
+         <input type="text" name="uuid_mm" value="<?=$uu_mm?>">
     </div>
     
 
@@ -134,10 +137,10 @@
                                                  <div class="panel panel-default" style="">
                                                     <div class="panel-collapse">
                                                         <div class="panel-body">
-                                                            <div class="row">
-                                                                <!-- <div class="col-md-1 text-left">
-                                                                    <p><h4><?= $i ?>.</h4></p>
-                                                                </div> -->
+                                                            <div class="row" style="margin-top-top: 0">
+                                                                <div class="col-md-1 text-center">
+                                                                    <p><h5><?= $i ?>.</h5></p>
+                                                                </div>
                                                                 <div class="col-md-11">
                                                                     <?php if (!empty($key['gambar'])) { ?>       
                                                                             <img src="<?= base_url('./assets/uploads/' . $key['gambar']) ?>" width="100%">   
@@ -231,7 +234,7 @@
 
                                                 <div class="col-md-12" style="">
                                                     <hr> 
-                                                    <button type="button" class="btn btn-info btn-block" style="background-color: #002147;" onclick="kirimHasil_part1();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
+                                                    <button type="button" class="btn btn-info btn-block" style="background-color: #002147;" onclick="kirimHasil_part2();deleteAllCookies('seconds', 'minutes', 'hours');">Kumpulkan Jawaban</button>
                                                 </div>
                                         </div>
                                         <div></div> 

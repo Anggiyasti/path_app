@@ -98,7 +98,7 @@ class Mworkout1 extends CI_Model
     }
 
     public function jawabansoal($id) {
-        $this->db->select('soal.id_bank as soalid, soal.jawaban_benar as jawaban');
+        $this->db->select('soal.id_bank as soalid, soal.jawaban_benar as jawaban, soal.id_bab');
         $this->db->from('tb_mm_sol_lat as sollat');
         $this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
         $this->db->where('sollat.id_latihan', $id);

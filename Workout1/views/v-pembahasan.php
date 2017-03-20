@@ -85,7 +85,7 @@
     </script>
 <section id="main" role="main">
 
-<form action="<?= base_url('index.php/workout1/cekjawaban') ?>" method="post" id="hasil">    
+<form action="<?= base_url('index.php/workout1/') ?>" method="post" id="hasil">    
     
         <!-- START Register Content -->
         <section class="section bgcolor-black">
@@ -217,13 +217,17 @@
                                                                     <?php endforeach ?>
                                                                 </div>   
                                                             </div>
-                                                            <div class="row">      
-                                                                <div class="col-md-10 col-md-offset-1">
+                                                           
+                                                        </div> 
+                                                    </div>
+                                                 </div>
+                                                  <div class="row">  
+                                                                <div class="col-md-12">
                                                                         <?php
                                                                             if ($key['pembahasan'] == null ) {
                                                                                 echo "<h5><strong>Tidak ada pembahasan pada soal ini</strong></h5>";
                                                                             }else{ 
-                                                                                echo 'Pembahasan<iframe width=100% height="430" src="'.$key['pembahasan'].'"></iframe>';
+                                                                                echo 'Pembahasan<iframe class="youtubePlayer" width="100%" height="300"  frameborder="0" src="'.$key['pembahasan'].'" allowfullscreen></iframe>';
                                                                              }
 
                                                                         ?>
@@ -234,11 +238,9 @@
                                                                             
                                                                         </div>
                                                                             
-                                                            </div>
-                                                        </div>   
-                                                    </div>
-                                                 </div>
+                                                            </div>  
                                             </div>
+                                            
                                         </li>
                                         <?php
                                         $i++;
@@ -250,9 +252,11 @@
                                     <div class="row">
                                     <div class="col-md-6 center"></div>
                                     <div class="col-md-2"></div>
+                                    <div id="videoModalXX">
                                         <div class="col-md-8 text-right"> 
-                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnPrev"><<</button>
-                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnNext">>></button>
+                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnPrev" onClick="destroyVideo()" ><<</button>
+                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnNext" onClick="destroyVideo()">>></button>
+                                        </div>
                                         </div>
                                     </div>
                             </row>  
@@ -323,5 +327,23 @@ function toggleDiv(divId) {
             $("#tampil").show();
         });
 
-    });
+        });
+        
+        // fungsi untuk stop video youtube
+        function destroyVideo(){
+            $('.youtubePlayer').each(function() {
+                var url = $(this).attr('src');
+                $(this).attr('src', '');
+                $(this).attr('src', url);
+            });
+        }
+
+        // function destroyVideo2(){
+
+        //         var url = $('.youtubePlayer').attr('src');
+        //         console.log(url);
+        //         $('.youtubePlayer').attr('src', '');
+        //         $('.youtubePlayer').attr('src', url);
+            
+        // }
     </script>

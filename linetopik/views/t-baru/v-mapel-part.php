@@ -27,7 +27,7 @@
             <div class="row m-l-0">
               <div class="col">
                
-                <div class="contact">
+               <div class="contact">
                   <span class="date"><a href="<?=base_url()?>index.php/linetopik/learningline/<?=$pel['id_mapel'] ?>/1">Part 1</a></span>
                   <div class="dot z-depth-1">
                   </div>
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="contact">
-                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/reportpart1/<?=$pel['id_mapel']?>">Report</a></span>
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/reportpart1/<?=$pel['id_mapel']?>">Report 1</a></span>
                   <div class="dot z-depth-1" style="border-color: green">
                   </div>
     
@@ -44,6 +44,13 @@
                  <div class="contact">
                   <span class="date"><a href="<?=base_url()?>index.php/linetopik/line_simulasi/<?=$pel['id_mapel'] ?>/2">Part 2</a></span>
                   <div class="dot z-depth-1">
+                  </div>
+                  
+                </div>
+
+                <div class="contact">
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/report_part2/<?=$pel['id_mapel'] ?>">Report 2</a></span>
+                  <div class="dot z-depth-1" style="border-color: green">
                   </div>
                   
                 </div>

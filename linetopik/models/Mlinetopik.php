@@ -381,16 +381,18 @@
     }
 
     // get jumlah total soal yang dikerjakan
-    public function get_total()
+    public function get_total($pel)
     {
         $id = $this->session->userdata['id_siswa'];
         $this->db->distinct();
-        $this->db->select('*, m.nama_mapel, m.id_mapel, sum(r.score) as tot_path, sum(r.jmlh_benar) as benar, 
+        $this->db->select('*, m.nama_mapel, m.id_mapel, sum(r.score) as tot_path, sum(r.jmlh_benar) as benar,
+        sum(r.jmlh_salah) as salah, sum(r.jmlh_kosong) as kosong,  
             sum(r.jmlh_benar)+sum(r.jmlh_salah)+sum(r.jmlh_kosong) as jum_soal');
         $this->db->from('tb_mata_pelajaran m');
         $this->db->join('tb_report_quiz r', 'm.id_mapel=r.id_mapel');
         $this->db->where('m.status = 1');
         $this->db->where('r.id_pengguna', $id);
+        $this->db->where('r.id_mapel', $pel);
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
@@ -423,24 +425,25 @@
         return $tampil->result_array();
     }
 
-    // get settingpath 
+     // get settingpath 
     function getpath($awal, $akhir, $id){
         $this->db->distinct();
         $this->db->select('*');
         $this->db->from('tb_setting_path');
         $this->db->where('nilai_awal >=', $awal);
-        $this->db->where('nilai_akhir >=', $akhir);
+        $this->db->where('nilai_akhir <=', $akhir);
         $this->db->where('id_mapel', $id);
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
 
-    // get settingpath 
-    function get_soal_pendalaman($id){
+     // get settingpath 
+    function get_soal_pendalaman($id,$sim){
         $this->db->distinct();
         $this->db->select('*');
         $this->db->from('tb_part2');
         $this->db->where('id_mapel', $id);
+        $this->db->where('simulasi', $sim);
         $this->db->group_by('id_mapel');
         $tampil=$this->db->get();
         return $tampil->result_array();
@@ -554,6 +557,203 @@
        
         $tampil=$this->db->get();
         return $tampil->result_array();
+    }
+
+     // get jumlah total soal yang dikerjakan
+    public function get_jumlah_soal($pel)
+    {
+        $id = $this->session->userdata['id_siswa'];
+        $this->db->distinct();
+        $this->db->select('*, m.nama_mapel, b.judul_bab, m.id_mapel, sum(r.score) as tot_path, sum(r.jmlh_benar) as benar, sum(r.jmlh_kosong) as kosong, 
+            sum(r.jmlh_benar)+sum(r.jmlh_salah)+sum(r.jmlh_kosong) as jum_soal');
+        $this->db->from('tb_mata_pelajaran m');
+        $this->db->join('tb_report_quiz r', 'm.id_mapel=r.id_mapel');
+        $this->db->join('tb_bab b', 'r.id_bab=b.id_bab');
+        $this->db->where('m.status = 1');
+        $this->db->where('r.id_pengguna', $id);
+        $this->db->where('r.id_mapel', $pel);
+        $this->db->group_by('r.id_bab');
+        $this->db->order_by('r.jmlh_benar', 'desc');
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+    // get settingpath 
+    function get_set_part2($pel){
+        $this->db->distinct();
+        $this->db->select('*');
+        $this->db->from('tb_setting_path');
+        $this->db->where('id_mapel', $pel);
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+     // get simulasi part 2
+    public function get_sim_p2($pel) {
+        $this->db->where( 'id_mapel', $pel);
+        $this->db->select( 'simulasi, id,level' );
+        $this->db->from( 'tb_part2' );
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+     // get id step line by UUID
+    public function get_stepID_p2($UUID)
+    {
+        $this->db->select('id');
+        $this->db->from('tb_part2');
+        $this->db->where('id_mapel',$UUID);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    //untuk mengecek log 
+    public function get_log_p2($stepID, $id_siswa)
+    {
+        $this->db->select('id');
+        $this->db->from('tb_line_log_part2');
+        $this->db->where('stepID',$stepID);
+        $this->db->where('penggunaID',$id_siswa);
+        $query = $this->db->get();
+        if ($query->result_array()==array()) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+
+    // get soal
+     public function getsoal2($id_bab1, $level) {
+        $this->db->distinct();
+        $this->db->where( 'id_bab', $id_bab1 );
+        $this->db->order_by( 'rand()' );
+        $this->db->select( '*' );
+        $this->db->from( 'tb_bank_soal as soal' );
+        $this->db->join('tb_pil_jawab p', 'soal.id_bank=p.id_soal');
+        $this->db->group_by('id_bank');
+        $this->db->where('soal.kesulitan', $level);
+        $this->db->where('soal.publish',1);
+        // $this->db->where('soal.status',1);
+
+        $query = $this->db->get();
+        $soal = $query->result_array();
+         return array(
+            'soal' => $soal
+        );
+    }
+
+    // insert ke tb_mm
+    public function insert_tb_mm_sol_quiz( $data ) {
+
+        $this->db->insert( 'tb_mm_sol_quiz', $data );
+
+    }
+
+    // get id_quiz dan uuid
+     public function get_quiz_by_uuid($uuid){
+
+        $this->db->where( 'id_quiz', $uuid );      
+
+        $this->db->select('UUID, id_quiz');
+
+        $this->db->from( 'tb_mm_sol_quiz' );
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+     // get soal untuk part2
+     public function get_soal_part2($id_latihan) {
+        $this->db->select('soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw, soal.status, soal.pembahasan, solquiz.id_bab');
+        $this->db->from('tb_bank_soal as soal');
+        $this->db->join('tb_mm_sol_quiz as solquiz', 'solquiz.id_soal = soal.id_bank');
+
+        $this->db->where('solquiz.UUID', $id_latihan);
+        $this->db->where('soal.publish', 1);
+        $this->db->order_by( 'rand()' );
+        $query = $this->db->get();
+        $soal = $query->result_array();
+
+        $this->db->select('soal as soal, pil.id_soal as pilid,soal.id_bank as soalid, pil.pilihan_jawaban as pilpil, pil.jawaban as piljaw, pil.gambar as pilgam');
+        $this->db->from('tb_mm_sol_quiz as solquiz');
+        $this->db->join('tb_bank_soal as soal', 'solquiz.id_soal = soal.id_bank');
+        $this->db->join('tb_pil_jawab as pil', 'soal.id_bank = pil.id_soal');
+        $this->db->where('solquiz.UUID', $id_latihan);
+        $query = $this->db->get();
+        $pil = $query->result_array();
+
+        return array(
+            'soal' => $soal,
+            'pil' => $pil,
+        );
+    }
+
+     //random buat bab
+    public function get_bab_from_mm( $param ) {
+        $this->db->where( 'id_siswa', $param);
+        $this->db->select( 'id_bab' );
+        $this->db->from( 'tb_mm_sol_quiz' );
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+     //count bab
+    public function get_count( $param ) {
+        $query = "select count(m.id_bab) as jml from (select id_bab from tb_mm_sol_quiz group by id_bab ) as m";
+
+        $result = $this->db->query($query);
+        return $result->result_array();
+    }
+
+    // get report part2
+    public function get_report_p2($pel)
+    {
+        $id = $this->session->userdata['id_siswa'];
+        $this->db->distinct();
+        $this->db->select('*, m.nama_mapel, p.simulasi');
+        $this->db->from('tb_mata_pelajaran m');
+        $this->db->join('tb_report_part2 r', 'm.id_mapel=r.id_mapel');
+        $this->db->join('tb_part2 p', 'r.id_simulasi=p.id');
+        $this->db->where('m.status = 1');
+        $this->db->where('r.id_pengguna', $id);
+        $this->db->where('r.id_mapel', $pel);
+        $this->db->order_by('r.jmlh_benar', 'desc');
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+    // input ke tb_report_part2
+    public function inputreport_part2($data) {
+        $this->db->insert('tb_report_part2', $data);
+    }
+
+      //savelog step line siswa
+    public function save_log_p2($datLog)
+    {
+        $this->db->insert('tb_line_log_part2',$datLog);
+    }
+
+    // get id mapel dari tb_part2
+    public function get_pel($id) {
+        $this->db->select('id_mapel');
+        $this->db->from('tb_part2');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result_array()[0]['id_mapel'];
+    }
+
+    // get jawaban part 2
+    public function jawabansoal_part2($id) {
+        $this->db->select('soal.id_bank as soalid, soal.jawaban_benar as jawaban, soal.id_bab');
+        $this->db->from('tb_mm_sol_quiz as solquiz');
+        $this->db->join('tb_bank_soal as soal', 'solquiz.id_soal = soal.id_bank');
+        $this->db->where('solquiz.UUID', $id);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
 

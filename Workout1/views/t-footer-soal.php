@@ -199,7 +199,7 @@ var base_url = "<?php echo base_url();?>" ;
 
     countup(0, 0, 0, true);
     
-    countdown(<?php foreach ($paket as $row) {echo $row['durasi']; } ?>, true);
+
 
 
 
@@ -328,6 +328,153 @@ $.ajax({
                 });
 
 }
+
+function kirimHasil3(){
+      if (!$("input[type=radio]:checked").length > 0) {
+            // tidak ada jawaban yg di kirim
+            swal("Dibatalkan", "Maaf, anda tidak dapat mengirimkan lembar jawaban kosong!", "error");
+          }else{
+        window.onbeforeunload = null;
+        swal({
+          title: "Yakin selesai mengerjakan?",
+          text: "kamu tidak akan bisa kembali ke latihan ini lagi!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Ya, saya yakin!",
+          cancelButtonText: "Tidak, batalkan!",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm){
+          if (isConfirm) {
+            window.onbeforeunload = null;
+            deleteAllCookies('seconds', 'minutes', 'hours');
+            // document.getElementById("hasil").submit();
+            cek_jawaban_part1();
+          } else {
+            swal("Dibatalkan", "Pengiriman LJK dibatalkan", "error");
+          }
+        });
+       
+       
+    }}
+
+    function cek_jawaban_part1(){
+      $.ajax({
+                  type: "POST",
+                  dataType: "TEXT",
+                  url: base_url+"linetopik/cekjawaban",
+                  data: $('#hasil_part1').serialize(),
+
+                  success: function(){
+                    deleteAllCookies('seconds', 'minutes');
+                    window.localStorage.clear();
+                    window.location.href = base_url+"linetopik";
+                  },error:function(){
+                    swal('Gagal menghubungkan ke server')
+                  }
+                });
+
+}
+
+function kirimHasil_part1(){
+      if (!$("input[type=radio]:checked").length > 0) {
+            // tidak ada jawaban yg di kirim
+            swal("Dibatalkan", "Maaf, anda tidak dapat mengirimkan lembar jawaban kosong!", "error");
+          }else{
+        window.onbeforeunload = null;
+        swal({
+          title: "Yakin selesai mengerjakan?",
+          text: "kamu tidak akan bisa kembali ke latihan ini lagi!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Ya, saya yakin!",
+          cancelButtonText: "Tidak, batalkan!",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm){
+          if (isConfirm) {
+            window.onbeforeunload = null;
+            deleteAllCookies('seconds', 'minutes', 'hours');
+            // document.getElementById("hasil").submit();
+            cek_jawaban_part1();
+          } else {
+            swal("Dibatalkan", "Pengiriman LJK dibatalkan", "error");
+          }
+        });
+       
+       
+    }}
+
+    function cek_jawaban_part1(){
+      $.ajax({
+                  type: "POST",
+                  dataType: "TEXT",
+                  url: base_url+"linetopik/cekjawaban",
+                  data: $('#hasil_part1').serialize(),
+
+                  success: function(){
+                    deleteAllCookies('seconds', 'minutes');
+                    window.localStorage.clear();
+                    window.location.href = base_url+"linetopik";
+                  },error:function(){
+                    swal('Gagal menghubungkan ke server')
+                  }
+                });
+
+    }
+
+    function kirimHasil_part2(){
+      if (!$("input[type=radio]:checked").length > 0) {
+            // tidak ada jawaban yg di kirim
+            swal("Dibatalkan", "Maaf, anda tidak dapat mengirimkan lembar jawaban kosong!", "error");
+          }else{
+        window.onbeforeunload = null;
+        swal({
+          title: "Yakin selesai mengerjakan?",
+          text: "Kamu tidak akan bisa kembali ke latihan ini lagi!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Ya, saya yakin!",
+          cancelButtonText: "Tidak, batalkan!",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm){
+          if (isConfirm) {
+            window.onbeforeunload = null;
+            deleteAllCookies('seconds', 'minutes', 'hours');
+            // document.getElementById("hasil").submit();
+            cek_jawaban_part2();
+          } else {
+            swal("Dibatalkan", "Pengiriman LJK dibatalkan", "error");
+          }
+        });
+       
+       
+    }}
+
+    function cek_jawaban_part2(){
+      $.ajax({
+                  type: "POST",
+                  dataType: "TEXT",
+                  url: base_url+"linetopik/cekjawaban_part2",
+                  data: $('#hasil_part2').serialize(),
+
+                  success: function(){
+                    deleteAllCookies('seconds', 'minutes');
+                    window.localStorage.clear();
+                    window.location.href = base_url+"linetopik";
+                  },error:function(){
+                    swal('Gagal menghubungkan ke server')
+                  }
+                });
+
+    }
 </script>
 
 
