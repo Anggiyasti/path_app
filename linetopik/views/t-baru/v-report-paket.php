@@ -26,59 +26,36 @@
                    
                         <div class="cart_totals">   
                         <h1 align="center">HASIL QUIZ</h1>
-                        <?php 
-                            $i=0;
-                            foreach ($report as $key ):           
-                            ?>
-
-                        <ul>
-                        <li>Nama Paket&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$key['nm_paket'];?></li>
-                       
-                            <li>Jumlah benar &nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$key['jmlh_benar'];?></li>
-                       
-                            <li>Jumlah salah&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$key['jmlh_salah'];?></li>
-                      
-                            <li>Jumlah Kosong&nbsp&nbsp&nbsp:&nbsp<?=$key['jmlh_kosong'];?></li>
-                        
-                        <li>Total Nilai&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: <?=$key['total_nilai'];?></li>
+                        <?php if ($datline == array()): ?>
+                  <h4 class="p-20">Tidak ada Report.</h4>
+                <?php else: ?> 
+                <table>
+                  <thead>
+                      <th>Nama Paket</th>
+                      <!-- <th>PG</th> -->
+                      <th>Detail</th>
+                  </thead>                     
+                  <tbody>
+                    <?php foreach ($datline as $key) :?>
+                      <tr>
+                        <td><?=$key['nm_paket']?></td>
+                        <!-- <td><?=$key['pg']?> %</td> -->
+                        <td>Benar : <?=$key['jmlh_benar']?>, Salah : <?=$key['jmlh_salah']?>, Kosong : <?=$key['jmlh_kosong']?></td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
+                <div>
+                         
+                  <!-- <h3>Part 2 : <?=$total_pg?> Bab</h3> -->
+                </div>
+                
+                <?php endif ?> 
                        
                     </ul>
                                 
-                               <!--  <table >
-                                    <tbody>
-                                        
-                                      
-                                        <tr class="cart-subtotal">
-                                            <th>Nama Paket  </th>
-                                            <td><span class="amount"> <?=$key['nm_paket'];?></span></td>
-                                        </tr>
-                                        <tr class="shipping">
-                                            <th>Jumlah benar  </th>
-                                            <td><span class="amount"> <?=$key['jmlh_benar'];?>  </span> 
-                                            </td>
-                                        </tr>
-                                        <tr class="order-total">
-                                            <th>Jumlah salah </th>
-                                            <td><span class="amount"><?=$key['jmlh_salah'];?></span></td>
-                                        </tr> 
-                                        <tr class="order-total">
-                                            <th>Jumlah Kosong </th>
-                                            <td><span class="amount"><?=$key['jmlh_kosong'];?></span></td>
-                                        </tr> 
-                                        <tr class="order-total">
-                                            <th>Total Nilai</th>
-                                            <td><span class="amount"> <?=$key['total_nilai'];?></span></td>
-                                        </tr> 
-                                        <tr class="order-total">
-                                            <th>Total score</th>
-                                            <td><span class="amount"> <?=$key['score'];?></span></td>
-                                        </tr>           
-                                    </tbody>
-                                </table> -->
-                                <hr>
-                                <?php 
-                            $i ++;
-                            endforeach ?>
+                               
+                             
                             </div>
                             <div>
                                 <!-- Score total = <?=$tot?> -->

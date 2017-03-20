@@ -950,6 +950,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
             $data['report'] = $this->load->Mlinetopik->get_reporttry($id_try);
+            $data['datline']=array();
+            foreach ($data['report'] as $key) {
+            $nm_paket = $key['nm_paket'];
+            $benar = $key['jmlh_benar'];
+            $salah = $key['jmlh_salah'];
+            $kosong = $key['jmlh_kosong'];
+            $jml_soal = $key['jumlah_soal'];
+            // $kosong = $key['kosong'];
+
+
+            // hitung pg perbab
+            $pg = round(($benar*4 - $salah) /($jml_soal*4) *100);
+
+            $data['datline'][]=array(
+                'nm_paket'=>$nm_paket,
+                'jmlh_benar'=>$benar,
+                'jmlh_salah'=>$salah,
+                'nm_tryout'=>$key['nm_tryout'],
+                'jumlah_soal'=>$jml_soal,
+                'pg' => $pg,
+                'jmlh_kosong' => $kosong,
+                // 'mapel' => $key['nama_mapel']
+                
+                );
+            }
+
+            $jml_benar =$this->Mlinetopik->get_hasil_part3($id_try)[0]['benar'];
+            $jml_salah=$this->Mlinetopik->get_hasil_part3($id_try)[0]['salah'];
+            $jml_soal=$this->Mlinetopik->get_hasil_part3($id_try)[0]['jum_soal'];
+
+            $total = floatval((($jml_benar*4-$jml_salah)/($jml_soal*4))*100);
+
+            $data['nilai'] = $total;
 
 
 
@@ -971,6 +1004,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
             $data['report'] = $this->load->Mlinetopik->get_report_paket($id_pkt);
+            $data['datline']=array();
+            foreach ($data['report'] as $key) {
+            $nm_paket = $key['nm_paket'];
+            $benar = $key['jmlh_benar'];
+            $salah = $key['jmlh_salah'];
+            $kosong = $key['jmlh_kosong'];
+            // $jml_soal = $key['jumlah_soal'];
+            // $kosong = $key['kosong'];
+
+
+            $data['datline'][]=array(
+                'nm_paket'=>$nm_paket,
+                'jmlh_benar'=>$benar,
+                'jmlh_salah'=>$salah,
+                // 'nm_tryout'=>$key['nm_tryout'],
+                // 'jumlah_soal'=>$jml_soal,
+                'jmlh_kosong' => $kosong,
+                // 'mapel' => $key['nama_mapel']
+                
+                );
+            }
 
 
 

@@ -398,6 +398,23 @@
     }
 
 
+    public function get_hasil_part3($id_try)
+    {
+        $id = $this->session->userdata['id_siswa'];
+        $this->db->distinct();
+        $this->db->select('p.id_paket,nm_paket, sum(r.score) as tot_path, sum(r.jmlh_benar) as benar,sum(r.jmlh_salah) as salah, sum(r.jmlh_kosong) as kosong, sum(r.jmlh_benar)+sum(r.jmlh_salah)+sum(r.jmlh_kosong) as jum_soal,try.nm_tryout');
+        $this->db->from('tb_report_quiz3 r');
+        $this->db->join('tb_paket p ','p.id_paket = r.id_paket');
+        $this->db->join('tb_mm_tryoutpaket tr ','  tr.id_paket = p.id_paket');
+        $this->db->join('tb_tryout try ',' try.id_tryout = tr.id_tryout');
+        $this->db->where('r.id_pengguna', $id);
+        $this->db->where('try.id_tryout', $id_try);
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+
+
     // get jumlah total soal yang dikerjakan
     public function get_total_part3()
     {
@@ -537,7 +554,7 @@
      function get_reporttry($id_try)
     {
        
-        $this->db->select('p.id_paket, nm_paket, deskripsi,jmlh_kosong,jmlh_benar,jmlh_salah,total_nilai,score');
+        $this->db->select('p.id_paket, nm_paket, deskripsi,jmlh_kosong,jmlh_benar,jmlh_salah,total_nilai,p.jumlah_soal,try.nm_tryout,score');
         $this->db->from('tb_report_quiz3 re');
         $this->db->join('tb_paket p ',' p.id_paket = re.id_paket');
         $this->db->join('tb_mm_tryoutpaket tr ',' tr.id_paket = p.id_paket');
