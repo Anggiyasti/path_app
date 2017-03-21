@@ -776,6 +776,33 @@
         return $query->result_array();
     }
 
+    // get count line topik dan step part 1
+    public function get_count_p1($pel)
+    {
+        $this->db->distinct();
+        $this->db->select('count(t.id_mapel) as jumlah_part1');
+        $this->db->from('tb_line_topik t');
+        $this->db->join('tb_line_step s', 't.id=s.topikID');
+        $this->db->where('t.id_mapel', $pel);
+
+        $tampil=$this->db->get();
+        return $tampil->result_array()[0]['jumlah_part1'];
+    }
+
+     // get count step dari tb_line_log part 1 berdasarkan pengguna
+    public function get_count_log1($pel, $id_siswa)
+    {
+        $this->db->distinct();
+        $this->db->select('COUNT( stepID ) AS jumlah_step');
+        $this->db->from('tb_line_log l');
+        $this->db->join('tb_line_step s', 'l.stepID=s.id');
+        $this->db->join('tb_line_topik t', 's.topikID=t.id');
+        $this->db->where('t.id_mapel', $pel);
+        $this->db->where('l.penggunaID', $id_siswa);
+
+        $tampil=$this->db->get();
+        return $tampil->result_array()[0]['jumlah_step'];
+    }
 
 
 

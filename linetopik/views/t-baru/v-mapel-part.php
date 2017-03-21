@@ -15,6 +15,8 @@
         <!-- Article Content -->
         <div class="animated fadeinup delay-1">
           <div class="page-content">
+          <?php echo $this->session->flashdata('msg'); ?>
+          
             <!-- With Left Icon -->
           <h4 class="p-20">Mata Pelajaran</h4>
           <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
@@ -42,7 +44,7 @@
                 </div>
 
                  <div class="contact">
-                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/line_simulasi/<?=$pel['id_mapel'] ?>/2">Part 2</a></span>
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/hitung_log_part1/<?=$pel['id_mapel']?>">Part 2</a></span>
                   <div class="dot z-depth-1">
                   </div>
                   
