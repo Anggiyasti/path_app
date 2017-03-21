@@ -1490,6 +1490,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     // END  
 
+    // FUNGSI UNTUK  PENGECEKAN PART 2
+    public function hitung_log_part2($id_try)
+    {   
+        $id_siswa = $this->session->userdata('id_siswa');
+        //hak akses jika siswa
+        if ($id_siswa) {
+            // hitung jumlah simulasi part2
+            $data1 = $this->Mlinetopik->get_count_p2(); 
+            // hitung jumlah step yang telah dikerjakan
+            $data2 = $this->Mlinetopik->get_count_log2($id_siswa);
+
+            // pengecekan jumlah step 
+            if ($data2 != $data1) {
+                $this->session->set_flashdata('msg','<div class="notification notification-danger">
+                                                        <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+                                                        <p>Part 2 Belum Selesai</p>
+                                                      </div>
+                                                ');
+                redirect('linetopik');
+            } else {
+                redirect('linetopik/daftar_paket/'.$$id_try);
+            }
+        } else {
+            redirect('login');
+        }
+    }
+    // END  
+
 
 
  }

@@ -57,6 +57,13 @@
                   
                 </div>
 
+                <div class="contact">
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/hitung_log_part2">Cek Part 2</a></span>
+                  <div class="dot z-depth-1" style="border-color: green">
+                  </div>
+                  
+                </div>
+
               </div>
             </div>
           </div>
@@ -83,7 +90,7 @@
                                 
                   <?php if ($nm_try != $key['nm_try'] && $i==0): ?>
                 <div class="contact">
-                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/daftar_paket/<?=$key['id_try'] ?>" id="font-<?=$i;?>"><?=$key['nm_try']?></a></span>
+                  <span class="date"><a href="<?=base_url()?>/linetopik/hitung_log_part2/<?=$key['id_try'] ?>" id="font-<?=$i;?>"><?=$key['nm_try']?></a></span>
                   <span > <a style="margin-left: 80px;" class="waves-effect waves-light btn primary-color " href="<?=base_url()?>index.php/linetopik/report_tryout/<?=$key['id_try'] ?>" id="font-<?=$i;?>">Report</a></span>
 
 
