@@ -343,7 +343,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $data['soal'] = $query['soal'];
                 $data['pil'] = $query['pil'];
                 $this->load->view('t-baru/v-quiz-part3', $data);
-                $this->load->view('workout1/t-footer-soal');
+                $this->load->view('workout1/t-footer-part3');
             } else {
                 $this->errortest();
             }
