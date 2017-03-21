@@ -512,17 +512,20 @@
         return $tampil->result_array();
     }
 
-    function getreport()
+    function getreport($lim,$pel)
     {
         $id = $this->session->userdata['id_siswa'];
         $this->db->distinct();
-        $this->db->select('*, m.nama_mapel, m.id_mapel, max(r.score) as top');
+        // $this->db->select('*, m.nama_mapel, m.id_mapel, max(r.score) as top');
+        $this->db->select('r.id_bab, max(r.score) as top');
         $this->db->from('tb_mata_pelajaran m');
         $this->db->join('tb_report_quiz r', 'm.id_mapel=r.id_mapel');
         $this->db->where('m.status = 1');
         $this->db->where('r.id_pengguna', $id);
+         $this->db->where('m.id_mapel', $pel);
         $this->db->group_by('r.id_bab');
         $this->db->order_by('max(r.score)', 'DESC');
+        $this->db->limit($lim);
         $tampil=$this->db->get();
         return $tampil->result_array();
     }

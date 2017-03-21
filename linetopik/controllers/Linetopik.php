@@ -1295,7 +1295,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $uuid_quiz = uniqid();
             $data['id_sim'] = $this->Mlinetopik->get_soal_pendalaman($mp,$sim)[0]['id'];
 
-            // insert ke insert_tb_mm_sol_quiz
+           // insert ke insert_tb_mm_sol_quiz
             for ($i=0; $i < $jml_soal; $i++) { 
             foreach ($data['report'] as $row) {
                 $id= $this->Mlinetopik->getsoal2($row['id_bab'], $level);
@@ -1308,6 +1308,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "UUID" => $uuid_quiz
                 );
                 $this->Mlinetopik->insert_tb_mm_sol_quiz($data['mm_sol']);
+                
             };
             }
 
