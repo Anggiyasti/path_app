@@ -1295,7 +1295,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $uuid_quiz = uniqid();
             $data['id_sim'] = $this->Mlinetopik->get_soal_pendalaman($mp,$sim)[0]['id'];
 
-            // insert ke insert_tb_mm_sol_quiz
+           // insert ke insert_tb_mm_sol_quiz
             for ($i=0; $i < $jml_soal; $i++) { 
             foreach ($data['report'] as $row) {
                 $id= $this->Mlinetopik->getsoal2($row['id_bab'], $level);
@@ -1308,6 +1308,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "UUID" => $uuid_quiz
                 );
                 $this->Mlinetopik->insert_tb_mm_sol_quiz($data['mm_sol']);
+                
             };
             }
 
@@ -1460,6 +1461,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $log;
         
     }
+
+    // FUNGSI UNTUK  PENGECEKAN PART 1
+    public function hitung_log_part1($id_mapel)
+    {   
+        $id_siswa = $this->session->userdata('id_siswa');
+        //hak akses jika siswa
+        if ($id_siswa) {
+            // hitung jumlah id dari linetopik dan step yang ada di part1
+            $data1 = $this->Mlinetopik->get_count_p1($id_mapel); 
+            // hitung jumlah step yang telah dikerjakan
+            $data2 = $this->Mlinetopik->get_count_log1($id_mapel, $id_siswa);
+
+            // pengecekan jumlah step 
+            if ($data2 != $data1) {
+                $this->session->set_flashdata('msg','<div class="notification notification-danger">
+                                                        <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+                                                        <p>Part 1 Belum Selesai</p>
+                                                      </div>
+                                                ');
+                redirect('linetopik');
+            } else {
+                redirect('linetopik/line_simulasi/'.$id_mapel);
+            }
+        } else {
+            redirect('login');
+        }
+    }
+    // END  
 
 
 

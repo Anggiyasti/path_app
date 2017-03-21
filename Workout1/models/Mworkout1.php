@@ -191,7 +191,7 @@ class Mworkout1 extends CI_Model
     public function get_random_for_latihan_bab( $param ) {
         $this->db->where( 'b.id_bab', $param['id_bab'] );
         $this->db->where( 'b.publish', 1 );
-        $this->db->where( 'b.kesuitan', $param['kesulitan'] );
+        $this->db->where( 'b.kesulitan', $param['kesulitan'] );
         $this->db->order_by( 'rand()' );
         $this->db->limit( $param['jumlah_soal'] );
         $this->db->select( '*' );

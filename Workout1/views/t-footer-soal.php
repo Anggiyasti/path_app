@@ -66,6 +66,27 @@ var base_url = "<?php echo base_url();?>" ;
        e.preventDefault();
    });
 
+    // DISABLE F 5 
+
+    // KALO HALAMAN DI RELOAD
+    window.onbeforeunload = function (e) {
+      e = e || window.event;
+
+        // For IE and Firefox prior to version 4
+        if (e) {
+          e.returnValue = 'A search is in progress, do you really want to stop the search and close the tab?';
+        }
+
+        // For Safari
+        return 'A search is in progress, do you really want to stop the search and close the tab?';
+      };
+  // KALO HALAMAN DI RELOAD
+
+  window.onbeforeunload = function () {
+
+    return  "Are you sure want to LOGOUT the session ?";
+};
+
 
     function countup(hour, min, second, stat) {
 
@@ -253,10 +274,14 @@ var base_url = "<?php echo base_url();?>" ;
     }
 
     function kirimHasil(){
+      if (!$("input[type=radio]:checked").length > 0) {
+            // tidak ada jawaban yg di kirim
+            swal("Dibatalkan", "Maaf, anda tidak dapat mengirimkan lembar jawaban kosong!", "error");
+          }else{
         window.onbeforeunload = null;
         swal({
           title: "Yakin selesai mengerjakan?",
-          text: "kamu tidak akan bisa kembali ke latihan ini lagi!",
+          text: "Kamu tidak akan bisa kembali ke latihan ini lagi!",
           type: "warning",
           showCancelButton: true,
           confirmButtonColor: "#DD6B55",
@@ -269,15 +294,33 @@ var base_url = "<?php echo base_url();?>" ;
           if (isConfirm) {
             window.onbeforeunload = null;
             deleteAllCookies('seconds', 'minutes', 'hours');
-            document.getElementById("hasil").submit();
+            // document.getElementById("hasil").submit();
+            cek_workout();
           } else {
             swal("Dibatalkan", "Pengiriman LJK dibatalkan", "error");
           }
         });
        
        
-    }
+    }}
 
+    function cek_workout(){
+      $.ajax({
+                  type: "POST",
+                  dataType: "TEXT",
+                  url: base_url+"workout1/cekjawaban",
+                  data: $('#hasil').serialize(),
+
+                  success: function(){
+                    deleteAllCookies('seconds', 'minutes');
+                    window.localStorage.clear();
+                    window.location.href = base_url+"workout1";
+                  },error:function(){
+                    swal('Gagal menghubungkan ke server')
+                  }
+                });
+
+    }
 
 
     function kirimHasil2(){
