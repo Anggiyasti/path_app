@@ -804,6 +804,28 @@
         return $tampil->result_array()[0]['jumlah_step'];
     }
 
+    // get count simulasi
+    public function get_count_p2()
+    {
+        $this->db->distinct();
+        $this->db->select('count(id) as jumlah_simulasi');
+        $this->db->from('tb_part2');
+
+        $tampil=$this->db->get();
+        return $tampil->result_array()[0]['jumlah_part1'];
+    }
+
+     // get count simulasi dari tb_line_log part 2 berdasarkan pengguna
+    public function get_count_log2($id_siswa)
+    {
+        $this->db->select('COUNT( stepID ) AS jumlah_step');
+        $this->db->from('tb_line_log_part2');
+        $this->db->where('penggunaID', $id_siswa);
+
+        $tampil=$this->db->get();
+        return $tampil->result_array()[0]['jumlah_step'];
+    }
+
 
 
  }
