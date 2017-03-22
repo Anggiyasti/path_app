@@ -1093,17 +1093,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 );
             }
 
-            // get total soal yang dikerjakan
+           // get total soal yang dikerjakan
             $data['tot']=$this->Mlinetopik->get_total($pel);
+            $data_total = $this->Mlinetopik->get_total($pel);
+            if ($data_total) {
+               
+                $data['pel']= $data_total['nama_mapel'];
+                $mp =$data_total['id_mapel'];
+                $n1=$data_total['tot_path'];
+                $jml_benar =$data_total['benar'];
+                $jml_salah=$data_total['salah'];
+                $jml_soal=$data_total['jum_soal'];
+                $data['kosong'] = $data_total['kosong'];
+            }
 
-            $data['pel']=$this->Mlinetopik->get_total($pel)[0]['nama_mapel'];
-            $mp = $this->Mlinetopik->get_total($pel)[0]['id_mapel'];
-            $n1=$this->Mlinetopik->get_total($pel)[0]['tot_path'];
-            $jml_benar =$this->Mlinetopik->get_total($pel)[0]['benar'];
-            $jml_salah=$this->Mlinetopik->get_total($pel)[0]['salah'];
-            $jml_soal=$this->Mlinetopik->get_total($pel)[0]['jum_soal'];
-            $n4=$this->Mlinetopik->get_set_part2($pel)[0]['nilai_awal'];
-            $n5=$this->Mlinetopik->get_set_part2($pel)[0]['nilai_akhir'];
+            $data_path = $this->Mlinetopik->get_set_part2($pel);
+
+            if ($data_path) {
+                $n4=$data_path['nilai_awal'];
+                $n5=$data_path['nilai_akhir'];
+            }
 
             if ($jml_soal == 0) {
                 $data['total_pg'] = 0;
@@ -1146,7 +1155,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $data['nilai'] = $total;
         $data['benar'] = $jml_benar;
         $data['salah'] = $jml_salah; 
-        $data['kosong'] = $this->Mlinetopik->get_total($pel)[0]['kosong'];
     }
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
@@ -1510,7 +1518,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 ');
                 redirect('linetopik');
             } else {
-                redirect('linetopik/daftar_paket/'.$$id_try);
+                redirect('linetopik/daftar_paket/'.$id_try);
             }
         } else {
             redirect('login');

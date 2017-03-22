@@ -394,7 +394,12 @@
         $this->db->where('r.id_pengguna', $id);
         $this->db->where('r.id_mapel', $pel);
         $tampil=$this->db->get();
-        return $tampil->result_array();
+        // cek jika hasil query null
+        if($tampil->num_rows() == 1) {
+            return $tampil->result_array()[0];
+        }else{
+             return $result='';
+        }
     }
 
 
@@ -605,7 +610,12 @@
         $this->db->from('tb_setting_path');
         $this->db->where('id_mapel', $pel);
         $tampil=$this->db->get();
-        return $tampil->result_array();
+        // cek jika hasil query null
+        if($tampil->num_rows() == 1) {
+            return $tampil->result_array()[0];
+        }else{
+             return $result='';
+        }
     }
 
      // get simulasi part 2
@@ -812,7 +822,7 @@
         $this->db->from('tb_part2');
 
         $tampil=$this->db->get();
-        return $tampil->result_array()[0]['jumlah_part1'];
+        return $tampil->result_array()[0]['jumlah_simulasi'];
     }
 
      // get count simulasi dari tb_line_log part 2 berdasarkan pengguna

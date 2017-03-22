@@ -122,6 +122,14 @@
                             </div>
                             <div class="col-md-8" style="margin-bottom:0">
                                 <row>
+                                <div class="row">
+                                    <div class="col-md-6 center"></div>
+                                    <div class="col-md-2"></div>
+                                        <div class="col-md-8 text-right"> 
+                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnPrev"><<</button>
+                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnNext">>></button>
+                                        </div>
+                                    </div>
                                 <?php
                                     $i = 1;
                                     $nosoal = 1;
@@ -135,9 +143,8 @@
                                                     <div class="panel-collapse">
                                                         <div class="panel-body">
                                                             <div class="row">
-                                                                <div class="col-md-1 text-left">
+                                                                <div class="col-md-1 text-center">
                                                                     <p><h4><?= $i ?>.</h4></p>
-                                                                    <p><?=$key['soalid']?></p>
                                                                 </div>
                                                                 <div class="col-md-11">
                                                                     <?php if (!empty($key['gambar'])) { ?>       
@@ -262,14 +269,7 @@
                                     <!--/ END panel--> 
                                 </div>
 
-                                    <div class="row">
-                                    <div class="col-md-6 center"></div>
-                                    <div class="col-md-2"></div>
-                                        <div class="col-md-8 text-right"> 
-                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnPrev"><<</button>
-                                            <button class="btn btn-info" style="background-color: #2196F3;" id="btnNext">>></button>
-                                        </div>
-                                    </div>
+                                    
                             </row>  
                             </div>
 </div>
