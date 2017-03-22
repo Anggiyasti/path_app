@@ -39,8 +39,18 @@ class m_slide extends CI_Model
 	}
 
 	public function gambar_slide($id, $photo) {
+
+		$a  =  $this->input->post('judul');
+		$b  =  $this->input->post('resume');
+		$c  =  $this->input->post('isi');
+
         $data = array(
-            'gambar' => $photo
+            'gambar' => $photo,
+            'judul' => $a,
+            'resume' => $b,
+            'isi' => $c,
+            'gambar_artikel' => $photo
+
         );
         // $id_siswa = $this->session->userdata['email'];
         $this->db->where('id', $id);

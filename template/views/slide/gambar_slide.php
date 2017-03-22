@@ -3,6 +3,9 @@
   foreach ($slide as $row) {
     
      $id = $row['id'];
+     $judul = $row['judul'];
+     $resume = $row['resume'];
+     $isi = $row['isi'];
     
     $gambar=base_url().'assets/app/halo/img/'.$row['gambar'];
 
@@ -77,6 +80,19 @@
                 <div class="input-icon">
                 <label><p>Gambar tidak boleh lebih dari 2mb (700x1050)</p></label>
                     <input  type="file" id="file" name="photo" class="btn " required="true" onchange="ValidateSingleInput(this);" />
+                    <div class="input-field">
+                    <input type="text" class="validate" placeholder="Nama Selolah" name="nama_sekolah" value="<?=$namaskul; ?>">
+                    <?php echo form_error('nama_sekolah'); ?>
+                    </div>
+                    <div class="input-field">
+                    <input type="email" class="validate" placeholder="email" name="email" value="<?=$email; ?>">
+                    <?php echo form_error('email'); ?>
+                    </div>
+                    <div class="input-field">
+                    <input type="text" class="validate" placeholder="no Telepon" name="no_tlp" value="<?=$no; ?>">
+                    <?php echo form_error('no_tlp'); ?>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
 

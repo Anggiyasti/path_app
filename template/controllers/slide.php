@@ -36,6 +36,8 @@
 
   public function gambar_slide($id) {
 
+        
+
         // unlink(FCPATH . "./assets/images/mapel/" . $id);
         $config['upload_path'] = './assets/app/halo/img';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
