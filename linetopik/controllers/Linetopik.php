@@ -20,19 +20,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $jur = $this->Mlinetopik->get_jurusan($sis);
            
-            $data['mapel'] = $this->load->Mlinetopik->getmapeltopik();
+            $data['mapel'] = $this->load->Mlinetopik->getmapeltopik($jur);
+            // update status path siswa menjadi tidak bisa ubah jurusan pelajaran
+            $this->Mlinetopik->update_status_siswa($sis);
+
             $lim = $this->load->Mlinetopik->tampil_active()[0]['active'];
             
             $id = $this->session->userdata['id_siswa'];
 
-            // $this->logtry($id,$lim);
-
-
-            $step=false;
-            $urutan = 1;
-
-            if ($step == true || $urutan == '1' ) {
             $log=$this->Mlinetopik->get_cek_logtry($id);
             $cek = $log;
 
@@ -44,14 +43,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $data['to'] = $this->load->Mlinetopik->get_to_log($id);
 
                     }
-            $sis = $this->session->userdata('id_siswa');
-            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            
             $this->load->view('template/siswa2/v-header', $data);
-            // $this->load->view('t-baru/v-line-bab', $data);
             $this->load->view('t-baru/v-mapel-part', $data);
             $this->load->view('template/siswa2/v-footer');
 
-        }
 
         } else {
             redirect('login');

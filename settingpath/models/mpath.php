@@ -179,4 +179,16 @@
 		return $tampil->result_array();
 	}
 
+	// update setting path 
+	public function update_status_path($data) {
+		$arr = array(
+			'status'=> $data
+		);
+
+        $this->db->where('id =1');
+        $this->db->update('tb_status_path', $arr);
+    }
+
  }
+
+?>

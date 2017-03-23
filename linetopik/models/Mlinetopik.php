@@ -294,11 +294,13 @@
     }
 
     // get mapel
-    public function getmapeltopik(){
+    public function getmapeltopik($jur){
         $this->db->distinct();
         $this->db->select('m.id_mapel, m.nama_mapel, m.alias_mapel');
         $this->db->from('tb_mata_pelajaran m');
         $this->db->where('m.status = 1');
+        $this->db->where('m.jurusan', $jur);
+        $this->db->or_where('m.jurusan', 'SEMUA');
         $this->db->group_by('m.nama_mapel');
         $tampil=$this->db->get();
         return $tampil->result_array();
@@ -834,6 +836,36 @@
 
         $tampil=$this->db->get();
         return $tampil->result_array()[0]['jumlah_step'];
+    }
+
+    // get jurusan pelajaran siswa
+    public function get_jurusan($siswa){
+        $this->db->select('jurusan_pelajaran');
+        $this->db->from('tb_siswa');
+        $this->db->where('status = 1');
+        $this->db->where('id_siswa', $siswa);
+        $tampil=$this->db->get();
+        return $tampil->result_array()[0]['jurusan_pelajaran'];
+    }
+
+    // update status path siswa 
+    public function update_status_siswa($id_siswa) {
+        $arr = array(
+            'status_path'=> '1'
+        );
+
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->update('tb_siswa', $arr);
+    }
+
+    // get jurusan pelajaran siswa
+    public function get_status_p($siswa){
+        $this->db->select('status_path');
+        $this->db->from('tb_siswa');
+        $this->db->where('status = 1');
+        $this->db->where('id_siswa', $siswa);
+        $tampil=$this->db->get();
+        return $tampil->result_array()[0]['status_path'];
     }
 
 

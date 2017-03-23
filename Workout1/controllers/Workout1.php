@@ -110,7 +110,10 @@ class Workout1 extends MX_Controller
     function next($bab) {
         if ($this->session->userdata('id_siswa')) {
             $data['bab'] = $bab;
-            // var_dump($data);
+
+            // pengecekan soalnya ada atau tidak            
+            $data['soalid']  = $this->Mworkout1->cek_soal($bab);
+
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
             $data['nilai'] = $this->Mworkout1->nilai_tertinggi();

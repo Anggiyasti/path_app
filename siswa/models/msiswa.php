@@ -22,7 +22,7 @@ class Msiswa extends CI_Model {
 
 		$id_siswa=$this->session->userdata['email'] ;	
 
-		$this->db->select('id_siswa,nama_depan,nama_belakang,password,email,alamat,no_tlp,nama_sekolah,status,photo, jurusan, univ,biografi,facebook,twitter,instagram, jurusan_pelajaran');
+		$this->db->select('id_siswa,nama_depan,nama_belakang,password,email,alamat,no_tlp,nama_sekolah,status,photo, jurusan, univ,biografi,facebook,twitter,instagram, jurusan_pelajaran, status_path');
 
 		$this->db->from('tb_siswa');
 
