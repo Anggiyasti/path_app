@@ -1,9 +1,8 @@
-<div id="content" class="bg-v-2">
+     <div id="content">
 
         <!-- Toolbar -->
-        <div id="toolbar" style="background-color: #19305B;">
+        <div id="toolbar" class="halo-nav box-shad-none">
           <div class="open-left" id="open-left" data-activates="slide-out-left">
-
             <i class="ion-android-menu"></i>
           </div>
           <span class="title">Halo</span>
@@ -13,53 +12,51 @@
         </div>
         
         <!-- Main Content -->
-        <div class="animated fadeinup">
+        <div class="animated fadeinup fullscreen">
           
           <!-- Slider -->         
-          <div class="swiper-container slider-sliced">
+          <div class="swiper-container slider slider-fullscreen">
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
+              <div class="swiper-slide ">
               <?php foreach ($data as $d ) :?>
               <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
              <?php endforeach ?>
-
-                <div class="slider-bottom-right valign-wrapper">
-                
-                  <div class="valign center-align width-100 p-b-5em">
-                    <h2 class="uppercase">Halo</h2>
-                    <p>Is a mobile website, developed to make your life easer!</p>
-                  </div>
+                <div class="opacity-overlay-black"></div>
+                <div class="bottom-abs left-align">
+                  <h4 class="slider-title uppercase white-text"><?=$d['judul'] ?></h4>
+                  <p class="slider-text small white-text"><?=$d['resume'] ?></p>
+                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id'] ?>">Read More</a> 
                 </div>
               </div>
-              <div class="swiper-slide">
 
-              <?php foreach ($dataa as $d ) :?>
+              <div class="swiper-slide ">
+               <?php foreach ($dataa as $d ) :?>
               <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
              <?php endforeach ?>
-                <div class="slider-bottom-left valign-wrapper">
-                  <div class="valign left-align width-100 p-b-5em">
-                    <h2 class="uppercase">Halo</h2>
-                    <p>Is a mobile website, developed to make your life easer!</p>
-                  </div>
+                <div class="opacity-overlay-black"></div>
+                <div class="bottom-abs center-align">
+                  <h4 class="slider-title uppercase white-text"><?=$d['judul'] ?></h4>
+                  <p class="slider-text small white-text"><?=$d['resume'] ?></p>
+                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id'] ?>">Read More</a> 
                 </div>
               </div>
+
               <div class="swiper-slide">
               <?php foreach ($dataaa as $d ) :?>
               <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
              <?php endforeach ?>
-                <div class="slider-bottom-right valign-wrapper">
-                  <div class="valign right-align width-100 p-b-5em">
-                    <h2 class="uppercase">Halo</h2>
-                    <p>Is a mobile website, developed to make your life easer!</p>
-                  </div>
+                <div class="opacity-overlay-black"></div>
+                <div class="bottom-abs right-align">
+                  <h4 class="slider-title uppercase white-text"><?=$d['judul'] ?></h4>
+                  <p class="slider-text small white-text"><?=$d['resume'] ?></p>
+                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id'] ?>">Read More</a> 
                 </div>
               </div>
             </div>
             <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-          </div>
+            <div class="swiper-pagination white-bullet"></div>
           <!-- End of Slider -->
-
+          </div>
         </div> <!-- End of Main Contents -->
       
        

@@ -154,15 +154,7 @@ class Login extends MX_Controller
         $data['dataaa']= $this->Loginmodel->tampilphoto3();   
 
         // var_dump($data);
-        
-      
-            // $this->load->view('siswa/layout/header');
-            // $this->load->view('siswa/layout/sidebar');
-            // $this->load->view('siswa/layout/nav');
-
-            // $this->load->view('template/siswa/v-head');
-            // $this->load->view('siswa/home',$data);
-            // $this->load->view('template/siswa/v-footer');
+    
             $this->load->view('template/siswa2/v-header',$data);
             $this->load->view('siswa/home2',$data);
             $this->load->view('template/siswa2/v-footer');
@@ -173,6 +165,34 @@ class Login extends MX_Controller
             redirect('Login');
         }
     }
+
+    function tampil_article($id){
+
+       if ($this->session->userdata('id_siswa')) {
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        // $data['logmax']  = $this->Loginmodel->getlogmax();
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        $data['log']  = $this->Loginmodel->getlogact();
+        $data['data']= $this->Loginmodel->tampilarticle($id);
+
+
+        // var_dump($data);
+    
+            $this->load->view('template/siswa2/v-header',$data);
+            $this->load->view('siswa/v-article',$data);
+            $this->load->view('template/siswa2/v-footer');
+            
+
+        }
+        else{
+            redirect('Login');
+        }
+    }
+
+
+
+
     
     function cek_login_guru(){
         if ($this->session->userdata('id_guru')) {

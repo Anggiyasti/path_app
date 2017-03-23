@@ -293,7 +293,7 @@ function get_admin($id_admin){
       // tampil slide foto
     public function tampilphoto() {
         $this->db->distinct();
-        $this->db->select('id,gambar');
+        $this->db->select('*');
         $this->db->from('tb_gambar_front');
         $this->db->where('id', '1');
         $tampil=$this->db->get();
@@ -301,7 +301,7 @@ function get_admin($id_admin){
     }
       public function tampilphoto2() {
         $this->db->distinct();
-        $this->db->select('id,gambar');
+        $this->db->select('*');
         $this->db->from('tb_gambar_front');
         $this->db->where('id', '2');
         $tampil=$this->db->get();
@@ -309,9 +309,20 @@ function get_admin($id_admin){
     }
       public function tampilphoto3() {
         $this->db->distinct();
-        $this->db->select('id,gambar');
+        $this->db->select('*');
         $this->db->from('tb_gambar_front');
         $this->db->where('id', '3');
+        $tampil=$this->db->get();
+        return $tampil->result_array();
+    }
+
+
+        // tampil articel
+    public function tampilarticle($id) {
+        $this->db->distinct();
+        $this->db->select('*');
+        $this->db->from('tb_gambar_front');
+        $this->db->where('id',$id);
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
