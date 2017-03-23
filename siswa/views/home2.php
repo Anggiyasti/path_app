@@ -23,9 +23,9 @@
              <?php endforeach ?>
                 <div class="opacity-overlay-black"></div>
                 <div class="bottom-abs left-align">
-                  <h4 class="slider-title uppercase white-text">while the lovely valley teems</h4>
-                  <p class="slider-text small white-text">I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms.</p>
-                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="article.html">Read More</a> 
+                  <h4 class="slider-title uppercase white-text"><?=$d['judul'] ?></h4>
+                  <p class="slider-text small white-text"><?=$d['resume'] ?></p>
+                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id'] ?>">Read More</a> 
                 </div>
               </div>
 
@@ -35,9 +35,9 @@
              <?php endforeach ?>
                 <div class="opacity-overlay-black"></div>
                 <div class="bottom-abs center-align">
-                  <h4 class="slider-title uppercase white-text">while the lovely valley teems</h4>
-                  <p class="slider-text small white-text">I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms.</p>
-                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="article.html">Read More</a> 
+                  <h4 class="slider-title uppercase white-text"><?=$d['judul'] ?></h4>
+                  <p class="slider-text small white-text"><?=$d['resume'] ?></p>
+                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id'] ?>">Read More</a> 
                 </div>
               </div>
 
@@ -47,9 +47,9 @@
              <?php endforeach ?>
                 <div class="opacity-overlay-black"></div>
                 <div class="bottom-abs right-align">
-                  <h4 class="slider-title uppercase white-text">while the lovely valley teems</h4>
-                  <p class="slider-text small white-text">I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms.</p>
-                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="article.html">Read More</a> 
+                  <h4 class="slider-title uppercase white-text"><?=$d['judul'] ?></h4>
+                  <p class="slider-text small white-text"><?=$d['resume'] ?></p>
+                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id'] ?>">Read More</a> 
                 </div>
               </div>
             </div>

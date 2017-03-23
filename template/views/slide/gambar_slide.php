@@ -6,10 +6,11 @@
      $judul = $row['judul'];
      $resume = $row['resume'];
      $isi = $row['isi'];
-    
-    $gambar=base_url().'assets/app/halo/img/'.$row['gambar'];
+     $gambar=base_url().'assets/app/halo/img/'.$row['gambar'];
+     $oldphoto=$row['gambar'];
 
-    $oldphoto=$row['gambar'];
+     $gambar_artikel=base_url().'assets/app/halo/img/'.$row['gambar_artikel'];
+     $oldphoto=$row['gambar_artikel'];
 
 
 } ;
@@ -25,22 +26,6 @@
             <!-- START Template Container -->
             <div class="container-fluid">
                 <!-- Page Header -->
-                <div class="page-header page-header-block">
-                    <div class="page-header-section">
-                        <h4 class="title semibold">BANK SOAL</h4>
-                    </div>
-                    <div class="page-header-section">
-                        <!-- Toolbar -->
-                        <div class="toolbar">
-                            <ol class="breadcrumb breadcrumb-transparent nm">
-                                <li><a href="javascript:void(0);">Form</a></li>
-                                <li class="active">Elements</li>
-                            </ol>
-                        </div>
-                        <!--/ Toolbar -->
-                    </div>
-                </div>
-                <!-- Page Header -->
 
                 <!-- START row -->
                 <div class="row">
@@ -49,11 +34,50 @@
                         <div class="panel panel-default">
                             <!-- panel heading/header -->
                             <div class="panel-heading">
-                                <h3 class="panel-title">Form Soal</h3>
+                                <h3 class="panel-title">Form Home</h3>
                             </div>
                             <!--/ panel heading/header -->
                             <!-- panel body -->
-                           <div class="one-half-responsive last-column" id="photo">
+                           
+           <?php echo $this->session->flashdata('msg'); ?> 
+            <form name="form-account" action="<?=base_url()?>index.php/template/slide/gambar_slide/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+             <div class="form-group">
+                                        <label class="col-sm-2">Judul Soal</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="judul" name="judul" value="<?=$judul;?>">
+                                            <br>
+                      <span id="pesan"></span>
+                                        </div>
+                                    </div>
+                                      <div class="form-group">
+                                        <label class="col-sm-2">Resume</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" placeholder="resume" name="resume"><?=$resume; ?></textarea>
+                                             <br>
+                      <span id="pesan"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Isi</label>
+                                        <div class="col-sm-10">
+                                           <textarea  name="editor1" class="form-control" id="" value="">
+                                <?=$isi; ?></textarea>
+                                            <br>
+                                        <span id="pesan"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Gambar Slide</label>
+                                        <div class="col-sm-10">
+                                            <img id="preview" class="img-bordered" src="<?=$gambar;?>" alt="" width="700px" height="1050px" />
+                                            <div class="input-icon">
+                                            <label><p>Gambar tidak boleh lebih dari 2mb (700x1050)</p></label>
+                                            <input  type="file" id="file" name="photo" class="btn " onchange="ValidateSingleInput(this);" />
+                                            <br>
+
+                                            <br>
+
+                                            <div class="one-half-responsive last-column" id="photo">
 
             <div class="notification notification-danger" id="notif" hidden="true">
             <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
@@ -67,36 +91,24 @@
             <p>Ukuran yang bisa di upload maksimal 2mb ! </p>
           </div>
 
-           <?php echo $this->session->flashdata('msg'); ?> 
-            <form name="form-account" action="<?=base_url()?>index.php/Slidder/gambar_slide/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                      <span id="pesan"></span>
+                                        </div>
+                                    </div>
+
+                                    
 
 
+                                     <div class="content">
 
-            <div class="content">
+            
 
-            <img id="preview" class="img-bordered" src="<?=$gambar;?>" alt="" width="700px" height="1050px" />
+                   
 
-             
-                <div class="input-icon">
-                <label><p>Gambar tidak boleh lebih dari 2mb (700x1050)</p></label>
-                    <input  type="file" id="file" name="photo" class="btn " required="true" onchange="ValidateSingleInput(this);" />
-                    <div class="input-field">
-                    <input type="text" class="validate" placeholder="Nama Selolah" name="nama_sekolah" value="<?=$namaskul; ?>">
-                    <?php echo form_error('nama_sekolah'); ?>
-                    </div>
-                    <div class="input-field">
-                    <input type="email" class="validate" placeholder="email" name="email" value="<?=$email; ?>">
-                    <?php echo form_error('email'); ?>
-                    </div>
-                    <div class="input-field">
-                    <input type="text" class="validate" placeholder="no Telepon" name="no_tlp" value="<?=$no; ?>">
-                    <?php echo form_error('no_tlp'); ?>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                   
                 </div>
 
             </div>
+             <button type="submit" class="btn btn-primary">Simpan</button>
 
              
             </form>
@@ -110,7 +122,76 @@
 
             <!-- START To Top Scroller -->
             <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
+
+
+
             <!--/ END To Top Scroller -->
+
+             <!-- START row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- START panel -->
+                        <div class="panel panel-default">
+                            <!-- panel heading/header -->
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Form Home</h3>
+                            </div>
+                            <!--/ panel heading/header -->
+                            <!-- panel body -->
+                           <div class="one-half-responsive last-column" id="photo">
+
+            <div class="notification notification-danger" id="notifww" hidden="true">
+            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+            <h4>Silahkan cek type extension gambar!</h4>
+            <p>Type yang bisa di upload hanya .jpeg|.gif|.jpg|.png|.bmp</p>
+          </div>
+
+          <div class="notification notification-danger" id="sizeww" hidden="true">
+            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+            <h4>Silahkan cek ukuran gambar!</h4>
+            <p>Ukuran yang bisa di upload maksimal 2mb ! </p>
+          </div>
+
+           <?php echo $this->session->flashdata('msg'); ?> 
+            <form name="form-account" action="<?=base_url()?>index.php/template/slide/gambararticle/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <br>
+             
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Gambar Artikel</label>
+                                        <div class="col-sm-10">
+                                            <img id="preview" class="img-bordered" src="<?=$gambar_artikel;?>" alt="" width="700px" height="467px" />
+                                            <div class="input-icon">
+                                            <label><p>Gambar tidak boleh lebih dari 2mb (700x467)</p></label>
+                                            <input  type="file" id="file" name="photo" class="btn " onchange="ValidateSingleInput(this);" />
+                                            <br>
+
+                                            <br>
+                      <span id="pesan"></span>
+                                        </div>
+                                    </div>
+
+                                     <button type="submit" class="btn btn-primary">Simpan</button>
+
+
+                                     <div class="content">
+
+            
+
+                   
+
+                   
+                </div>
+
+            </div>
+
+             
+            </form>
+        </div>
+                            <!-- panel body -->
+                        </div>
+                        <!--/ END form panel -->
+                    </div>
+                </div>
 
         </section>
         <!--/ END Template Main -->
@@ -118,6 +199,9 @@
 
 
 <script type="text/javascript">
+
+ CKEDITOR.replace( 'editor1' );
+
  var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];    
 
 function ValidateSingleInput(oInput) {
@@ -142,7 +226,7 @@ function ValidateSingleInput(oInput) {
             }
 
             file = oInput.files[0];
-            if (file.size > 508000 ) {
+            if (file.size > 508 ) {
                $('#size').show();
                return false;
             } 
@@ -151,6 +235,12 @@ function ValidateSingleInput(oInput) {
     }
     return true;
 }
+
+
+
+
+
+
 </script>
 
 

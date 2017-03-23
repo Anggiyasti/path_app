@@ -36,8 +36,6 @@
 
   public function gambar_slide($id) {
 
-        
-
         // unlink(FCPATH . "./assets/images/mapel/" . $id);
         $config['upload_path'] = './assets/app/halo/img';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
@@ -66,6 +64,46 @@
             $file_data = $this->upload->data();
             $photo = $file_data['file_name'];
             $this->m_slide->gambar_slide($id,$photo);
+            echo "berhasil upload"; 
+            //for testing
+            // $data['img'] = base_url().'/images/'.$file_data['file_name'];
+            // $this->load->view('beranda/success_msg',$data);
+            
+        }
+    }
+
+
+
+    public function gambararticle($id) {
+
+        // unlink(FCPATH . "./assets/images/mapel/" . $id);
+        $config['upload_path'] = './assets/app/halo/img';
+        $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
+        $config['max_size'] = 2000;
+        $config['max_width'] = 700;
+        $config['max_height'] = 467;
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('photo')) {
+
+
+
+            $data['error'] = array('error' => $this->upload->display_errors());
+            $data['slide'] = $this->m_slide->get_gambarslide($id);
+            if ($this->session->userdata('id_admin')) {
+            $this->load->view('admin/layout/header');
+          $this->load->view('slide/gambar_slide',$data);
+          $this->load->view('admin/layout/footer');
+        }
+        else{
+          
+        }
+
+            // $this->load->view('beranda/main_view',$error);,
+        } else {
+            $file_data = $this->upload->data();
+            $photo = $file_data['file_name'];
+            $this->m_slide->gambar_artikel($id,$photo);
             echo "berhasil upload"; 
             //for testing
             // $data['img'] = base_url().'/images/'.$file_data['file_name'];

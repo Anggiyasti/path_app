@@ -42,14 +42,29 @@ class m_slide extends CI_Model
 
 		$a  =  $this->input->post('judul');
 		$b  =  $this->input->post('resume');
-		$c  =  $this->input->post('isi');
+		$c  =  $this->input->post('editor1');
 
         $data = array(
             'gambar' => $photo,
             'judul' => $a,
             'resume' => $b,
             'isi' => $c,
-            'gambar_artikel' => $photo
+            // 'gambar_artikel' => $photo
+
+        );
+        // $id_siswa = $this->session->userdata['email'];
+        $this->db->where('id', $id);
+        $this->db->update('tb_gambar_front', $data);
+        // var_dump($data);
+        redirect(site_url('template/slide'));
+    }
+
+    public function gambar_artikel($id, $photo) {
+
+		
+        $data = array(
+            'gambar_artikel' => $photo,
+            
 
         );
         // $id_siswa = $this->session->userdata['email'];
