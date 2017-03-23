@@ -114,6 +114,7 @@
                     <label>biografi</label>
                     <input type="text" class="input-text-box input-green-border" name="biografi" value="<?=$bio; ?>" disabled>
                 </div>
+                
             </div>
             <div class="content">
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
