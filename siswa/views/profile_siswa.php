@@ -34,6 +34,10 @@
 
     $universitas = $row['univ'];
 
+    $jurusan_sekolah = $row['jurusan_pelajaran'];
+
+    $stat = $row['status_path'];
+
     $photo=base_url().'assets/images/siswa/'.$row['photo'];
 
     $oldphoto=$row['photo'];
@@ -62,7 +66,6 @@
             <?php echo $this->session->flashdata('msg'); ?> 
             <form action="<?=base_url()?>index.php/Siswa/edit_siswa" method="post">
               <div class="input-field">
-
                 <input type="text" class="validate" name="nama_depan" placeholder="Nama Depan" value="<?=$nama_depan; ?>">
                 <?php echo form_error('nama_depan'); ?>
               </div>
@@ -93,8 +96,24 @@
             <div class="input-field">
               <input type="text" class="validate" name="" value="<?=$jur; ?>" disabled>
             </div>
-            
-
+            <h5>Jurusan :</h5>
+            <?php if ($stat == '1') : ?>
+              <input type="text" name="jurusan_sekolah" value="<?=$jurusan_sekolah;?>" id='tampjurusan' hidden="true">
+              <select class="browser-default m-b-30" name="jurusan_sekolah">
+                <option value="0" id="kosong" disabled>--Pilih Jurusan--</option>
+                <option value="IPA" id="ipa" disabled>IPA</option>
+                <option value="IPS" id="ips" disabled>IPS</option>
+                <option value="IPC" id="ipc" disabled>IPC</option>
+              </select> 
+            <?php else : ?>
+              <input type="text" name="jurusan_sekolah" value="<?=$jurusan_sekolah;?>" id='tampjurusan' hidden="true" disabled>
+              <select class="browser-default m-b-30" name="jurusan_sekolah">
+                <option value="0" id="kosong">--Pilih Jurusan--</option>
+                <option value="IPA" id="ipa">IPA</option>
+                <option value="IPS" id="ips">IPS</option>
+                <option value="IPC" id="ipc">IPC</option>
+              </select> 
+            <?php endif; ?>
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
             <!-- <button class="waves-effect waves-light btn-large primary-color width-100" name="update" type=""> Submit</button> -->
             <input type="submit"   name="update" value="Update" class="btn-large primary-color width-100"  >
@@ -330,5 +349,17 @@ function ValidateSingleInput(oInput) {
     }
     return true;
 }
+
+// set option jurusan sekolah ################
+           var tampjur=$('#tampjurusan').val();
+          if (tampjur == 'IPA') {
+            $('#ipa').attr('selected','selected');
+          }else if (tampjur == 'IPS') {
+            $('#ips').attr('selected','selected');
+          }else if (tampjur == 'IPC') {
+            $('#ipc').attr('selected','selected');
+          }else{
+            $('#kosong').attr('selected','selected');
+          }
 </script>
 <!-- END -->

@@ -101,21 +101,17 @@ class Siswa extends MX_Controller {
 	public function Profilesiswa() {
 
     if ($this->session->userdata('id_siswa')) {
-    $sis = $this->session->userdata('id_siswa');
-    $data['siswa']  = $this->Loginmodel->get_siswa($sis);   
-    $data['sis'] = $this->Msiswa->get_siswa();
-    $data['univ']=$this->Msiswa->getuniv();
-    $data['email']=$this->session->userdata['email'];
-    $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
-    $data['log']  = $this->Loginmodel->getlogact();
-    
-    	// $this->load->view('layout/header');
-     //    $this->load->view('layout/sidebar');
-     //    $this->load->view('profilesetsiswa',$data);
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);   
+        $data['sis'] = $this->Msiswa->get_siswa();
+        $data['univ']=$this->Msiswa->getuniv();
+        $data['email']=$this->session->userdata['email'];
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        $data['log']  = $this->Loginmodel->getlogact();
 
-    $this->load->view('template/siswa2/v-header',$data);
-    $this->load->view('profile_siswa',$data);
-    $this->load->view('template/siswa2/v-footer');
+        $this->load->view('template/siswa2/v-header',$data);
+        $this->load->view('profile_siswa',$data);
+        $this->load->view('template/siswa2/v-footer');
     }
     else{
         redirect('Login');

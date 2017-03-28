@@ -20,19 +20,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $jur = $this->Mlinetopik->get_jurusan($sis);
            
-            $data['mapel'] = $this->load->Mlinetopik->getmapeltopik();
+            $data['mapel'] = $this->load->Mlinetopik->getmapeltopik($jur);
+            // update status path siswa menjadi tidak bisa ubah jurusan pelajaran
+            $this->Mlinetopik->update_status_siswa($sis);
+
             $lim = $this->load->Mlinetopik->tampil_active()[0]['active'];
             
             $id = $this->session->userdata['id_siswa'];
 
-            // $this->logtry($id,$lim);
-
-
-            $step=false;
-            $urutan = 1;
-
-            if ($step == true || $urutan == '1' ) {
             $log=$this->Mlinetopik->get_cek_logtry($id);
             $cek = $log;
 
@@ -44,14 +43,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $data['to'] = $this->load->Mlinetopik->get_to_log($id);
 
                     }
-            $sis = $this->session->userdata('id_siswa');
-            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            
             $this->load->view('template/siswa2/v-header', $data);
-            // $this->load->view('t-baru/v-line-bab', $data);
             $this->load->view('t-baru/v-mapel-part', $data);
             $this->load->view('template/siswa2/v-footer');
 
-        }
 
         } else {
             redirect('login');
@@ -1093,17 +1089,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 );
             }
 
-            // get total soal yang dikerjakan
+           // get total soal yang dikerjakan
             $data['tot']=$this->Mlinetopik->get_total($pel);
+            $data_total = $this->Mlinetopik->get_total($pel);
+            if ($data_total) {
+               
+                $data['pel']= $data_total['nama_mapel'];
+                $mp =$data_total['id_mapel'];
+                $n1=$data_total['tot_path'];
+                $jml_benar =$data_total['benar'];
+                $jml_salah=$data_total['salah'];
+                $jml_soal=$data_total['jum_soal'];
+                $data['kosong'] = $data_total['kosong'];
+            }
 
-            $data['pel']=$this->Mlinetopik->get_total($pel)[0]['nama_mapel'];
-            $mp = $this->Mlinetopik->get_total($pel)[0]['id_mapel'];
-            $n1=$this->Mlinetopik->get_total($pel)[0]['tot_path'];
-            $jml_benar =$this->Mlinetopik->get_total($pel)[0]['benar'];
-            $jml_salah=$this->Mlinetopik->get_total($pel)[0]['salah'];
-            $jml_soal=$this->Mlinetopik->get_total($pel)[0]['jum_soal'];
-            $n4=$this->Mlinetopik->get_set_part2($pel)[0]['nilai_awal'];
-            $n5=$this->Mlinetopik->get_set_part2($pel)[0]['nilai_akhir'];
+            $data_path = $this->Mlinetopik->get_set_part2($pel);
+
+            if ($data_path) {
+                $n4=$data_path['nilai_awal'];
+                $n5=$data_path['nilai_akhir'];
+            }
 
             if ($jml_soal == 0) {
                 $data['total_pg'] = 0;
@@ -1146,7 +1151,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $data['nilai'] = $total;
         $data['benar'] = $jml_benar;
         $data['salah'] = $jml_salah; 
-        $data['kosong'] = $this->Mlinetopik->get_total($pel)[0]['kosong'];
     }
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
@@ -1510,7 +1514,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 ');
                 redirect('linetopik');
             } else {
-                redirect('linetopik/daftar_paket/'.$$id_try);
+                redirect('linetopik/daftar_paket/'.$id_try);
             }
         } else {
             redirect('login');

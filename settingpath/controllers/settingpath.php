@@ -477,6 +477,37 @@ class settingpath extends MX_Controller {
       }
     }
 
+    // FUNGSI UNTUK VIEW FORM STATUS PATH
+    public function stat_path()
+    {
+
+      if ($this->session->userdata('id_admin')) {
+          $this->load->view('admin/layout/header');
+          $this->load->view('v-status-path');
+          $this->load->view('admin/layout/footer');
+      } elseif ($this->session->userdata('id_guru')) {
+          $this->load->view('guru/layout/header');
+          $this->load->view('v-status-path');
+          $this->load->view('guru/layout/footer');
+      } else {
+        redirect('login');
+      }
+      
+    }
+    // END
+
+    // FUNGSI UNTUK UPDATE STATUS PATH
+    public function update_stat_path()
+    {
+      if ($this->input->post()) {
+        $post = $this->input->post();
+        $status =$this->input->post('status');
+
+        $this->mpath->update_status_path($status);
+      }
+    }
+    // END/
+
 
 
 }
