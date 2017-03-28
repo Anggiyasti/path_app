@@ -175,8 +175,6 @@ class Login extends MX_Controller
         $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
         $data['log']  = $this->Loginmodel->getlogact();
         $data['data']= $this->Loginmodel->tampilarticle($id);
-
-
         // var_dump($data);
     
             $this->load->view('template/siswa2/v-header',$data);
