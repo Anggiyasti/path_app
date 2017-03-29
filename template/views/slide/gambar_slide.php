@@ -5,7 +5,6 @@
      $id = $row['id'];
      $judul = $row['judul'];
      $resume = $row['resume'];
-     $isi = $row['isi'];
      $gambar=base_url().'assets/app/halo/img/'.$row['gambar'];
      $oldphoto=$row['gambar'];
 } ;
