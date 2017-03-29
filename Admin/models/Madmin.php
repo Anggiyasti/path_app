@@ -30,7 +30,7 @@
 		return $query->result_array();
 
 	}
-
+//model untuk update profile admin
 	public function update_admin() {
 		$a  =  $this->input->post('id_admin');
 		$b  =  $this->input->post('username');
@@ -47,6 +47,7 @@
 		$this->db->where('id_admin', $a);
 		return $this->db->update('tb_admin', $arr);
 	}
+
 
 	function getmapel(){
 	$this->db->order_by('nama_mapel','ASC');

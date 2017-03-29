@@ -12,6 +12,7 @@
             <i class="ion-android-person"></i>
           </div>
         </div>
+        <!-- variable untuk passsing grade -->
              <?php 
         $no1 = 1;
         $no2 = 2;
@@ -33,7 +34,10 @@
 
          <!-- Hero Header -->
         <div class="h-banner animated fadeindown">
-          <div class="parallax bg-9"> <div>  <?php foreach ($dataa as $d ) :?>
+          <div class="parallax bg-9"> 
+
+          <div>  <?php foreach ($dataa as $d ) :?>
+          <!-- menampilkan gambar -->
               <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
              <?php endforeach ?></div>
             <div class="floating-button animated bouncein delay-3">

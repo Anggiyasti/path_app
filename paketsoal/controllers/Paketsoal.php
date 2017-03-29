@@ -50,7 +50,7 @@ class paketsoal extends MX_Controller
 	}
 	#
 
-	#menampilkan semoa paket soal
+	#menampilkan semua paket soal
 	function ajax_list() {
 		$list = $this->load->mpaketsoal->getpaketsoal();
 		$data = array();
@@ -242,16 +242,11 @@ class paketsoal extends MX_Controller
 			$data['id_paket']=$idpaket;
 			$data['mapel']=$this->Modelbank->getmapel();
 			
-			// $data['files'] = array(
-			// 	APPPATH.'modules/paketsoal/views/v-add-soal.php',
-			// 	);	
 			$this->load->view('admin/layout/header');
           	$this->load->view('v-add-soal.php', $data);
           	$this->load->view('admin/layout/footer');
 		} else {
-			// $data['files'] = array(
-			// 	APPPATH . 'modules/templating/views/v-data-notfound.php',
-			// 	);
+		
 			$this->load->view('admin/layout/header');
           	$this->load->view('v-data-notfound.php', $data);
           	$this->load->view('admin/layout/footer');

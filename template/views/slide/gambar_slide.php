@@ -138,23 +138,12 @@
                             </div>
                             <!--/ panel heading/header -->
                             <!-- panel body -->
-                           <div class="one-half-responsive last-column" id="photo">
-
-            <div class="notification notification-danger" id="notifww" hidden="true">
-            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
-            <h4>Silahkan cek type extension gambar!</h4>
-            <p>Type yang bisa di upload hanya .jpeg|.gif|.jpg|.png|.bmp</p>
-          </div>
-
-          <div class="notification notification-danger" id="sizeww" hidden="true">
-            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
-            <h4>Silahkan cek ukuran gambar!</h4>
-            <p>Ukuran yang bisa di upload maksimal 2mb ! </p>
-          </div>
+            
 
            <?php echo $this->session->flashdata('msg'); ?> 
             <form name="form-account" action="<?=base_url()?>index.php/template/slide/gambararticle/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <br>
+
              
                                     <div class="form-group">
                                         <label class="col-sm-2">Gambar Artikel</label>
@@ -162,13 +151,31 @@
                                             <img id="preview" class="img-bordered" src="<?=$gambar_artikel;?>" alt="" width="700px" height="467px" />
                                             <div class="input-icon">
                                             <label><p>Gambar tidak boleh lebih dari 2mb (700x467)</p></label>
-                                            <input  type="file" id="file" name="photo" class="btn " onchange="ValidateSingleInput(this);" />
+
+                                            <input  type="file" id="file" name="photo" class="btn " onchange="ValidateSingleInput1(this);" />
+
                                             <br>
 
                                             <br>
+
+          
                       <span id="pesan"></span>
                                         </div>
                                     </div>
+                                    </div>
+                                    <div class="one-half-responsive last-column" id="photo">
+
+            <div class="notification notification-danger" id="notifa" hidden="true">
+            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+            <h4>Silahkan cek type extension gambar!</h4>
+            <p>Type yang bisa di upload hanya .jpeg|.gif|.jpg|.png|.bmp</p>
+          </div>
+
+          <div class="notification notification-danger" id="sizea" hidden="true">
+            <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+            <h4>Silahkan cek ukuran gambar!</h4>
+            <p>Ukuran yang bisa di upload maksimal 2mb ! </p>
+          </div>
 
                                      <button type="submit" class="btn btn-primary">Simpan</button>
 
@@ -182,7 +189,8 @@
                    
                 </div>
 
-            </div>
+            
+              
 
              
             </form>
@@ -228,6 +236,39 @@ function ValidateSingleInput(oInput) {
             file = oInput.files[0];
             if (file.size > 508 ) {
                $('#size').show();
+               return false;
+            } 
+            
+        }
+    }
+    return true;
+}
+
+
+function ValidateSingleInput1(oInput) {
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+        console.log(sFileName);
+         if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+             
+            if (!blnValid) {
+             $('#notifa').show();
+                // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                // oInput.value = "";
+                return false;
+            }
+
+            file = oInput.files[0];
+            if (file.size > 508 ) {
+               $('#sizea').show();
                return false;
             } 
             

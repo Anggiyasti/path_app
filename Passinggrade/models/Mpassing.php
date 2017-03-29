@@ -75,6 +75,7 @@
 		return $tampil->result_array();
     }
 
+    // model hasil dari passing grade yang dipilih oleh siswa
     public function hasil_passing($awal,$akhir) {
 		$query = "SELECT * FROM `tb_passing_grade` WHERE (passinggrade BETWEEN '$awal' AND '$akhir')";
     
@@ -93,27 +94,6 @@
 		return $tampil->result_array();
     }
 
-    //  // search prodi
-    // public function search() {
-    // 	$search = $this->input->POST ('search');
-    //     $query = "SELECT * FROM tb_passing_grade
-				// 	WHERE prodi LIKE '$search%'";
-    
-		
-    //     $result = $this->db->query($query);
-    //     return $result->result_array();
-    // }
-
-    // // search prodi
-    // public function search1() {
-    	
-    //     $query = "SELECT * FROM tb_passing_grade";
-    
-		
-    //     $result = $this->db->query($query);
-    //     return $result->result_array();
-    // }
-
 // get topik untuk side bar by namatopik
     public function get_topik_byprodi($kunciCari)
     {
@@ -124,7 +104,8 @@
         return $query->result_array();
     }
 
-       public function tampilphoto() {
+    //model untuk menampilkan foto untuk slide
+    public function tampilphoto() {
         $this->db->distinct();
         $this->db->select('id,gambar');
         $this->db->from('tb_gambar_front');

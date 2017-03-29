@@ -1,4 +1,4 @@
-<!-- Page Content -->
+<!-- Page Content --> 
       <div id="content" class="grey-blue">
 
         <!-- Toolbar -->
@@ -15,6 +15,7 @@
          <!-- Hero Header -->
         <div class="h-banner animated fadeindown">
           <div class="parallax bg-9" >  <div>  <?php foreach ($dataa as $d ) :?>
+          <!-- menampilkan gambar -->
               <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
              <?php endforeach ?></div>
             <div class="floating-button animated bouncein delay-3">
@@ -27,7 +28,7 @@
          </div>
          <div style="width: 100%; height: 30%; background-color: #19305B; "><p style="color: #ffffff; font-size: 25px; padding-left: 3%;" >Journal</p></div>
         <?php echo $this->session->flashdata('msg'); ?> 
-
+        
         <?php foreach ($data as $univ) : ?>
 
        <!-- Profile Content -->
@@ -39,6 +40,7 @@
                 <i class="ion-android-mail"></i>
               </div>
               <div class="c-widget-body">
+
                 <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/set_prodi_univ/<?=$univ['universitas']?>"><?=$univ['universitas']?></a></p>
                 <p class="small m-0">7 new arrivals.</p>
               </div>
@@ -49,4 +51,4 @@
           <?php endforeach ?>
       
          
-      </div> <!-- End of Page Content -->
+      </div> <!-- End of Page Content

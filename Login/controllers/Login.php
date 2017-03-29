@@ -55,10 +55,9 @@ class Login extends MX_Controller
         }
         else{
         $this->load->view('layout_login/header');
-        // $this->load->view('template/sidebar-login');
         $this->load->view('login_form');
         $this->load->view('layout_login/footer');
-		// $this->load->view('v-login2');
+	
     }
 	}
 
@@ -72,7 +71,7 @@ class Login extends MX_Controller
         $guru = $this->Loginmodel->login_guru($username,$password);
         $admin = $this->Loginmodel->login_admin($username,$password);       
         
-        
+            // memeriksa jika yang login adalah siswa
             if ($siswa = $this->Loginmodel->login_user($username,$password)) {
                 $sees_data= array();
                 foreach ($siswa as $row) {
@@ -92,7 +91,8 @@ class Login extends MX_Controller
                     
                 redirect('login/cek_login_siswa');
                 }  
-        }   elseif ($guru = $this->Loginmodel->login_guru($username,$password)) {
+        } // memeriksa jika yang login adalah guru  
+        elseif ($guru = $this->Loginmodel->login_guru($username,$password)) {
                 $sees_data= array();
                 foreach ($guru as $row) {
                     $sees_data = array(
@@ -111,6 +111,7 @@ class Login extends MX_Controller
                 }  
             
         }
+        // memeriksa jika yang login adalah admin
         elseif ($admin = $this->Loginmodel->login_admin($username,$password)) {
                 $sees_data= array();
                 foreach ($admin as $row) {
@@ -131,54 +132,44 @@ class Login extends MX_Controller
 
             
         }
-
+        //ketika user dan pass tidak terdafatar
         else {
             $this->session->set_flashdata('pesan2', 'Username atau password salah');
-    //      $this->session->set_userdata('is_logged_in', false);
             redirect('Login');
            
-        // }
+      
         }}
+
+    //fungsi tampil home ketika login siswa
     function cek_login_siswa(){
 
        if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-        // $data['logmax']  = $this->Loginmodel->getlogmax();
         $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
-        // $data['logmulai']  = $this->Loginmodel->getlogmulai();
-        // $data['logsel']  = $this->Loginmodel->getlogselesai();
         $data['log']  = $this->Loginmodel->getlogact();
         $data['data']= $this->Loginmodel->tampilphoto();
         $data['dataa']= $this->Loginmodel->tampilphoto2(); 
         $data['dataaa']= $this->Loginmodel->tampilphoto3();   
-
-        // var_dump($data);
-    
             $this->load->view('template/siswa2/v-header',$data);
             $this->load->view('siswa/home2',$data);
             $this->load->view('template/siswa2/v-footer');
-            
-
         }
         else{
             redirect('Login');
         }
     }
 
+    //fungsi untuk halaman artikel 
     function tampil_article($id){
 
        if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-        // $data['logmax']  = $this->Loginmodel->getlogmax();
         $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
         $data['log']  = $this->Loginmodel->getlogact();
         $data['data']= $this->Loginmodel->tampilarticle($id);
 
-
-        // var_dump($data);
-    
             $this->load->view('template/siswa2/v-header',$data);
             $this->load->view('siswa/v-article',$data);
             $this->load->view('template/siswa2/v-footer');
@@ -190,10 +181,7 @@ class Login extends MX_Controller
         }
     }
 
-
-
-
-    
+    //fungsi tampil home ketika login guru  
     function cek_login_guru(){
         if ($this->session->userdata('id_guru')) {
         $data['mapel']  = $this->Loginmodel->getMapel();
@@ -207,6 +195,7 @@ class Login extends MX_Controller
 
 
 }
+//fungsi tampil home ketika login admin  
 function cek_login_admin(){
         if ($this->session->userdata('id_admin')) {
         
@@ -220,7 +209,7 @@ function cek_login_admin(){
 
 
 }
-
+    //fungsi logout siswa
     function logout_siswa(){
         $this->session->unset_userdata("id_siswa");
 
@@ -229,11 +218,10 @@ function cek_login_admin(){
         $this->session->sess_destroy();
 
 
-
-        // $this->session->set_flashdata('notif', ' Terimakasih sudah belajar bersama kami');
-
         redirect(site_url('login'));
     }
+
+    //fungsi logout guru
      function logout_guru(){
       
         $this->session->unset_userdata("id_guru");
@@ -243,12 +231,10 @@ function cek_login_admin(){
         $this->session->sess_destroy();
 
 
-
-        // $this->session->set_flashdata('notif', ' Terimakasih sudah belajar bersama kami');
-
         redirect(site_url('login'));
     }
 
+    //fungsi logout admin
     function logout_admin(){
       
         $this->session->unset_userdata("id_admin");
@@ -259,11 +245,9 @@ function cek_login_admin(){
         $this->session->sess_destroy();
 
 
-
-        // $this->session->set_flashdata('notif', ' Terimakasih sudah belajar bersama kami');
-
         redirect(site_url('login'));
     }
+
 
     public function is_logged_in() {
         $is_logged_in = $this->session->userdata('is_logged_in');
@@ -274,21 +258,18 @@ function cek_login_admin(){
         }
     }
 
+
     public function createSession($id) {
 
 
         if ($result = $this->Loginmodel->get_user($id)) {
 
             //variabelSession
-
             $sess_array = array();
 
             foreach ($result as $row) {
 
-
-
                 //membuat session
-
                 $sess_array = array(
 
                     'id_guru' => $row->id_guru,
@@ -319,8 +300,6 @@ function cek_login_admin(){
 
                 } elseif ($siswa) {
 
-                    // $guru = $this->Mlogin->cekGuru($this->session->userdata['id']);
-
                     foreach ($siswa as $value) {
 
                         $this->session->set_userdata('id_siswa', $value->id_siswa);
@@ -329,13 +308,6 @@ function cek_login_admin(){
 
                     redirect(site_url('guru/dashboard/'));
 
-                // } elseif ($hakAkses == 'siswa') {
-
-                //     redirect(site_url('welcome'));
-
-                // } elseif ($hakAkses == 'user') {
-
-                //      redirect(site_url('welcome'));
 
                 } else {
 
