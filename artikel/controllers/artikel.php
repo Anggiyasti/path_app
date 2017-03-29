@@ -37,7 +37,7 @@
   public function gambar_artikel($id) {
 
         // unlink(FCPATH . "./assets/images/mapel/" . $id);
-        $config['upload_path'] = './assets/app/halo/img';
+        $config['upload_path'] = './assets/app/halo/img/artikel';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
         $config['max_size'] = 2000;
         $config['max_width'] = 700;
