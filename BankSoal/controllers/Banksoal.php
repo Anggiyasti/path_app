@@ -14,13 +14,12 @@
         $this->load->helper('url');
         $this->murl = 'assets/adminre/';
         $this->load->model('Modelbank');
-    $this->load->helper(array('form', 'url', 'file', 'html'));
+        $this->load->helper(array('form', 'url', 'file', 'html'));
         $this->load->library('form_validation');
          $this->load->library('pagination');
-    # code...
   }
 
-  
+    // FUNGSI AMBIL DATA UNTUK DROPDOWN
     function ambil_data(){
       //fungsi ambil data unruk dropdown
     $modul=$this->input->post('modul');
@@ -31,6 +30,7 @@
   }
   }
 
+  // FUNGSI FILTER SOAL
   public function filtersoal()
     {
       $mapel = $this->input->post('pelajaran');
@@ -55,11 +55,9 @@
     }
 
 
-    // filter mapel
+    // LIST filter mapel
     public function listsoalmapel($pel)
     {
-      // var_dump($data);
-
         // code u/pagination
        $this->load->database();
         $jumlah_data = $this->Modelbank->jumlah_data_mapel($pel);
@@ -107,11 +105,9 @@
         $list = $this->Modelbank->data_soal_pel($config['per_page'],$from,$pel); 
         $this->tampSoal($list);
     }
-
+    // FILTER SOAL BERDASARKAN LEVEL
      public function listsoallevel($level)
     {
-      // var_dump($data);
-
         // code u/pagination
        $this->load->database();
         $jumlah_data = $this->Modelbank->jumlah_data_level($level);
@@ -163,8 +159,6 @@
     // filter soal pel bab level
     public function listsoalpelbablevel($pel, $bab, $level)
     {
-      // var_dump($data);
-
         // code u/pagination
        $this->load->database();
         $jumlah_data = $this->Modelbank->jumlah_data_pel_bab_level($pel, $bab, $level);
@@ -217,8 +211,6 @@
     // filter soal pel bab level
     public function listsoalpel($pel)
     {
-      // var_dump($data);
-
         // code u/pagination
        $this->load->database();
         $jumlah_data = $this->Modelbank->jumlah_data_mapel($pel);
@@ -270,8 +262,6 @@
     // filter soal mapel  bab
     public function listsoalpelbab($pel, $bab)
     {
-      // var_dump($data);
-
         // code u/pagination
        $this->load->database();
         $jumlah_data = $this->Modelbank->jumlah_data_pel_bab($pel, $bab);
@@ -323,8 +313,6 @@
      // filter soal mapel  bab
     public function listsoalpellevel($pel, $level)
     {
-      // var_dump($data);
-
         // code u/pagination
        $this->load->database();
         $jumlah_data = $this->Modelbank->jumlah_data_pel_level($pel, $level);
@@ -373,7 +361,8 @@
         $this->tampSoal($list);
     }
 
-  public function listsoal()
+    // FUNGSI VIEW ALL SOAL
+    public function listsoal()
     {
 
         // code u/pagination
@@ -425,6 +414,7 @@
         $this->tampSoal($list);
     }
 
+    // FUNGSI FILTER 
     public function listfilter()
     {
       $mapel = $this->input->post('pelajaran');
@@ -473,7 +463,6 @@
         $config['last_tag_close'] = '</li>';
          // END Customizing the last_link Link
         
-        // var_dump($mapel);
         $from = $this->uri->segment(3);
         $this->pagination->initialize($config);    
         if ($mapel && $bab && $level) {
@@ -487,7 +476,6 @@
          } else if ($level) {
            $list = $this->Modelbank->data_soal_filter5($config['per_page'],$from, $level);
          }
-        // var_dump($list); 
 
         $this->tampSoal($list);
     }
@@ -495,12 +483,6 @@
     //tampung list semua soal u/ ke view
     public function tampSoal($list)
     {
-        //  $data['judul_halaman'] = "Bank Soal";
-        // $data['files'] = array(
-        //     APPPATH . 'modules/banksoal/views/v-soal-all2.php',
-        //     );
-        // $this->load->view('soal/v-soal-all2');
-         // $pilihan = $this->Mbanksoal->get_allpilihan();
         // ekstrak data db ke new arrat
           $data['datSoal']=array();
           foreach ( $list as $list_soal ) {
@@ -537,22 +519,6 @@
                 }
             }
 
-            // if ($jawaban_benar != '' && $jawaban_benar != ' ') {
-                //untuk menampung data sementara jawaban
-                // $tampJawaban = $this->Modelbank->get_jawaban($jawaban_benar,$id_bank);
-                // $isiJawaban = $tampJawaban['jawaban'];
-                // $tampImgJawaban = $tampJawaban['imgJawaban'];
-                // if ($tampImgJawaban != '' && $tampImgJawaban != ' ' ) {
-                //      $imgJawaban=base_url().'/assets/images/jawaban/'.$tampImgJawaban;
-                // } else {
-
-                // }
-            // }
-
-
-
-            
-
             //pengecekan pembahsan
             
             if($tampVideo !='' && $tampVideo !=' ') {
@@ -568,22 +534,8 @@
                 // jika gambar tidak null 
                 $imgSoal=base_url().'/assets/uploads/'.$tampImgSoal;
             } 
-
-
-            if ($tingkat == '3') {
-                $kesulitan = 'Sulit';
-            } elseif ($tingkat == '2') {
-                $kesulitan = 'Sedang';
-            }else {
-               $kesulitan = 'Mudah';
-            }
-
             
-
-
-
-            
-
+            // PENGECEKAN LEVEL
             if ($tingkat == '3') {
                 $kesulitan = 'Sulit';
             } elseif ($tingkat == '2') {
@@ -611,31 +563,18 @@
                 'imgJawaban'=>$imgJawaban
                 );
           }
-        // 
-
-        //  #START cek hakakses#
-        // $hakAkses=$this->session->userdata['HAKAKSES'];
-        // if ($hakAkses=='admin') {
-        //         $this->parser->parse('admin/v-index-admin', $data);
-        // } elseif($hakAkses=='guru'){
-        //      // jika guru
-        //        $this->parser->parse('templating/index-b-guru', $data);
-        // }else{
-        //     // jika siswa redirect ke welcome
-        //     redirect(site_url('welcome'));
-        // }
-        #END Cek USer#
-          $data['mapel']=$this->Modelbank->getmapel();
-    $data['data'] = $this->Modelbank->getsoal();
-      if     ($this->session->userdata('id_admin')) {
+        
+        $data['mapel']=$this->Modelbank->getmapel();
+        $data['data'] = $this->Modelbank->getsoal();
+        if ($this->session->userdata('id_admin')) {
           $this->load->view('admin/layout/header');
           $this->load->view('soal/v-soal-all2', $data);
           $this->load->view('admin/layout/footer');
-    } elseif ($this->session->userdata('id_guru')) {
+        } elseif ($this->session->userdata('id_guru')) {
           $this->load->view('guru/layout/header');
           $this->load->view('soal/v-soal-all2', $data);
           $this->load->view('guru/layout/footer');
-  }
+        }
         
         
     }
@@ -651,11 +590,6 @@
 
         
         $this->form_validation->set_rules('sumber', 'Email ID', 'trim|required');
-        // $this->form_validation->set_rules('a', 'Description', 'trim|required');
-        // $this->form_validation->set_rules('b', 'Description', 'trim|required');
-        // $this->form_validation->set_rules('c', 'Description', 'trim|required');
-        // $this->form_validation->set_rules('d', 'Description', 'trim|required');
-        // $this->form_validation->set_rules('e', 'Description', 'trim|required');
         
         //validate form input
         if ($this->form_validation->run() == FALSE) {
@@ -680,7 +614,6 @@
           }
           elseif ($this->session->userdata('id_guru')) {
           $create_by = $this->session->userdata['username'];
-            # code...
           }
 
           if ($pembahasan) {
@@ -730,10 +663,8 @@
            //call fungsi insert soal
            $this->Modelbank->insert_soal($dataSoal);
            $this->gambarsoal($UUID);
-             
-          
-        // $this->modelBank->insert_soal($dataSoal);
-             // // mengambil id soal untuk fk di tb_piljawaban
+                       
+            // mengambil id soal untuk fk di tb_piljawaban
              $data['tb_bank_soal'] = $this->Modelbank->get_soalID($UUID)[0];
              $soalID = $data['tb_bank_soal']['id_bank'];
              if ($options == 'text') {
@@ -764,30 +695,23 @@
                          'id_soal' => $soalID
                      )
                  );
+                // CALL FUNGSI INSERT JAWABAN
                $this->Modelbank->insert_jawaban($dataJawaban);
              }else{
-               // if ($options ==) {
-               //   # code...
-               // }
               $this->gambar_jawab($soalID);
-
-
              }
-             
-            
-               //call function insert jawaban tet
-                                 
-                $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Berhasil</div>');
-                redirect(site_url('banksoal/form_tambahsoal'));
+                                                   
+            $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Berhasil</div>');
+            redirect(site_url('banksoal/form_tambahsoal'));
         
             
   }
 }
 
+// FUNGSI UPLOAD VIDEO PEMBAHASAN
 public function up_video_pembahasan($UUID)
     {
-        // echo "video pembahasan";
-          $configvideo['upload_path'] = './assets/video/video_soal';
+        $configvideo['upload_path'] = './assets/video/video_soal';
         $configvideo['allowed_types'] = 'mp4';
         $configvideo['max_size'] = 90000;
         $this->load->library('upload', $configvideo);
@@ -806,19 +730,14 @@ public function up_video_pembahasan($UUID)
             'pembahasan' => $file_name);
 
             $this->Modelbank->ch_soal($data);
-
-
-           
         }
     }
 
-
+// FUNGSI UPLOAD VIDEO
 public function upload_video(){
     if (isset($_FILES['video']['name']) && $_FILES['video']['name'] != '') {
          $data['pembahasan'] = htmlspecialchars($this->input->post('pembahasan'));
-         // $link=$this->input->post('link_video');
         unset($config);
-        // $date = date("ymd");
         $configVideo['upload_path'] = './assets/video/video_soal';
         $configVideo['max_size'] = '90000';
         $configVideo['allowed_types'] = 'avi|flv|wmv|mp3|mp4';
@@ -836,11 +755,9 @@ public function upload_video(){
              $dataSoal = array(
                 'pembahasan' =>  $video_name,
                 );
-
+             // CALL FUNGSI INSERT
             $this->Modelbank->insert_soal($dataSoal);
-            // $data['video_name']= $configVideo['file_name'];
-            // $data['video_detail'] = $videoDetails;
-            // $this->load->view('movie/show', $data);
+
         }
 
     }else{
@@ -902,7 +819,6 @@ public function upload_video(){
                 'gambar' => $file_name
                 );
             } else {
-              # code...
             }
             $n++;
         }
@@ -910,6 +826,7 @@ public function upload_video(){
         $this->Modelbank->insert_gambar($datagambar);
 
     }
+
     //form tambah soal
     function form_tambahsoal(){
 
@@ -929,12 +846,13 @@ public function upload_video(){
 
       elseif ($this->session->userdata('id_guru')) {
 
-    $this->load->view('guru/layout/header');
+        $this->load->view('guru/layout/header');
         $this->load->view('soal/tambah_soal', $data);
         $this->load->view('guru/layout/footer');
     }
   }
-  //menampilkan soal 
+
+  //menampilkan soal DI TABLE
   function daftarsoal(){
     //hak akses jika admin
     if ($this->session->userdata('id_admin')) {
@@ -960,7 +878,7 @@ public function upload_video(){
 
   }
 
-
+  // FUNGSI VIEW FORM UPDATE
   public function formUpdate($UUID) {
     //hak akses jika admin
     if ($this->session->userdata('id_admin')) {
@@ -989,19 +907,12 @@ public function upload_video(){
        }
     }
 
-    public function cek($UUID)
-    {
-      $options = htmlspecialchars($this->input->post('options'));
-      var_dump($options);
-    }
-
-  public function update_soal($UUID){
-
-          // $UUID = uniqid();
-          $id_soal = $this->input->post('soalID');
-           $judul_soal = htmlspecialchars($this->input->post('judul_soal'));
-          $soal = $this->input->post('editor1');
-           $gambarSoal = $this->input->post('gambarSoal');
+    // FUNGSI UPDATE SOAL
+    public function update_soal($UUID){
+        $id_soal = $this->input->post('soalID');
+        $judul_soal = htmlspecialchars($this->input->post('judul_soal'));
+        $soal = $this->input->post('editor1');
+        $gambarSoal = $this->input->post('gambarSoal');
            $options = htmlspecialchars($this->input->post('options'));
            $soalID = htmlspecialchars($this->input->post('soalID'));
           $jawaban = $this->input->post('jawaban_benar');
@@ -1012,9 +923,8 @@ public function upload_video(){
           $random = htmlspecialchars($this->input->post('random'));
           $pembahasan= htmlspecialchars($this->input->post('pembahasan'));
           $publish = htmlspecialchars($this->input->post('publish'));
-           // $UUID = htmlspecialchars($this->input->post('UUID'));
 
-          $idA = $this->input->post('idpilA');
+          $idA = htmlspecialchars($this->input->post('idpilA'));
           $idB = htmlspecialchars($this->input->post('idpilB'));
           $idC = htmlspecialchars($this->input->post('idpilC'));
           $idD = htmlspecialchars($this->input->post('idpilD'));
@@ -1026,6 +936,7 @@ public function upload_video(){
           $d = $this->input->post('d');
           $e = $this->input->post('e');
 
+          // CONVERT LINK YOUTUBE JADI EMBED
           for ($x = 0; $x < strlen($pembahasan); $x++) {
 
             if ($pembahasan[$x] == '=' ) {
@@ -1058,6 +969,7 @@ public function upload_video(){
           $this->ch_img_soal($UUID);
 
            $data['id_soal']=$soalID;
+        // PENGECEKAN JAWABAN TEXT ATAU GAMBAR
           if ($options == 'text') {
                 $data['jawabann'] = array(
                      array(
@@ -1135,29 +1047,11 @@ public function upload_video(){
 
               } else{
                 $this->ch_img_jawaban($soalID);
-                 // cek ada jawaban atau tidak 
-              // $cek = $this->Modelbank->cek_jawaban($id_soal);
-              //  if ($cek) {
-              //   echo "update";
-              //   // update
-              //     // $this->ch_img_jawaban($soalID);
-              //   } else {
-              //     echo "insert";
-                // insert
-                  // $this->gambar_jawab($soalID);
-                // }
-
              }
              redirect(site_url('banksoal/listsoal'));
-          // var_dump($data);
-
-
-
   }
 
-
-  
-
+  // FUNGSI UPLOAD GAMBAR SOAL
   public function ch_img_soal($UUID) {
         $config['upload_path'] = './assets/uploads/';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
@@ -1178,11 +1072,10 @@ public function upload_video(){
          $data['tb_bank_soal'] = $this->Modelbank->get_soalID($UUID)[0];
          $soalID = $data['tb_bank_soal']['id_bank'];
         }
-        // $this->Mbanksoal->insert_gambar($datagambar);
     }
-    public function ch_img_jawaban($soalID) {
 
-        //unlink( FCPATH . "./assets/image/jawaban/".$xxxx );
+    // FUNGSI UPLOAD GAMBAR JAWABAN
+    public function ch_img_jawaban($soalID) {
         $config2['upload_path'] = './assets/images/jawaban/';
         $config2['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
         $config2['max_size'] = 100;
@@ -1236,11 +1129,11 @@ public function upload_video(){
         }
     }
 
+    // FUNGSI VIEW FORM EDIT SOAL
     public function edit_soal($no) {
     if ($this->input->post('update')) 
     {
       $this->Modelbank->update_soal();
-      // $this->Modelbank->update_pilihan();
       
       if ($this->db->affected_rows())
       {
@@ -1259,20 +1152,12 @@ public function upload_video(){
       $data['data'] = $this->Modelbank->getsoal();
       if ($this->session->userdata('id_admin')) {
         
-      $data['editdata'] = $this->db->get_where('tb_bank_soal',array('id_bank'=> $no))->row();
-      
-      // $data['piljawaban'] = $this->db->get_where('tb_pil_jawab',array('id_soal'=>$no ))->row();
-      
-       
+      $data['editdata'] = $this->db->get_where('tb_bank_soal',array('id_bank'=> $no))->row();      
       
       $this->load->view('admin/layout/header');
       $this->load->view('soal/v-edit-soal', $data);
       $this->load->view('admin/layout/footer');
-    }
-    elseif ($this->session->userdata('id_guru')) {
-        # code...
-      
-      // $data['content'] = 'kontrak/k_edit';
+     } elseif ($this->session->userdata('id_guru')) {      
       $data['editdata'] = $this->db->get_where('tb_bank_soal',array('id_bank'=> $no))->row();
       $this->load->view('guru/layout/header');
       $this->load->view('soal/v-edit-soal', $data);
@@ -1281,9 +1166,11 @@ public function upload_video(){
 
   }
   }
+
+  // FUNGSI HAPUS SOAL
   public function hapus_soal($id) {
     $this->Modelbank->delete_soal($id);
-
+    // PENGECEKAN JIKA HAPUS BERHASIL
     if ($this->db->affected_rows()) 
     {
       $this->session->set_flashdata('info', 'Berhasil  Dihapus!');
@@ -1297,38 +1184,7 @@ public function upload_video(){
 
   }
 
-  public function deletebanksoal2() {
-        if ($this->input->post()) {
-            $post = $this->input->post();
-             $this->Modelbank->del_banksoal($post['id']);
-        }
-           redirect(site_url('banksoal/listsoal'));
-    }
-  
-
-  function search(){
-
-    $cmapel=$_POST['id_mapel'];
-    $data['data']= $this->Modelbank->getCarimapel($cmapel); 
-    // $data['data']= $this->Modelbank->getCaribab($cbab);  
-    $this->load->view('layout/header');
-    $this->load->view('soal/daftar_soal',$data);
-    $this->load->view('layout/footer');
-
-
-  }
-
-  // function searchbab(){
-  //  $cbab=$_POST['judul_bab'];
-    // $data['data']= $this->Modelbank->getCarimapel($cbab);  
-    // $this->load->view('layout/header');
-  //  $this->load->view('soal/daftar_soal',$data);
-  //  $this->load->view('layout/footer');
-
-
-  // }
-
-
+  // FUNGSI UPLOAD MATA PELAJARAN
   public function uploadmapel(){
     // upload soal
     //set validation rules
@@ -1356,21 +1212,30 @@ public function upload_video(){
   }
 }
 
+// FUNGSI VIEW DAFTAR ICON MAPEL
 function daftarmapelicon(){
+    // PENGECEKAN HAK AKSES
     if ($this->session->userdata('id_admin')) {
-    $daftarmapel = $this->Modelbank->getDaftarMapel();
-    $data['data']= $daftarmapel;  
-    $this->load->view('admin/layout/header');
-    $this->load->view('matapelajaran/tambah_icon',$data);
-    $this->load->view('admin/layout/footer');
-  }
+        $daftarmapel = $this->Modelbank->getDaftarMapel();
+        $data['data']= $daftarmapel;  
+        $this->load->view('admin/layout/header');
+        $this->load->view('matapelajaran/tambah_icon',$data);
+        $this->load->view('admin/layout/footer');
+    } elseif ($this->session->userdata('id_guru')) {  
+        $daftarmapel = $this->Modelbank->getDaftarMapel();
+        $data['data']= $daftarmapel;  
+        $this->load->view('admin/layout/header');
+        $this->load->view('matapelajaran/tambah_icon',$data);
+        $this->load->view('admin/layout/footer'); 
+    } else {
+        redirect('login');
+    } 
     
 
   }
 
-public function gambar_mapel($id) {
-
-        // unlink(FCPATH . "./assets/images/mapel/" . $id);
+    // FUNGSI UPLOAD ICON MATA PELAJARAN
+    public function gambar_mapel($id) {
         $config['upload_path'] = './assets/images/mapel';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
         $config['max_size'] = 100;
@@ -1386,22 +1251,16 @@ public function gambar_mapel($id) {
             $this->load->view('admin/layout/header');
           $this->load->view('matapelajaran/edit_icon',$data);
           $this->load->view('admin/layout/footer');
-
-            // $this->load->view('beranda/main_view',$error);,
         } else {
             $file_data = $this->upload->data();
             $photo = $file_data['file_name'];
             $this->Modelbank->gambar_mapel($id,$photo);
             echo "berhasil upload"; 
-            //for testing
-            // $data['img'] = base_url().'/images/'.$file_data['file_name'];
-            // $this->load->view('beranda/success_msg',$data);
-            
         }
     }
 
-
-public function uploadbab(){
+    // FUNGSI INSERT BAB
+    public function uploadbab(){
     // upload soal
     //set validation rules
         $judul_bab  = $this->form_validation->set_rules('judul_bab', 'alias mapel', 'trim|required');
@@ -1430,21 +1289,26 @@ public function uploadbab(){
             
   }
 }
-  function tambahmapel(){
-    // $data['mapel'] = $this->Modelbank->getMapel();
-    if ($this->session->userdata('id_admin')) {
-    $this->load->view('admin/layout/header');
-    $this->load->view('matapelajaran/tambah_mapel');
-    $this->load->view('admin/layout/footer');
-  }
-  elseif($this->session->userdata('id_guru')) {
-    $this->load->view('guru/layout/header');
-    $this->load->view('matapelajaran/tambah_mapel');
-    $this->load->view('guru/layout/footer');
-  }
+
+    // FUNGSI VIEW FORM TAMBAH MATA PELAJARAN
+    function tambahmapel(){
+        // PENGECEKAN HAK AKSES
+        if ($this->session->userdata('id_admin')) {
+        $this->load->view('admin/layout/header');
+        $this->load->view('matapelajaran/tambah_mapel');
+        $this->load->view('admin/layout/footer');
+      }
+      elseif($this->session->userdata('id_guru')) {
+        $this->load->view('guru/layout/header');
+        $this->load->view('matapelajaran/tambah_mapel');
+        $this->load->view('guru/layout/footer');
+      } else {
+        redirect('login');
+      }
 
   }
 
+  // FUNGSI VIEW FORM TAMBAH BAB
    function tambahbab(){
     if ($this->session->userdata('id_admin')) {
     $data['mapel'] = $this->Modelbank->getmapel2();
@@ -1461,27 +1325,29 @@ public function uploadbab(){
 
   }
 
+  // FUNGSI VIEW DAFTAR MATA PELAJARAN
   function daftarmapel(){
+    // PENGECEKAN HAK AKSES
     if ($this->session->userdata('id_admin')) {
-    $daftarmapel = $this->Modelbank->getDaftarMapel();
-    $data['data']= $daftarmapel;  
-    $this->load->view('admin/layout/header');
-    $this->load->view('matapelajaran/tampil_mapel',$data);
-    $this->load->view('admin/layout/footer');
-  }
-    elseif ($this->session->userdata('id_guru')) {
-    $daftarmapel = $this->Modelbank->getDaftarMapel();
-    $data['data']= $daftarmapel;  
-    $this->load->view('guru/layout/header');
-    $this->load->view('matapelajaran/tampil_mapel',$data);
-    $this->load->view('guru/layout/footer');
+        $daftarmapel = $this->Modelbank->getDaftarMapel();
+        $data['data']= $daftarmapel;  
+        $this->load->view('admin/layout/header');
+        $this->load->view('matapelajaran/tampil_mapel',$data);
+        $this->load->view('admin/layout/footer');
+    } elseif ($this->session->userdata('id_guru')) {
+        $daftarmapel = $this->Modelbank->getDaftarMapel();
+        $data['data']= $daftarmapel;  
+        $this->load->view('guru/layout/header');
+        $this->load->view('matapelajaran/tampil_mapel',$data);
+        $this->load->view('guru/layout/footer');
+    } else {
+        redirect('login');
+    }
   }
 
-
-
-  }
+  // FUNGSI VIEW DAFTAR BAB
   function daftarbab(){
-
+    // PENGECEKAN HAK AKSES
     if ($this->session->userdata('id_admin')) {
       $daftar_bab = $this->Modelbank->getDaftarBab();
       $data['bab']= $daftar_bab;  
@@ -1494,9 +1360,12 @@ public function uploadbab(){
       $this->load->view('guru/layout/header');
       $this->load->view('bab/tampil_bab',$data);
       $this->load->view('guru/layout/footer');
+    } else {
+        redirect('login');
     }
   }
 
+  // FUNGSI EDIT MATA PELAJARAN
   public function edit_mapel($no) {
     if ($this->input->post('update')) 
     {
@@ -1515,25 +1384,24 @@ public function uploadbab(){
     }
     else
     {
+        // PENGECEKAN HAK AKSES
       if ($this->session->userdata('id_admin')) {
-      // $data['content'] = 'kontrak/k_edit';
-
       $data['editdata'] = $this->db->get_where('tb_mata_pelajaran',array('id_mapel'=> $no))->row();
       $this->load->view('admin/layout/header');
       $this->load->view('matapelajaran/v-edit-mapel', $data);
       $this->load->view('admin/layout/footer');
-    }
-    if ($this->session->userdata('id_guru')) {
-      // $data['content'] = 'kontrak/k_edit';
+    }else if ($this->session->userdata('id_guru')) {
       $data['editdata'] = $this->db->get_where('tb_mata_pelajaran',array('id_mapel'=> $no))->row();
       $this->load->view('guru/layout/header');
       $this->load->view('matapelajaran/v-edit-mapel', $data);
       $this->load->view('guru/layout/footer');
+    } else {
+        redirect('login');
     }
     }
   }
 
-  
+    // FUNGSI HAPUS MATA PELAJARAN
     public function hapus_mapel($id) {
       $this->Modelbank->delete_mapel($id);
 
@@ -1550,9 +1418,7 @@ public function uploadbab(){
 
     }
 
-
-
-
+// FUNGSI UBAH BAB
   public function ubah_bab($no) {
     if ($this->input->post('update')) 
     {
@@ -1585,9 +1451,13 @@ public function uploadbab(){
       $this->load->view('guru/layout/header');
       $this->load->view('bab/v-edit-bab', $data);
       $this->load->view('guru/layout/footer');
+    } else {
+        redirect('login');
     }
     }
   }
+
+  // FUNGSI HAPUS BAB
   public function hapus_bab($id) {
     $this->Modelbank->delete_bab($id);
 
@@ -1603,152 +1473,6 @@ public function uploadbab(){
     }
 
   }
-
-
-  public function filterbab(){
-    if ($this->session->userdata('id_admin')) {
-
-    
-    if ($this->input->post('submit')) 
-    {
-      $pel = $this->input->post('pelajaran');
-      $mapel = $this->input->post('id_bab');
-      $kesulitan = $this->input->post('kesulitan');
-
-      if ($pel && $mapel && $kesulitan) { 
-        // $mapel = $this->input->post('id_bab');
-        $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-        $data['data'] = $this->Modelbank->filter_soal_all($mapel, $pel, $kesulitan);
-        $data['mapel']=$this->Modelbank->getmapel();
-
-        // $this->load->view('admin/layout/header');
-        // $this->load->view('soal/v-filter-baru', $data);
-        // $this->load->view('admin/layout/footer');   
-        redirect('banksoal/listfilter/'.$pel);
-      
-      } elseif ($pel && $mapel) {
-        $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-        $data['data'] = $this->Modelbank->filter_soal_pel_bab($mapel, $pel);
-        $data['mapel']=$this->Modelbank->getmapel();
-
-        $this->load->view('admin/layout/header');
-        $this->load->view('soal/v-filter-baru', $data);
-        $this->load->view('admin/layout/footer');
-        
-      } else {
-        $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-        $data['data'] = $this->Modelbank->filter_soal_pel($pel);
-        $data['mapel']=$this->Modelbank->getmapel();
-        
-        redirect('banksoal/listfilter/').$pel;
-        // $this->load->view('admin/layout/header');
-        // $this->load->view('soal/v-filter-baru', $data);
-        // $this->load->view('admin/layout/footer');
-
-        
-      }
-    }
-    else
-    {
-    $mapel = $this->input->post('id');
-    $data['data'] = $this->Modelbank->getsoal();
-    $data['mapel']  = $this->Modelbank->getmapel();
-    $list= $this->Modelbank->getkesulitanfilter();
-
-    $this->load->view('admin/layout/header');
-    $this->load->view('vfilter', $data);
-    $this->load->view('admin/layout/footer');
-    }
-    // var_dump($pel, $mapel, $kesulitan);
-    
-  }
-   elseif ($this->session->userdata('id_guru')) {
-
-    
-    if ($this->input->post('submit')) 
-    {
-      $pel = $this->input->post('pelajaran');
-      $mapel = $this->input->post('id_bab');
-      $kesulitan = $this->input->post('kesulitan');
-
-      if ($pel && $mapel && $kesulitan) { 
-        // $mapel = $this->input->post('id_bab');
-        $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-        $data['data'] = $this->Modelbank->filter_soal_all($mapel, $pel, $kesulitan);
-        $data['mapel']=$this->Modelbank->getmapel();
-
-        $this->load->view('guru/layout/header');
-        $this->load->view('vfilter', $data);
-        $this->load->view('guru/layout/footer');   
-      
-      } elseif ($pel && $mapel) {
-        $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-        $data['data'] = $this->Modelbank->filter_soal_pel_bab($mapel, $pel);
-        $data['mapel']=$this->Modelbank->getmapel();
-
-        $this->load->view('guru/layout/header');
-        $this->load->view('vfilter', $data);
-        $this->load->view('guru/layout/footer');
-        
-      } else {
-        $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-        $data['data'] = $this->Modelbank->filter_soal_pel($pel);
-        $data['mapel']=$this->Modelbank->getmapel();
-        
-        $this->load->view('guru/layout/header');
-        $this->load->view('vfilter', $data);
-        $this->load->view('guru/layout/footer');
-
-        
-      }
-    }
-    else
-    {
-    $mapel = $this->input->post('id');
-    $data['data'] = $this->Modelbank->getsoal();
-    $data['mapel']  = $this->Modelbank->getmapel();
-    $list= $this->Modelbank->getkesulitanfilter();
-
-    $this->load->view('guru/layout/header');
-    $this->load->view('vfilter', $data);
-    $this->load->view('guru/layout/footer');
-    }
-    // var_dump($pel, $mapel, $kesulitan);
-    
-  }
-
-}
-
-  public function filter()
-  {
-    if ($this->session->userdata('id_admin')) {
-      # code...
-    
-
-    $data['mapel']=$this->Modelbank->getmapel();
-    $data['data'] = $this->Modelbank->getsoal();
-    $list= $this->Modelbank->getkesulitanfilter();
-
-    $this->load->view('admin/layout/header');
-    $this->load->view('vfilter', $data);
-    $this->load->view('admin/layout/footer');
-  }
-  if ($this->session->userdata('id_guru')) {
-      # code...
-    
-
-    $data['mapel']=$this->Modelbank->getmapel();
-    $data['data'] = $this->Modelbank->getsoal();
-    $list= $this->Modelbank->getkesulitanfilter();
-
-    $this->load->view('guru/layout/header');
-    $this->load->view('vfilter', $data);
-    $this->load->view('guru/layout/footer');
-  }
-}
-
-
-  
 
 
  } ?>

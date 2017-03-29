@@ -16,20 +16,12 @@ class Registrasi extends MX_Controller
 	}
 
 	function index() {
-        // $this->load->view('template/header');
-        // $this->load->view('template/sidebar-login');
-        // $this->load->view('form_registrasi');
         $this->load->view('login/layout_login/header');
-        // $this->load->view('template/sidebar-login');
         $this->load->view('form_regis');
         $this->load->view('login/layout_login/footer');
-        // $this->load->view('layout/header');
-        // $this->load->view('layout/nav');
-        // $this->load->view('vMain');
-        // $this->load->view('layout/footer');
-		// $this->load->view('vRegistrasi');
 	}
 
+    // FUNGSI REGISTRASI USER
 	function register() {
          $this->load->helper(array('form', 'url'));
 
@@ -89,6 +81,7 @@ class Registrasi extends MX_Controller
         }
     }
 
+    // FUNGSI VERIFIKASI
     function verify($hash=NULL)
     {
         if ($this->registrasi_model->verifyEmailID($hash))

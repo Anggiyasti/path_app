@@ -53,6 +53,7 @@ class Learningmodel extends CI_Model{
     return $query->result();
   }
 
+  // GET MATERI BERDASARKAN BAB
   function get_materi_babID($data){
 		$this->db->select('m.id, judulMateri, isiMateri, b.id_bab');
 		$this->db->from('tb_line_materi m');
@@ -85,6 +86,7 @@ class Learningmodel extends CI_Model{
 		return $query->result_array();
 	}
 
+	// GET BAB BERDASARKAN MATA PELAJARAN
 	function get_bab_by_mapel($data){
         $query = "SELECT 
          mapel.id_mapel,mapel.nama_mapel,mapel.part
@@ -94,6 +96,7 @@ class Learningmodel extends CI_Model{
         return $result->result_array();
     }
 
+    // FUNGSI GET BAB
       public function baba($data)
 	{
 		$this->db->select('ls.judul_bab, ls.id_bab');
@@ -104,21 +107,12 @@ class Learningmodel extends CI_Model{
 		return $query->result_array();
 	}
 
+	// GET TOPIK BERDASARKAN id
     function get_topik_byid($data){
 		$query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel, statusLearning,topik.urutan,deskripsi, nama_mapel,mapel.part
 		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
 		JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = topik.id_mapel
 		";
-		// $query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel, statusLearning,topik.urutan,deskripsi, nama_mapel,mapel.part,bab.judul_bab
-		// 	FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
-		// 	JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = topik.id_mapel
-		// 	JOIN tb_line_step as st ON st.topikID = topik.id
-		// 	JOIN tb_bab as bab on st.id_bab = bab.id_bab
-		// 	group by topik.id
-
-		// ";
-		
-
 
 		$result = $this->db->query($query);
 		if ($result->result_array()==array()) {
@@ -126,16 +120,10 @@ class Learningmodel extends CI_Model{
 		} else {
 			return $result->result_array()[0];
 		}
-		
-
 	}
 
-
+	// GET STEP YANG DITAMPILKAN
 	function get_step_tampil($data){
-		// $query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel, statusLearning,topik.urutan,deskripsi, nama_mapel,mapel.part
-		// FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
-		// JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = topik.id_mapel
-		// ";
 		$query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel, statusLearning,topik.urutan,deskripsi, nama_mapel,mapel.part,bab.judul_bab
 			FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
 			JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = topik.id_mapel
@@ -144,8 +132,6 @@ class Learningmodel extends CI_Model{
 			group by topik.id
 
 		";
-		
-
 
 		$result = $this->db->query($query);
 		if ($result->result_array()==array()) {
@@ -153,25 +139,14 @@ class Learningmodel extends CI_Model{
 		} else {
 			return $result->result_array()[0];
 		}
-		
-
 	}
 
+	// GET BAB BY ID TOPIK
 	function get_bab_by_topikid($data){
 		$query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel, statusLearning,topik.urutan,deskripsi, nama_mapel,mapel.part
 		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
 		JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = topik.id_mapel
-		";
-		// $query = "SELECT topik.id, mapel.id_mapel, namaTopik, mapel.nama_mapel, statusLearning,topik.urutan,deskripsi, nama_mapel,mapel.part,bab.judul_bab
-		// 	FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
-		// 	JOIN tb_mata_pelajaran AS mapel ON mapel.id_mapel = topik.id_mapel
-		// 	JOIN tb_line_step as st ON st.topikID = topik.id
-		// 	JOIN tb_bab as bab on st.id_bab = bab.id_bab
-		// 	group by topik.id
-
-		// ";
-		
-
+		";	
 
 		$result = $this->db->query($query);
 		if ($result->result_array()==array()) {
@@ -179,10 +154,9 @@ class Learningmodel extends CI_Model{
 		} else {
 			return $result->result_array()[0];
 		}
-		
-
 	}
 
+	// GET TOPIK BY ID 
 	function get_topik_byid1($data){
 		$query = "SELECT topik.id,bab.id_bab as babID, mapel.id_mapel as mapelID, mapel.nama_mapel, namaTopik, statusLearning,topik.urutan,deskripsi, nama_mapel, judul_bab 
 		FROM (SELECT  *  FROM  tb_line_topik WHERE  id = $data) AS topik 
@@ -286,7 +260,7 @@ class Learningmodel extends CI_Model{
 	}
 	/*insert DATA UNTUK STEP*/
 
-
+	// GET STEP DAN URUTAN/
 	function get_step_sama_urutan($idtopik, $urutan){
 		$this->db->select('*');
 		$this->db->from('tb_line_step');
@@ -300,12 +274,14 @@ class Learningmodel extends CI_Model{
 			return $result->result_array();
 		}
 
-	}
+	}	
+	// GET MATA PELAJARAN
 	public function getmapel()
 	{
 		return $this->db->get('tb_mata_pelajaran');
 	}
 
+	// GET URUTAN STEP BY ID TOPIK
 	function get_step_urutan_idtopik($idtopik, $urutan){
 		$this->db->select('*');
 		$this->db->from('tb_line_step');
@@ -319,8 +295,9 @@ class Learningmodel extends CI_Model{
 		} else {
 			return true;
 		}
-
 	}
+
+	// GET STEP URUTAN/
 	function get_step_urutan($idtopik, $urutan){
 		$this->db->select('*');
 		$this->db->from('tb_line_step');
@@ -336,13 +313,14 @@ class Learningmodel extends CI_Model{
 
 	}
 
+	// UPDATE URUTAN STEP
 	public function update_step_urutan($data) {
         $this->db->where('id',$data['id']);
         $this->db->set($data);
 		$this->db->update('tb_line_step');
     }
 
-
+    // GET DATA MATA PELAJARAN
     public function scPelajaran()
 	{
 		$this->db->select('id_mapel,nama_mapel')->from('tb_mata_pelajaran');
@@ -350,6 +328,7 @@ class Learningmodel extends CI_Model{
 		return $query->result_array();
 	}
 
+	// GET SOAL BY id_latihan
 	function get_soal_by_id_latihan($id_latihan){
 		$this->db->select('*');
 		$this->db->from('tb_mm_sol_lat as sollat');
@@ -358,7 +337,6 @@ class Learningmodel extends CI_Model{
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-
 
 	//mengambil value pelajaran berdasarkan id tingkatan
 	public function scBab($tpelajaranID)
@@ -369,7 +347,8 @@ class Learningmodel extends CI_Model{
 		return $query->result_array();
 	}
 
-		function get_bab_by_id($data){
+	// GET BAB BY ID	
+	function get_bab_by_id($data){
         $query = "SELECT 
         bab.id_bab, mapel.nama_mapel, bab.judul_bab
         FROM

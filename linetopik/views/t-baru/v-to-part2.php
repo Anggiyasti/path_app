@@ -96,7 +96,7 @@
     <div class="spinner"></div>
 </div>
 
-<form action="<?= base_url('index.php/linetopik/cekjawaban_part2') ?>" method="post" id="hasil_part2">    
+<form action="" method="post" id="hasil_part2">    
     <div>
         <div class="text-center"> 
             <h4><span class="color-red-dark" id="timer"></span></h4>

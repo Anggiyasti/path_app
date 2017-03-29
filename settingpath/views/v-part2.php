@@ -48,7 +48,7 @@
 
             <div class="panel-body">
             <?php echo $this->session->flashdata('msg'); ?>
-            <form action="<?=base_url()?>settingpath/test" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+            <form action="<?=base_url()?>settingpath/tambah_path" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="form-horizontal form-bordered" >
                          <div class="form-group">
                                         <label class="col-sm-2">Mata Pelajaran</label>
                                     <div class="col-sm-5">
@@ -363,11 +363,6 @@ $("#jmlh_pil").click(function(){
 function tambahsimulasi() {
         id_mapel = $('select[name=id_mapel]').val();
         jmlh = $('input[name=jmlh1]').val();
-        // sim1 = $('select[name=id_mapel]').val();
-        // sim2 = $('select[name=id_mapel]').val();
-        // sim3 = $('select[name=id_mapel]').val();
-        // sim4 = $('select[name=id_mapel]').val();
-        // sim5 = $('select[name=id_mapel]').val();
         jmlh_to = $('select[name=jmlh_to]').val();
         jmlh_soal1 = $('select[name=jmlh_soal1]').val();
         jmlh_soal2 = $('select[name=jmlh_soal2]').val();
@@ -379,8 +374,6 @@ function tambahsimulasi() {
         level3 = $('select[name=level3]').val();
         level4 = $('select[name=level4]').val();
         level5 = $('select[name=level5]').val();
-        console.log(jmlh_to);
-        // console.log(id_mapel, jmlh_soal1, jmlh_soal2, jmlh_soal3, level, jmlh_to);
         data = {
             id_mapel:id_mapel,
             jmlh_to:jmlh_to,
@@ -415,12 +408,9 @@ $("#TO").click(function(){
 });
 
 function valid() {
-    // $("#jj").keyup(function (){
     for (i = 1; i <= 10; i++) {
     $("#jj"+i).keyup(function (){
-        // for(j = 1; j <= 10; j++) {
-           // var isTyping = $('#jj1').val(); 
-        // }
+
     var isTyping1 = $('#jj1').val();
     var isTyping2 = $('#jj2').val();
     var isTyping3 = $('#jj3').val();
@@ -434,15 +424,11 @@ function valid() {
 
     var bab = $('input[name=jml_bab]').val(); 
 
-    console.log(isTyping1);
 
-    // if (isTyping1) {}
         if (isTyping1 == "" ) {
         } else if (isTyping1 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping1 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
         } else {
             swal('Salah');
         }
@@ -451,8 +437,6 @@ function valid() {
         } else if (isTyping2 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping2 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
         } else {
             swal('Salah');
         }
@@ -461,8 +445,7 @@ function valid() {
         } else if (isTyping3 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping3 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
+
         } else {
             swal('Salah');
         }
@@ -471,8 +454,7 @@ function valid() {
         } else if (isTyping4 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping4 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
+
         } else {
             swal('Salah');
         }
@@ -481,8 +463,7 @@ function valid() {
         } else if (isTyping5 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping5 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
+
         } else {
             swal('Salah');
         }
@@ -491,8 +472,7 @@ function valid() {
         } else if (isTyping6 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping6 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
+
         } else {
             swal('Salah');
         }
@@ -501,8 +481,7 @@ function valid() {
         } else if (isTyping7 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping7 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
+
         } else {
             swal('Salah');
         }
@@ -511,8 +490,7 @@ function valid() {
         } else if (isTyping8 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping8 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
+
         } else {
             swal('Salah');
         }
@@ -521,8 +499,7 @@ function valid() {
         } else if (isTyping9 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping9 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
+
         } else {
             swal('Salah');
         }
@@ -531,23 +508,9 @@ function valid() {
         } else if (isTyping10 <= 0 ) {
              swal('Tidak boleh 0');
         } else if (isTyping10 <= bab) {
-            // swal('Sesuai');
-            console.log(bab);
         } else {
             swal('Salah');
         }
-
-
-     
-    // $.ajax({
-    //     type: 'POST',
-    //     url: "includes/control.php",
-    //     data: data,
-    //     cache: false,
-    //     success: function(){  
-    //        msg.html(html);
-    //     }
-    // });
     });
     }
 
@@ -567,19 +530,6 @@ function tambahsetting() {
         level4 = $('select[name=level4]').val();
         level5 = $('select[name=level5]').val();
 
-        // total1 = $('#ntotal1]').val();
-        // total2 = $('input[name=ntotal2]').val();
-        // total3 = $('input[name=ntotal3]').val();
-        // total4 = $('input[name=ntotal4]').val();
-        // total5 = $('input[name=ntotal5]').val();
-        // total6 = $('input[name=ntotal6]').val();
-        // total7 = $('input[name=ntotal7]').val();
-        // total8 = $('input[name=ntotal8]').val();
-        // total9 = $('input[name=ntotal9]').val();
-        // total10 = $('input[name=ntotal10]').val();
-
-        console.log(total1);
-        // console.log(id_mapel, jmlh_soal1, jmlh_soal2, jmlh_soal3, level, jmlh_to);
         data = {
             id_mapel:id_mapel,
             jmlh_to:jmlh_to,
@@ -606,7 +556,7 @@ function tambahsetting() {
             total10:total10
         };
         $.ajax({
-        url:base_url+"settingpah/tesis",
+        url:base_url+"settingpah/tambahsimulasi",
         data:data,
         type:"POST",
         dataType:"TEXT",
@@ -624,7 +574,6 @@ function totalin() {
 for (i = 1; i <= 10; i++) {
     $("#jmlh_soal"+i).change(function(){  
         tes = $('select[name=jmlh_soal1]').val();
-        // var untuk jumlah soal
        var j1 = $('select[name=jmlh_soal1]').val();
        var j2 = $('select[name=jmlh_soal2]').val();
        var j3 = $('select[name=jmlh_soal3]').val();
@@ -648,9 +597,6 @@ for (i = 1; i <= 10; i++) {
        var jmlh_bab9 = $('#jj9').val();
        var jmlh_bab10 = $('#jj10').val();
 
-        // var j2 = $('input[name=ttt]').val();
-       // console.log(j1);
-       // alert("hello");
        var total1 = parseInt(j1) + parseInt(jmlh_bab1);
        var total2 = parseInt(j2) + parseInt(jmlh_bab2);
        var total3 = parseInt(j3) + parseInt(jmlh_bab3);
@@ -662,8 +608,6 @@ for (i = 1; i <= 10; i++) {
        var total9 = parseInt(j9) + parseInt(jmlh_bab9);
        var total10 = parseInt(j10) + parseInt(jmlh_bab10);
 
-       console.log(total10, j10, jmlh_bab10);
-       // for (j = 1; j <= 10; j++) {
             $("#ntotal1").html(total1);
             $("#ntotal2").html(total2);
             $("#ntotal3").html(total3);
@@ -674,7 +618,6 @@ for (i = 1; i <= 10; i++) {
             $("#ntotal8").html(total8);
             $("#ntotal9").html(total9);
             $("#ntotal10").html(total10);
-        // }
 
     });
 }

@@ -16,19 +16,17 @@ class Guru extends MX_Controller {
     }
 
     public function index() {
-        if ($this->session->userdata('id_guru')) {
-            # code...
-        
-        $this->load->view('layout/header');
-        $this->load->view('layout/nav');
-        $this->load->view('layout/footer');
-    }
-        else{
+        if ($this->session->userdata('id_guru')) {        
+            $this->load->view('layout/header');
+            $this->load->view('layout/nav');
+            $this->load->view('layout/footer');
+        } else{
             redirect('login');
         }
 
-}
+    }
 
+    // FUNGSI EDIT GURU
     public function edit_guru() {
         if ($this->input->post('update')) 
         {
@@ -48,7 +46,7 @@ class Guru extends MX_Controller {
         
     }
 
-
+    // FUNGSI VIEW PROFILE GURU
     public function Profileguru() {
    
     $data['guru'] = $this->Mguru->get_guru();
@@ -57,9 +55,10 @@ class Guru extends MX_Controller {
         $this->load->view('profileset', $data);
         $this->load->view('layout/footer');
     
-}
+    }
 
-public function ubah_password() {
+    // FUNGSI UBAH PASSWORD GURU
+    public function ubah_password() {
         if ($this->input->post('update')) 
         {
             $this->Mguru->ubah_passguru();
@@ -78,21 +77,18 @@ public function ubah_password() {
         
     }
 
-public function ubahpass() {
-   
-    $data['guru'] = $this->Mguru->get_guru();
-    // $data['email']=$this->session->userdata['email'];
-        $this->load->view('layout/header');
-        $this->load->view('profileset', $data);
-        $this->load->view('layout/footer');
-    
-}
+    // FUNGSI UBAH PASSWORD
+    public function ubahpass() {
+       
+        $data['guru'] = $this->Mguru->get_guru();
+            $this->load->view('layout/header');
+            $this->load->view('profileset', $data);
+            $this->load->view('layout/footer');
+        
+    }
 
-function data_guru(){
-
-
-}
-public function ubahkatasandi() {
+    // FUNGSI UBAH KATA SANDI GURU
+    public function ubahkatasandi() {
 
         //load library n helper
     $this->load->helper( array( 'form', 'url' ) );
@@ -113,16 +109,16 @@ public function ubahkatasandi() {
      $this->load->view('layout/header');
         $this->load->view('profileset', $data);
         $this->load->view('layout/footer');
- } else {
-    $katasandi = htmlspecialchars( md5( $this->input->post( 'password' ) ) );
-    $id_guru = htmlspecialchars( $this->input->post( 'id_guru' ) );
-    $data_post = array(
-        'password' => $katasandi,
-        );
-    $this->Mguru->update_katasandi( $katasandi, $id_guru );
-}
+     } else {
+        $katasandi = htmlspecialchars( md5( $this->input->post( 'password' ) ) );
+        $id_guru = htmlspecialchars( $this->input->post( 'id_guru' ) );
+        $data_post = array(
+            'password' => $katasandi,
+            );
+        $this->Mguru->update_katasandi( $katasandi, $id_guru );
+    }
 }
 
 
-
 }
+?>

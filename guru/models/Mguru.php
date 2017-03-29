@@ -18,6 +18,7 @@ class Mguru extends CI_Model {
 
     }
 
+    // GET DATA GURU
     public function get_guru()
 
 	{
@@ -36,6 +37,7 @@ class Mguru extends CI_Model {
 
 	}
 
+	// UPDATE GURU
 	public function update_guru() {
 		$a  =  $this->input->post('nama_guru');
 		$b  =  $this->input->post('username');
@@ -46,14 +48,13 @@ class Mguru extends CI_Model {
 		$arr = array(
 				'nama_guru' => $a,
 				'username' => $b,
-				'email'=> $c,
-				// 'status' => $e
-				
+				'email'=> $c				
 			);
 		$this->db->where('id_guru', $f);
 		return $this->db->update('tb_guru', $arr);
 	}
 
+	// UBAH PASSWORD GURU
 	public function ubah_passguru() {
 		$a  =  $this->input->post('id_guru');
 		$b  =  md5($this->input->post('password'));
@@ -66,19 +67,15 @@ class Mguru extends CI_Model {
 		return $this->db->update('tb_guru', $arr);
 	}
 
+	// UPDATE KATA SANDI GURU
 	public function update_katasandi($data, $id)
 
 	{
-
-
 		$this->db->where('id_guru',$id);
 
 		$this->db->update('tb_guru',$data);
 
 		redirect(site_url('guru/profileguru'));
-
-
-
 	}
 
 

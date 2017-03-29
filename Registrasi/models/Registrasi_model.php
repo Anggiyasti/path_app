@@ -11,16 +11,18 @@ class Registrasi_model extends CI_Model
 			parent::__construct();
 		}
 
+		// insert siswa
 		public function insertUser($data)
 		{
 			return $this->db->insert('tb_siswa', $data);
 		}
 
+		// fungsi send email
 		public function sendEmail($to_email)
 		{
 			$from_email = 'noreply@sibejooclass.com';
 			$subject = 'Verify Your Email Address';
-			$message = 'Dear Student Lovers,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> '. base_url() .' index.php/registrasi/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Path Team';
+			$message = 'Dear Journal Student,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> '. base_url() .' index.php/registrasi/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Path Team';
 
 			//configure email settings
         $config['protocol'] = 'smtp';
@@ -43,6 +45,7 @@ class Registrasi_model extends CI_Model
 
 		}
 
+		// FUNGSI VERIFY KODE EMAIL
 		public function verifyEmailID($key)
 		{
 			$data = array('status' => 1);

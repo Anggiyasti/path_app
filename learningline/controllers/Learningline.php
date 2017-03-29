@@ -36,14 +36,12 @@ class Learningline extends MX_Controller {
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
 		
-			// $no++;
 			$row = array();		
 			$row[] = $list_item['nama_mapel'];
 
          
              
 			$row[] = $list_item['part'];
-			// $row[] = $list_item['judulbab'];
 			if ($list_item['status']==1) {
 				$row[] = "<input type='checkbox' 
 				class='switchery' checked onclick='update_learning_bab(".$list_item['id_mapel'].",".$list_item['status'].")'>";
@@ -91,31 +89,22 @@ class Learningline extends MX_Controller {
 			$this->load->view('v-form-topik',$data);
 			$this->load->view('script_learning-form-topik.js',$data);
 			$this->load->view('guru/layout/footer');
+		} else {
+			redirect('login');
 		}
 		
-
-
-		// $data['files'] = array(
-		// 	APPPATH . 'modules/learningline/views/v-form-topik.php',
-		// 	APPPATH . 'modules/learningline/views/script_learning-form-topik.js',
-		// 	);
-
-		// $this->loadparser($data);
 	}
 
+	// fungsi step 1
 	public function step1($data)
 	{
 		$metadata['mapel'] = $this->learningmodel->get_bab_by_topikid($data);
 
 		$pel = $this->learningmodel->get_bab_by_topikid($data)['nama_mapel'];
 		$metadata['bab'] = $this->learningmodel->baba($pel);
-		// $metadata['i'] ="helo";
-		// var_dump($metadata);
-
 		
 		$this->load->view('admin/layout/header');
 		$this->load->view('step1', $metadata);
-		// $this->load->view('script_learning-form-step.js',$data);
 		$this->load->view('admin/layout/footer');
 
 	}
@@ -124,20 +113,16 @@ class Learningline extends MX_Controller {
 	//FUNGSI TAMBAHKAN LINE STEP
 	public function formstep($data){
 		$metadata = $this->learningmodel->get_topik_byid($data);
-		// var_dump($metadata);
 		$data = array(
 			'judul_halaman' => " - Add Learning Line Step untuk ".$metadata['namaTopik'],
 			'namaTopik' => $metadata['namaTopik'],
 			'id'=>$metadata['id'],
 			'mapel'=>$metadata['nama_mapel'],
-			'id_mapel'=>$metadata['id_mapel'],
-			// 'id_bab'=>$metadata['id_bab']
-			
+			'id_mapel'=>$metadata['id_mapel']			
 			);
 		$mapel= $this->learningmodel->get_topik_byid($data)['id_mapel'];
 		$data['bab'] = $this->learningmodel->get_bab($mapel);
 
-		// var_dump($dataa);
 
 		if ($this->session->userdata('id_admin')) {
 		$this->load->view('admin/layout/header');
@@ -150,14 +135,16 @@ class Learningline extends MX_Controller {
 		$this->load->view('v-form-step',$data);
 		$this->load->view('script_learning-form-step.js',$data);
 		$this->load->view('guru/layout/footer');
+	} else {
+		redirect('login');
 	}
 
 	}
 
+	// FUNGSI VIEW FORM STEP2
 	public function formstep2($data, $id_bab){
 		$metadata = $this->learningmodel->get_topik_byid($data);
-		// $a['bab'] = $id_bab;
-		// var_dump($a);
+
 		$data = array(
 			'judul_halaman' => " - Add Learning Line Step untuk ".$metadata['namaTopik'],
 			'namaTopik' => $metadata['namaTopik'],
@@ -167,58 +154,55 @@ class Learningline extends MX_Controller {
 			'bab'=>$metadata['judul_bab'],
 			'bb' => $id_bab
 			);
-
+		// PENGECEKAN HAK AKSES
 		if ($this->session->userdata('id_admin')) {
-		$this->load->view('admin/layout/header');
-		$this->load->view('v-form-step',$data);
-		$this->load->view('script_learning-form-step.js',$data);
-		$this->load->view('admin/layout/footer');
-	}
-		if ($this->session->userdata('id_guru')) {
-		$this->load->view('guru/layout/header');
-		$this->load->view('v-form-step',$data);
-		$this->load->view('script_learning-form-step.js',$data);
-		$this->load->view('guru/layout/footer');
-	}
+			$this->load->view('admin/layout/header');
+			$this->load->view('v-form-step',$data);
+			$this->load->view('script_learning-form-step.js',$data);
+			$this->load->view('admin/layout/footer');
+		} else if ($this->session->userdata('id_guru')) {
+			$this->load->view('guru/layout/header');
+			$this->load->view('v-form-step',$data);
+			$this->load->view('script_learning-form-step.js',$data);
+			$this->load->view('guru/layout/footer');
+		} else {
+			redirect('login');
+		}
 
 	}
 
+	// FUNGSI VIEW FORM STEP 3
 	public function formstep3($data){
 		$metadata = $this->learningmodel->get_topik_byid($data);
-		// $a['bab'] = $id_bab;
-		// var_dump($a);
+
 		$data = array(
 			'judul_halaman' => " - Add Learning Line Step untuk ".$metadata['namaTopik'],
 			'namaTopik' => $metadata['namaTopik'],
 			'id'=>$metadata['id'],
-			// 'id_bab'=>$metadata['id_bab'],
 			'mapel'=>$metadata['nama_mapel'],
-			// 'bab'=>$metadata['judul_bab'],
 			'bb' => $this->input->post('bab')
 			);
 
 		if ($this->session->userdata('id_admin')) {
-		$this->load->view('admin/layout/header');
-		$this->load->view('v-form-step',$data);
-		$this->load->view('script_learning-form-step.js',$data);
-		$this->load->view('admin/layout/footer');
-	}
-		if ($this->session->userdata('id_guru')) {
-		$this->load->view('guru/layout/header');
-		$this->load->view('v-form-step',$data);
-		$this->load->view('script_learning-form-step.js',$data);
-		$this->load->view('guru/layout/footer');
-	}
+			$this->load->view('admin/layout/header');
+			$this->load->view('v-form-step',$data);
+			$this->load->view('script_learning-form-step.js',$data);
+			$this->load->view('admin/layout/footer');
+		} else if ($this->session->userdata('id_guru')) {
+			$this->load->view('guru/layout/header');
+			$this->load->view('v-form-step',$data);
+			$this->load->view('script_learning-form-step.js',$data);
+			$this->load->view('guru/layout/footer');
+		} else {
+			redirect('login');
+		}
 
 	}
-
-
 
 	//FUNGSI TAMBAHKAN LINE STEP
 
 	// TB-TOPIK //
 	function ajax_insert_line_topik(){
-			// $data = $this->input->post();
 		$data = array(
 			'id_mapel'=>$this->input->post('id_mapel'),
 			'deskripsi'=>$this->input->post('deskripsi'),
@@ -229,45 +213,36 @@ class Learningline extends MX_Controller {
 			'UUID'=>uniqid(),
 
 			);
+		// call fungsi insert line topik
 		$this->learningmodel->insert_line_topik($data);
 	}
 
-		//FUNGSI MENGEDIT TOPIK
-	
-
+	// FUNGSI VIEW  SINGLE TOPIK
 	function topik($byid){
-		// var_dump($byid);
 		$metadata = $this->learningmodel->get_bab_by_mapel($byid)[0];
-
-
-		
-		$data = array(
-			'judul_halaman' => " - Daftar Topik",
-			'mapel'=>$metadata['nama_mapel'],
-			// 'bab'=>$metadata['judul_bab'],
-			);
-		// var_dump($data);
-
+		// PENGECEKAN HAK AKSES
 		if ($this->session->userdata('id_admin')) {
-		$this->load->view('admin/layout/header');
-		$this->load->view('v-daftar-topik-single.php',$data);
-		$this->load->view('script_learning-single-topik.js',$data);
-		$this->load->view('admin/layout/footer');
-	}
+			$this->load->view('admin/layout/header');
+			$this->load->view('v-daftar-topik-single.php',$data);
+			$this->load->view('script_learning-single-topik.js',$data);
+			$this->load->view('admin/layout/footer');
+		}
 		elseif ($this->session->userdata('id_guru')) {
-		$this->load->view('guru/layout/header');
-		$this->load->view('v-daftar-topik-single.php',$data);
-		$this->load->view('script_learning-single-topik.js');
-		$this->load->view('guru/layout/footer');
-}
+			$this->load->view('guru/layout/header');
+			$this->load->view('v-daftar-topik-single.php',$data);
+			$this->load->view('script_learning-single-topik.js');
+			$this->load->view('guru/layout/footer');
+		} else {
+			redirect('login');
+		}
 		
 	}
-	// TB-TOPIK //
 
+	// TB-TOPIK //
+	// FUNGSI VIEW STEP
 	function step($topikID){
 
 		$metadata = $this->learningmodel->get_step_tampil($topikID);
-		// $metadata = $this->learning_model->get_step_by_id_topik($topikID)[0];
 		$data = array(
 			'judul_halaman' => " - Daftar Step",
 			'namaTopik' => $metadata['namaTopik'],
@@ -279,36 +254,29 @@ class Learningline extends MX_Controller {
 			);
 
 		if ($this->session->userdata('id_admin')) {
-		$this->load->view('admin/layout/header');
-		$this->load->view('v-daftar-step-single',$data);
-		$this->load->view('script_learning-single-step.js');
-		$this->load->view('admin/layout/footer');
-	}
-		
+			$this->load->view('admin/layout/header');
+			$this->load->view('v-daftar-step-single',$data);
+			$this->load->view('script_learning-single-step.js');
+			$this->load->view('admin/layout/footer');
+		}
 		elseif ($this->session->userdata('id_guru')) {
 		$this->load->view('guru/layout/header');
 		$this->load->view('v-daftar-step-single',$data);
 		$this->load->view('script_learning-single-step.js');
 		$this->load->view('guru/layout/footer');
+		} else {
+			redirect('login');
+		}
 	}
-	
 
-		// $data['files'] = array(
-		// 	APPPATH . 'modules/learningline/views/v-daftar-step-single.php',
-		// 	APPPATH . 'modules/learningline/views/script_learning-single-step.js',
-		// 	);
 
-		// $this->loadparser($data);
-	}
-	// DAFTAR STEP
-
+	// GET LIST STEP BERDASARKAN ID TOPIK
 	public function ajax_get_list_topik($babid){
 		$list = $this->learningmodel->get_topik_by_mapelid($babid);
 		$data = array();
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
-			// $no++;
 
 			$row = array();
 			$row[] = $list_item['namaTopik'];
@@ -321,8 +289,6 @@ class Learningline extends MX_Controller {
 				$row[] = "<input type='checkbox' 
 				class='switchery' unchecked onclick='updatestatus(".$list_item['id'].",".$list_item['status'].")'>";
 			}			
-			
-			
 
 			$row[] = '<a class="btn btn-sm btn-warning"  
 			title="Edit" 
@@ -340,17 +306,14 @@ class Learningline extends MX_Controller {
 
 		echo json_encode( $output );
 	}
-	// GET LIST STEP BERDASARKAN ID TOPIK
-
-
+	
+	//FUNGSI MENGEDIT TOPIK
 	function edit_topik($d){
 		$metatopik = $this->learningmodel->get_topik_byid($d);
 
 		if ($metatopik==false) {
 			echo "Forbiden acces";
 		} else {
-			// var_dump($metatopik);
-
 			$data = array(
 				'judul_halaman' =>" - Update Learning Line Topik Berjudul ".$metatopik['namaTopik'],
 				'judul'=>$metatopik['namaTopik'],
@@ -361,52 +324,39 @@ class Learningline extends MX_Controller {
 				'mapell'=>$this->Videobackmodel->provinsi(),
 				'part'=>$metatopik['part'],
 				'topikID'=>$metatopik['id'],
-				// 'babID'=>$metatopik['babID'],
 				'mapelID'=>$metatopik['id_mapel'],
 				);
 
-		// $this->load->view('v-header');
-		// $this->load->view('v-form-edit-topik',$data);
-		// $this->load->view('script_learning-edit-topik.js');
-		// $this->load->view('admin/layout/footer');
-		
 		if ($this->session->userdata('id_admin')) {
-		$this->load->view('admin/layout/header');
-		$this->load->view('v-form-edit-topik',$data);
-		$this->load->view('script_learning-edit-topik.js');
-		$this->load->view('admin/layout/footer');
-	}
-		
-		elseif ($this->session->userdata('id_guru')) {
-		$this->load->view('guru/layout/header');
-		$this->load->view('v-form-edit-topik',$data);
-		$this->load->view('script_learning-edit-topik.js');
-		$this->load->view('guru/layout/footer');
-	}
-
-			// $data['files'] = array(
-			// 	APPPATH . 'modules/learningline/views/v-form-edit-topik.php',
-			// 	APPPATH . 'modules/learningline/views/script_learning-edit-topik.js',
-			// 	);
-
-			// $this->loadparser($data);
+			$this->load->view('admin/layout/header');
+			$this->load->view('v-form-edit-topik',$data);
+			$this->load->view('script_learning-edit-topik.js');
+			$this->load->view('admin/layout/footer');
 		}
-		
-		// 
-	}
-	//FUNGSI MENGEDIT TOPIK
+			
+		elseif ($this->session->userdata('id_guru')) {
+			$this->load->view('guru/layout/header');
+			$this->load->view('v-form-edit-topik',$data);
+			$this->load->view('script_learning-edit-topik.js');
+			$this->load->view('guru/layout/footer');
+		} else {
+			redirect('login');
+		}
 
+		}
+		 
+	}
+	
+	// FUNGSI GET LIST STEP
 	public function ajax_list_ge_step($id_topik){
 		$list = $this->learningmodel->get_step_by_id_topik($id_topik);
 		$data = array();
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
-			// $no++;
 			$row = array();
 			$row[] = $list_item['urutan'];
 			$row[] = $list_item['namaStep'];
-			// $row[] = $list_item['jenisStep'];
 
 			if ($list_item['jenisStep']==1) {
 				$row[] = "Video";
@@ -442,6 +392,7 @@ class Learningline extends MX_Controller {
 		echo json_encode( $output );	
 	}
 
+	// FUNGSI INSERT STEP LINE
 	function ajax_insert_line_step(){
 	$uuid = uniqid();
 	
@@ -502,18 +453,16 @@ class Learningline extends MX_Controller {
 	}
 }
 
+// FUNGSI GET MATERI
 function ajax_get_materi($data){
-		// $=htmlspecialchars($this->input->get('keycari'));
 		$list = $this->learningmodel->get_materi_babID($data);
 		$data = array();
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
-			// $no++;
 			$row = array();
 			$row[] = $list_item['id'];			
 			$row[] = $list_item['judulMateri'];
-			// $row[] = $list_item['isiMateri'];
 			$row[] = '<a class="btn btn-sm btn-primary btn-outline detail-'.$list_item['id'].'"  title="Lihat"
 			data-id='."'".json_encode($list_item)."'".'
 			onclick="detail('."'".$list_item['id']."'".')"
@@ -535,6 +484,7 @@ function ajax_get_materi($data){
 
 }
 
+// FUNGSI DETAIL LATIHAN
 function ajax_detail_latihan($id){
 	$list = $soal=$this->learningmodel->get_soal_by_id_latihan($id);
 	$data = array();
@@ -571,8 +521,7 @@ $output = array(
 echo json_encode( $output );
 }
 
-	#
-
+// FUNGSI UPDATE LINE TOPIK
 function ajax_update_line_topik(){
 	$data = array(
 		'statusLearning'=>$this->input->post('statusLearning'),
@@ -582,22 +531,17 @@ function ajax_update_line_topik(){
 		'urutan'=>$this->input->post('urutan'),
 		'id'=>$this->input->post('topikID'),
 		);
-
-	// var_dump($data['topikID']);
 	$this->learningmodel->update_topik($data);
 }
 	// TB-TOPIK //
 
-
-
-
+	// FUNGSI GET VIDEO
 	function ajax_get_video($babid){
 		$list = $this->learningmodel->get_all_video_by_bab($babid);
 		$data = array();
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
-			// $no++;
 			$row = array();
 			$row[] = $list_item['videoID'];			
 			$row[] = $list_item['judul_bab'];
@@ -629,7 +573,7 @@ function ajax_update_line_topik(){
 
 
 	## --------------------------AJAX PROCESSING-------------------------- ##
-
+	// DROP TOPIK
 	function drop_topik(){
 		$data = array(
 			'id'=>$this->input->post('id')
@@ -637,6 +581,7 @@ function ajax_update_line_topik(){
 		$this->learningmodel->droptopik($data);
 	}
 
+	// DROP STEP
 	function drop_step(){
 	$data = array(
 		'id'=>$this->input->post('id')
@@ -644,29 +589,33 @@ function ajax_update_line_topik(){
 	$this->learningmodel->drop_step($data);
 }
 
+// UPDATE BAB AKTIF
 function updateaktiv_bab($data){
 	$this->learningmodel->updateaktiv_bab($data);
 }
 
+// UPDATE BAB PASIF
 function updatepasive_bab($data){
 	$this->learningmodel->updatepasive_bab($data);
 }
 
+// UPDATE AKTIF
 function updateaktiv($data){
 	$this->learningmodel->updateaktiv($data);
 }
 
+// UPDATE PASIF
 function updatepasive($data){
 	$this->learningmodel->updatepasive($data);
 }
 
-
-
+// GET PELAJARAN
 public function getPelajaran() {
         $data = $this->output
         ->set_content_type( "application/json" )
         ->set_output( json_encode( $this->learningmodel->scPelajaran() ) ) ;
     }
+   // GET BAB
 public function getBab( $tpelajaranID ) {
         $data = $this->output
         ->set_content_type( "application/json" )

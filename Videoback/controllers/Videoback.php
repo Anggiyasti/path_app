@@ -19,25 +19,19 @@ class Videoback extends MX_Controller
     public function index()
     {
        $data['mapel']=$this->Videobackmodel->provinsi();
-        
+        // PENGECEKAN HAK AKSES
         if ($this->session->userdata('id_admin')) {
             $this->load->view('admin/layout/header');
-        // $this->load->view('layout/nav');
-        $this->load->view('v-form-video', $data);
-        $this->load->view('admin/layout/footer');
-
-            # code...
+            $this->load->view('v-form-video', $data);
+            $this->load->view('admin/layout/footer');
         }
         elseif ($this->session->userdata('id_guru')) {
             $this->load->view('guru/layout/header');
-        // $this->load->view('layout/nav');
-        $this->load->view('v-form-video', $data);
-        $this->load->view('guru/layout/footer');
-
-            # code...
+            $this->load->view('v-form-video', $data);
+            $this->load->view('guru/layout/footer');
+        } else {
+            redirect('login');
         }
-        
-
     }
 
     // fungsi tampil bab di ajax
@@ -49,12 +43,7 @@ class Videoback extends MX_Controller
         if($modul=="getbab"){
         echo $this->Videobackmodel->getbab($id);
         }
-        else if($modul=="getkesulitan"){
-        // echo $this->Modeluser->getkes($id);
-        }
-        else if($modul=="kelurahan"){
 
-        }
     }
 
     // fungsi cek option upload video
@@ -62,8 +51,6 @@ class Videoback extends MX_Controller
      {
         //set role
         $this->form_validation->set_rules('deskripsi', 'Judul Video', 'required');
-        // $this->form_validation->set_rules('id_bab', 'Bab', 'required');
-         // $this->form_validation->set_rules('video', 'Video', 'required');
 
         //pesan error atau pesan kesalahan pengisian form upload video
         $this->form_validation->set_message('required', '*Data tidak boleh kosong!');
@@ -75,9 +62,7 @@ class Videoback extends MX_Controller
          $data['jenis_video'] = htmlspecialchars($this->input->post('jenis_video'));
          $link=$this->input->post('link_video');
          $option_up=htmlentities($this->input->post('option_up'));
-        // if ($this->form_validation->run() == FALSE) {
-        //     redirect('banksoal');
-        // }else{
+
              if ($option_up =='link') {
                 $UUID = uniqid();
                 $linkembed=$this->get_linkembed($link);
@@ -195,9 +180,6 @@ class Videoback extends MX_Controller
                 );
 
             $this->Videobackmodel->insertVideo($data_video);
-            // $data['video_name']= $configVideo['file_name'];
-            // $data['video_detail'] = $videoDetails;
-            // $this->load->view('movie/show', $data);
         }
 
     }else{
@@ -209,20 +191,18 @@ class Videoback extends MX_Controller
     function daftarvideo(){
     
     if ($this->session->userdata('id_admin')) {
-        # code...
         $data['data']   = $this->Videobackmodel->tampilvideo();
-    $this->load->view('admin/layout/header');
-    // $this->load->view('layout/nav');
-    $this->load->view('v-daftar-video', $data);
-    $this->load->view('admin/layout/footer');
-    }
-    if ($this->session->userdata('id_guru')) {
-        # code...
+        $this->load->view('admin/layout/header');
+        $this->load->view('v-daftar-video', $data);
+        $this->load->view('admin/layout/footer');
+        }
+    else if ($this->session->userdata('id_guru')) {
         $data['data']   = $this->Videobackmodel->tampilvideo();
-    $this->load->view('guru/layout/header');
-    // $this->load->view('layout/nav');
-    $this->load->view('v-daftar-video', $data);
-    $this->load->view('guru/layout/footer');
+        $this->load->view('guru/layout/header');
+        $this->load->view('v-daftar-video', $data);
+        $this->load->view('guru/layout/footer');
+    } else {
+        redirect('login');
     }
 
 
@@ -235,17 +215,15 @@ class Videoback extends MX_Controller
             $data['video']=$this->Videobackmodel->get_video($video)[0];
             if ($this->session->userdata('id_admin')) {
                 $this->load->view('admin/layout/header');
-                // $this->load->view('layout/nav');
                 $this->load->view('v-edit-video', $data);
                 $this->load->view('admin/layout/footer');
-                # code...
             }
             elseif ($this->session->userdata('id_guru')) {
                 $this->load->view('guru/layout/header');
-                // $this->load->view('layout/nav');
                 $this->load->view('v-edit-video', $data);
                 $this->load->view('guru/layout/footer');
-                # code...
+            } else {
+                redirect('login');
             }
             
     }
@@ -289,9 +267,6 @@ class Videoback extends MX_Controller
                 );
 
             $this->Videobackmodel->up_video($data);
-            // $data['video_name']= $configVideo['file_name'];
-            // $data['video_detail'] = $videoDetails;
-            // $this->load->view('movie/show', $data);
         }
 
   }
@@ -355,14 +330,6 @@ class Videoback extends MX_Controller
         $this->Videobackmodel->del_video($videoID);
         redirect('videoback/daftarvideo');
     }
-
-    public function tes_mini()
-    {
-        $this->load->view('template/header');
-        $this->load->view('template/sidebar');
-        $this->load->view('template/index');
-    }
-
     
 }
  ?>

@@ -44,7 +44,7 @@
                 </div>
 
                  <div class="contact">
-                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/hitung_log_part1/<?=$pel['id_mapel']?>">Part 2</a></span>
+                  <span class="date"><a href="<?=base_url()?>index.php/linetopik/part2/<?=$pel['id_mapel']?>">Part 2</a></span>
                   <div class="dot z-depth-1">
                   </div>
                   
@@ -90,7 +90,7 @@
                                 
                   <?php if ($nm_try != $key['nm_try'] && $i==0): ?>
                 <div class="contact">
-                  <span class="date"><a href="<?=base_url()?>/linetopik/hitung_log_part2/<?=$key['id_try'] ?>" id="font-<?=$i;?>"><?=$key['nm_try']?></a></span>
+                  <span class="date"><a href="<?=base_url()?>/linetopik/part3/<?=$key['id_try'] ?>" id="font-<?=$i;?>"><?=$key['nm_try']?></a></span>
                   <span > <a style="margin-left: 80px;" class="waves-effect waves-light btn primary-color " href="<?=base_url()?>index.php/linetopik/report_tryout/<?=$key['id_try'] ?>" id="font-<?=$i;?>">Report</a></span>
 
 

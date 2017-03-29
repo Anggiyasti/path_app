@@ -25,10 +25,11 @@ class settingpath extends MX_Controller {
 	        $this->load->view('guru/layout/header');
 	        $this->load->view('v-part2', $data);
 	        $this->load->view('guru/layout/footer');
-  }
-        
+      } else {
+        redirect('login');
     }
 
+    // FUNGSI JUMLAH BAB 
     function get_jumlah_bab(){
       $id=$this->input->post('id');
       $data['part2'] = $this->mpath->get_set_path();
@@ -40,6 +41,7 @@ class settingpath extends MX_Controller {
           $this->load->view('guru/layout/header');
           $this->load->view('v-part2', $data);
           $this->load->view('guru/layout/footer');
+      }
   }
     }
 
@@ -125,23 +127,17 @@ class settingpath extends MX_Controller {
 
         if($modul=="getbab"){
         // cek id_mapelnya dulu
-        if ($result = $this->mpath->cekmapel($id_mapel)) {
-          
-        } else {
-          $this->mpath->insert_path($data);
+          if ($result = $this->mpath->cekmapel($id_mapel)) {
+            
+          } else {
+            $this->mpath->insert_path($data);
+          }
         }
-        echo $this->mpath->getbab2($id);
-        echo $this->mpath->getpart2($id);
-        }
-        else if($modul=="getkesulitan"){
-        // echo $this->Modeluser->getkes($id);
-        }
-        else if($modul=="kelurahan"){
-
-        }
+        
     }
 
-    public function test()
+    // FUNGSI TAMBAH SETTING PATH
+    public function tambah_path()
     {
       $id_mapel = $this->input->post('id_mapel');
       $n1 = $this->input->post('jumlah1');
@@ -237,7 +233,6 @@ class settingpath extends MX_Controller {
                          'jumlah_soal' => $this->input->post('jmlh_soal10') + $n10
                      )
                  );
-      // var_dump($n1, $n2, $id_mapel);
       
       // cek jumlah bab
       $bab = $this->mpath->cekbab($id_mapel)[0]['jmlh_bab'];
@@ -254,15 +249,10 @@ class settingpath extends MX_Controller {
             $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Insert</div>');
           redirect('settingpath');
           }
-          
-        
-      
-      // redirect('settingpath');
-
-      // var_dump($id_mapel, $data);
     }
 
-    public function tesis() 
+    // FUNGSI TAMBAH SERTTING PART 2
+    public function tambahsimulasi() 
     {
         if ($this->input->post()) {
           $post = $this->input->post();

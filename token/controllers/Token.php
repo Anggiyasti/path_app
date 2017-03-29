@@ -15,17 +15,16 @@ class Token extends MX_Controller {
 	}
 
 	public function index(){
-		// $this->load->view('v-header');
 		$this->load->view('admin/layout/header');
 		$this->load->view('v-daftar-token');
 		$this->load->view('admin/layout/footer');
 	}
 
-
+	// FUNGSI GET DATA TOKEN
 	function ajax_data_token($data="all", $status=""){
 		$list = $this->token_model->get_token($data,$status);
 		$data = array();
-
+		// MENGAMBIL NILAI LIST
 		foreach ( $list as $token_item ) {
 			$row = array();
 			$row[] = $token_item->tokenid;
@@ -47,6 +46,7 @@ class Token extends MX_Controller {
 		echo json_encode( $output );
 	}
 
+	// FUNGSI AJAX GET DATA SISWA
 	function ajax_data_siswa(){
 		$list = $this->token_model->get_siswa_unvoucher();
 		$data = array();
@@ -63,21 +63,21 @@ class Token extends MX_Controller {
 
 			$data[] = $row;
 			$n++;
-
 		}
 
 		$output = array(
 			"data"=>$data,
 			);
 		echo json_encode( $output );
-		// var_dump($list);
 	}
 
 
+	// FUNGSI GET REKAP TOKEN
 	function ajax_rekap_penggunaan_token(){
 		$list = $this->token_model->get_token($data="all",1);
 		$data = array();
 		$no = 1;
+		// MENGAMBIL NILAI LIST
 		foreach ( $list as $list ) {
 			$date1 = new DateTime($list->tanggal_diaktifkan);
 			$date_diaktifkan = $date1->format('d-M-Y');
@@ -112,10 +112,9 @@ class Token extends MX_Controller {
 			"data"=>$data,
 			);
 		echo json_encode( $output );
-		
-		
 	}
 
+	// FUNGSI TAMBAH TOKEN
 	function add_token(){
 		// kalo ada yang post
 		$jumlah_token = $this->input->post('jumlah_token');
@@ -138,6 +137,7 @@ class Token extends MX_Controller {
 		}
 	}
 
+	// FUNGSI SET TOKEN KE SISWA
 	function set_token_to_mahasiswa(){
 		if ($this->input->post()) {
 			$post = $this->input->post();
@@ -158,6 +158,7 @@ class Token extends MX_Controller {
 		}
 	}
 	
+	// FUNSGI ISI TOKEN
 	function isi_token(){
 		if ($this->input->post()) {
 			$post =$this->input->post();
@@ -179,11 +180,7 @@ class Token extends MX_Controller {
 		}
 	}
 
-	function test(){
-			var_dump($this->session->userdata());
-		// print_r(date('Y-m-d h:m:s'));
-
-	}
+	// FUNGSI GET STOCK TOKEN
 	function ajax_get_stock(){
 		$jumlah_semua_stok = $this->token_model->get_jumlah_token_stok();
 		$jumlah_30_stok = $this->token_model->get_jumlah_token_stok(30);
@@ -198,10 +195,9 @@ class Token extends MX_Controller {
 			);
 
 		echo json_encode($data);
-
-
 	}
 
+	// FUNGSI SET TOKEN
 	function settoken(){
 		$token = $this->session->userdata('token');
 		if ($token=='BelumAktif') {
@@ -212,11 +208,11 @@ class Token extends MX_Controller {
 			$pesan = "<span>Maaf anda tidak memiliki Token,</span><br> silahkan lakukan permintaan pada admin untuk mengirim token";
 
 		}
-		
 		$this->load->view('token/header');
 		$this->load->view('v-set-token', $pesan);
 	}
 
+	// FUNGSI HAPUS TOKEN
 	function drop_token(){
 		if ($this->input->post()) {
 			$post = $this->input->post();
@@ -224,6 +220,7 @@ class Token extends MX_Controller {
 		}
 	}
 
+	// FUNGSI AKTIFIN TOKEN
 	function aktifkan_token(){
 		if ($this->input->post()) {
 			$post = $this->input->post();

@@ -15,7 +15,6 @@ class m_slide extends CI_Model
 	public function getDaftarslide(){
     	$this->db->distinct();
 		$this->db->select()->from('tb_gambar_front');
-		// $this->db->where('status = 1');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
     }
@@ -23,8 +22,6 @@ class m_slide extends CI_Model
     public function get_gambarslide($id)
 
 	{
-
-		// $id_siswa=$this->session->userdata['email'] ;	
 
 		$this->db->select('*');
 
@@ -42,17 +39,13 @@ class m_slide extends CI_Model
 
 		$a  =  $this->input->post('judul');
 		$b  =  $this->input->post('resume');
-		$c  =  $this->input->post('editor1');
         $d  =  $this->input->post('id_artikel');
 
         $data = array(
             'gambar' => $photo,
             'judul' => $a,
             'resume' => $b,
-            'isi' => $c,
-            'id_artikel' => $d,
-            // 'gambar_artikel' => $photo
-
+            'id_artikel' => $d
         );
         // $id_siswa = $this->session->userdata['email'];
         $this->db->where('id', $id);

@@ -251,7 +251,7 @@
 				<input type="hidden" value="<?php echo $email_hash; ?>" name="email_hash"/>
 				<input type="hidden" value="<?php echo $email_code; ?>" name="email_code"/>
 			<?php } ?>
-			<input type="email" class="input-text-box input-red-border" name="email" value="<?php echo (isset($email)) ? $email : ''; ?>"> 
+			<input type="email" class="input-text-box input-red-border" name="email" value="<?php echo (isset($email)) ? $email : ''; ?>" disabled> 
 			<label>Password</label>
 			<input type="password" class="input-text-box input-red-border" name="password"> 
 			<label>New Password again :</label>
