@@ -19,7 +19,7 @@
        
             
           <div class="parallax bg-2">
-        <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>"> 
+        <img src="<?= base_url('./assets/app/halo/img/artikel/'. $d['gambar']) ?>"> 
             <div class="floating-button animated bouncein delay-3">
             <span class="btn-floating resize btn-large waves-effect waves-light accent-color btn z-depth-1">
               <i class="ion-android-bookmark"></i>
