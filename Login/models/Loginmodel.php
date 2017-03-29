@@ -276,8 +276,8 @@ function get_admin($id_admin){
     public function tampilarticle($id) {
         $this->db->distinct();
         $this->db->select('*');
-        $this->db->from('tb_gambar_front');
-        $this->db->where('id',$id);
+        $this->db->from('tb_artikel');
+        $this->db->where('id_artikel',$id);
         $tampil=$this->db->get();
         return $tampil->result_array();
     }

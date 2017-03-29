@@ -329,24 +329,6 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
         <input type="text" class="form-control" name="nmpaket" id="to_nm">
       </div>
     </div>
-  <!--   <div  class="form-group">
-     <label class="col-sm-3 control-label">Tanggal Mulai</label>
-     <div class="col-sm-4">
-      <input type="date" class="form-control" name="tglmulai" id="to_tglmulai">
-    </div >
-    <div class="col-sm-4">
-      <input type="time" class="form-control" name="wktmulai" id="to_wktmulai" >
-    </div>
-  </div>
-  <div  class="form-group">
-   <label class="col-sm-3 control-label">Tanggal Berakhir</label>
-   <div class="col-sm-4">
-    <input type="date" class="form-control" name="tglakhir" id="to_tglakhir">
-  </div>
-  <div class="col-sm-4">
-    <input type="time" class="form-control" name="wktakhir" id="to_wktakhir" >
-  </div>
-</div> -->
 
 <div class="form-group">
  <label class="col-sm-3 control-label">Publish</label>
@@ -412,14 +394,6 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
                     </li>
                     <!--/ Offcanvas left -->
 
-                    <!-- Message dropdown -->
-                    
-                    <!--/ Message dropdown -->
-
-                    <!-- Notification dropdown -->
-                    
-                    <!--/ Notification dropdown -->
-
                     <!-- Search form toggler  -->
                     <li>
                         
@@ -461,8 +435,6 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
                         </ul>
                     </li>
                     <!-- Profile dropdown -->
-
-                    <!-- Offcanvas right This menu will take position at the top of template header (mobile only). Make sure that only #header have the `position: relative`, or it may cause unwanted behavior -->
                     
                     <!--/ Offcanvas right -->
                 </ul>
@@ -747,6 +719,31 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
                         
                         <!--/ END 2nd Level Menu -->
                     </li>
+
+                    <li >
+                        <a href="javascript:void(0);" data-toggle="submenu" data-target="#artikel" data-parent=".topmenu">
+                            <span class="figure"><i class="ico-book"></i></span>
+                            <span class="text">Artikel</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <!-- START 2nd Level Menu -->
+                        <ul id="artikel" class="submenu collapse ">
+                            <li class="submenu-header ellipsis">Forms</li>
+                            <li>
+                                <a href="<?php echo base_url('index.php/artikel')?>">
+                                    <span class="text">Daftar Artikel</span>
+                                </a>
+                            </li>
+                             <li >
+                                <a href="<?php echo base_url('index.php/artikel/tambahartikel')?>">
+                                    <span class="text">Tambah Artikel</span>
+                                </a>
+                            </li>
+                           
+                        </ul>
+                        <!--/ END 2nd Level Menu -->
+                    </li>
+
                      <li>
                         <a href="javascript:void(0);" data-toggle="submenu" data-target="#pass" data-parent=".topmenu">
                             <span class="figure"><i class="ico-book"></i></span>
@@ -771,9 +768,6 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
                         </ul>
                         <!--/ END 2nd Level Menu -->
                     </li>
-
-
-              
                 <!--/ Summary -->
                 <!--/ END Sidebar summary -->
             </section>

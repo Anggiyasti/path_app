@@ -19,7 +19,7 @@
        
             
           <div class="parallax bg-2">
-        <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar_artikel']) ?>"> 
+        <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>"> 
             <div class="floating-button animated bouncein delay-3">
             <span class="btn-floating resize btn-large waves-effect waves-light accent-color btn z-depth-1">
               <i class="ion-android-bookmark"></i>
@@ -32,12 +32,12 @@
         <!-- Article Content -->
         <div class="animated fadeinup delay-1">
           <div class="page-content">
-            <h2 class="uppercase"><?=$d['judul'] ?></h2>
+            <h2 class="uppercase"><?=$d['judul_artikel'] ?></h2>
             <div class="post-author">
              
             </div>
-            <p class="text-flow"><?=$d['resume'] ?></p>
-            <blockquote class="primary-border"><?=$d['isi'] ?></blockquote>
+            <p class="text-flow"><?=$d['isi_artikel'] ?></p>
+            <blockquote class="primary-border"><?=$d['isi_artikel'] ?></blockquote>
             
           
 

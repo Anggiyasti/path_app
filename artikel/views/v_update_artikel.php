@@ -1,16 +1,13 @@
 <?php 
 
-  foreach ($slide as $row) {
+  foreach ($artikel as $row) {
     
-     $id = $row['id'];
-     $judul = $row['judul'];
-     $resume = $row['resume'];
-     $isi = $row['isi'];
+     $id_artikel = $row['id_artikel'];
+     $judul_artikel = $row['judul_artikel'];
+     $isi_artikel = $row['isi_artikel'];
      $gambar=base_url().'assets/app/halo/img/'.$row['gambar'];
      $oldphoto=$row['gambar'];
 } ;
-
-
 
 ?> 
      
@@ -35,37 +32,25 @@
                             <!-- panel body -->
                            
            <?php echo $this->session->flashdata('msg'); ?> 
-            <form name="form-account" action="<?=base_url()?>index.php/template/slide/gambar_slide/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <form name="form-account" action="<?=base_url()?>index.php/artikel/gambar_artikel/<?=$id_artikel; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
              <div class="form-group">
-                                        <label class="col-sm-2">Judul Soal</label>
+                                        <label class="col-sm-2">Judul Artikel</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" placeholder="judul" name="judul" value="<?=$judul;?>">
+                                            <input type="text" class="form-control" placeholder="judul artikel" name="judul_artikel" value="<?=$judul_artikel;?>">
                                             <br>
                       <span id="pesan"></span>
                                         </div>
                                     </div>
-                                      <div class="form-group">
-                                        <label class="col-sm-2">Resume</label>
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" placeholder="resume" name="resume"><?=$resume; ?></textarea>
-                                             <br>
-                      <span id="pesan"></span>
-                                        </div>
-                                    </div>
+                                     
                                     <div class="form-group">
-                                        <label class="col-sm-2 ">Link Artikel</label>
+                                        <label class="col-sm-2">Isi Artikel</label>
                                         <div class="col-sm-10">
-                                            <select name="id_artikel" id="id_artikel" class="form-control">
-                                            <?php 
-                                                foreach ($artikel as $row) {
-                                                echo "<option value='$row[id_artikel]'>$row[judul_artikel]</option>";
-                                                }
-                                              ?>
-                                        </select>
-                                         <br>
+                                           <textarea  name="editor1" class="form-control" id="" value="">
+                                <?=$isi_artikel; ?></textarea>
+                                            <br>
+                                        <span id="pesan"></span>
                                         </div>
                                     </div>
-                                   
                                     <div class="form-group">
                                         <label class="col-sm-2">Gambar Slide</label>
                                         <div class="col-sm-10">

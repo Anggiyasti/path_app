@@ -43,12 +43,14 @@ class m_slide extends CI_Model
 		$a  =  $this->input->post('judul');
 		$b  =  $this->input->post('resume');
 		$c  =  $this->input->post('editor1');
+        $d  =  $this->input->post('id_artikel');
 
         $data = array(
             'gambar' => $photo,
             'judul' => $a,
             'resume' => $b,
             'isi' => $c,
+            'id_artikel' => $d,
             // 'gambar_artikel' => $photo
 
         );
@@ -73,6 +75,17 @@ class m_slide extends CI_Model
         // var_dump($data);
         redirect(site_url('template/slide'));
     }
+
+
+        // get mapel 
+    public function artikel(){
+    $this->db->select('*');
+    $a= $this->db->get('tb_artikel');
+
+    return $a->result_array();
+
+    }
+
 
 }
 
