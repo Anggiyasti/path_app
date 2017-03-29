@@ -20,69 +20,10 @@ class Mgrafik extends CI_Model
         $this->db->from('tb_mata_pelajaran m');
         $this->db->join('tb_bab b', 'm.id_mapel = b.id_mapel');
         $this->db->where('m.nama_mapel', $mapel);
-        // $this->db->select('id_bab, judul_bab, id_mapel');
-        // $this->db->from('tb_bab');
-        // $this->db->where('id_mapel', $mapel);
          
         $query = $this->db->get();
         return $query->result_array();
     }
-    function get_siswa($id_siswa){
-        $this->db->select('id_siswa,photo,jurusan as jur,univ');
-
-        $this->db->from('tb_siswa');
-        $this->db->where('id_siswa',$id_siswa);
-
-
-        $this->db->limit(1);
-
-
-
-        $query = $this->db->get();
-
-        if ($query->num_rows() == 1) {
-
-            return $query->result(); //if data is true
-
-        } else {
-
-            return false; //if data is wrong
-
-        }
-    //     $query = $this->db->get_where('tb_siswa',array('nama_depan'=>$nama_depan));
-    //     $query = $query->result_array();
-    //     if ($query) {
-    //         return $query[0];
-    //     }
-    // }
-}
-
-    public function get_greport($bab){
-        $query = "SELECT m.nama_mapel, b.judul_bab, ROUND((SUM( sub_score ) / sum(total)) * 100) AS score, SUM( total ) AS total 
-        FROM tb_grafik_report as g 
-        RIGHT JOIN tb_bab as b
-        ON  g.id_bab = b.id_bab
-        JOIN tb_mata_pelajaran as m
-        ON b.id_mapel = m.id_mapel
-        WHERE g.id_bab ='$bab'";
-
-        // $this->db->select('*, bab.judul_bab, pel.nama_mapel');
-        // $this->db->from('tb_latihan latihan');
-        // $this->db->join('tb_report_latihan report',
-        //     'latihan.id_latihan=report.id_latihan');
-        // $this->db->join('tb_bab bab',
-        //     'latihan.id_bab=bab.id_bab');
-        // $this->db->join('tb_mata_pelajaran pel',
-        //     'pel.id_mapel=bab.id_mapel');
-        // $this->db->where('create_by', $createdby);
-        // $this->db->where('bab.id_mapel', $mapel);
-        // $this->db->order_by('tgl_pengerjaan', 'asc');
-        // $query = $this->db->get();
-        $result = $this->db->query($query);
-        return $result->result_array();
-
-    }
-
 
     // get data buat grafik bar
     public function chart_model($data)
@@ -98,27 +39,7 @@ class Mgrafik extends CI_Model
         return $result->result_array();
     }
 
-    // get data buat grafik bar
-    public function chart_total($data)
-    {
-
-        $this->db->distinct();
-        $this->db->select('ROUND(SUM(g.sub_score) / SUM(g.total) * 100)/count(g.id_bab) as total_grafik');
-        $this->db->from('tb_grafik_report g');
-        $this->db->join('tb_bab b', 'g.id_bab=b.id_bab');
-        $this->db->join('tb_mata_pelajaran m', 'b.id_mapel=m.id_mapel');
-        $this->db->where('m.nama_mapel', $data);
-        $this->db->group_by('m.nama_mapel');
-
-        // $query = $this->db->get();
-        // $soal = $query->result_array();
-        // return $soal[0]['id_bab'];
-        // $query = " SELECT m.nama_mapel, b.judul_bab, g.total as tot, ROUND(SUM(g.sub_score) / SUM(g.total) * 100) AS score_grafik, SUM( total ) AS total, ROUND(SUM(g.sub_score) / SUM(g.total) * 100)/count(g.id_bab) as total_grafikk FROM tb_grafik_report as g RIGHT JOIN tb_bab as b ON g.id_bab = b.id_bab JOIN tb_mata_pelajaran as m ON b.id_mapel = m.id_mapel WHERE m.nama_mapel = '$data' order by b.judul_bab asc";
-         $query = $this->db->get();
-        $soal = $query->result_array();
-        return $soal[0]['total_grafik'];
-    }
-
+    // get total grafik report
     public function hitung_total($mapel)
     {
         $query = "select g.nama_mapel, sum(g.score_grafik) as total_grafik from (SELECT m.nama_mapel, b.judul_bab, g.total as tot, ROUND(SUM(g.sub_score) / SUM(g.total) * 100) AS score_grafik, SUM( total ) AS total FROM tb_grafik_report as g LEFT JOIN tb_bab as b ON g.id_bab = b.id_bab JOIN tb_mata_pelajaran as m ON b.id_mapel = m.id_mapel WHERE m.nama_mapel = '$mapel' group by g.id_bab order by b.judul_bab asc) as g";
@@ -127,15 +48,15 @@ class Mgrafik extends CI_Model
         return $result->result_array();
 
     }
-
+    // get jumlah bab
     public function hitung_bab($mapel)
     {
         $query = "select count(tb_baru.id_bab) as jumlah, tb_baru.nama_mapel from (SELECT g.id_bab, b.judul_bab, m.nama_mapel FROM tb_grafik_report g
-join tb_bab b on g.id_bab = b.id_bab
-join tb_mata_pelajaran m on b.id_mapel = m.id_mapel
-where m.nama_mapel='$mapel'
-group by g.id_bab) as tb_baru
-";
+            join tb_bab b on g.id_bab = b.id_bab
+            join tb_mata_pelajaran m on b.id_mapel = m.id_mapel
+            where m.nama_mapel='$mapel'
+            group by g.id_bab) as tb_baru
+            ";
     $result = $this->db->query($query);
         return $result->result_array();
     }

@@ -52,13 +52,12 @@ class Mworkout1 extends CI_Model
 
 
 
-    // get soal
+    // get soal untuk path part 3
      public function get_soalll($id_latihan) {
         $this->db->select('soal AS soal,pak.id_paket, soal.id_bank AS soalid, soal.judul_soal AS judul, soal.gambar_soal AS gambar, soal.jawaban_benar AS jaw, soal.status, soal.pembahasan');
         $this->db->from(' tb_bank_soal AS soal');
         $this->db->join('tb_mm_paket_bank pak ',' pak.id_soal = soal.id_bank');
         $this->db->where('pak.id_paket', $id_latihan);
-        // $this->db->where('soal.kesulitan', $kesulitan);
         $query = $this->db->get();
         $soal = $query->result_array();
 
@@ -76,6 +75,7 @@ class Mworkout1 extends CI_Model
         );
     }
 
+    // get soal
     public function get_soal1($mapel) {
         $this->db->distinct();
         $this->db->select()->from('tb_bank_soal');
@@ -83,6 +83,7 @@ class Mworkout1 extends CI_Model
         return $query->result_array();
     }
 
+    // get jawaban soal workout
     public function jawabansoal($id) {
         $this->db->select('soal.id_bank as soalid, soal.jawaban_benar as jawaban, soal.id_bab');
         $this->db->from('tb_mm_sol_lat as sollat');
@@ -95,48 +96,31 @@ class Mworkout1 extends CI_Model
     public function inputgrafik($data) {
         $this->db->insert('tb_grafik_report', $data);
     }
+
+    // insert ke tb_log
     public function insertlog($data) {
         $this->db->insert('tb_log', $data);
     }
 
-    public function insertst($data, $hasil,$hasil1) {
+    // update grafik workout
+    public function update_grafik($data, $hasil,$hasil1) {
         $query="UPDATE tb_grafik_report set sub_score= $hasil , total= $hasil1 where id_latihan='$data'";
 
         $result = $this->db->query($query);
-        //return $result->result_array();    
     }
-     public function logselesai($id_siswa) {
-        // $data = array('created_on' => date('Y-m-d H:i:s'));
-        // var_dump($data);
+
+    // update tb_log 
+    public function logselesai($id_siswa) {
+
         $this->db->set('tgl_selesai', 'NOW()', FALSE);
         $this->db->where('id_siswa', $id_siswa);
-        $this->db->update('tb_log');
-        // $query="UPDATE tb_log set tgl_selesai= '$date' where id_log=$id_siswa";
-        // var_dump($date,$id_siswa);
-        // $result = $this->db->query($query);
-        // return $result->result_array();    
+        $this->db->update('tb_log');   
     }
 
     // input ke tb_report_latihan
     public function inputreport($data) {
         $this->db->insert('tb_report_latihan', $data);
     }
-
-
-    // public function insertst($data, $hasil,$hasil1) {
-    //     $query="UPDATE tb_grafik_report set sub_score= $hasil , total= $hasil1 where id_latihan='$data'";
-    //     // $this->db->set('sub_score',$hasil);
-    //     // $this->db->where('id_latihan', $data);
-    //     // $this->db->update('tb_grafik_report');
-    //     // var_dump($data);
-    //     // return $query;
-    //     $result = $this->db->query($query);
-    //     //return $result->result_array();    
-    // }
-
-    // public function inputgrafik($data) {
-    //     $this->db->insert('tb_grafik_report', $data);
-    // }
 
     // update latihan
     public function updateLatihan($id) {
@@ -145,6 +129,7 @@ class Mworkout1 extends CI_Model
         $this->db->update('tb_latihan');
     }
 
+    // get level workout
     public function levelLatihan($id) {
         $this->db->select('kesulitan as level');
         $this->db->from('tb_latihan');
@@ -160,6 +145,7 @@ class Mworkout1 extends CI_Model
 
     }
 
+    // get id_latihan untuk workout
     public function get_latihan_by_uuid($uuid){
 
         $this->db->where( 'uuid_latihan', $uuid );      
@@ -184,13 +170,12 @@ class Mworkout1 extends CI_Model
         $this->db->from( 'tb_bank_soal b');
         $this->db->join('tb_pil_jawab p', 'b.id_bank=p.id_soal');
         $this->db->group_by('b.id_bank');
-        // $this->db->join('tb_bab bab',
-        //     'b.id_bab = bab.id_bab');
 
         $query = $this->db->get();
         return $query->result_array();
     }
 
+    // insert ke insert_tb_mm_sol_lat
     public function insert_tb_mm_sol_lat( $data ) {
 
         $this->db->insert( 'tb_mm_sol_lat', $data );
@@ -215,21 +200,8 @@ class Mworkout1 extends CI_Model
         return $query->result_array();
 
     }
-    public function get_report2($createdby){
-        $this->db->select('*, bab.judul_bab');
-        $this->db->from('tb_latihan latihan');
-        $this->db->join('tb_report_latihan report',
-            'latihan.id_latihan=report.id_latihan');
-        $this->db->join('tb_bab bab',
-            'latihan.id_bab=bab.id_bab');
 
-        $this->db->where('create_by', $createdby);
-        $this->db->order_by('tgl_pengerjaan', 'asc');
-        $query = $this->db->get();
-        return $query->result_array();
-
-    }
-
+    // get report detail by created by
     public function get_report_detail($createdby, $id){
         $this->db->select('*, bab.judul_bab');
         $this->db->from('tb_latihan latihan');
@@ -247,6 +219,7 @@ class Mworkout1 extends CI_Model
 
     }
 
+    // get latihan
     public function get_latihan($createdby){
         $this->db->select('*');
         $this->db->from('tb_latihan latihan');
@@ -276,9 +249,6 @@ class Mworkout1 extends CI_Model
         $this->db->from('tb_bab b');
         $this->db->join('tb_mata_pelajaran m', 'b.id_mapel = m.id_mapel');
         $this->db->where('id_bab', $mapel);
-        // $this->db->select('id_bab, judul_bab, id_mapel');
-        // $this->db->from('tb_bab');
-        // $this->db->where('id_mapel', $mapel);
          
         $query = $this->db->get();
         return $query->result_array();
@@ -287,10 +257,6 @@ class Mworkout1 extends CI_Model
 
     // get soal untuk pembahasan
      public function get_soal_pembahasan($id_latihan) {
-        // $this->db->select('id_latihan as idlat, soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw');
-        // $this->db->from('tb_mm_sol_lat as sollat');
-        // $this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
-        // $this->db->where('sollat.id_latihan', $id_latihan);
 
         $this->db->select('soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw, soal.status, soal.pembahasan, soal.id_bab');
         $this->db->from('tb_bank_soal as soal');
@@ -320,24 +286,9 @@ class Mworkout1 extends CI_Model
         $this->db->from('tb_mata_pelajaran m');
         $this->db->join('tb_bab b', 'm.id_mapel = b.id_mapel');
         $this->db->where('b.id_bab', $id_bab);
-        // $this->db->select('id_bab, judul_bab, id_mapel');
-        // $this->db->from('tb_bab');
-        // $this->db->where('id_mapel', $mapel);
          
         $query = $this->db->get();
         return $query->result_array();
-    }
-
-    // get mapel dan bab untuk report setelah workout
-    public function getmapelbab($bab) {
-        $this->db->distinct();
-        $this->db->select('id_bab');
-        $this->db->from('tb_grafik_report grafik');
-        $this->db->where('grafik.id_latihan', $bab);
-
-        $query = $this->db->get();
-        $soal = $query->result_array();
-        return $soal[0]['id_bab'];
     }
 
     // get data buat tampil nilai  tertinggi

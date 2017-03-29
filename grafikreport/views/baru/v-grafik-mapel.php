@@ -20,7 +20,7 @@
           <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
           <?php foreach ($mapel as $pel) : ?>
             <li>
-              <div class="collapsible-header"><i class="ion-android-options"></i><a href="<?=base_url()?>index.php/grafikreport/pilih_bab_report/<?=$pel['nama_mapel'] ?>"><?=$pel['nama_mapel']?></a></div>
+              <div class="collapsible-header"><i class="ion-android-options"></i><a href="<?=base_url()?>index.php/grafikreport/grafik/<?=$pel['nama_mapel'] ?>"><?=$pel['nama_mapel']?></a></div>
               <div class="collapsible-body"></div>
             </li>
              <?php endforeach ?>

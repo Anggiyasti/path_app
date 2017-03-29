@@ -144,7 +144,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
             <?php foreach ($log as $l) : ?>
             
             <div class="face-notification">
-              <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
+              
               <div>
               <?php $selesai = $l['tgl_selesai'];
                     $mulai =$l['tgl_mulai'];
@@ -160,7 +160,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
               </div>
             </div>
             <div class="face-notification">
-              <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
+              
               <div>
                  <span><?=$l['nama_depan'] ?> Mulai Belajar Bab <?=$l['judul_bab']?></span>
                  
@@ -182,10 +182,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
           <!-- Chat -->
           <?php foreach ($nilai as $key) : ?>
           <div class="chat-sidebar">
-            <div class="chat-img">
-              <img src="<?= base_url('assets/app/halo/img/user.jpg')?>" alt="" class="cricle">
-              <span class="dot green"></span>
-            </div>
+            
             <div class="chat-message">
                 <p><?=$key['judul_bab']?></p> 
                 <p><?=$key['create_by']?></p>             

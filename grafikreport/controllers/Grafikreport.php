@@ -12,81 +12,60 @@ class Grafikreport extends MX_Controller {
     }
 
 	public function index() {
-		$data['mapel'] = $this->Mgrafik->getdaftarmapel();
-         $sis = $this->session->userdata('id_siswa');
-        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-        $this->load->view('template/siswa2/v-header', $data);
-        $this->load->view('baru/v-grafik-mapel', $data);
-        $this->load->view('template/siswa2/v-footer');
-		// $this->load->view('template/header');
-  //       $this->load->view('v-header');
-		// $this->load->view('pilih_mapel', $data);
-            // $this->load->view('template/siswa/v-head');
-            // $this->load->view('v-mapel',$data);
-            // $this->load->view('template/siswa/v-footer'); 
+        // jika hak akses siswa
+        if ($this->session->userdata('id_siswa')) {
+            // get data nilai tertinggi
+            $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+            // get data mata pelajaran
+            $data['mapel'] = $this->Mgrafik->getdaftarmapel();
+            // get data log activity
+            $data['log']  = $this->Loginmodel->getlogact();
+            $sis = $this->session->userdata('id_siswa');
+            // get data siswa
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $this->load->view('template/siswa2/v-header', $data);
+            $this->load->view('baru/v-grafik-mapel', $data);
+            $this->load->view('template/siswa2/v-footer');
+        } else {
+            redirect('login');
+        }
 	}
 
-	// fungsi pilihan bab
-    public function pilih_bab_report($no) {
-            if ($this->session->userdata('id_siswa')) {
-            // $d = $this->input->post('');
+	// fungsi tampil grafik report workout
+    public function grafik($no) {
+        // jika hak akses siswa
+        if ($this->session->userdata('id_siswa')) {
+           // get data nilai tertinggi
+            $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+            // get data mata pelajaran
+            $data['mapel'] = $this->Mgrafik->getdaftarmapel();
+            // get data log activity
+            $data['log']  = $this->Loginmodel->getlogact();
             $sis = $this->session->userdata('id_siswa');
-            $data['siswa']  = $this->Mgrafik->get_siswa($sis);
+            // get data siswa
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
             $mapel = urldecode($no);
+            // get nama bab
             $data['bab'] = $this->Mgrafik->get_mapel_bab($mapel);
+            // get grafik report
             $data['c'] = $this->Mgrafik->chart_model($mapel);
-            // $t = $this->Mgrafik->chart_model($mapel)[0]['nama_mapel'];
-             // $data['total'] = $this->Mgrafik->chart_total($mapel);
-            $t = $this->Mgrafik->hitung_total($mapel)[0]['total_grafik'];
-            $t2 = $this->Mgrafik->hitung_bab($mapel)[0]['jumlah'];
-            if ($t == '' && $t2 == '') {
+            // get total grafik
+            $total_grafik = $this->Mgrafik->hitung_total($mapel)[0]['total_grafik'];
+            // get jumlah bab
+            $jumlah = $this->Mgrafik->hitung_bab($mapel)[0]['jumlah'];
+            if ($total_grafik == '' && $jumlah == '') {
                 $data['total'] = 0;
             } else { 
-            $data['total'] = $t / $t2;
-        }
-            // var_dump($t, $t2, $total);
+            $data['total'] = $total_grafik / $jumlah;
+            }
             $data['mapel'] = $mapel;
-            // $this->load->view('template/header');
-            // $this->load->view('v-header');
-            
-            // $this->load->view('v-chart2', $data);
-            // $this->load->view('bab_grafik', $data);
 
-            $sis = $this->session->userdata('id_siswa');
-            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('baru/v-chart',$data);
             // $this->load->view('template/siswa2/v-footer'); 
         }
 
     }
-
-    public function greport($bab) {
-    $data['report'] = $this->Mgrafik->get_greport($bab);
-    $data['c'] = $this->Mgrafik->chart_model($bab);
-    
-
-
-        // $this->load->view('template/header');
-        // $this->load->view('v-header');
-        // $this->load->view('Videoback/layout/header');
-        $this->load->view('template/header');
-        $this->load->view('v-header');
-        $this->load->view('v-greport', $data);
-    }
-
-
-    // buat nampilin grafik bar
-    public function chart()
-    {
-        $data['c'] = $this->Mgrafik->chart_model();
-        $this->load->view('v-chart',$data);
-    }
-
-
-
-
 	
-
-
 }
+?>
