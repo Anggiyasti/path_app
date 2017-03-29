@@ -1,18 +1,4 @@
-<?php 
 
-  foreach ($slide as $row) {
-    
-     $id = $row['id'];
-     $judul = $row['judul'];
-     $resume = $row['resume'];
-     $isi = $row['isi'];
-     $gambar=base_url().'assets/app/halo/img/'.$row['gambar'];
-     $oldphoto=$row['gambar'];
-} ;
-
-
-
-?> 
      
         <!--/ END Template Sidebar (Left) -->
 
@@ -29,50 +15,39 @@
                         <div class="panel panel-default">
                             <!-- panel heading/header -->
                             <div class="panel-heading">
-                                <h3 class="panel-title">Form Home</h3>
+                                <h3 class="panel-title">Form Artikel</h3>
                             </div>
                             <!--/ panel heading/header -->
                             <!-- panel body -->
                            
            <?php echo $this->session->flashdata('msg'); ?> 
-            <form name="form-account" action="<?=base_url()?>index.php/template/slide/gambar_slide/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <form name="form-account" action="<?=base_url()?>index.php/artikel/insertartikel"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+      
              <div class="form-group">
-                                        <label class="col-sm-2">Judul Soal</label>
+                                        <label class="col-sm-2">Judul Artikel</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" placeholder="judul" name="judul" value="<?=$judul;?>">
+                                            <input type="text" class="form-control" placeholder="judul" name="judul_artikel" >
                                             <br>
                       <span id="pesan"></span>
                                         </div>
                                     </div>
-                                      <div class="form-group">
-                                        <label class="col-sm-2">Resume</label>
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" placeholder="resume" name="resume"><?=$resume; ?></textarea>
-                                             <br>
-                      <span id="pesan"></span>
-                                        </div>
-                                    </div>
+                                      
                                     <div class="form-group">
-                                        <label class="col-sm-2 ">Link Artikel</label>
+                                        <label class="col-sm-2">Isi Artikel</label>
                                         <div class="col-sm-10">
-                                            <select name="id_artikel" id="id_artikel" class="form-control">
-                                            <?php 
-                                                foreach ($artikel as $row) {
-                                                echo "<option value='$row[id_artikel]'>$row[judul_artikel]</option>";
-                                                }
-                                              ?>
-                                        </select>
-                                         <br>
+                                           <textarea  name="editor1" class="form-control" >
+                                </textarea>
+                                            <br>
+                                        <span id="pesan"></span>
                                         </div>
                                     </div>
-                                   
                                     <div class="form-group">
                                         <label class="col-sm-2">Gambar Slide</label>
                                         <div class="col-sm-10">
-                                            <img id="preview" class="img-bordered" src="<?=$gambar;?>" alt="" width="700px" height="1050px" />
+                                            <img id="preview" class="img-bordered" src="" alt="" width="700px" height="1050px" />
                                             <div class="input-icon">
                                             <label><p>Gambar tidak boleh lebih dari 2mb (700x1050)</p></label>
-                                            <input  type="file" id="file" name="photo" class="btn " onchange="ValidateSingleInput(this);" />
+                                            <input  type="file" id="file" name="gambar" class="btn " onchange="ValidateSingleInput(this);" />
                                             <br>
 
                                             <br>
@@ -99,11 +74,6 @@
 
 
                                      <div class="content">
-
-            
-
-                   
-
                    
                 </div>
 

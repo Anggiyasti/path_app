@@ -34,6 +34,7 @@
 
   }
 
+
   public function gambar_slide($id) {
 
         // unlink(FCPATH . "./assets/images/mapel/" . $id);
@@ -49,6 +50,8 @@
 
 
             $data['error'] = array('error' => $this->upload->display_errors());
+            $data['artikel']=$this->m_slide->artikel();
+            // var_dump($data['artikel']);
             $data['slide'] = $this->m_slide->get_gambarslide($id);
             if ($this->session->userdata('id_admin')) {
             $this->load->view('admin/layout/header');
@@ -89,6 +92,7 @@
 
 
             $data['error'] = array('error' => $this->upload->display_errors());
+
             $data['slide'] = $this->m_slide->get_gambarslide($id);
             if ($this->session->userdata('id_admin')) {
             $this->load->view('admin/layout/header');

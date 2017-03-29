@@ -25,7 +25,7 @@
                 <div class="bottom-abs left-align">
                   <h4 class="slider-title uppercase white-text"><?=$d['judul'] ?></h4>
                   <p class="slider-text small white-text"><?=$d['resume'] ?></p>
-                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id'] ?>">Read More</a> 
+                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id_artikel'] ?>">Read More</a> 
                 </div>
               </div>
 
@@ -37,7 +37,7 @@
                 <div class="bottom-abs center-align">
                   <h4 class="slider-title uppercase white-text"><?=$d['judul'] ?></h4>
                   <p class="slider-text small white-text"><?=$d['resume'] ?></p>
-                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id'] ?>">Read More</a> 
+                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id_artikel'] ?>">Read More</a> 
                 </div>
               </div>
 
@@ -49,7 +49,7 @@
                 <div class="bottom-abs right-align">
                   <h4 class="slider-title uppercase white-text"><?=$d['judul'] ?></h4>
                   <p class="slider-text small white-text"><?=$d['resume'] ?></p>
-                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id'] ?>">Read More</a> 
+                  <a class="waves-effect waves-light btn-large primary-color block animated bouncein delay-4" href="<?=base_url()?>index.php/login/tampil_article/<?=$d['id_artikel'] ?>">Read More</a> 
                 </div>
               </div>
             </div>
