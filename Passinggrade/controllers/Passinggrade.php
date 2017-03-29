@@ -29,16 +29,16 @@ class Passinggrade extends MX_Controller {
 
         //validate form input
         if ($this->form_validation->run()==FALSE ) {
+            //hak akses jika admin
         	if ($this->session->userdata('id_admin')) {
-            // gagal
-            // $this->load->view('vRegistrasi');
+         
             $this->load->view('admin/layout/header');
             $this->load->view('add_passing');
             $this->load->view('admin/layout/footer');
         }
+          //hak akses jika guru
         	elseif ($this->session->userdata('id_guru')) {
-            // gagal
-            // $this->load->view('vRegistrasi');
+         
             $this->load->view('guru/layout/header');
             $this->load->view('add_passing');
             $this->load->view('guru/layout/footer');
@@ -73,12 +73,12 @@ class Passinggrade extends MX_Controller {
 
 	
 	public function t_pass()
-	{
+	{  //hak akses jika admin
 		if ($this->session->userdata('id_admin')) {
 		$this->load->view('admin/layout/header');
 		$this->load->view('add_passing');
 		$this->load->view('admin/layout/footer');
-	}
+	}  //hak akses jika guru
 		elseif ($this->session->userdata('id_guru')) {
 		$this->load->view('guru/layout/header');
 		$this->load->view('add_passing');
@@ -86,6 +86,7 @@ class Passinggrade extends MX_Controller {
 	}
 	}
 
+    //ubah passing grade
     public function edit_pass($no) {
         if ($this->input->post('update')) 
         {
@@ -93,26 +94,27 @@ class Passinggrade extends MX_Controller {
             
             if ($this->db->affected_rows())
             {
+                //bila sukses akan menampilkan pesan 
                  $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
                 redirect('Passinggrade/daftar_pass');
             }
             else
             {
+                //bila gagal akan menampilkan pesan
                  $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
                 redirect('Passinggrade/daftar_pass');
             }
         }
         else
-        {
+        {     //hak akses jika admin
             if ($this->session->userdata('id_admin')) {
-            // $data['content'] = 'kontrak/k_edit';
             $data['editdata'] = $this->db->get_where('tb_passing_grade',array('id_passing'=> $no))->row();
             $this->load->view('admin/layout/header');
             $this->load->view('edit_passing', $data);
             $this->load->view('admin/layout/footer');
         }
+              //hak akses jika GURU
             elseif ($this->session->userdata('id_guru')) {
-            // $data['content'] = 'kontrak/k_edit';
             $data['editdata'] = $this->db->get_where('tb_passing_grade',array('id_passing'=> $no))->row();
             $this->load->view('guru/layout/header');
             $this->load->view('edit_passing', $data);
@@ -121,15 +123,17 @@ class Passinggrade extends MX_Controller {
         }
     }
 
-
+    //TAMPIL PASSING GRADE BANKEND
     public function daftar_pass()
     {
+        //hak akses bila admin
         if ($this->session->userdata('id_admin')) {
         $data['data']   = $this->Mpassing->getpassing();
         $this->load->view('admin/layout/header');
         $this->load->view('daftar_passing', $data);
         $this->load->view('admin/layout/footer');
     }
+        //hak akses bila guru
         elseif ($this->session->userdata('id_guru')) {
         $data['data']   = $this->Mpassing->getpassing();
         $this->load->view('guru/layout/header');
@@ -138,23 +142,26 @@ class Passinggrade extends MX_Controller {
     }
     }
 
+    //MEGHAPUS PASSING GRADE BACKEND
     public function delete_pass($id) {
         $this->Mpassing->delete_passing($id);
 
         if ($this->db->affected_rows()) 
         {
+            //bila sukses akan menampilkan pesan
             $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Deleted </div>');
             redirect('passinggrade/daftar_pass');    
         }
         else
         {
+            //bila gagal akan menampilkan pesan 
             $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
             redirect('passinggrade/daftar_pass');
         }
 
     }
 
-    // tampilan awal passing grade
+    // tampilan awal passing grade FRONTEND
     public function pass_grade()
     {
         $this->load->view('template/header');
@@ -164,23 +171,19 @@ class Passinggrade extends MX_Controller {
 
     // fungsi untuk menampilkan berdasarkan universitas
     public function univ()
-    {
+    { 
+        //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getpassing();
         $data['dataa']= $this->Mpassing->tampilphoto(); 
-        // $this->load->view('template/header');
-        // $this->load->view('workout1/v-header');
-        // $this->load->view('v-univ', $data);
-      
-
-
         
         $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('baru/v-univ',$data);
         $this->load->view('template/siswa2/v-footer');
     }
+    //hak akses jika bukan siswa
     else{
         redirect('Login');
     }
@@ -189,21 +192,19 @@ class Passinggrade extends MX_Controller {
 
     //fungsi untuk memilih prodi
     public function pilih_prodi()
-    {
+    { 
+        //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->tampil_prodi();
         $data['dataa']= $this->Mpassing->tampilphoto(); 
-        // $this->load->view('template/header');
-        // $this->load->view('workout1/v-header');
-        // $this->load->view('v-pilih-prodi', $data);
-
-
+      
         $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('baru/v-pilih-programstudi',$data);
         $this->load->view('template/siswa2/v-footer');   
         }
+        //hak akses jika bukan siswa
     else{
         redirect('Login');
     }     
@@ -211,7 +212,7 @@ class Passinggrade extends MX_Controller {
 
     // fungsi untuk menampilkan  prodi berdasarkan pilihan 
     public function prodi($prodi)
-    {   
+    {   //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
        $prodii = urldecode($prodi);
        $sis = $this->session->userdata('id_siswa');
@@ -219,20 +220,18 @@ class Passinggrade extends MX_Controller {
         $data['data']   = $this->Mpassing->getprodi($prodii);
         $data['prodi'] = $prodii;
         $data['dataa']= $this->Mpassing->tampilphoto(); 
-       //  $this->load->view('template/header');
-       //  $this->load->view('workout1/v-header');
-       //  $this->load->view('v-prodi', $data);
-
+      
         $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('baru/v-programstudi',$data);
         $this->load->view('template/siswa2/v-footer'); 
         }
+        //hak akses jika bukan siswa diarahkan ke login
     else{
         redirect('Login');
     } 
         
     }
-
+    // fungsi untuk menampilkan passing grade 
     public function passing()
     {
         if ($this->session->userdata('id_siswa')) {
@@ -240,9 +239,7 @@ class Passinggrade extends MX_Controller {
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getpassing();
         $data['dataa']= $this->Mpassing->tampilphoto(); 
-        // $this->load->view('template/header');
-        // $this->load->view('workout1/v-header');
-        // $this->load->view('v-passinggrade');
+       
 
         $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('baru/v-passing');
@@ -253,25 +250,7 @@ class Passinggrade extends MX_Controller {
     }     
         
     }
-    // public function hasilpassing()
-    // {
-    //     $pass = htmlspecialchars($this->input->post('pass'));
-
-
-    //     if ($pass = '1') {
-    //         $a = 40;
-    //         $b = 50;
-    //     }
-    //     $data['data']  = $this->Mpassing->hasil_passing($a,$b);
-    //     $this->load->view('template/header');
-    //     $this->load->view('workout1/v-header');
-    //     $this->load->view('v-cobapassing',$data);
-
-    //     // var_dump($data);
-
-        
-    // }
-
+    // fungsi untuk menampilkan hasil dari passing grade yang dipilih 
     public function hasilpassing($no)
     {
         if ($this->session->userdata('id_siswa')) {
@@ -328,9 +307,6 @@ class Passinggrade extends MX_Controller {
            $b = 100;
         }
         $data['data']  = $this->Mpassing->hasil_passing($a,$b);
-        // $this->load->view('template/header');
-        // $this->load->view('workout1/v-header');
-        // $this->load->view('v-cobapassing',$data);
         $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('baru/v-hasilpassing',$data);
         $this->load->view('template/siswa2/v-footer');  
@@ -338,12 +314,10 @@ class Passinggrade extends MX_Controller {
     else{
         redirect('Login');
     }     
-
-        // var_dump($data);
-
         
     }
 
+    // fungsi untuk ketika siswa memilih universitas dan prodi untuk profile mereka
     public function set_prodi_univ($univ)
     {
 
@@ -362,18 +336,15 @@ class Passinggrade extends MX_Controller {
     }
 
 
-        //PENCARIAN 
+    //fungsi untuk mencari program studi dengan tidak ditampilkan datanya
     public function cari()
     {  
         if ($this->session->userdata('id_siswa')) {
         $kunciCari=htmlspecialchars($this->input->get('keycari'));
-         $sis = $this->session->userdata('id_siswa');
+        $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['dataa']= $this->Mpassing->tampilphoto(); 
-        
-        
-        
-         $data['data']=$this->Mpassing->get_topik_byprodi($kunciCari);
+        $data['data']=$this->Mpassing->get_topik_byprodi($kunciCari);
 
         $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('baru/v-search');
@@ -385,6 +356,7 @@ class Passinggrade extends MX_Controller {
     }  
     }
         
+    //fungsi ketika pencarian dijalankan 
     public function cari2()
     {  
         if ($this->session->userdata('id_siswa')) {

@@ -12,14 +12,6 @@ class Loginmodel extends CI_Model
 	}
 
     // fungsi untuk login yg dipake cuma 1 yg lainnya ga kepake
-    
-    // public function getdaftarguru() {
-    //     $this->db->distinct();
-    //     $this->db->select()->from('tb_guru');
-        
-    //     $tampil=$this->db->get();
-    //     return $tampil->result_array();
-    // }
 
     public function get_siswa1($nama_depan){
         $query = $this->db->get_where('tb_siswa',array('nama_depan'=>$nama_depan));
@@ -44,23 +36,11 @@ class Loginmodel extends CI_Model
 
 
 
-
+    //model untuk mengecek user siswa 
     public function login_user($username,$password)
     {
 
-        // $email = $this->input->post('email');
-        // // $username = $this->input->post('nama_depan');
-        // $password = md5($this->input->post('password'));
-
-        // $sql = "SELECT email,nama_depan, password, status FROM tb_siswa WHERE nama_depan = '{$username}'  OR email = '{$email}' AND password = 
-        // '{$password}' AND status='1' LIMIT 1";
-        // $result = $this->db->query($sql);
-        // $row = $result->row();
-
-        // if ($result->num_rows() == 1) {
-        //     return true;
-        // }
-         $this->db->select('*');
+        $this->db->select('*');
         $this->db->from('tb_siswa');
         $this->db->where('password',$password);
         $this->db->where("(nama_depan ='$username' OR email = '$username' OR id_siswa = '$username')", NULL, FALSE);
@@ -79,20 +59,9 @@ class Loginmodel extends CI_Model
    
     }
 
+    //model untuk mengecek user guru 
     public function login_guru($username,$password)
     {
-        // $email = $this->input->post('email');
-        // $username = $this->input->post('username');
-        // $password = md5($this->input->post('password'));
-
-        // $sql = "SELECT email,username, password, status FROM tb_guru WHERE username = '{$username}'  OR email = '{$email}' AND password = 
-        // '{$password}' AND status='1' LIMIT 1";
-        // $result = $this->db->query($sql);
-        // $row = $result->row();
-
-        // if ($result->num_rows() == 1) {
-        //     return true;
-        // }
 
         $this->db->select('*');
         $this->db->from('tb_guru');
@@ -110,6 +79,7 @@ class Loginmodel extends CI_Model
         }
        
     }
+    //model untuk mengecek user admin
     public function login_admin($username,$password)
     {
         
@@ -130,7 +100,7 @@ class Loginmodel extends CI_Model
         }
        
     }
-
+    //mengambil data guru
     function get_guru($id_guru){
         $this->db->select('tb_guru.id_guru');
 
@@ -152,7 +122,7 @@ class Loginmodel extends CI_Model
 
         }
 }
-
+//mengambil data siswa
  function get_siswa($id_siswa){
         $this->db->select('tb_siswa.id_siswa,photo,jurusan,univ,facebook,twitter,instagram');
 
@@ -175,14 +145,9 @@ class Loginmodel extends CI_Model
             return false; //if data is wrong
 
         }
-    //     $query = $this->db->get_where('tb_siswa',array('nama_depan'=>$nama_depan));
-    //     $query = $query->result_array();
-    //     if ($query) {
-    //         return $query[0];
-    //     }
-    // }
+   
 }
-
+//mengambil data admin
 function get_admin($id_admin){
         $this->db->select('tb_admin.id_admin');
 
@@ -245,17 +210,6 @@ function get_admin($id_admin){
         return $tampil->result_array();
     }
 
-// public function getlogact()
-//     {
-//         $query = "SELECT l.create_by, l.date_create, l.id_bab, b.judul_bab, r.tgl_pengerjaan
-//                     from tb_report_latihan as r
-//                     join tb_latihan as l on r.id_latihan = l.id_latihan
-//                     join tb_bab as b on l.id_bab = b.id_bab
-//                     order by create_by desc limit 10";
-//         $result = $this->db->query($query);
-//         return $result->result_array();
-//     }
-
 
     public function getlogmulai()
     {
@@ -284,13 +238,12 @@ function get_admin($id_admin){
         $this->db->join('tb_log l', 'b.id_bab = l.id_bab');
         $this->db->join('tb_siswa s', 'l.id_siswa = s.id_siswa');
         $this->db->order_by('tgl_selesai');
-    // $query = "SELECT * FROM tb_log ";
         $result = $this->db->get();
         return $result->result_array();
     }
 
 
-      // tampil slide foto
+      // tampil slide foto home 1
     public function tampilphoto() {
         $this->db->distinct();
         $this->db->select('*');
@@ -299,6 +252,7 @@ function get_admin($id_admin){
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
+     // tampil slide foto home 2
       public function tampilphoto2() {
         $this->db->distinct();
         $this->db->select('*');
@@ -307,6 +261,7 @@ function get_admin($id_admin){
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
+      // tampil slide foto home 3
       public function tampilphoto3() {
         $this->db->distinct();
         $this->db->select('*');
@@ -328,14 +283,6 @@ function get_admin($id_admin){
     }
 
 
-
-
-    //     $query = $this->db->get_where('tb_siswa',array('nama_depan'=>$nama_depan));
-    //     $query = $query->result_array();
-    //     if ($query) {
-    //         return $query[0];
-    //     }
-    // }
     
 }
 

@@ -1,9 +1,4 @@
-
-
-
-
-
-                <!-- Page Content -->
+ <!-- Page Content -->
       <div id="content" class="page">
 
         <!-- Toolbar -->
@@ -19,7 +14,9 @@
 
          <!-- Hero Header -->
         <div class="h-banner animated fadeindown">
-          <div class="parallax bg-9"> <div>  <?php foreach ($dataa as $d ) :?>
+          <div class="parallax bg-9"> 
+          <div>  <?php foreach ($dataa as $d ) :?>
+              <!-- menampilkan gambar -->
               <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
              <?php endforeach ?></div>
             <div class="floating-button animated bouncein delay-3">
@@ -37,9 +34,11 @@
         
           <!-- Daily Activity-->
           <div class="activities">
+          <!-- pengecekan bila passing grade tidak ada -->
            <?php if ($data == array()): ?>
             <h4>Tidak ada Passing Grade.</h4>
             <?php else: ?>
+              <!-- menampilkan data -->
             <?php foreach ($data as $p): ?>
            
             <div class="activity animated fadeinright delay-1">

@@ -1,4 +1,4 @@
-<!-- Page Content -->
+<!-- Page Content --> 
       <div id="content" class="grey-blue">
 
         <!-- Toolbar -->
@@ -15,6 +15,7 @@
          <!-- Hero Header -->
         <div class="h-banner animated fadeindown">
           <div class="parallax bg-9"> <div>  <?php foreach ($dataa as $d ) :?>
+          <!-- menampilkan gambar -->
               <img src="<?= base_url('./assets/app/halo/img/'. $d['gambar']) ?>">
              <?php endforeach ?></div>
             <div class="floating-button animated bouncein delay-3">
@@ -46,4 +47,4 @@
           <?php endforeach ?>
       
          
-      </div> <!-- End of Page Content -->
+      </div> <!-- End of Page Content

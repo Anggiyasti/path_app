@@ -41,6 +41,7 @@
           <!-- Daily Activity-->
           <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggrade/cari2"  accept-charset="utf-8" enctype="multipart/form-data">
                   <div class="input-field">
+                  <!-- pencarian -->
                     <input type="search" class="search-field" placeholder="Search"  name="keycari" title="Search for:">
                     <label for="search"></label>
                     <i class="ion-android-close"></i>

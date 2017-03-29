@@ -29,6 +29,7 @@
           
           <button class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" type="submit" value="Login">Login</button>
           <button class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" type="submit" value="">Cancel</button>
+          
           <span>Don't have an account? <a href="<?php echo base_url('index.php/registrasi')?>" class="primary-text">Create Account |</a> <a href="<?php echo base_url('index.php/forgot')?>" class="primary-text">Forgot Credentials </a> 
           <?php echo form_close(); ?>
         </div><!-- End of Main Contents -->
