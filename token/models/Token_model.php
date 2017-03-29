@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Token_model extends CI_Model{
 
+	// GET DATA TOKEN
 	function get_token($data,$status){
 		$this->db->order_by('tb_token.id');
 
@@ -21,10 +22,12 @@ class Token_model extends CI_Model{
 		return $query->result(); 
 	}
 
+	// INSERT KE TOKEN
 	function insert_token($data){
 		$this->db->insert( 'tb_token', $data );		
 	}
 
+	// GET JUMLAH STOK TOKEN
 	function get_jumlah_token_stok($param=""){
 		$this->db->select( 'id' )->from( 'tb_token' ); 
 		$this->db->where('siswaID is NULL');
@@ -91,6 +94,7 @@ class Token_model extends CI_Model{
         $this->db->delete('tb_token');
 	}
 
+	// UPDATE TOKEN
 	function update_token($data){
 	$this->db->where('id', $data['id']);
 	$this->db->set('tanggal_diaktifkan', date('Y-m-d h:m:s'));

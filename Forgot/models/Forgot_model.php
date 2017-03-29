@@ -36,9 +36,7 @@ class Forgot_model extends CI_Model
         }
     }
 
-    // fungsi udah berhasil kalo dirumah
-    // public function kirimemail($nama_depan, $email)
-    // {
+    // fungsi kirim email forgot passwort yg berhasil
     public function kirimemail($nama_depan)
     {
         $ci = get_instance();
@@ -55,31 +53,23 @@ class Forgot_model extends CI_Model
         $config['wordwrap'] = TRUE,
         $config['newline'] = "\r\n"
         ); //use double quotes
-
-        // $this->load->library('email');
         
         
         $ci->email->initialize($config);
         $email_code = '123';
-        // $email_code = md5($this->config->item('salt') . $nama_depan);
-        // $email_code = sha1($this->config->item('salt') . $nama_depan);
-        $ci->email->from('noreply@sibejooclass.com', 'Your Name');
+        $ci->email->from('noreply@sibejooclass.com', 'Forgot Password');
         $list = $this->input->post('email');
-        // $list = $email;
         $ci->email->to(array($list));
         $ci->email->subject('Verifikasi Password');
         $message = '<html><meta/><head/><body>';
 
         $message .='<p> Permintaan reset password telah diproses,</p>';
 
-        // $message .='<p>Silahkan <strong><a href="' . base_url() . 'index.php/registrasi/verify/' . $email_code . '">klik disini</a></strong> untuk melakukan reset password akun anda. </p>';
-        // yang udh berhasil
-        // $message .='<p>Silahkan <strong><a href="' . base_url() . 'index.php/forgot/verifikasiPassword/' . $list . '/' .$email_code . '">klik disini</a></strong> untuk melakukan reset password akun anda. </p>';
         $message .='<p>Silahkan <strong><a href="' . base_url() . 'index.php/forgot/reset_password_form/' . $list . '/' .$email_code . '">klik disini</a></strong> untuk melakukan reset password akun anda. </p>';
 
         $message .= '<p>Terimakasih</p>';
 
-        $message .= '<p>Neon</p>';
+        $message .= '<p>Journal Academy</p>';
 
         $message .= '</body></html>';
         $ci->email->message($message);
@@ -142,16 +132,16 @@ public function verifikasi_password($address, $code) {
 
                 $this->session->set_userdata('reset_password', '1');
 
-                redirect(base_url('index.php/forgot/resetpassword'));
+                redirect(base_url('login'));
 
             } else {
 
-                redirect(base_url('index.php/forgot/resetpassword'));
+                redirect(base_url('login'));
             }
 
         } else {
 
-            redirect(base_url('index.php/forgot/resetpassword'));
+            redirect(base_url('login'));
 
         }
 
@@ -176,86 +166,15 @@ public function verifikasi_password($address, $code) {
 
         if ($query->num_rows() == 1) {
 
-//            echo "ada akun";
-
             return $query->result(); //if data is true
 
         } else {
-
-//            echo 'tidak ada akun';
 
             return false; //if data is wrong
 
         }
 
     }
-
-
-    //send verification email to user's email id
-    function sendEmail($to_email)
-    {
-        $from_email = 'noreply@sibejooclass.com'; //change this to yours
-        $subject = 'Reset Password';
-        $message = 'Dear User,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> http://www.mydomain.com/user/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Mydomain Team';
-        
-        //configure email settings
-        $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'mail.sibejooclass.com'; //smtp host name
-        $config['smtp_port'] = '587'; //smtp port number
-        $config['smtp_user'] = $from_email;
-        $config['smtp_pass'] = 'lainkaliaja123'; //$from_email password
-        $config['mailtype'] = 'html';
-        $config['charset'] = 'iso-8859-1';
-        $config['wordwrap'] = TRUE;
-        $config['newline'] = "\r\n"; //use double quotes
-        $this->email->initialize($config);
-        
-        //send mail
-        $this->email->from($from_email, 'Mydomain');
-        $this->email->to($to_email);
-        $this->email->subject($subject);
-        $this->email->message($message);
-        return $this->email->send();
-    }
-
-	public function send($to_email)
-		{
-
-        $config = Array(
-            //configure email settings
-        $config['protocol'] = 'smtp',
-        $config['smtp_host'] = 'mail.sibejooclass.com', //smtp host name
-        $config['smtp_port'] = '587', //smtp port number
-        $config['smtp_user'] = 'noreply@sibejooclass.com',
-        $config['smtp_pass'] = 'lainkaliaja123', //$from_email password
-        $config['mailtype'] = 'html',
-        $config['charset'] = 'iso-8859-1',
-        $config['wordwrap'] = TRUE,
-        $config['newline'] = "\r\n"); //use double quotes
-
-        $this->load->library('email', $config);
-
-			$subject = 'Verify Your Email Address';
-			$message = 'Dear Student Lovers,<br /><br />Please click on the below activation link to verify your email address';
-			$message = '<p>Silahkan <strong><a href="' . base_url() . 'index.php/register/verifikasiPassword/' . md5($from_email) . ' ">klik disini</a></strong> untuk melakukan reset password akun anda. </p>';
-
-        // send mail
-    $this->email->from('noreply@sibejooclass.com'); // change it to yours
-      $this->email->to('putrianggiyasti@gmail.com');// change it to yours
-      $this->email->subject('Resume from JobsBuddy for your Job posting');
-      $this->email->message($message);
-      return $this->email->send();
-        if($this->email->send())
-     {
-      echo 'Email sent.';
-     }
-     else
-    {
-     show_error($this->email->print_debugger());
-    }
-
-
-		}
 
 		public function verifyEmailID($key)
 		{
@@ -264,37 +183,6 @@ public function verifikasi_password($address, $code) {
 			return $this->db->update('tb_siswa', $data);
 		}
 
-		//cek user dari validasi email
-
-//     public function cekUser($email) {
-
-//         $this->db->select('*');
-
-//         $this->db->from('tb_siswa');
-
-//         $this->db->where('email', $email);
-
-//         $this->db->limit(1);
-
-
-
-//         $query = $this->db->get();
-
-//         if ($query->num_rows() == 1) {
-
-// //            echo "ada akun";
-
-//             return $query->result(); //if data is true
-
-//         } else {
-
-// //            echo 'tidak ada akun';
-
-//             return false; //if data is wrong
-
-//         }
-
-//     }
 
     public function send_reset_email($email) {
 
@@ -316,7 +204,7 @@ public function verifikasi_password($address, $code) {
 
         $message .= '<p>Terimakasih</p>';
 
-        $message .= '<p>Neon</p>';
+        $message .= '<p>Journal Academy</p>';
 
         $message .= '</body></html>';
 
@@ -352,8 +240,6 @@ public function verifikasi_password($address, $code) {
     }
 
     public function reset_katasandi($email, $password) {
-
-        // $email = $this->session->userdata['reset_email'];
 
         $this->db->where('email', $email);
 

@@ -22,41 +22,13 @@
 
 		$bab="";
 		$n=1;
-		// $this->db->select('judul_bab, count(judul_bab) as jumlah_bab');
-		// $this->db->from('tb_bab');
-		// $this->db->where('id_mapel', $id);
+
 		$this->db->select('nilai_awal, nilai_akhir, jumlah');
 		$this->db->from('tb_setting_path');
 		$this->db->where('id_mapel', $id);
 		$kab= $this->db->get();
 		if ($kab->result_array()==array()) {
-			// for ($j=25; $j < 65; $j=$j+5) { 
-			// for ($i=1; $i < 11; $i++) { 
-			// 	// if ($i==1) {
-			// 	// 	$bab.= "
-			// 	// <div class=form-group>
-			// 	// 	<label class=col-sm-2>0% - 25% </label>
-			// 	// 	<div class=col-sm-5>
-			// 	// 		<input class=form-control name=jumlah$i /> 
-			// 	// 	</div>
-			// 	// </div>
-			// 	// 	";
-			// 	// } else {	
-			// 	$k=5+$j;
-					
-			// 		$bab.= "
-			// 	<div class=form-group>
-			// 		<label class=col-sm-2>$j% - $k% </label>
-			// 		<div class=col-sm-5>
-			// 			<input class=form-control name=jumlah$i /> 
-			// 		</div>
-			// 	</div>
-			// 		";
-			// 		break;
-			// 	// }
-			// 	}
-			
-			// }
+
 		} else {
 			foreach ($kab->result_array() as $data ){
 			// $kabupaten.= "<option value='$data[id_bab]'>$data[judul_bab]</option>";
@@ -145,13 +117,9 @@
 
         if ($query->num_rows() == 1) {
 
-//            echo "ada akun";
-
             return $query->result(); //if data is true
 
         } else {
-
-//            echo 'tidak ada akun';
 
             return false; //if data is wrong
 

@@ -15,7 +15,6 @@ class Videobackmodel extends CI_Model
 		$kab= $this->db->get_where('tb_bab',array('id_mapel'=>$provId));
 
 		foreach ($kab->result_array() as $data ){
-		// $kabupaten.= "<option value='$data[id_bab]'>$data[judul_bab]</option>";
 		$kabupaten.= "<h1>$data[judul_bab]</h1>";
 
 		}

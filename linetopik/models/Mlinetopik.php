@@ -5,6 +5,7 @@
  class Mlinetopik extends CI_Model
  {
 
+    // GET LINE TOPIK PART 1
  	 public function get_line_topik($babID, $urutan)
     {
         $this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, step.latihanID,step.id as stepID, step.urutan');
@@ -69,7 +70,7 @@
     }
 
 
-    //untuk mengecek log 
+    //untuk mengecek log TRYOUT
     public function get_cek_logtry($id_siswa)
     {
         $this->db->select('id_siswa,id_try,nm_try');
@@ -120,10 +121,6 @@
         $this->db->join('tb_tryout tr ',' tbtr.id_tryout = tr.id_tryout');
         $this->db->where('tr.id_tryout ',$id_tr);
         $this->db->order_by('p.id_paket',' ASC');
-
-        
-
-
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -147,17 +144,7 @@
         $this->db->insert_batch('tb_log_tryout',$datLog);
     }
 
-    public function get_datMateri($UUID)
-    {
-        $this->db->select('namaStep,namaTopik,judulMateri,isiMateri,materi.date_created,topik.UUID');
-        $this->db->from('tb_line_topik topik');
-        $this->db->join('tb_line_step step','step.topikID=topik.id');
-        $this->db->join('tb_line_materi materi','materi.id=step.materiID');
-        $this->db->where('step.UUID',$UUID);
-        $query=$this->db->get();
-        return $query->result_array()[0];
-    }
-
+    // GET DURASI PAKET
     public function durasipaket($id_paket) {
     $this->db->select('durasi');
     $this->db->from('tb_paket');
@@ -181,6 +168,7 @@
         return  $query->result_array();
     }
 
+    // GET UUID TOPIK
     public function get_uuidTopik($UUID)
     {
         $this->db->select('topik.UUID');
@@ -202,7 +190,7 @@
         return $query->result_array()[0]['UUID'];
     }
 
-    //get UUID step by id latihan
+    //get UUID step by id PAKET
     public function get_id_paket($id_latihan)
     {
         $this->db->select('id_paket');
@@ -211,8 +199,6 @@
         $query=$this->db->get();
         return $query->result_array()[0]['id_paket'];
     }
-
-
 
     //get step id and UUID
     public function get_stepID2($id_latihan)
@@ -244,42 +230,13 @@
         return $query->result_array()['0'];
     }
 
-
-
-
+    // GET JAWABAN SOAL PART 3
     public function jawabansoal_part3($id) {
         $this->db->select('soal.id_bank as soalid, soal.jawaban_benar as jawaban ,soal.id_bab');
         $this->db->from('tb_mm_paket_bank as pak');
         $this->db->join('tb_bank_soal as soal ',' pak.id_soal = soal.id_bank');
         $this->db->where('pak.id_paket', $id);
         $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function get_caritopik($kunciCari)
-    {
-        $this->db->select('namaTopik,topik.babID,topik.UUID as topikUUID,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi,step.urutan,step.id as stepID,step.latihanID,bab.judul_bab');
-        $this->db->from('tb_line_topik topik');
-        $this->db->join('tb_line_step step','step.topikID=topik.id');
-        $this->db->join('tb_bab bab','bab.id_bab=topik.babID');
-        $this->db->like('topik.namaTopik',$kunciCari
-            );
-        $this->db->order_by('topik.namaTopik');
-        $this->db->order_by('step.urutan', 'asc');
-        $query=$this->db->get();
-        return  $query->result_array();
-    }
-
-    // get topik untuk side bar by namatopik
-    public function get_topik_bynama($kunciCari)
-    {
-        $this->db->select('id,UUID,namaTopik');
-        $this->db->from('tb_line_topik');
-        $this->db->like('namaTopik',$kunciCari);
-        $this->db->where('status',1);
-        $this->db->where('statusLearning',1);
-        $this->db->order_by('namaTopik');
-        $query=$this->db->get();
         return $query->result_array();
     }
 
@@ -317,7 +274,7 @@
         return $query->result_array();
     }
 
-    // ambil semua tryoout
+    // ambil LOG semua tryoout
     public function get_to_log($id){
         $this->db->select('t.id_try,t.nm_try');
         $this->db->from('tb_log_tryout t');
@@ -328,7 +285,7 @@
         return $query->result_array();
     }
 
-   // ambil semua tryoout
+   // ambil semua LOG tryoout
     public function get_to($lim){
         $this->db->select('t.id_try, t.nm_try');
         $this->db->from('tb_log_tryout t');
@@ -339,18 +296,18 @@
         } else {
             return false;
         }
-        
-
     }
 
     //limit untuk tampil tryout
     public function tampil_active(){
         $this->db->select('active');
         $this->db->from('tb_tampil_to');
-                $query = $this->db->get();
+        $query = $this->db->get();
         return $query->result_array();
 
     }
+
+    // GET SOAL TO
     public function get_soal_to($lim){
         $this->db->select('t.id_tryout, t.nm_tryout,t.publish,t.active');
         $this->db->from('tb_tryout t');
@@ -405,6 +362,7 @@
     }
 
 
+    // GET REPORT PART 3
     public function get_hasil_part3($id_try)
     {
         $id = $this->session->userdata['id_siswa'];
@@ -419,8 +377,6 @@
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
-
-
 
     // get jumlah total soal yang dikerjakan
     public function get_total_part3()
@@ -475,11 +431,6 @@
 
     // get soal
      public function getsoal($id_mapel, $kesulitan, $id_bab1, $id_bab2, $jml_soal) {
-        // $this->db->select('id_latihan as idlat, soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw');
-        // $this->db->from('tb_mm_sol_lat as sollat');
-        // $this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
-        // $this->db->where('sollat.id_latihan', $id_latihan);
-
         $this->db->select('soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw, soal.status, soal.pembahasan, soal.id_bab');
         $this->db->from('tb_bank_soal as soal');
         $this->db->where('soal.id_mapel', $id_mapel);
@@ -489,41 +440,20 @@
 
         $this->db->where('soal.publish','1');
         $this->db->limit($jml_soal);
-        // $this->db->order_by()
 
         $query = $this->db->get();
         $soal = $query->result_array();
 
-        // $this->db->select('*,id_latihan as idlat, soal as soal, pil.id_soal as pilid,soal.id_bank as soalid, pil.pilihan_jawaban as pilpil, pil.jawaban as piljaw, pil.gambar as pilgam');
-        // $this->db->from('tb_mm_sol_lat as sollat');
-        // $this->db->join('tb_bank_soal as soal', 'sollat.id_soal = soal.id_bank');
-        // $this->db->join('tb_pil_jawab as pil', 'soal.id_bank = pil.id_soal');
-        // $this->db->where('sollat.id_latihan', $id_latihan);
-        // $query = $this->db->get();
-        // $pil = $query->result_array();
-
         return array(
             'soal' => $soal
-            // 'pil' => $pil,
         );
     }
 
-    // get settingpath 
-    function get_soal_pendalaman1($id){
-        $this->db->distinct();
-        $this->db->select('*');
-        $this->db->from('tb_setting_path');
-        $this->db->where('id_mapel', $id);
-        $this->db->group_by('id_mapel');
-        $tampil=$this->db->get();
-        return $tampil->result_array();
-    }
-
+    // GET REPORT PART 1
     function getreport($lim,$pel)
     {
         $id = $this->session->userdata['id_siswa'];
         $this->db->distinct();
-        // $this->db->select('*, m.nama_mapel, m.id_mapel, max(r.score) as top');
         $this->db->select('r.id_bab, max(r.score) as top');
         $this->db->from('tb_mata_pelajaran m');
         $this->db->join('tb_report_quiz r', 'm.id_mapel=r.id_mapel');
@@ -537,7 +467,7 @@
         return $tampil->result_array();
     }
     
-    
+    // GET PAKET PART 3
     function get_paket2()
     {
        
@@ -548,6 +478,7 @@
         return $tampil->result_array();
     }
 
+    // GET PAKET SOAL
     function get_paketsoal($id_try)
     {
        
@@ -561,6 +492,7 @@
         return $tampil->result_array();
     }
 
+    // GET REPORT TRYOUT
      function get_reporttry($id_try)
     {
        
@@ -574,6 +506,8 @@
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
+
+    // GET REPORT PAKET
       function get_report_paket($id_pkt)
     {
        
@@ -667,7 +601,7 @@
         $this->db->group_by('id_bank');
         $this->db->where('soal.kesulitan', $level);
         $this->db->where('soal.publish',1);
-        // $this->db->where('soal.status',1);
+        $this->db->where('soal.status',1);
 
         $query = $this->db->get();
         $soal = $query->result_array();
