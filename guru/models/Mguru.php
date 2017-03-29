@@ -67,19 +67,15 @@ class Mguru extends CI_Model {
 		return $this->db->update('tb_guru', $arr);
 	}
 
+	// UPDATE KATA SANDI GURU
 	public function update_katasandi($data, $id)
 
 	{
-
-
 		$this->db->where('id_guru',$id);
 
 		$this->db->update('tb_guru',$data);
 
 		redirect(site_url('guru/profileguru'));
-
-
-
 	}
 
 

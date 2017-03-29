@@ -17,27 +17,25 @@
     $this->load->helper(array('form', 'url', 'file', 'html'));
         $this->load->library('form_validation');
          $this->load->library('pagination');
-    # code...
   }
 
  	function index()
  	{
  		if ($this->session->userdata('id_admin')) {
-    $slidefront = $this->m_slide->getDaftarslide();
-    $data['data']= $slidefront;  
-    $this->load->view('admin/layout/header');
-    $this->load->view('slide/slide',$data);
-    $this->load->view('admin/layout/footer');
- 	}else{
+            $slidefront = $this->m_slide->getDaftarslide();
+            $data['data']= $slidefront;  
+            $this->load->view('admin/layout/header');
+            $this->load->view('slide/slide',$data);
+            $this->load->view('admin/layout/footer');
+     	}else{
+            redirect('login');
+      }
 
   }
 
-  }
-
-
+  // FUNGSI VIEW GAMBAR SLIDE
   public function gambar_slide($id) {
 
-        // unlink(FCPATH . "./assets/images/mapel/" . $id);
         $config['upload_path'] = './assets/app/halo/img';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
         $config['max_size'] = 2000;
@@ -46,12 +44,8 @@
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('photo')) {
-
-
-
             $data['error'] = array('error' => $this->upload->display_errors());
             $data['artikel']=$this->m_slide->artikel();
-            // var_dump($data['artikel']);
             $data['slide'] = $this->m_slide->get_gambarslide($id);
             if ($this->session->userdata('id_admin')) {
             $this->load->view('admin/layout/header');

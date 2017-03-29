@@ -20,7 +20,6 @@
 	{
 		$this->load->view('layout/header');
 		$this->load->view('layout/nav');
-		// $this->load->view('layout/footer');
 	}
 
 	// fungsi tampil form tambah siswa
@@ -30,13 +29,14 @@
 		$this->load->view('admin/layout/header');
 		$this->load->view('v_siswa/v-tambah-siswa');
 		$this->load->view('admin/layout/footer');
-	}
-		elseif ($this->session->userdata('id_guru')) {
-		$this->load->view('guru/layout/header');
-		$this->load->view('v_siswa/v-tambah-siswa');
-		$this->load->view('guru/layout/footer');
-	}
-
+		}
+			elseif ($this->session->userdata('id_guru')) {
+			$this->load->view('guru/layout/header');
+			$this->load->view('v_siswa/v-tambah-siswa');
+			$this->load->view('guru/layout/footer');
+		} else {
+			redirect('login');
+		}
 
 	}
 
@@ -109,16 +109,17 @@
 		$this->load->view('admin/layout/header');
 		$this->load->view('v_guru/v-tambah-guru');
 		$this->load->view('admin/layout/footer');
-	}
-		elseif ($this->session->userdata('id_guru')) {
-		$this->load->view('guru/layout/header');
-		$this->load->view('v_guru/v-tambah-guru');
-		$this->load->view('guru/layout/footer');
-	}
+		}
+			elseif ($this->session->userdata('id_guru')) {
+			$this->load->view('guru/layout/header');
+			$this->load->view('v_guru/v-tambah-guru');
+			$this->load->view('guru/layout/footer');
+		} else {
+			redirect('guru');
+		}
 	}
 
-	
-
+	// FUNGSI TAMBAH GURU
 	public function tambah_guru()
 	{
 		//set validation rules
@@ -321,6 +322,7 @@
 		$this->load->view('layout/footer');
 	}
 
+	// FUNGSI CARI 
 	public function cari()
 	{
 		if ($this->input->post('submit')) 

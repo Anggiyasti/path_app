@@ -107,6 +107,7 @@ class Modeluser extends CI_Model
 		return $query->result_array();
     }
 
+    // GET MATA PELAJARAN
     public function getmapel()
 	{
 		return $this->db->get('tb_mata_pelajaran');
