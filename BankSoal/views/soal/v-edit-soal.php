@@ -210,44 +210,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                     <option value="3" id="lvl3">Sulit</option>
                                 </select>
                             </div>
-                        </div>
-
-                                    <!-- <div class="form-group" id="oldlevel">
-                                        <label class="col-sm-2">Kesulitan</label>
-                                        <div class="col-sm-5">
-                                            <select name="kesulitan" id="kesulitan" class="form-control" value="<?=$banksoal['kesulitan']; ?>">
-                                            <?php 
-                                            // menentukan tingkat kesulitan dengan indeks 1 - 3
-                                              $k = $banksoal['kesulitan'];
-                                              if ($k == '3') {
-                                                  $kk = 'Sulit';
-                                              } elseif ($k == '2') {
-                                                  $kk = 'Sedang';
-                                              }else {
-                                                 $kk = 'Mudah';
-                                              }
-                                             ?>   
-                                             <td><?=$kk;?></td>
-                                <option value="<?=$banksoal['kesulitan']; ?>"><?=$kk; ?></option>
-
-                              </select>
-    
-                      <span id="pesan"></span>
-                                        </div>
-                                    </div> -->
-<!-- 
-                                    <div class="form-group" id="level" hidden="true">
-                                        <label class="col-sm-2">Kesulitan</label>
-                                        <div class="col-sm-5">
-                                            <select name="kesulitan" id="kesulitan" class="form-control" value="<?=$banksoal['kesulitan']; ?>">
-                                <option value="1">Mudah</option>
-                                <option value="2">Sedang</option>
-                                <option value="3">Sulit</option>
-                              </select>
-    
-                      <span id="pesan"></span>
-                                        </div>
-                                    </div> -->
+                        </div>                    
 
                                     <div class="form-group">
 

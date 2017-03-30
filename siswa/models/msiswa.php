@@ -49,14 +49,9 @@ class Msiswa extends CI_Model {
 				'alamat'=> $e,
 				'no_tlp'=> $f,
 				'id_siswa' => $g,
-<<<<<<< HEAD
+
 				'biografi' => $j,
 				'nama_belakang' => $k
-				
-
-=======
-				'biografi' => $j
->>>>>>> 784de4bf6ce493b067a9fcf7744f52afe82c5b68
 
 			);
 		$this->db->where('id_siswa', $g);

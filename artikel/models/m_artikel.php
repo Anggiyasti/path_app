@@ -11,7 +11,7 @@ class m_artikel extends CI_Model
 		parent::__construct();
 	}
 
-
+    // get daftar artikel
 	public function getDaftarslide(){
     	$this->db->distinct();
 		$this->db->select()->from('tb_artikel');
@@ -19,6 +19,7 @@ class m_artikel extends CI_Model
 		return $tampil->result_array();
     }
 
+    // get gambar artikel
     public function get_gambarartikel($id)
 
 	{
@@ -37,6 +38,7 @@ class m_artikel extends CI_Model
 
 	}
 
+    // update artikel dan gambar
 	public function gambar_artikel($id, $photo) {
 
 		$a  =  $this->input->post('judul_artikel');
@@ -54,7 +56,7 @@ class m_artikel extends CI_Model
         redirect(site_url('artikel'));
     }
 
-
+    // update artikel tanpa gambar
     public function gambar_artikel1($id) {
 
         $a  =  $this->input->post('judul_artikel');
@@ -67,11 +69,10 @@ class m_artikel extends CI_Model
         );
         $this->db->where('id_artikel', $id);
         $this->db->update('tb_artikel', $data);
-        // var_dump($data);
         redirect(site_url('artikel'));
     }
 
-
+    // insert artikel
     function insert_artikel($judul_artikel,$isi_artikel,$filename){
         $data = array(
                         'judul_artikel'  =>     $judul_artikel,
@@ -89,18 +90,16 @@ class m_artikel extends CI_Model
         $this->db->delete('tb_artikel');
     }
 
-    // public function gambar_artikel($id, $photo) {
+    // data pagination news
+    function data_news($number,$offset){
+        $this->db->select('*');
+        return $query = $this->db->get('tb_artikel',$number,$offset)->result_array();       
+    }
 
-		
-    //     $data = array(
-    //         'gambar_artikel' => $photo,
-    //     );
-    //     // $id_siswa = $this->session->userdata['email'];
-    //     $this->db->where('id', $id);
-    //     $this->db->update('tb_gambar_front', $data);
-    //     // var_dump($data);
-    //     redirect(site_url('template/slide'));
-    // }
+    // GET DATA BANK SOAL YANG PUBLISHNYA 1
+    function jumlah_data(){
+        return $this->db->get('tb_artikel')->num_rows();
+    }
 
 }
 

@@ -97,10 +97,10 @@ function set_status() {
         type:"POST",
         dataType:"TEXT",
         success:function(){
-          swal('Setting Part 2 Berhasil');
+          swal('Update status path berhasil');
           
         },error:function(){
-          swal('Setting Part 2 Gagal');
+          swal('Update status path Gagal');
         }
       });
 }

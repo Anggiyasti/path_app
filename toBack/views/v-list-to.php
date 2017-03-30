@@ -78,7 +78,7 @@
                                 <label class="col-sm-3 control-label">Publish?</label>
                                 <div class="col-sm-8">
                                     <div class="checkbox custom-checkbox">  
-                                        <input type="checkbox" name="publish" id="publish" value="1">  
+                                        <input type="checkbox" name="publish" id="publiish" value="1">  
                                         <label for="publish">&nbsp;&nbsp;</label>   
                                     </div>
                                 </div>
@@ -201,9 +201,10 @@
                     $('[name="wkt_mulai"]').val(data.wkt_mulai);
                     $('[name="tgl_berhenti"]').val(data.tgl_berhenti);
                     $('[name="wkt_akhir"]').val(data.wkt_berakhir);
-                     // $('[name="publish"]').val(data.publish);
+                    // d=  $('[name="publish"]').val(data.publish);
+                     // console.log(data.publish);
                     if (data.publish=='1') {
-                        $('#publish').attr('checked',true)
+                        $('#publish').prop('checked')
                      } else {
                         $('#publish').attr('unchecked',true)
                      }
