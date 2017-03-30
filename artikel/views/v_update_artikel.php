@@ -5,7 +5,7 @@
      $id_artikel = $row['id_artikel'];
      $judul_artikel = $row['judul_artikel'];
      $isi_artikel = $row['isi_artikel'];
-     $gambar=base_url().'assets/app/halo/img/'.$row['gambar'];
+     $gambar=base_url().'assets/app/halo/img/artikel/'.$row['gambar'];
      $oldphoto=$row['gambar'];
 } ;
 
