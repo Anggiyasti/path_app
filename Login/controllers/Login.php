@@ -142,12 +142,14 @@ class Login extends MX_Controller
 
     //fungsi tampil home ketika login siswa
     function cek_login_siswa(){
-
+        //hak akses jika siswa
        if ($this->session->userdata('id_siswa')) {
         $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+         //get nilai tertinggi
         $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
         $data['log']  = $this->Loginmodel->getlogact();
+        //get tampil foto slide 
         $data['data']= $this->Loginmodel->tampilphoto();
         $data['dataa']= $this->Loginmodel->tampilphoto2(); 
         $data['dataaa']= $this->Loginmodel->tampilphoto3();   

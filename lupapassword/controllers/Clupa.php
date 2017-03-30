@@ -124,7 +124,7 @@ public function resetpassword() {
     }
 
 
-
+    //verifikasi password ke email
     public function verifikasiPassword($address, $code) {
 
         $this->mregister->verifikasi_password($address, $code);
@@ -132,7 +132,7 @@ public function resetpassword() {
     }
 
 
-
+    //reset password ketika lupa kata sandi 
     public function resetdatapassword() {
 
         $newpassword = htmlspecialchars(md5($this->input->post('password')));

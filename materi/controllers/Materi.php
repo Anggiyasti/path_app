@@ -42,23 +42,6 @@ class Materi extends MX_Controller
         $this->load->view('v-form-materi',$data);
         $this->load->view('guru/layout/footer');
     }
-    
-		// $data['files'] = array(
-		// 	APPPATH . 'modules/materi/views/v-form-materi.php',
-		// 	);
-		// $data['judul_halaman'] = "Form Input Materi";
-		// $hakAkses=$this->session->userdata['HAKAKSES'];
-  //               // cek hakakses 
-		// if ($hakAkses=='admin') {
-  //       // jika admin
-		// 	$this->parser->parse('admin/v-index-admin', $data);
-		// } elseif($hakAkses=='guru'){
-  //                // jika guru
-		// 	 redirect(site_url('guru/dashboard/'));       
-		// }else{
-  //           // jika siswa redirect ke welcome
-		// 	redirect(site_url('welcome'));
-		// }
 	}
 
 	// upload materi
@@ -110,29 +93,13 @@ class Materi extends MX_Controller
     else{
     	redirect("");
     }
-		// $data['files'] = array(
-		// 	APPPATH . 'modules/materi/views/',
-		// 	);
-		// $data['judul_halaman'] = "Materi";
-		// $hakAkses=$this->session->userdata['HAKAKSES'];
-  //               // cek hakakses 
-		// if ($hakAkses=='admin') {
-  //       // jika admin
-		// 	$this->parser->parse('admin/v-index-admin', $data);
-		// } elseif($hakAkses=='guru'){
-  //                // jika guru
-		// 	 redirect(site_url('guru/dashboard/'));           
-		// }else{
-  //           // jika siswa redirect ke welcome
-		// 	redirect(site_url('welcome'));
-		// }
+		
 	}
 	// get ajax list materi
 	public function ajax_get_all_materi()
 	{
 		$materi= $this->load->Mmateri->get_all_materi();
         $data = array();
-        //var_dump($list);
         //mengambil nilai list
         $baseurl = base_url();
         $no='1';
@@ -209,7 +176,6 @@ class Materi extends MX_Controller
 	{	
 		$data['UUID'] = $this->input->post('UUID');
 		$judulMateri=htmlspecialchars($this->input->post('judul'));
-		// $subBabID = htmlspecialchars($this->input->post('subBabID'));
 		$isiMateri = $this->input->post('editor1');
 		$publish= htmlspecialchars($this->input->post('stpublish'));
  		if ($this->session->userdata('id_admin')) {

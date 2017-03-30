@@ -45,7 +45,7 @@ class MPaketsoal extends CI_Model {
 	}
 
 
-
+	//model untuk tambah paket
 	public function insertpaketsoal( $data ) {
 
 		$this->db->insert( 'tb_paket', $data );
@@ -101,7 +101,7 @@ class MPaketsoal extends CI_Model {
 
 
 
-
+	//ambil semua paket yang berstatus 1
 	public function getpaket_by_id($idpaket) {
 
 		$this->db->select( '*' )->from( 'tb_paket' );
@@ -127,7 +127,7 @@ class MPaketsoal extends CI_Model {
 	}
 
 
-
+	//hapus paket
 	public function droppaket( $id ) {
 
 		$this->db->set( 'status', 0 );
@@ -139,7 +139,7 @@ class MPaketsoal extends CI_Model {
 	}
 
 
-
+	//
 	function rubahpaket( $id, $data ) {
 
 		$this->db->where( 'id_paket', $id );

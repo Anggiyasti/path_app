@@ -19,6 +19,7 @@ class m_slide extends CI_Model
 		return $tampil->result_array();
     }
 
+    //ambil semua gambar pada tabel slide
     public function get_gambarslide($id)
 
 	{
@@ -36,6 +37,7 @@ class m_slide extends CI_Model
 
 	}
 
+    //model untuk ubah slide dengan gambar 
 	public function gambar_slide($id, $photo) {
 
 		$a  =  $this->input->post('judul');
@@ -58,6 +60,7 @@ class m_slide extends CI_Model
         redirect(site_url('template/slide'));
     }
 
+    //model untuk ubah slide tanpa gambar
     public function gambar_slide1($id) {
 
         $a  =  $this->input->post('judul');
@@ -70,31 +73,16 @@ class m_slide extends CI_Model
             'resume' => $b,
             'id_artikel' => $d
         );
-        // $id_siswa = $this->session->userdata['email'];
         $this->db->where('id', $id);
         $this->db->update('tb_gambar_front', $data);
-        // var_dump($data);
         redirect(site_url('template/slide'));
 
     }
 
-    public function gambar_artikel($id, $photo) {
-
-		
-        $data = array(
-            'gambar_artikel' => $photo,
-            
-
-        );
-        // $id_siswa = $this->session->userdata['email'];
-        $this->db->where('id', $id);
-        $this->db->update('tb_gambar_front', $data);
-        // var_dump($data);
-        redirect(site_url('template/slide'));
-    }
 
 
-        // get mapel 
+
+    // ambil artikel untuk dropdown memilih artikel
     public function artikel(){
     $this->db->select('*');
     $a= $this->db->get('tb_artikel');

@@ -106,45 +106,27 @@ class Toback extends MX_Controller
 		}
 
 
-		//  #START cek hakakses#
-		// $hakAkses=$this->session->userdata['HAKAKSES'];
-		// if ($hakAkses =='admin') {
-  //           // jika admin 
-		// 	$this->parser->parse('admin/v-index-admin', $data);
-		// } elseif($hakAkses=='guru'){
-  //            // jika guru     
-		// 	$this->parser->parse('templating/index-b-guru', $data);
-		// }else{
-  //           // jika siswa redirect ke welcome
-		// 	redirect(site_url('welcome'));
-		// }
-        #END Cek USer#
 	}
 	//add paket ke TO
 	public function addPaketToTO()
 	{
 		$id_paket=$this->input->post('idpaket');
 		$id_tryout=$this->input->post('id_to');
-		// $id_paket=$this->input->post('test');
-		// $this->Mtoback->inseert_addPaket();
 		$dat_paket=array();//testing
 		foreach ($id_paket as $key) {
 			$dat_paket[] = array(
 				'id_tryout'=>$id_tryout,
 				'id_paket'=>$key);
-			
 		}
-		// var_dump($dat_paket);
 		$this->Mtoback->insert_addPaket($dat_paket);
-		// var_dump(expression)
+
 	}
 	// add hak akses to siswa 
 	public function addsiswaToTO()
 	{
 		$id_siswa=$this->input->post('idsiswa');
 		$id_tryout=$this->input->post('id_to');
-		// $id_paket=$this->input->post('test');
-		// $this->Mtoback->inseert_addPaket();
+
 		//menampung array id siswa
 		$dat_siswa=array();
 		foreach ($id_siswa as $key) {
@@ -155,7 +137,7 @@ class Toback extends MX_Controller
 		}
 		//add siswa ke paket 
 		$this->Mtoback->insert_addSiswa($dat_siswa);
-		// var_dump(expression)
+		
 	}
 
 
@@ -308,6 +290,7 @@ class Toback extends MX_Controller
 	}
 
 
+	//FUNGSI EDIT TRYOUT
 	public function editTryout()
 	{
 		$data['id_tryout']=htmlspecialchars($this->input->post('id_tryout'));
@@ -395,8 +378,7 @@ class Toback extends MX_Controller
 				$row[] = "Non-neutron";
 
 			}
-							// $row[] = '
-							// <a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropSiswa('."'".$list_siswa['id']."'".')"><i class="ico-remove"></i></a>';
+						
 			$data[] = $row;
 		}
 		$output = array(
@@ -468,7 +450,6 @@ class Toback extends MX_Controller
 			$row = array();		
 			$row[] = $list_item['nm_tryout'];
 			$row[] = $list_item['publish'];
-			// $row[] = $list_item['judulbab'];
 			if ($list_item['active']==1) {
 				$row[] = "<input type='checkbox' 
 				class='switchery' checked onclick='updatestatus(".$list_item['id_tryout'].",".$list_item['active'].")'>";
@@ -478,9 +459,7 @@ class Toback extends MX_Controller
 			}		
 			
 			
-			// $row[] = '
-			// <a class="btn btn-sm btn-success"  title="Detail" onclick="detail_bab('."'".$list_item['id_tryout']."'".')"><i class="ico-file-plus2"></i></a>';
-
+			
 			$data[] = $row;
 
 		}
@@ -521,6 +500,7 @@ function tampil_to(){
 
 }
 
+	
   public function gettampilto() {
    
     $data['tampil'] = $this->Mtoback->get_tampil_To();

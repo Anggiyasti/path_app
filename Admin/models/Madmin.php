@@ -48,7 +48,7 @@
 		return $this->db->update('tb_admin', $arr);
 	}
 
-
+	
 	function getmapel(){
 	$this->db->order_by('nama_mapel','ASC');
 	$this->db->where('status = 1');

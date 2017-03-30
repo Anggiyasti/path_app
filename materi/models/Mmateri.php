@@ -22,6 +22,8 @@
         return $query->result_array();
  	}
 
+    
+
     function getbab($id){
 
         $option="<option value='0'>--pilih--</pilih>";
@@ -75,6 +77,7 @@
 
 
  	}
+    //menghapus materi
  	public function drop_materi($UUID)
  	{
  		   $this->db->where('UUID', $UUID);
@@ -88,9 +91,6 @@
         $this->db->select('m.id_mapel as id_mp, m.nama_mapel as np, bab.id_bab , bab.judul_bab');
          $this->db->from('tb_bab bab');
          $this->db->join('tb_mata_pelajaran m',' m.id_mapel=bab.id_mapel ');
-        // $this->db->join('tb_bab bab','bab.tingkatPelajaranID=tp.id');
-        // $this->db->join('tb_subbab subbab','subbab.babID = bab.id');
-        // $this->db->where('bab.id_bab', $BabID);
         $query = $this->db->get();
         return $query->result_array()[0];
     }

@@ -10,10 +10,8 @@ class paketsoal extends MX_Controller
 		$this->load->model( 'mpaketsoal' );
 		$this->load->model( 'Banksoal/Modelbank' );
 		$this->load->model( 'latihan/mlatihan' );
-
 		$this->load->library( 'form_validation' );
 		$this->load->helper( array( 'form', 'url' ) );
-		// $this->load->model('templating/mtemplating');
 		parent::__construct();
 		if ($this->session->userdata('loggedin')==true) {
 			if ($this->session->userdata('HAKAKSES')=='siswa'){
@@ -128,15 +126,13 @@ class paketsoal extends MX_Controller
 		$data['paket_soal'] = $this->load->mpaketsoal->getpaketsoal();
 
 		$this->load->view('admin/layout/header');
-          $this->load->view('v-create-paket-soal', $data);
-          $this->load->view('admin/layout/footer');
+        $this->load->view('v-create-paket-soal', $data);
+        $this->load->view('admin/layout/footer');
 
 			}		
 	else{
 
 	}
-		
-
 		
 	}
 	##
@@ -153,13 +149,9 @@ class paketsoal extends MX_Controller
 		if ($hakAkses=='admin') {
         // jika admin
 			$this->parser->parse('admin/v-index-admin', $data);
-
-
 		} elseif($hakAkses=='guru'){
                     // jika guru
 			$this->load->view('templating/index-b-guru', $data);  
-
-
 		}else{
             // jika siswa redirect ke welcome
 			redirect(site_url('welcome'));
@@ -251,10 +243,6 @@ class paketsoal extends MX_Controller
           	$this->load->view('v-data-notfound.php', $data);
           	$this->load->view('admin/layout/footer');
 		}
-		
-		
-
-
 		}else{
             // jika siswa redirect ke welcome
 			redirect(site_url('welcome'));
@@ -390,7 +378,7 @@ public function get_soal_byid_paket($idpaket){
 	
 }
 
-		#
+#
 function ajax_get_soal_byid( $bab ) {
 
 	$list = $soal=$this->mlatihan->get_soal_bybab( $bab );
@@ -434,7 +422,7 @@ echo json_encode( $output );
 
 
 
-#
+#menampilkkan daftar soal 
 function ajax_get_soal_bylatihanid( $latihan ) {
 
 	$list = $soal=$this->mlatihan->get_soal_bybab( $bab );
@@ -476,6 +464,7 @@ echo json_encode( $output );
 
 }
 
+//Start function untuk dropdown dependent pada form paket#
 public function getbab( $id_mapel ) {
         $data = $this->output
         ->set_content_type( "application/json" )
