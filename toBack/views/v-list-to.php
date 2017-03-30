@@ -2,9 +2,6 @@
 
   foreach ($tampil as $row) {
     $active = $row['active'];
-
-   
-
 } ;
 
 
@@ -77,7 +74,7 @@
   </div>
                             </div>
 
-                            <div class="form-group">
+                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Publish?</label>
                                 <div class="col-sm-8">
                                     <div class="checkbox custom-checkbox">  
@@ -205,7 +202,7 @@
                     $('[name="tgl_berhenti"]').val(data.tgl_berhenti);
                     $('[name="wkt_akhir"]').val(data.wkt_berakhir);
                      // $('[name="publish"]').val(data.publish);
-                     if (data.publish==1) {
+                    if (data.publish=='1') {
                         $('#publish').attr('checked',true)
                      } else {
                         $('#publish').attr('unchecked',true)

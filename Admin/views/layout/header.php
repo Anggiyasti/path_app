@@ -197,11 +197,11 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
     var wkt_mulai  =   $('#to_wktmulai').val();
     var wkt_akhir  =   $('#to_wktakhir').val();
     var publish;
-    if ($('#to_publish:checked')==true) {
-     publish = 0;
-   } else{
-     publish = 1;
-   }
+  if ($('#to_publish:checked')==true) {
+   publish = 1;
+ } else{
+   publish = 0;
+ }
 // pengecekan inputan pembuatan to
 // cek inputan kosong
 if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wkt_akhir != "" ) {

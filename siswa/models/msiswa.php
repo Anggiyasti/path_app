@@ -43,6 +43,7 @@ class Msiswa extends CI_Model {
 		$f  =  $this->input->post('no_tlp');
 		$g  =  $this->input->post('id_siswa');
 		$j  =  $this->input->post('biografi');
+		$k  =  $this->input->post('nama_belakang');
 
 		
 		
@@ -56,6 +57,7 @@ class Msiswa extends CI_Model {
 				'no_tlp'=> $f,
 				'id_siswa' => $g,
 				'biografi' => $j,
+				'nama_belakang' => $k
 				
 
 

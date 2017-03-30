@@ -238,6 +238,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
         </li>
         <li><a href="<?php echo base_url('index.php')?>" class="no-child"><i class="ion-android-home"></i> Home</a></li>
         <li><a href="<?php echo base_url('index.php/Siswa/Profilesiswa')?>" class="no-child"><i class="ion-android-person"></i> Profile Setting</a></li>
+        <li><a href=" http://www.sanaksaindonesia.com/baper" class="no-child"><i class="ion-information"></i> Bantuan Penjurusan</a></li>
 
         <li>
           <div class="collapsible-header">
