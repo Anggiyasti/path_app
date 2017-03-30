@@ -25,7 +25,8 @@ class m_slide extends CI_Model
 
 		$this->db->select('*');
 
-		$this->db->from('tb_gambar_front');
+		$this->db->from('tb_gambar_front gb');
+        $this->db->join('tb_artikel  art',' art.id_artikel = gb.id_artikel');
 
 		$this->db->where('id',$id); 
 
@@ -40,9 +41,31 @@ class m_slide extends CI_Model
 		$a  =  $this->input->post('judul');
 		$b  =  $this->input->post('resume');
         $d  =  $this->input->post('id_artikel');
+        // var_dump($a);
+
+        
+            $data = array(
+            'gambar' => $photo,
+            'judul' => $a,
+            'resume' => $b,
+            'id_artikel' => $d
+        );
+       
+        // $id_siswa = $this->session->userdata['email'];
+        $this->db->where('id', $id);
+        $this->db->update('tb_gambar_front', $data);
+        // var_dump($data);
+        redirect(site_url('template/slide'));
+    }
+
+    public function gambar_slide1($id) {
+
+        $a  =  $this->input->post('judul');
+        $b  =  $this->input->post('resume');
+        $d  =  $this->input->post('id_artikel');
 
         $data = array(
-            'gambar' => $photo,
+         
             'judul' => $a,
             'resume' => $b,
             'id_artikel' => $d
@@ -52,6 +75,7 @@ class m_slide extends CI_Model
         $this->db->update('tb_gambar_front', $data);
         // var_dump($data);
         redirect(site_url('template/slide'));
+
     }
 
     public function gambar_artikel($id, $photo) {

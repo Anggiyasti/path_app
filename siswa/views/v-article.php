@@ -37,7 +37,7 @@
              
             </div>
             <p class="text-flow"><?=$d['isi_artikel'] ?></p>
-            <blockquote class="primary-border"><?=$d['isi_artikel'] ?></blockquote>
+           
             
           
 

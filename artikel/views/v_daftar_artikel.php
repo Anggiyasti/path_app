@@ -37,6 +37,8 @@
                     </div>
                     <div class="table-responsive panel-collapse pull out">
                     <?php echo $this->session->flashdata('msg'); ?>
+                    <?php echo $this->session->flashdata('info'); ?>
+                    <?php echo $this->session->flashdata('pesan2'); ?>
                                 <table class="table table-bordered" id="zero-configuration" style="font-size: 13px">
 
                                     <thead>
@@ -61,7 +63,29 @@
                                                 <div class="toolbar">
                                                     <div class="btn-group">
                                             
-                                    <a href="<?=base_url()?>index.php/artikel/gambar_artikel/<?=$ds['id_artikel']?>" class="btn btn-outline btn-info">Ubah Gambar</a> 
+                                    <a href="<?=base_url()?>index.php/artikel/view_artikel/<?=$ds['id_artikel']?>" class="btn btn-outline btn-info">Ubah</a> 
+                                    <a class="btn btn-outline btn-info" href="#deleteartikel" data-toggle="modal" data-target="#deleteartikel<?php echo $ds['id_artikel']?>">Hapus</a>
+
+                                     <div class="modal fade" id="deleteartikel<?php echo $ds['id_artikel']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Delete</h4>
+                                        </div>
+                                            <div class="modal-body">
+                                                Are you sure?
+                                            </div>
+                                        <div class="modal-footer">
+                                            <a href="<?=base_url()?>index.php/artikel/hapus_artikel/<?=$ds['id_artikel']?>" class="btn btn-default" >Yes</a>
+                                            <a href="#"class="btn btn-default" data-dismiss="modal">No</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div> 
+
                                     
                                                                 
                                                 </div>
