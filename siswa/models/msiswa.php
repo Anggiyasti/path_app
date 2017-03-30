@@ -4,18 +4,13 @@
 
 class Msiswa extends CI_Model {
 
-
-
-    //put your code here
-
-
-
     public function __construct() {
 
         parent::__construct();
 
     }
 
+    // GET DATA SISWA
     public function get_siswa()
 
 	{
@@ -34,6 +29,7 @@ class Msiswa extends CI_Model {
 
 	}
 
+	// UPDATE SISWA
 	public function update_siswa() {
 		$a  =  $this->input->post('nama_depan');
 		$b  =  $this->input->post('nama_belakang');
@@ -44,9 +40,6 @@ class Msiswa extends CI_Model {
 		$g  =  $this->input->post('id_siswa');
 		$j  =  $this->input->post('biografi');
 
-		
-		
-
 		$arr = array(
 				'nama_depan' => $a,
 				'nama_belakang'=> $b,
@@ -55,22 +48,19 @@ class Msiswa extends CI_Model {
 				'alamat'=> $e,
 				'no_tlp'=> $f,
 				'id_siswa' => $g,
-				'biografi' => $j,
-				
-
+				'biografi' => $j
 
 			);
 		$this->db->where('id_siswa', $g);
 		return $this->db->update('tb_siswa', $arr);
 	}
 
-
+	// UPDATE SOCIAL MEDIA 
 	public function update_sosmed() {
 		$a  =  $this->input->post('facebook');
 		$b  =  $this->input->post('twitter');
 		$c  =  $this->input->post('instagram');
 		$g  =  $this->input->post('id_siswa');
-		
 
 		$arr = array(
 				'facebook' => $a,
@@ -91,12 +81,11 @@ class Msiswa extends CI_Model {
 				'jurusan'=> $jur,
 				'univ'=> $univ,
 			);
-
-		// var_dump($arr);
 		$this->db->where('email', $id_siswa);
 		return $this->db->update('tb_siswa', $arr);
 	}
 
+	// GET JURUSAN UNIVERSITAS
 	function getjur($id){
 
 		$option="<option value='0'>--pilih--</pilih>";
@@ -107,21 +96,21 @@ class Msiswa extends CI_Model {
 		$option.= "<option value='$data[prodi]'></option>";
 
 		}
-
 		return $option;
+	}
 
-}
+	// GET UNIVERSITAS
 	function getuniv(){
 		$this->db->order_by('universitas','ASC');
 		$provinces= $this->db->get('tb_passing_grade');
 		return $provinces->result_array();
 	}
 
+	// UBAH KATA SANDI
 	public function ubah_katasandi() {
 		$a  =  $this->input->post('id_siswa');
 		$b  =  md5($this->input->post('password'));
 		
-
 		$arr = array(
 				'password' => $b
 			);
@@ -129,7 +118,7 @@ class Msiswa extends CI_Model {
 		return $this->db->update('tb_siswa', $arr);
 	}
 
-	 
+	// UPDATE FOTO SISWA	 
     public function update_photo($photo) {
         $data = array(
             'photo' => $photo
@@ -140,6 +129,7 @@ class Msiswa extends CI_Model {
         redirect(site_url('siswa/Profilesiswa'));
     }
 
+    // UPDATE FOTO DEFAULT
     public function update_photo_default() {
         $data = array(
             'photo' => "male.png"
@@ -147,18 +137,9 @@ class Msiswa extends CI_Model {
         $id_siswa = $this->session->userdata['email'];
         $this->db->where('email', $id_siswa);
         $this->db->update('tb_siswa', $data);
-        redirect(site_url('login'));
     }
 
-    // function get_reportlatihan_siswa($id_siswa) {
-    //     $this->db->select('*');
-    //     $this->db->from('tb_report_latihan');
-    //     $this->db->where('id_siswa', $id_siswa);
-    //     $query = $this->db->get();
-    //     return $query->result_array();
-    // }
-
-
+    // GET REPORT SISWA
     function get_reportlatihan_siswa($id_siswa) {
         $this->db->select('r.id_report_latihan,r.id_pengguna,r.id_latihan,r.jmlh_kosong,r.jmlh_benar,r.jmlh_salah,r.total_nilai,r.score,r.tgl_pengerjaan,r.durasi_pengerjaan,l.id_bab,b.judul_bab');
         $this->db->from('tb_report_latihan r');
@@ -169,17 +150,7 @@ class Msiswa extends CI_Model {
         return $query->result_array();
     }
 	
-
-	 public function getDaftarsoal(){
-    	
-		$this->db->select('b.id_bank, b.judul_soal, b.soal, b.judul_bab, b.kesulitan, m.nama_mapel,b.publish,b.jawaban_benar');
-		$this->db->from('tb_bank_soal b');
-		$this->db->join('tb_mata_pelajaran m', 'm.id_mapel = b.id_mapel');
-		$tampil=$this->db->get();
-		return $tampil->result_array();
-
-    }
-
+	// GET ID SISWA UNTUK TOKEN
     function get_siswaid(){
         $penggunaID = $this->session->userdata['email'];
 
@@ -190,7 +161,7 @@ class Msiswa extends CI_Model {
         return $query->result_array()[0]['id_siswa'];
     }
 
-
+    // GET TOKEN SISWA FRONT
     function get_token(){
         $siswaID = $this->get_siswaid();
         $this->db->select('*');
@@ -204,21 +175,7 @@ class Msiswa extends CI_Model {
         }
     }
 
-      public function getlogact()
-    {
-        $query = "SELECT l.create_by, l.date_create, l.id_bab, b.judul_bab, r.tgl_pengerjaan
-                    from tb_report_latihan as r
-                    join tb_latihan as l on r.id_latihan = l.id_latihan
-                    join tb_bab as b on l.id_bab = b.id_bab
-                    group by l.create_by order by create_by desc";
-        $result = $this->db->query($query);
-        return $result->result_array();
-    }
-
-
-
-    
-
+    // GET SISWA YANG BELUM IKUT TO
     public function get_siswa_blm_ikutan_to() {
         $query = "SELECT s.id_siswa, s.nama_depan,s.nama_belakang 
                     FROM tb_siswa s 

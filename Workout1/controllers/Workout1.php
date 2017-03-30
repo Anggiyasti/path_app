@@ -44,6 +44,7 @@ class Workout1 extends MX_Controller
                             $sis = $this->session->userdata('id_siswa');
                             // get data siswa
                             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+                            $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
                                 $this->load->view('template/siswa2/v-header', $data);
                                 $this->load->view('template_baru/v-wo-bab', $data);
                                 $this->load->view('template/siswa2/v-footer');

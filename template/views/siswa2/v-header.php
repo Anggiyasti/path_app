@@ -205,6 +205,19 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
           </div>
         </li>
       </ul>
+      
+      <!-- Modal Path -->
+        <div id="modal2" class="modal">
+          <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>Apakah anda yakin memilih jurusan <?=$jur?> ?</p>
+            <p>Jika ya, jurusan tidak dapat diubah hingga path selesai dikerjakan!</p>
+          </div>
+          <div class="modal-footer">
+            <a href="<?= base_url('index.php/linetopik') ?>" class="modal-action modal-close waves-effect waves-green btn-flat ">Ya</a>
+            <a href="<?= base_url('login') ?>" class="modal-action modal-close waves-effect waves-green btn-flat ">Tidak</a>
+          </div>
+        </div>
 
       
       <!-- Left Sidebar -->
@@ -269,7 +282,10 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
           </div>  
         </li>
         
-        <li><a href="<?= base_url('index.php/linetopik') ?>" class="no-child"><i class="ion-social-rss"></i> Path </a></li>
+        <li>
+          <!-- Modal Trigger Fixed Footer-->
+          <a class="modal-trigger no-child" href="#modal2"><i class="ion-social-rss"></i>Path</a>
+        </li>
         <li><a href="<?php echo base_url('index.php/Login/logout_siswa')?>" class="no-child"><i class="ion-android-exit"></i> Logout</a></li>
         
       </ul>

@@ -111,7 +111,6 @@
                 <option value="0" id="kosong">--Pilih Jurusan--</option>
                 <option value="IPA" id="ipa">IPA</option>
                 <option value="IPS" id="ips">IPS</option>
-                <option value="IPC" id="ipc">IPC</option>
               </select> 
             <?php endif; ?>
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">
@@ -356,8 +355,6 @@ function ValidateSingleInput(oInput) {
             $('#ipa').attr('selected','selected');
           }else if (tampjur == 'IPS') {
             $('#ips').attr('selected','selected');
-          }else if (tampjur == 'IPC') {
-            $('#ipc').attr('selected','selected');
           }else{
             $('#kosong').attr('selected','selected');
           }

@@ -54,6 +54,18 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="col-sm-2 ">Jurusan</label>
+                                        <div class="col-sm-5">
+                                            <select name="jurusan" class="form-control">
+                                                <option value="0">--Pilih Jurusan--</option>
+                                                <option value="IPA">IPA</option>
+                                                <option value="IPS">IPS</option>
+                                                <option value="SEMUA">SEMUA</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     
 
                                     <div class="panel-footer">

@@ -124,7 +124,7 @@ class Loginmodel extends CI_Model
 }
 //mengambil data siswa
  function get_siswa($id_siswa){
-        $this->db->select('tb_siswa.id_siswa,photo,jurusan,univ,facebook,twitter,instagram');
+        $this->db->select('tb_siswa.id_siswa,photo,jurusan,univ,facebook,twitter,instagram, jurusan_pelajaran');
 
         $this->db->from('tb_siswa');
         $this->db->where('id_siswa',$id_siswa);

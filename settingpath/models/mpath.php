@@ -157,6 +157,13 @@
         $this->db->update('tb_status_path', $arr);
     }
 
+    // data paginataion all soal
+    function data_news($number,$offset){
+        $this->db->select('*');
+        $this->db->from('tb_bab bab','bab.id_bab=bs.id_bab');
+        $this->db->order_by('bs.id_bank', 'desc');
+        return $query = $this->db->get('tb_bank_soal bs',$number,$offset)->result_array();       
+    }
  }
 
 ?>

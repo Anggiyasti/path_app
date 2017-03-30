@@ -421,10 +421,12 @@ class Modelbank extends CI_Model
 		$a  =  $this->input->post('id_mapel');
 		$b  =  $this->input->post('nama_mapel');
 		$c  =  $this->input->post('alias_mapel');
+        $d  =  $this->input->post('jurusan');
 		$arr = array(
 				'id_mapel' => $a,
 				'nama_mapel'=> $b,
-				'alias_mapel'=> $c
+				'alias_mapel'=> $c,
+                'jurusan' => $d
 			);
 		$this->db->where('id_mapel', $a);
 		return $this->db->update('tb_mata_pelajaran', $arr);
