@@ -27,10 +27,7 @@ class Forgot extends MX_Controller
 
         if (!empty($this->session->userdata['reset_email']) && $this->session->userdata['reset_password'] == '1') {
 
-
-
             $this->load->view('v-reset-password');
-
 
         } else {
 

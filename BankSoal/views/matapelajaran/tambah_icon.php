@@ -6,17 +6,6 @@
             <!-- START Template Container -->
             <div class="container-fluid">
 
-
-                <!-- Page Header -->
-               
-                <!-- Page Header -->
-
-                <!-- START row -->
-
-                <!-- Page Header -->
-                
-                <!-- Page Header -->
-
                 <!-- START row -->
                 <div class="row">
                 <div class="container-fluid">
@@ -56,7 +45,6 @@
 
                                     <thead>
                                         <tr>
-                                            <!-- <th width="5%"></th> -->
                                             <th>ID Mata Pelajaran</th>
                                             <th>Nama Mata Pelajaran</th>
                                             <th>Alias Mata Pelajaran</th>

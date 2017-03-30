@@ -21,9 +21,6 @@ class Latihan extends MX_Controller {
         $this->load->library('parser');
         $this->load->model('Workout1/Mworkout1');
 
-        // $this->load->model('video/mvideos');
-
-        // $this->load->model('matapelajaran/Mmatapelajaran');
 
     }
 
@@ -54,7 +51,6 @@ class Latihan extends MX_Controller {
             "nm_latihan" => $nama_matapelajaran . "-" . $nama_subab,
             "create_by" => $this->session->userdata['USERNAME'],
             "uuid_latihan" => $uuid_latihan,
-            // "id_subbab" => $idsub
         );
 
         $param = array(
@@ -69,7 +65,6 @@ class Latihan extends MX_Controller {
         $this->session->set_userdata('id_latihan', $id_latihan);
         // get soal randoom
         $data['soal_random'] = $this->mlatihan->get_random_for_latihan($param);
-        // $data['mm_sol']=array();
         //ngecacah teru dimasukin ke relasi
         foreach ($data['soal_random'] as $row) {
             $data['mm_sol'] = array(

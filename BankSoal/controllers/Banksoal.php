@@ -1035,16 +1035,13 @@ public function upload_video(){
                
                // cek ada jawaban atau tidak 
               $cek = $this->Modelbank->cek_jawaban($id_soal);
-              // var_dump($cek);
               if ($cek) {
-                // echo "update";
                 $this->Modelbank->ch_jawaban($data);
               } else {
                 // insert 
                 $this->Modelbank->insert_jawaban($data['insert']);
               }
                
-
               } else{
                 $this->ch_img_jawaban($soalID);
              }

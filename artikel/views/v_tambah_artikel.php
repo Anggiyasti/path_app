@@ -118,8 +118,7 @@ function ValidateSingleInput(oInput) {
              
             if (!blnValid) {
              $('#notif').show();
-                // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
-                // oInput.value = "";
+
                 return false;
             }
 
@@ -151,8 +150,7 @@ function ValidateSingleInput1(oInput) {
              
             if (!blnValid) {
              $('#notifa').show();
-                // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
-                // oInput.value = "";
+
                 return false;
             }
 

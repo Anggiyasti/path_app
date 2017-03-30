@@ -92,7 +92,7 @@ public function verify_reset_pass_code($email, $code)
         return false;
     }
 }
-
+//merubah password 
 public function ubah_pass()
 {
     $email = $this->input->post('email');
@@ -108,6 +108,7 @@ public function ubah_pass()
     }
 }
 
+//model verifikasi password ke email
 public function verifikasi_password($address, $code) {
 
         $this->db->select('regTime');
