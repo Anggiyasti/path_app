@@ -55,31 +55,16 @@
                                       <input type="text" class="form-control" name="nama_tryout">
                                 </div>
                            </div>
-                           <div  class="form-group">
-                                <label class="col-sm-3 control-label">Tanggal Mulai</label>
-                                <div class="col-sm-4">
-                                  <input type="date" class="form-control" name="tgl_mulai">
-                                </div>
-                                 <div class="col-sm-4">
-      <input type="time" class="form-control" name="wkt_mulai"  >
-    </div>
-                            </div>
-                            <div  class="form-group">
-                                <label class="col-sm-3 control-label">Tanggal Berakhir</label>
-                                <div class="col-sm-4">
-                                  <input type="date" class="form-control" name="tgl_berhenti">
-                              </div>
-                                <div class="col-sm-4">
-    <input type="time" class="form-control" name="wkt_akhir"  >
-  </div>
-                            </div>
+                           
 
                              <div class="form-group">
                                 <label class="col-sm-3 control-label">Publish?</label>
                                 <div class="col-sm-8">
-                                    <div class="checkbox custom-checkbox">  
-                                        <input type="checkbox" name="publish" id="publiish" value="1">  
-                                        <label for="publish">&nbsp;&nbsp;</label>   
+                                    <div class="checkbox custom-checkbox nm">  
+                                        <span class="checkbox custom-checkbox custom-checkbox-inverse">
+                                    <input type="checkbox" name="publish" id="publisher" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success">  
+                                    <label for="publisher">&nbsp;&nbsp;</label>
+                                    </span>   
                                     </div>
                                 </div>
                             </div> 
@@ -201,12 +186,12 @@
                     $('[name="wkt_mulai"]').val(data.wkt_mulai);
                     $('[name="tgl_berhenti"]').val(data.tgl_berhenti);
                     $('[name="wkt_akhir"]').val(data.wkt_berakhir);
-                    // d=  $('[name="publish"]').val(data.publish);
-                     // console.log(data.publish);
-                    if (data.publish=='1') {
-                        $('#publish').prop('checked')
+
+                    if (data.publish==1) {
+                        $('#publisher').attr('checked', true);
+                        console.log('hello');
                      } else {
-                        $('#publish').attr('unchecked',true)
+                        $('#publisher').attr('checked',false);
                      }
                     $('#modal_editTO').modal('show');  // show bootstrap modal when complete loaded
                     // $('.modal-title').text('Edit Paket Soal'); // Set title to Bootstrap modal title
