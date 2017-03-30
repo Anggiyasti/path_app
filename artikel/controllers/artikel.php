@@ -34,6 +34,20 @@
 
   }
 
+  public function view_artikel($id){
+    $data['artikel'] = $this->m_artikel->get_gambarartikel($id);
+        if ($this->session->userdata('id_admin')) {
+               // var_dump($data);
+        $this->load->view('admin/layout/header');
+        $this->load->view('v_update_artikel',$data);
+        $this->load->view('admin/layout/footer');
+        }
+        else{
+          
+        }
+
+  }
+
   public function gambar_artikel($id) {
 
         // unlink(FCPATH . "./assets/images/mapel/" . $id);
@@ -41,24 +55,16 @@
         $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
         $config['max_size'] = 2000;
         $config['max_width'] = 700;
-        $config['max_height'] = 1050;
+        $config['max_height'] = 467;
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('photo')) {
+            $this->m_artikel->gambar_artikel1($id);
 
 
 
-            $data['error'] = array('error' => $this->upload->display_errors());
-            $data['artikel'] = $this->m_artikel->get_gambarartikel($id);
-            if ($this->session->userdata('id_admin')) {
-                // var_dump($data);
-            $this->load->view('admin/layout/header');
-          $this->load->view('v_update_artikel',$data);
-          $this->load->view('admin/layout/footer');
-        }
-        else{
-          
-        }
+            // $data['error'] = array('error' => $this->upload->display_errors());
+            
 
 
         } else {
@@ -98,7 +104,7 @@
            $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
             $config['max_size'] = 2000;
             $config['max_width'] = 700;
-            $config['max_height'] = 1050;
+            $config['max_height'] = 467;
             // $config['encrypt_name']= true;
 
             $this->load->library('upload',$config);
@@ -133,6 +139,24 @@
 
 
 }
+
+
+// FUNGSI HAPUS ARTIKEL
+    public function hapus_artikel($id_artikel) {
+      $this->m_artikel->delete_artikel($id_artikel);
+
+      if ($this->db->affected_rows()) 
+      {
+        $this->session->set_flashdata('info', '<div class="alert alert-success text-center">Berhasil Dihapus</div>');
+        redirect('artikel'); 
+      }
+      else
+      {
+        $this->session->set_flashdata('pesan2', '<div class="alert alert-danger text-center">Gagal Dihapus!</div>');
+        redirect('artikel');
+      }
+
+    }
  
  }
  ?>

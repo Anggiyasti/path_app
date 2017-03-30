@@ -78,7 +78,7 @@
                                                 <div class="toolbar">
                                                     <div class="btn-group">
                                             
-                                    <a href="<?=base_url()?>index.php/template/slide/gambar_slide/<?=$ds['id']?>" class="btn btn-outline btn-info">Ubah Gambar</a> 
+                                    <a href="<?=base_url()?>index.php/template/slide/view/<?=$ds['id']?>" class="btn btn-outline btn-info">Ubah Gambar</a> 
                                     
                                                                 
                                                 </div>

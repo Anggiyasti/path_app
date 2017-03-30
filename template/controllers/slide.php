@@ -33,6 +33,21 @@
 
   }
 
+  public function view($id){
+    if ($this->session->userdata('id_admin')) {
+       
+            $data['artikel']=$this->m_slide->artikel();
+            $data['slide'] = $this->m_slide->get_gambarslide($id);
+            $this->load->view('admin/layout/header');
+            $this->load->view('slide/gambar_slide',$data);
+            $this->load->view('admin/layout/footer');
+            
+        }
+        else{
+          
+        }
+  }
+
   // FUNGSI VIEW GAMBAR SLIDE
   public function gambar_slide($id) {
 
@@ -44,22 +59,17 @@
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('photo')) {
-            $data['error'] = array('error' => $this->upload->display_errors());
-            $data['artikel']=$this->m_slide->artikel();
-            $data['slide'] = $this->m_slide->get_gambarslide($id);
-            if ($this->session->userdata('id_admin')) {
-            $this->load->view('admin/layout/header');
-          $this->load->view('slide/gambar_slide',$data);
-          $this->load->view('admin/layout/footer');
-        }
-        else{
-          
-        }
+            
+            $this->m_slide->gambar_slide1($id);
+            // redirect('template/slide');
+            
+        
 
             // $this->load->view('beranda/main_view',$error);,
         } else {
             $file_data = $this->upload->data();
             $photo = $file_data['file_name'];
+            // var_dump($photo);
             $this->m_slide->gambar_slide($id,$photo);
             echo "berhasil upload"; 
             //for testing

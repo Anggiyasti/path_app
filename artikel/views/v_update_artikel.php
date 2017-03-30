@@ -26,7 +26,7 @@
                         <div class="panel panel-default">
                             <!-- panel heading/header -->
                             <div class="panel-heading">
-                                <h3 class="panel-title">Form Home</h3>
+                                <h3 class="panel-title">Form Artikel</h3>
                             </div>
                             <!--/ panel heading/header -->
                             <!-- panel body -->
@@ -52,11 +52,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2">Gambar Slide</label>
+                                        <label class="col-sm-2">Gambar Artikel</label>
                                         <div class="col-sm-10">
                                             <img id="preview" class="img-bordered" src="<?=$gambar;?>" alt="" width="700px" height="1050px" />
                                             <div class="input-icon">
-                                            <label><p>Gambar tidak boleh lebih dari 2mb (700x1050)</p></label>
+                                            <label><p>Gambar tidak boleh lebih dari 2mb (700x467)</p></label>
                                             <input  type="file" id="file" name="photo" class="btn " onchange="ValidateSingleInput(this);" />
                                             <br>
 
@@ -181,6 +181,16 @@ function ValidateSingleInput1(oInput) {
     }
     return true;
 }
+
+
+
+ // Set option Jawaban ###########
+          var tampjawaban =  $('#tampjawaban').val();
+          if (tampjawaban != '') {
+              var tamid ='#opjawaban option[value='+tampjawaban+']';
+             $(tamid).attr('selected','selected');
+          }else{
+          }
 
 
 
