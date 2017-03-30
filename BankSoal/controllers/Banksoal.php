@@ -1197,11 +1197,13 @@ public function upload_video(){
         } else {
           $alias_mapel = htmlspecialchars($this->input->post('alias_mapel'));
             $nama_mapel = htmlspecialchars($this->input->post('nama_mapel'));
+            $jur = htmlspecialchars($this->input->post('jurusan'));
                    
            $datamapel = array(
             'alias_mapel' => $alias_mapel,
             'nama_mapel' => $nama_mapel,
             'part'=>1,
+            'jurusan' => $jur
            );
            //call fungsi insert soal
            $this->Modelbank->insert_mapel($datamapel);

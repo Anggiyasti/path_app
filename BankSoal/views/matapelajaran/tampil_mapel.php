@@ -54,10 +54,9 @@
                                 <table class="table table-bordered" id="zero-configuration" style="font-size: 13px">
                                     <thead>
                                         <tr>
-                                            <!-- <th width="5%"></th> -->
-                                            <th>ID Mata Pelajaran</th>
                                             <th>Nama Mata Pelajaran</th>
                                             <th>Alias Mata Pelajaran</th>
+                                            <th>Jurusan</th>
                                             <th >status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -65,9 +64,9 @@
                                     <tbody>
                                      <?php foreach ($data as $ds):?>
                                         <tr>
-                                            <td><?=$ds['id_mapel'];?></td>
                                           <td><?=$ds['nama_mapel'];?></td>
                                           <td><?=$ds['alias_mapel'];?></td>
+                                          <td><?=$ds['jurusan'];?></td>
                                             <td>
                                                 <?php 
                             $status =  $ds['status'];

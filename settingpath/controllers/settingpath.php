@@ -11,6 +11,7 @@ class settingpath extends MX_Controller {
         $this->load->model('videoback/Videobackmodel');
         $this->load->helper(array('form', 'url', 'file', 'html'));
         $this->load->library('form_validation');
+        $this->load->library('pagination');
     }
 
     public function index()
@@ -497,6 +498,64 @@ class settingpath extends MX_Controller {
       }
     }
     // END/
+
+    // coba pagination front
+    public function news()
+    {
+      // FUNGSI VIEW ALL SOAL
+    public function listsoal()
+    {
+
+        // code u/pagination
+       $this->load->database();
+        $jumlah_data = $this->Modelbank->jumlah_data();
+       
+        $config['base_url'] = base_url().'index.php/banksoal/listsoal/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 10;
+
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
+        
+        $from = $this->uri->segment(3);
+        $this->pagination->initialize($config);     
+        $list = $this->Modelbank->data_soal($config['per_page'],$from);
+
+        $this->tampSoal($list);
+    }
+
+    }
 
 
 
