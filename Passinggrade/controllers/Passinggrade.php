@@ -9,6 +9,7 @@ class Passinggrade extends MX_Controller {
         $this->murl = 'assets/adminre/';
         $this->load->model('Mpassing');
         $this->load->model('login/Loginmodel');
+        $this->load->model('workout1/Mworkout1');
         $this->load->helper(array('form', 'url', 'file', 'html'));
         $this->load->library('form_validation');
     }
@@ -17,6 +18,23 @@ class Passinggrade extends MX_Controller {
 		$this->load->model('Mpassing');
 	}
 
+    // fungsi untuk menampilkan berdasarkan universitas
+    public function univ_wilayah($wil)
+    {
+        $data['w'] = 1;
+        $data['data']   = $this->Mpassing->getpassingwilayah(1);
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        $data['log']  = $this->Loginmodel->getlogact();
+        $sis = $this->session->userdata('id_siswa');
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+        $data['dataa']= $this->Mpassing->tampilphoto(); 
+        $this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('baru/v-prodi', $data);
+        $this->load->view('template/siswa2/v-footer');
+        
+    }
 	public function tambah_passing()
 	{
 		//set validation rules
@@ -190,36 +208,44 @@ class Passinggrade extends MX_Controller {
     
     }
 
-    //fungsi untuk memilih prodi
+     //fungsi untuk memilih prodi
     public function pilih_prodi()
-    { 
-        //hak akses jika siswa
+    {
         if ($this->session->userdata('id_siswa')) {
-        $sis = $this->session->userdata('id_siswa');
-        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-        $data['data']   = $this->Mpassing->tampil_prodi();
-        $data['dataa']= $this->Mpassing->tampilphoto(); 
-      
-        $this->load->view('template/siswa2/v-header',$data);
-        $this->load->view('baru/v-pilih-programstudi',$data);
-        $this->load->view('template/siswa2/v-footer');   
-        }
-        //hak akses jika bukan siswa
-    else{
-        redirect('Login');
-    }     
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $data['data']   = $this->Mpassing->tampil_prodi();
+            $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+            $data['log']  = $this->Loginmodel->getlogact();
+            $data['dataa']= $this->Mpassing->tampilphoto(); 
+            $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+
+            $this->load->view('template/siswa2/v-header',$data);
+            $this->load->view('baru/v-pilih-programstudi',$data);
+            $this->load->view('template/siswa2/v-footer');   
+            }
+        else{
+            redirect('Login');
+        }     
     }
 
     // fungsi untuk menampilkan  prodi berdasarkan pilihan 
     public function prodi($prodi)
     {   //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
-       $prodii = urldecode($prodi);
-       $sis = $this->session->userdata('id_siswa');
+        $prodii = urldecode($prodi);
+        $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getprodi($prodii);
         $data['prodi'] = $prodii;
         $data['dataa']= $this->Mpassing->tampilphoto(); 
+        $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+        // get data nilai tertinggi
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        // get data log activity
+        $data['log']  = $this->Loginmodel->getlogact();
       
         $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('baru/v-programstudi',$data);
@@ -239,7 +265,12 @@ class Passinggrade extends MX_Controller {
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['data']   = $this->Mpassing->getpassing();
         $data['dataa']= $this->Mpassing->tampilphoto(); 
-       
+        $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+        // get data nilai tertinggi
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        // get data log activity
+        $data['log']  = $this->Loginmodel->getlogact();
 
         $this->load->view('template/siswa2/v-header',$data);
         $this->load->view('baru/v-passing');
@@ -307,6 +338,12 @@ class Passinggrade extends MX_Controller {
            $b = 100;
         }
         $data['data']  = $this->Mpassing->hasil_passing($a,$b);
+        $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+        // get data nilai tertinggi
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        // get data log activity
+        $data['log']  = $this->Loginmodel->getlogact();
         $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('baru/v-hasilpassing',$data);
         $this->load->view('template/siswa2/v-footer');  
@@ -327,6 +364,15 @@ class Passinggrade extends MX_Controller {
         $data['data']   = $this->Mpassing->getpassinguniv($u);
         $data['univ'] = $u;
         $data['dataa']= $this->Mpassing->tampilphoto(); 
+         // get data nilai tertinggi
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        // get data log activity
+        $data['log']  = $this->Loginmodel->getlogact();
+        $sis = $this->session->userdata('id_siswa');
+        // get data siswa
+        $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
 
         
         $this->load->view('template/siswa2/v-header', $data);
@@ -345,6 +391,12 @@ class Passinggrade extends MX_Controller {
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['dataa']= $this->Mpassing->tampilphoto(); 
         $data['data']=$this->Mpassing->get_topik_byprodi($kunciCari);
+        $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+        // get data nilai tertinggi
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        // get data log activity
+        $data['log']  = $this->Loginmodel->getlogact();
 
         $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('baru/v-search');
@@ -364,7 +416,12 @@ class Passinggrade extends MX_Controller {
          $sis = $this->session->userdata('id_siswa');
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
         $data['dataa']= $this->Mpassing->tampilphoto(); 
-        
+        $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+        // get data nilai tertinggi
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        // get data log activity
+        $data['log']  = $this->Loginmodel->getlogact();
         
         
          $data['data']=$this->Mpassing->get_topik_byprodi($kunciCari);
@@ -384,8 +441,42 @@ class Passinggrade extends MX_Controller {
         redirect('Login');
     }  
     }
-       
 
+    // FUNGSI VIEW WILAYAH
+    public function wilayah()
+    {
+        $wil = $this->input->post('wilayah');
+            if (!isset($wil)) {
+                $data['w'] = 1;
+                $data['data']   = $this->Mpassing->getpassingwilayah(1);
+                $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+                $data['log']  = $this->Loginmodel->getlogact();
+                $sis = $this->session->userdata('id_siswa');
+                $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+                $data['dataa']= $this->Mpassing->tampilphoto(); 
+                $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+                $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+                
+                $this->load->view('template/siswa2/v-header', $data);
+                $this->load->view('baru/v-prodi', $data);
+                $this->load->view('template/siswa2/v-footer');
+            } else {
+                
+                $data['w'] = $wil;
+                $data['data']   = $this->Mpassing->getpassingwilayah($wil);
+                $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+                $data['log']  = $this->Loginmodel->getlogact();
+                $sis = $this->session->userdata('id_siswa');
+                $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+                $data['dataa']= $this->Mpassing->tampilphoto(); 
+                $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+                $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+                
+                $this->load->view('template/siswa2/v-header', $data);
+                $this->load->view('baru/v-prodi', $data);
+                $this->load->view('template/siswa2/v-footer');
+            }
+    }
     
 
 

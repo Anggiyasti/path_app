@@ -97,6 +97,8 @@ class Workout1 extends MX_Controller
             $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
             // get data log acivity
             $data['log']  = $this->Loginmodel->getlogact();
+            $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('template_baru/v-wo-next', $data);
             $this->load->view('template/siswa2/v-footer');
@@ -305,15 +307,18 @@ class Workout1 extends MX_Controller
     {   
         // jika hak akses siswa
         if ($this->session->userdata('id_siswa')) {
+            $sis = $this->session->userdata('id_siswa');
             // get data mata pelajaran
             $data['mapel'] = $this->Mworkout1->getdaftarmapel();
             // get data nilai_tertinggi
-            $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+            $dataa['nilai'] = $this->Mworkout1->nilai_tertinggi();
             // get data log activity
-            $data['log']  = $this->Loginmodel->getlogact();
-            $sis = $this->session->userdata('id_siswa');
-            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-            $this->load->view('template/siswa2/v-header', $data);
+            $dataa['log']  = $this->Loginmodel->getlogact();
+            $dataa['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $dataa['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+            
+            $dataa['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $this->load->view('template/siswa2/v-header', $dataa);
             $this->load->view('template_baru/v-wo-report', $data);
             $this->load->view('template/siswa2/v-footer');
         } else {
@@ -341,6 +346,9 @@ class Workout1 extends MX_Controller
             // get data log activity
             $data['log']  = $this->Loginmodel->getlogact();
 
+            $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('template_baru/v-wo-report2', $data);
             $this->load->view('template/siswa2/v-footer');
@@ -365,6 +373,8 @@ class Workout1 extends MX_Controller
             $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
             // get data log activity
             $data['log']  = $this->Loginmodel->getlogact();
+            $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('template_baru/v-report-detail', $data);
             $this->load->view('template/siswa2/v-footer');

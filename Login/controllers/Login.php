@@ -149,6 +149,8 @@ class Login extends MX_Controller
          //get nilai tertinggi
         $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
         $data['log']  = $this->Loginmodel->getlogact();
+        $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
         //get tampil foto slide 
         $data['data']= $this->Loginmodel->tampilphoto();
         $data['dataa']= $this->Loginmodel->tampilphoto2(); 
@@ -171,6 +173,7 @@ class Login extends MX_Controller
         $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
         $data['log']  = $this->Loginmodel->getlogact();
         $data['data']= $this->Loginmodel->tampilarticle($id);
+
 
             $this->load->view('template/siswa2/v-header',$data);
             $this->load->view('siswa/v-article',$data);

@@ -104,6 +104,8 @@ class Siswa extends MX_Controller {
             $data['email']=$this->session->userdata['email'];
             $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
             $data['log']  = $this->Loginmodel->getlogact();
+            $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
 
             $this->load->view('template/siswa2/v-header',$data);
             $this->load->view('profile_siswa',$data);

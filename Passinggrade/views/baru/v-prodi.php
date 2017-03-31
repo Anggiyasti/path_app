@@ -26,9 +26,22 @@
             <div class="banner-title"></div>
           </div>
          </div>
-         <div style="width: 100%; height: 30%; background-color: #19305B; "><p style="color: #ffffff; font-size: 25px; padding-left: 3%;" >Progam Studi </p></div>
-
-       <?php foreach ($data as $row): ?>
+         <div style="width: 100%; height: 30%; background-color: #19305B; "><p style="color: #ffffff; font-size: 25px; padding-left: 3%;" >Universitas</p></div>
+          
+          <form action="<?= base_url() ?>index.php/passinggrade/wilayah/" method="post" >
+          <select class="browser-default" name="wilayah">
+              <option value="" disabled selected>Pilih Wilayah</option>
+              <option value="1">Wilayah 1</option>
+              <option value="2">Wilayah 2</option>
+              <option value="3">Wilayah 3</option>
+              <option value="4">WIlayah 4</option>
+            </select>
+            <br>
+            <input type="submit" name="cari" value="Tampilkan" class="btn-large primary-color width-100" >
+            </form>
+            <h4 class="p-20" align="center">Wilayah <?=$w?></h4>
+            <div style="text-align: center;"><?php echo $this->session->flashdata('msg'); ?> </div>
+        <?php foreach ($data as $univ) : ?>
        <!-- Profile Content -->
         <div class="animated fadeinup delay-1">
           
@@ -38,7 +51,7 @@
                 <i class="ion-android-mail"></i>
               </div>
               <div class="c-widget-body">
-                <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/prodi/<?=$row['prodi']?>"><?=$row['prodi'];?></a></p>
+                <p class="m-0"><a href="<?=base_url()?>index.php/passinggrade/set_prodi_univ/<?=$univ['universitas']?>"><?=$univ['universitas']?></a></p>
                 
               </div>
             </div>

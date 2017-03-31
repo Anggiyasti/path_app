@@ -9,6 +9,6 @@
     <script src="<?php echo base_url('assets/app/halo/js/jquery.mixitup.min.js')?>"></script>
    <script src="<?php echo base_url('assets/app/halo/js/masonry.min.js')?>"></script>
         <script src="<?php echo base_url('assets/app/halo/js/functions.js')?>"></script>
-        <script src="<?php echo base_url('assets/main-academics/academics-placeholder/js/jquery-2.2.4.min.js')?>" type="text/javascript"></script>
+
   </body>
 </html>

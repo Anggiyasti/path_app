@@ -114,10 +114,15 @@
         return $tampil->result_array();
     }
 
-
-
-
-
-
+     // tampil passing grade
+    public function getpassingwilayah($wil) {
+        $this->db->distinct();
+		$this->db->select()->from('tb_passing_grade');
+		$this->db->where('status', '1');
+		$this->db->where('wilayah', $wil);
+		$this->db->group_by('universitas');
+		$tampil=$this->db->get();
+		return $tampil->result_array();
+    }
 
  } ?>

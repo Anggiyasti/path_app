@@ -47,6 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
             // get data log activity
             $data['log']  = $this->Loginmodel->getlogact();
+            $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
+            $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('t-baru/v-mapel-part', $data);
             $this->load->view('template/siswa2/v-footer');
@@ -104,6 +106,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
             // get data log activity
             $data['log']  = $this->Loginmodel->getlogact();
+            $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
+            $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('t-baru/v-line-topik', $data);
             $this->load->view('template/siswa2/v-footer');
@@ -188,6 +192,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
         // get data log activity
         $data['log']  = $this->Loginmodel->getlogact();
+        $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
         $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('t-baru/v-step-part1', $data);
         $this->load->view('template/siswa2/v-footer');
@@ -388,6 +394,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $dataa['nilai'] = $this->Mworkout1->nilai_tertinggi();
         // get data log activity
         $dataa['log']  = $this->Loginmodel->getlogact();
+        $dataa['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $dataa['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
         $this->load->view('template/siswa2/v-header', $dataa);
         $this->load->view('t-baru/v-report-part1', $data);
         $this->load->view('template/siswa2/v-footer');
@@ -437,50 +445,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
+            if($this->part2($mapel)) {
             
-            $data['simulasi'] = $this->load->Mlinetopik->get_sim_p2($mapel);
-            $data['pel'] = $mapel;
-            $UUID = uniqid();
-            $data['datline']=array();
-            $on=1;
-            $i = 0;
+                $data['simulasi'] = $this->load->Mlinetopik->get_sim_p2($mapel);
+                $data['pel'] = $mapel;
+                $UUID = uniqid();
+                $data['datline']=array();
+                $on=1;
+                $i = 0;
 
-            foreach ($data['simulasi'] as $key) {
-                $stepID= $this->Mlinetopik->get_stepID_p2($mapel)[$i]['id']; 
-                $urutan = $key['simulasi'];
-                $level = $key['level'];
-                $id = $this->session->userdata['id_siswa'];
-                $log=$this->Mlinetopik->get_log_p2($stepID, $id);
-                $step = $log;
-                // PENGECEKAN ENABLE DISABLED 
-                if ($step == true && $on ==1 ) {
-                        $icon='ico-pencil';
-                        $link = base_url('index.php/linetopik/create_session_id_p2/'.$UUID.'/'.'/'.$urutan.'/'.'/'.$level.'/'.$mapel);
-                        $status ="enable";
-                        $on=0;
-                } else {
-                        $icon ='ico-pencil';
-                        $link = 'javascript:void(0)';
-                        $status ="disable";
-                 }
-                $data['datline'][]=array(
-                'simulasi'=> $key['simulasi'],
-                'level'=> $key['level'],
-                'icon' =>$icon,
-                'link' => $link,
-                'status'=>$status);
-                $i++;
+                foreach ($data['simulasi'] as $key) {
+                    $stepID= $this->Mlinetopik->get_stepID_p2($mapel)[$i]['id']; 
+                    $urutan = $key['simulasi'];
+                    $level = $key['level'];
+                    $id = $this->session->userdata['id_siswa'];
+                    $log=$this->Mlinetopik->get_log_p2($stepID, $id);
+                    $step = $log;
+                    // PENGECEKAN ENABLE DISABLED 
+                    if ($step == true && $on ==1 ) {
+                            $icon='ico-pencil';
+                            $link = base_url('index.php/linetopik/create_session_id_p2/'.$UUID.'/'.'/'.$urutan.'/'.'/'.$level.'/'.$mapel);
+                            $status ="enable";
+                            $on=0;
+                    } else {
+                            $icon ='ico-pencil';
+                            $link = 'javascript:void(0)';
+                            $status ="disable";
+                     }
+                    $data['datline'][]=array(
+                    'simulasi'=> $key['simulasi'],
+                    'level'=> $key['level'],
+                    'icon' =>$icon,
+                    'link' => $link,
+                    'status'=>$status);
+                    $i++;
+                }
+
+                $sis = $this->session->userdata('id_siswa');
+                $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+                // get data nilai tertinggi
+                $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+                // get data log activity
+                $data['log']  = $this->Loginmodel->getlogact();
+                $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
+                $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
+                $this->load->view('template/siswa2/v-header', $data);
+                $this->load->view('t-baru/v-simulasi', $data);
+                $this->load->view('template/siswa2/v-footer'); 
+            } else {
+                redirect('login');
             }
-
-            $sis = $this->session->userdata('id_siswa');
-            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-            // get data nilai tertinggi
-            $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
-            // get data log activity
-            $data['log']  = $this->Loginmodel->getlogact();
-            $this->load->view('template/siswa2/v-header', $data);
-            $this->load->view('t-baru/v-simulasi', $data);
-            $this->load->view('template/siswa2/v-footer');
         } else {
             redirect('login');
         }
@@ -730,6 +744,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $dataa['nilai'] = $this->Mworkout1->nilai_tertinggi();
         // get data log activity
         $dataa['log']  = $this->Loginmodel->getlogact();
+        $dataa['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $dataa['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
         $this->load->view('template/siswa2/v-header', $dataa);
         $this->load->view('t-baru/v-report-part2', $data);
         $this->load->view('template/siswa2/v-footer');
@@ -821,6 +837,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $dataa['nilai'] = $this->Mworkout1->nilai_tertinggi();
             // get data log activity
             $dataa['log']  = $this->Loginmodel->getlogact();
+            $dataa['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $dataa['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
             $this->load->view('template/siswa2/v-header', $dataa);
             $this->load->view('t-baru/v_daftar_paket', $data);
             $this->load->view('template/siswa2/v-footer');
@@ -1055,6 +1073,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $dataa['nilai'] = $this->Mworkout1->nilai_tertinggi();
             // get data log activity
             $dataa['log']  = $this->Loginmodel->getlogact();
+            $dataa['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $dataa['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
             $this->load->view('template/siswa2/v-header', $dataa);
             $this->load->view('t-baru/v-reporttryout', $data);
             $this->load->view('template/siswa2/v-footer');
@@ -1091,6 +1111,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $dataa['nilai'] = $this->Mworkout1->nilai_tertinggi();
             // get data log activity
             $dataa['log']  = $this->Loginmodel->getlogact();
+            $dataa['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $dataa['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
             $this->load->view('template/siswa2/v-header', $dataa);
             $this->load->view('t-baru/v-report-paket', $data);
             $this->load->view('template/siswa2/v-footer');

@@ -207,6 +207,8 @@
         // get data nilai tertinggi
         $dataa['nilai'] = $this->Mworkout1->nilai_tertinggi();
         $dataa['log']  = $this->Loginmodel->getlogact();
+        $dataa['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $dataa['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
 
         // pengecekan hak akses
         if ($this->session->userdata('id_siswa')) {

@@ -10,7 +10,8 @@ class Token extends MX_Controller {
 		$this->load->library('parser');
 		$this->load->model('token_model');
 		$this->load->model('siswa/msiswa');
-
+		$this->load->model('login/Loginmodel');
+		$this->load->model('workout1/Mworkout1');
 		$this->load->helper('string');
 	}
 
@@ -227,4 +228,46 @@ class Token extends MX_Controller {
 			$this->token_model->update_token($post);
 		}
 	}
+
+	// Fungsi untuk tampil informasi token di halaman front/siswa
+	function get_info_token()
+	{
+		$id= $this->session->userdata('id_siswa');
+
+		$list = $this->token_model->get_token_siswa($id);
+		$data['token']=array();
+		
+
+		$no = 1;
+		foreach ( $list as $list ) {
+			$date1 = new DateTime($list->tanggal_diaktifkan);
+			$date_diaktifkan = $date1->format('d-M-Y');
+			$date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$list->masaAktif));
+
+			$date1 = new DateTime(date("d-M-Y"));
+			$date2 = new DateTime($date_kadaluarsa);
+			$sisa_aktif = $date2->diff($date1);
+			
+			$data['token'][]=array(
+                'nama'=>$list->nama_depan,
+                'nomortoken'=>$list->nomorToken,
+ 				'masa_aktif'=> $list->masaAktif,
+                'tgl_aktif'=>$date_diaktifkan,
+ 				'tgl_expired'=>$date_kadaluarsa,
+ 				'sisa' => $sisa_aktif->days
+ 			);
+		}
+
+		$data['siswa']  = $this->Loginmodel->get_siswa($id);
+		// get data nilai tertinggi
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        // get data log activity
+        $data['log']  = $this->Loginmodel->getlogact();
+        $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
+ 		$this->load->view('template/siswa2/v-header', $data);
+        $this->load->view('front/v-token-siswa', $data);
+        $this->load->view('template/siswa2/v-footer');
+	}
 }
+?>

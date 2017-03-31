@@ -101,6 +101,16 @@ class Token_model extends CI_Model{
 	$this->db->set('status', 1);
 	$this->db->update('tb_token');
 	}
+
+	// get data token siswa front
+	function get_token_siswa($id_siswa){
+		$this->db->order_by('tb_token.id');
+		$this->db->select( '*,tb_token.id as tokenid,tb_token.status as tokenStatus' )->from( 'tb_token' ); 
+		$this->db->join('tb_siswa', 'tb_token.siswaID = tb_siswa.id_siswa', 'left outer');
+		$this->db->where('tb_token.siswaID', $id_siswa);
+		$query = $this->db->get(); 
+		return $query->result(); 
+	}
 	
 }
 ?>

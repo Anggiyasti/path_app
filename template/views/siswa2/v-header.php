@@ -9,14 +9,14 @@
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <!-- Icons -->
-    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" media="all" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="<?php echo base_url('assets/app/halo/css/keyframes.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/app/halo/css/materialize.min.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/app/halo/css/swiper.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/app/halo/css/swipebox.min.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/app/halo/css/style.css')?>" rel="stylesheet" type="text/css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
     <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
     <script type="text/javascript" src="<?= base_url('assets/library/jquery/preview.js') ?>"></script>
@@ -25,7 +25,7 @@
     // kkkkk
       
     </script>
-    
+    <script type="text/javascript" src="<?= base_url('assets/adminre/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
     <script>
      var base_url = "<?php echo base_url();?>" ;
  </script>
@@ -267,6 +267,16 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
             </ul>
           </div>
         </li>
+        <?php if($status=='1') : ?>
+        <li>
+          <a class="modal-trigger no-child" href="<?= base_url('index.php/linetopik') ?>"><i class="ion-ios-settings-strong"></i>Path</a>
+        </li>
+        <?php else : ?>
+        <li>
+          <!-- Modal Trigger Fixed Footer-->
+          <a class="modal-trigger no-child" href="#modal2"><i class="ion-ios-settings"></i>Path</a>
+        </li>
+      <?php endif; ?>
         <li>
           <div class="collapsible-header">
             <i class="ion-android-document"></i> Passing Grade 
@@ -274,7 +284,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
           <div class="collapsible-body">
             <ul class="collapsible">
               <li>
-                <a href="<?= base_url('index.php/passinggrade/univ') ?>">Universitas</a>   
+                <a href="<?= base_url('index.php/passinggrade/univ_wilayah/1') ?>">Universitas</a>   
                 <a href="<?= base_url('index.php/passinggrade/pilih_prodi') ?>">Prodi</a> 
                 <a href="<?= base_url('index.php/passinggrade/passing') ?>">Passing Grade</a>
                 <a href="<?= base_url('index.php/passinggrade/cari') ?>">Cari Program Studi</a>
@@ -282,11 +292,8 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
             </ul>
           </div>  
         </li>
-        
-        <li>
-          <!-- Modal Trigger Fixed Footer-->
-          <a class="modal-trigger no-child" href="#modal2"><i class="ion-social-rss"></i>Path</a>
-        </li>
+        <li><a href="<?= base_url('index.php/artikel/news') ?>" class="no-child"><i class="ion-social-rss"></i>News</a></li>
+        <li><a href="<?php echo base_url('index.php/token/get_info_token')?>" class="no-child"><i class="ion-android-map"></i>Token</a></li>
         <li><a href="<?php echo base_url('index.php/Login/logout_siswa')?>" class="no-child"><i class="ion-android-exit"></i> Logout</a></li>
         
       </ul>
