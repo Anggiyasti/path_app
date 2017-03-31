@@ -48,7 +48,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             // get data log activity
             $data['log']  = $this->Loginmodel->getlogact();
             $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
+            // cek status path siswa
             $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
+            // get status akttivasi path
+            $data['sp'] = $this->load->Mlinetopik->status_path();
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('t-baru/v-mapel-part', $data);
             $this->load->view('template/siswa2/v-footer');

@@ -36,9 +36,11 @@
       $mapel = $this->input->post('pelajaran');
       $bab = $this->input->post('id_bab');
       $level = $this->input->post('kesulitan');
-      if ($mapel &&$bab && $level) {
+      if ($mapel &&$bab && !empty($level)) {
             //list soal mapel bab level
-        $this->listsoalpelbablevel($mapel,$bab,$level);
+        // $this->listsoalpelbablevel($mapel,$bab,$level);
+          redirect('banksoal/listsoalpelbablevel/'.$mapel.'/'.$bab.'/'.$level);
+
             
         } else if ($mapel && $bab) {
             //list soal mapel dan bab
@@ -165,7 +167,7 @@
        
         $config['base_url'] = base_url().'index.php/banksoal/listsoalpelbablevel/'.$pel.'/'.$bab.'/'.$level.'/';
         $config['total_rows'] = $jumlah_data;
-        $config['per_page'] = 10;
+        $config['per_page'] = 5 ;
 
         // Start Customizing the “Digit” Link
         $config['num_tag_open'] = '<li>';
@@ -201,7 +203,7 @@
         $config['last_tag_close'] = '</li>';
          // END Customizing the last_link Link
         
-        $from = $this->uri->segment(4);
+        $from = $this->uri->segment(5);
         $this->pagination->initialize($config);     
         $list = $this->Modelbank->data_soal_pel_bab_level($config['per_page'],$from,$pel, $bab, $level); 
         $this->tampSoal($list);

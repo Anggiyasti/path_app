@@ -802,6 +802,15 @@
         return $tampil->result_array()[0]['status_path'];
     }
 
+     // cek status pathnya aktif atau tidak
+    public function status_path(){
+        $this->db->select('status');
+        $this->db->from('tb_status_path');
+        $this->db->where('id', 1);
+
+        $tampil=$this->db->get();
+        return $tampil->result_array()[0]['status'];
+    }
 
 
  }

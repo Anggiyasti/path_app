@@ -370,6 +370,18 @@ function ValidateSingleInput(oInput) {
 
 
     });
+
+  // set option kesulitan ################
+           var tampPel=$('#tampMapel').val();
+          if (tampPel ==3) {
+            $('#lvl3').attr('selected','selected');
+          }else if (tampkesulitan==2) {
+            $('#lvl2').attr('selected','selected');
+          }else if (tampkesulitan==1) {
+            $('#lvl1').attr('selected','selected');
+          }else{
+
+          }
 </script>
 <!-- END -->
 

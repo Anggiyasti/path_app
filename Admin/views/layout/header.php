@@ -619,7 +619,7 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
                                 </a>
                             </li>
                              <li >
-                                <a href="#">
+                                <a href="<?=base_url('index.php/settingpath')?>">
                                     <span class="text">Part 2 (Pendalaman)</span>
                                 </a>
                             </li>
@@ -641,7 +641,11 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
 
                                   </ul>
                             </li>
-                            
+                             <li >
+                                <a href="<?=base_url('index.php/settingpath/stat_path')?>">
+                                    <span class="text">Aktivasi Path</span>
+                                </a>
+                            </li>
                         </ul>
                         
                         <!--/ END 2nd Level Menu -->
