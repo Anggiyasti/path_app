@@ -715,11 +715,26 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
                         <!--/ END 2nd Level Menu -->
                     </li>
                     <li>
-                        <a href="<?php echo base_url('index.php/template/slide')?>" data-toggle="submenu"  data-parent=".topmenu">
+                        <a href="javascript:void(0);" data-toggle="submenu" data-target="#slide" data-parent=".topmenu">
                             <span class="figure"><i class="ico-book"></i></span>
                             <span class="text">Ubah Slider</span>
                             <span class="arrow"></span>
                         </a>
+                        <ul id="slide" class="submenu collapse">
+                            <li class="submenu-header ellipsis">Forms</li>
+                             <li >
+                                <a href="<?php echo base_url('index.php/template/slide')?>">
+                                    <span class="text">Slide Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('index.php/template/slide/tampilslide_passing')?>">
+                                    <span class="text">Slide Passing Grade </span>
+                                </a>
+                            </li>
+                            
+                           
+                        </ul>
                         
                         <!--/ END 2nd Level Menu -->
                     </li>

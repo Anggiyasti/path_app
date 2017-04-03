@@ -15,8 +15,18 @@ class m_slide extends CI_Model
 	public function getDaftarslide(){
     	$this->db->distinct();
 		$this->db->select()->from('tb_gambar_front');
+        $this->db->limit('3'); 
 		$tampil=$this->db->get();
+
 		return $tampil->result_array();
+    }
+    public function getDaftarslide_passing(){
+        $this->db->distinct();
+        $this->db->select()->from('tb_gambar_front');
+        $this->db->where('id','4'); 
+
+        $tampil=$this->db->get();
+        return $tampil->result_array();
     }
 
     //ambil semua gambar pada tabel slide
@@ -27,8 +37,6 @@ class m_slide extends CI_Model
 		$this->db->select('*');
 
 		$this->db->from('tb_gambar_front gb');
-        $this->db->join('tb_artikel  art',' art.id_artikel = gb.id_artikel');
-
 		$this->db->where('id',$id); 
 
 		$query = $this->db->get();
@@ -79,6 +87,25 @@ class m_slide extends CI_Model
 
     }
 
+    //model untuk ubah slide dengan gambar 
+    public function gambar_slide_passing($id, $photo) {
+
+        $a  =  $this->input->post('judul');
+     
+        // var_dump($a);
+
+        
+            $data = array(
+            'gambar' => $photo,
+            'id_artikel' => $d
+        );
+       
+        // $id_siswa = $this->session->userdata['email'];
+        $this->db->where('id', $id);
+        $this->db->update('tb_gambar_front', $data);
+        // var_dump($data);
+        redirect(site_url('template/slide/tampilslide_passing'));
+    }
 
 
 
