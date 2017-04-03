@@ -832,9 +832,7 @@ public function upload_video(){
     //form tambah soal
     function form_tambahsoal(){
 
-    $data['tingkat'] = $this->Modelbank->getTingkat();
     $data['mapel']=$this->Modelbank->getmapel();
-    $data['kesulitan'] = $this->Modelbank->getKesulitan();
     
     //hak akses jika admin
     if ($this->session->userdata('id_admin')) {

@@ -92,9 +92,13 @@ class Forgot extends MX_Controller
             $verified = $this->Forgot_model->verify_reset_pass_code($email, $email_code);
 
             if ($verified) {
+                $this->load->view('template/siswa2/v-header');
                 $this->load->view('v-update-pass', array('email_hash' => $email_hash, 'email_code' => $email_code, 'email' => $email));
+                $this->load->view('template/siswa2/v-footer');
             } else {
+                $this->load->view('template/siswa2/v-header');
                 $this->load->view('v-update-pass', array('email_hash' => $email_hash, 'email_code' => $email_code, 'email' => $email));
+                 $this->load->view('template/siswa2/v-footer');
             }
         }
     }
@@ -170,7 +174,7 @@ class Forgot extends MX_Controller
 
             $this->session->set_flashdata('notif', ' Berhasil diupdate');
 
-            $this->load->view('sukses');
+            redirect('login');
 
             return TRUE;
         }

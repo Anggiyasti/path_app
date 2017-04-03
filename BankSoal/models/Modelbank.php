@@ -610,6 +610,11 @@ class Modelbank extends CI_Model
         }
     }
    
+    function getmapel2(){
+    
+    $this->db->where('status=1');
+    return $this->db->get('tb_mata_pelajaran');
+    }
 
 
 

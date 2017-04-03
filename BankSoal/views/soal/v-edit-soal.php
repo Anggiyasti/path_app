@@ -596,7 +596,7 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                                     <label class="col-sm-2"></label>
 
                                         
-                          <div class="col-sm-5">
+                          <div class="col-sm-10">
                                         <?php 
                             $publish =  $banksoal['publish'];
                             // echo $publish;
@@ -613,27 +613,32 @@ if (!isset($piljawaban['4']['id_pilih'])) {
                             <input type="checkbox" name="publish" id="customcheckbox-one1" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" disabled>  
                             <label for="customcheckbox-one1">Publish</label>   
                             </div>';
-                        }
+                            }
                              ?>
+                            <br>
                              <?php 
-                            $random =  $banksoal['random'];
+                           $random =  $banksoal['random'];
                             // echo $publish;
                             // menentukan checked random
                             if ($random == '1') {
-                                echo '<div class="checkbox custom-checkbox nm">  
+                                echo '<span class="checkbox custom-checkbox">
                                 <span class="checkbox custom-checkbox custom-checkbox-inverse">
-                            <input type="checkbox" name="random" id="customcheckbox" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" checked>  
-                            <label for="customcheckbox">&nbsp;&nbsp;Random</label>
+                            <input type="checkbox" name="random" id="customcheckbox1" value="1" checked>  
+                            <label for="customcheckbox1">&nbsp;&nbsp;Random</label>
                             </span>   
-                            </div>';
+                            ';
                             } else {
-                                 echo '<div class="checkbox custom-checkbox nm">  
-                            <input type="checkbox" name="random" id="customcheckbox" value="1" data-toggle="selectrow" data-target="tr" data-contextual="success" disabled>  
-                            <label for="customcheckbox">Random</label>   
-                            </div>';
-                        }
+                                 echo ' 
+                            <span class="checkbox custom-checkbox">
+                                <span class="checkbox custom-checkbox custom-checkbox-inverse">
+                            <input type="checkbox" name="random" id="customcheckbox1" value="1">  
+                            <label for="customcheckbox1">&nbsp;&nbsp;Random</label>
+                            </span>  
+                            ';
+                            }
                              ?>
-                             </div>
+                           
+                             
                              </div>
                                     
                                     <div class="panel-footer">

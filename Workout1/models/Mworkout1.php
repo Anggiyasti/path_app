@@ -12,6 +12,7 @@ class Mworkout1 extends CI_Model
         $this->db->from('tb_mata_pelajaran m');
         $this->db->join('tb_bab b', 'm.id_mapel = b.id_mapel');
 		$this->db->where('m.status = 1');
+        $this->db->where('b.status = 1');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
     }

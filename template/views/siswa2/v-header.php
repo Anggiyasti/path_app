@@ -209,7 +209,7 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
       <!-- Modal Path -->
         <div id="modal2" class="modal">
           <div class="modal-content">
-            <h4>Modal Header</h4>
+            <h4>Perhatian !</h4>
             <p>Apakah anda yakin memilih jurusan <?=$jur?> ?</p>
             <p>Jika ya, jurusan tidak dapat diubah hingga path selesai dikerjakan!</p>
           </div>

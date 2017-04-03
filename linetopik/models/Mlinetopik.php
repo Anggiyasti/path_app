@@ -14,6 +14,7 @@
         $this->db->join('tb_mata_pelajaran m','m.id_mapel = topik.id_mapel');
         $this->db->where('topik.id_mapel',$babID);
         $this->db->where('topik.part', $urutan);
+        $this->db->where('topik.status', 1);
         $this->db->order_by('topik.namaTopik');
         $this->db->order_by('step.urutan', 'asc');
         $query=$this->db->get();
@@ -601,7 +602,7 @@
         $this->db->group_by('id_bank');
         $this->db->where('soal.kesulitan', $level);
         $this->db->where('soal.publish',1);
-        $this->db->where('soal.status',1);
+        // $this->db->where('soal.status',1);
 
         $query = $this->db->get();
         $soal = $query->result_array();
@@ -730,6 +731,8 @@
         $this->db->from('tb_line_topik t');
         $this->db->join('tb_line_step s', 't.id=s.topikID');
         $this->db->where('t.id_mapel', $pel);
+        $this->db->where('t.status', 1);
+        $this->db->where('s.status', 1);
 
         $tampil=$this->db->get();
         return $tampil->result_array()[0]['jumlah_part1'];
@@ -751,12 +754,15 @@
     }
 
     // get count simulasi
-    public function get_count_p2()
+    public function get_count_p2($jur)
     {
         $this->db->distinct();
-        $this->db->select('count(id) as jumlah_simulasi');
-        $this->db->from('tb_part2');
-
+        $this->db->select('count(p.id) as jumlah_simulasi');
+        $this->db->from('tb_part2 p');
+        $this->db->join('tb_mata_pelajaran m', 'p.id_mapel=m.id_mapel');
+        $this->db->where('m.jurusan', $jur);
+        $this->db->or_where('m.jurusan', 'SEMUA');
+        
         $tampil=$this->db->get();
         return $tampil->result_array()[0]['jumlah_simulasi'];
     }
@@ -783,9 +789,9 @@
     }
 
     // update status path siswa 
-    public function update_status_siswa($id_siswa) {
+    public function update_status_siswa($id_siswa, $stat) {
         $arr = array(
-            'status_path'=> '1'
+            'status_path'=> $stat
         );
 
         $this->db->where('id_siswa', $id_siswa);
@@ -812,6 +818,41 @@
         return $tampil->result_array()[0]['status'];
     }
 
+     // get jumlah paket yang harus dikerjakan
+    public function get_jml_paket_by_siswa($id_siswa)
+    {
+        $this->db->select('count(m.id_paket) as jmlh_paket');
+        $this->db->from('tb_mm_tryoutpaket m');
+        $this->db->join('tb_log_tryout l', 'm.id_tryout=l.id_try');
+        $this->db->where('l.id_siswa', $id_siswa);
 
+        $tampil=$this->db->get();
+        // cek jika hasil query null
+        if($tampil->num_rows() == 1) {
+            return $tampil->result_array()[0]['jmlh_paket'];;
+        }else{
+             return $result='';
+        }
+    }
+
+     // get jumlah paket yang telah dikerjakan
+    public function get_jml_log_by_siswa($id_siswa)
+    {
+        $this->db->select('count(m.id_paket) as jmlh_log');
+        $this->db->from('tb_mm_tryoutpaket m');
+        $this->db->join('tb_log_tryout l', 'm.id_tryout=l.id_try');
+        $this->db->join('tb_log_part3 lp', 'm.id_paket = lp.paketID');
+        $this->db->where('l.id_siswa', $id_siswa);
+
+        $tampil=$this->db->get();
+        // cek jika hasil query null
+        if($tampil->num_rows() == 1) {
+            return $tampil->result_array()[0]['jmlh_log'];;
+        }else{
+             return $result='';
+        }
+    }
+
+ 
  }
  ?>

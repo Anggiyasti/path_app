@@ -97,20 +97,19 @@
               <input type="text" class="validate" name="" value="<?=$jur; ?>" disabled>
             </div>
             <h5>Jurusan :</h5>
-            <?php if ($stat == '1') : ?>
+            <?php if ($stat == '0') : ?>
               <input type="text" name="jurusan_sekolah" value="<?=$jurusan_sekolah;?>" id='tampjurusan' hidden="true">
-              <select class="browser-default m-b-30" name="jurusan_sekolah">
-                <option value="0" id="kosong" disabled>--Pilih Jurusan--</option>
-                <option value="IPA" id="ipa" disabled>IPA</option>
-                <option value="IPS" id="ips" disabled>IPS</option>
-                <option value="IPC" id="ipc" disabled>IPC</option>
-              </select> 
-            <?php else : ?>
-              <input type="text" name="jurusan_sekolah" value="<?=$jurusan_sekolah;?>" id='tampjurusan' hidden="true" disabled>
               <select class="browser-default m-b-30" name="jurusan_sekolah">
                 <option value="0" id="kosong">--Pilih Jurusan--</option>
                 <option value="IPA" id="ipa">IPA</option>
                 <option value="IPS" id="ips">IPS</option>
+              </select> 
+            <?php else : ?>
+              <input type="text" name="jurusan_sekolah" value="<?=$jurusan_sekolah;?>" id='tampjurusan' hidden="true" >
+              <select class="browser-default m-b-30" name="jurusan_sekolah">
+                <option value="0" id="kosong" disabled>--Pilih Jurusan--</option>
+                <option value="IPA" id="ipa" disabled>IPA</option>
+                <option value="IPS" id="ips" disabled>IPS</option>
               </select> 
             <?php endif; ?>
             <input type="hidden" name="id_siswa" value="<?=$id_siswa;?>">

@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
            
             $data['mapel'] = $this->load->Mlinetopik->getmapeltopik($jur);
             // update status path siswa menjadi tidak bisa ubah jurusan pelajaran
-            $this->Mlinetopik->update_status_siswa($sis);
+            $this->Mlinetopik->update_status_siswa($sis,1);
             // CEK TO YANG AKTIF
             $lim = $this->load->Mlinetopik->tampil_active()[0]['active'];
             
@@ -109,8 +109,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
             // get data log activity
             $data['log']  = $this->Loginmodel->getlogact();
-            $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
-            $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
+            $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+            $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('t-baru/v-line-topik', $data);
             $this->load->view('template/siswa2/v-footer');
@@ -448,7 +448,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
-            if($this->part2($mapel)) {
+            // if($this->part2($mapel)) {
             
                 $data['simulasi'] = $this->load->Mlinetopik->get_sim_p2($mapel);
                 $data['pel'] = $mapel;
@@ -490,14 +490,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
                 // get data log activity
                 $data['log']  = $this->Loginmodel->getlogact();
-                $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
-                $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
+                $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+                $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
                 $this->load->view('template/siswa2/v-header', $data);
                 $this->load->view('t-baru/v-simulasi', $data);
                 $this->load->view('template/siswa2/v-footer'); 
-            } else {
-                redirect('login');
-            }
+            // } else {
+            //     redirect('login');
+            // }
         } else {
             redirect('login');
         }
@@ -767,8 +767,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $id_siswa = $this->session->userdata('id_siswa');
         //hak akses jika siswa
         if ($id_siswa) {
+            // ambil jurusan pelajaran siswanya dulu
+            $jur = $this->Mlinetopik->get_jurusan($id_siswa);
             // hitung jumlah simulasi part2
-            $data1 = $this->Mlinetopik->get_count_p2(); 
+            $data1 = $this->Mlinetopik->get_count_p2($jur); 
             // hitung jumlah step yang telah dikerjakan
             $data2 = $this->Mlinetopik->get_count_log2($id_siswa);
 
@@ -1035,6 +1037,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
+            $sis = $this->session->userdata('id_siswa');
+            // cek dulu jumlah paket yang harus dikerjakan
+            $jml_paket = $this->load->Mlinetopik->get_jml_paket_by_siswa($sis);
+            // cek jumlah paket yang sudah dikerjakan siswa
+            $jml_log = $this->load->Mlinetopik->get_jml_log_by_siswa($sis);
+            // pengkondisian apakah jumlah log yang dikerjakan sudah sesuai(sama) atau belum
+            // jika sesuai
+            if ($jml_log == $jml_paket) {
+                // update status path siswa menjadi bisa ubah jurusan pelajaran
+                $this->Mlinetopik->update_status_siswa($sis, 0);
+            } else {
+                echo "Keluar";
+            }
+
+
             $data['report'] = $this->load->Mlinetopik->get_reporttry($id_try);
             $data['datline']=array();
             foreach ($data['report'] as $key) {
@@ -1070,7 +1087,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             $data['nilai'] = $total;
 
-            $sis = $this->session->userdata('id_siswa');
+            
             $dataa['siswa']  = $this->Loginmodel->get_siswa($sis);
             // get data nilai tertinggi
             $dataa['nilai'] = $this->Mworkout1->nilai_tertinggi();
@@ -1142,6 +1159,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     );
             $this->Mlinetopik->save_logtry($data);
         }      
+    }
+
+    // fungsi jika test error
+    public function errortest() {
+        $this->load->view('workout1/t-header-soal');
+        $this->load->view('v-error-test.php');
     }
 
  }

@@ -51,12 +51,11 @@
                 <form action="<?=base_url()?>settingpath/test" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="form-horizontal form-bordered" >
                     <div class="form-group">
                         <label class="col-sm-2">Status</label>
-                        <div class="col-sm-5">
+                        <input type="text" name="status" value="<?=$status;?>" id='tampstatus' hidden="true">
                             <select class='form-control' name="status">
-                                <option value='0'>Non Aktif</option>
-                                <option value='1'>Aktif</option>
+                                <option value='0' id='nol'>Non Aktif</option>
+                                <option value='1' id='satu'>Aktif</option>
                             </select>
-                        </div>
                     </div> 
                 </form>
                 <input type="submit" value="Submit" onclick="set_status()">
@@ -104,6 +103,12 @@ function set_status() {
         }
       });
 }
-
+// set option status ################
+var ts =$('#tampstatus').val();
+if (ts == '0') {
+    $('#nol').attr('selected','selected');
+} else {
+    $('#satu').attr('selected','selected');
+}
 
 </script>

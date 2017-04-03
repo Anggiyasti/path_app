@@ -13,7 +13,7 @@
         <!-- Main Content -->
         <div class="login-form animated fadeinup delay-2 z-depth-1">
 
-          <h1>Login</h1>
+          <h1>Forgot</h1>
          <form  name="form-register" action="<?= base_url() ?>index.php/forgot/cobalupa" method="post"> 
           <?php echo validation_errors(); ?>
           <div class="input-field">
