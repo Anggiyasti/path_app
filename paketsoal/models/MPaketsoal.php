@@ -529,6 +529,8 @@ class MPaketsoal extends CI_Model {
 		$this->db->select('id_bab,judul_bab');
 		$this->db->from('tb_bab');
 		$this->db->where('id_mapel', $mapel);
+		$this->db->where('status', '1');
+
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -536,7 +538,7 @@ class MPaketsoal extends CI_Model {
 	{
 		$this->db->select('id_mapel,nama_mapel');
         $this->db->from('tb_mata_pelajaran');
-                // $this->db->where('status',1);
+        $this->db->where('status','1');
                 // $this->db->limit(5);
 		$query = $this->db->get();
 		return $query->result_array();

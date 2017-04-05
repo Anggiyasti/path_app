@@ -52,6 +52,7 @@
                     </div>
                     <div class="table-responsive panel-collapse pull out">
                     <?php echo $this->session->flashdata('msg'); ?>
+                    <?php echo $this->session->flashdata('info'); ?>
                                 <table class="table table-bordered" id="zero-configuration" style="font-size: 13px">
 
                                     <thead>

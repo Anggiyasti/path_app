@@ -15,7 +15,7 @@
                   <div class="modal-body">
                       <div class="panel panel-default">
                          <div class="panel-heading">
-                             <h3 class="panel-title">Tabel Session</h3> 
+                             <h3 class="panel-title">Tabel Season</h3> 
                              <div class="panel-toolbar text-right">
                                 <a class="btn btn-success" 
                                 href="<?= base_url(); ?>index.php/learningline/formlearning" 
@@ -27,7 +27,7 @@
                             <table class="daftartopik table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
                                 <thead>
                                     <tr>
-                                        <th width="50%">Session</th>
+                                        <th width="50%">Season</th>
                                         <th>Part</th>
                                         <th>Urutan Tampil</th>
                                         <th>Status</th>

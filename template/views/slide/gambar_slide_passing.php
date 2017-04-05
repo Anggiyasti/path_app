@@ -33,6 +33,7 @@
                             <!-- panel body -->
                            
            <?php echo $this->session->flashdata('msg'); ?> 
+           
             <form name="form-account" action="<?=base_url()?>index.php/template/slide/gambar_slide_passing/<?=$id; ?>"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
              <div class="form-group">
                                         <label class="col-sm-2">Judul Slide</label>

@@ -170,6 +170,9 @@ class Mlatihan extends CI_Model
 	//random buat bab
 	public function get_soal_bybab( $param ) {
 		$this->db->where( 'bab.id_bab', $param );
+		$this->db->where( 'b.status', '1' );
+		$this->db->where( 'b.publish', '1' );
+
 		// $this->db->where( 'kesulitan', $param['kesulitan'] );
 		$this->db->from( 'tb_bank_soal b' );
 		$this->db->join('tb_bab bab',

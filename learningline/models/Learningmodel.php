@@ -103,6 +103,7 @@ class Learningmodel extends CI_Model{
 		$this->db->from('tb_mata_pelajaran tp');
 		$this->db->join('tb_bab ls','tp.id_mapel=ls.id_mapel');
 		$this->db->where('tp.nama_mapel',$data);
+		$this->db->where('ls.status','1');
 		$query = $this->db->get();
 		return $query->result_array();
 	}

@@ -60,7 +60,7 @@
             <table class="daftartopik table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
                 <thead>
                     <tr>
-                        <th width="50%">Session</th>
+                        <th width="50%">Season</th>
                          <th>part</th>
                         <th>Urutan Tampil</th>
                         <th>Status</th>

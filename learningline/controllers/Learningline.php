@@ -220,6 +220,12 @@ class Learningline extends MX_Controller {
 	// FUNGSI VIEW  SINGLE TOPIK
 	function topik($byid){
 		$metadata = $this->learningmodel->get_bab_by_mapel($byid)[0];
+		$data = array(
+			'judul_halaman' => " - Add Learning Line Step untuk ".$metadata['nama_mapel'],
+
+			'mapel'=>$metadata['nama_mapel'],
+
+			);
 		// PENGECEKAN HAK AKSES
 		if ($this->session->userdata('id_admin')) {
 			$this->load->view('admin/layout/header');

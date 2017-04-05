@@ -116,7 +116,49 @@
                 
 
               </ul>  
-            <?php endif; ?>               
+            <?php endif; ?>  
+
+
+            <h4 class="p-20">Part 4</h4>
+              <ul class="faq collapsible animated fadeinright delay-3" data-collapsible="accordion">
+             
+                <li>
+                  <div class="collapsible-header"><i class="ion-android-options"></i>Part 4</div>
+                  <div class="collapsible-body">
+                  <div id="test1">
+                  <div class="container activity p-l-r-20">
+                <div class="row m-l-0">
+                  <div class="col">
+                   <?php   $i=0; 
+                    $nm_try=''; ?>
+                    <?php foreach ($to as $key ): ?>
+                                    
+                      <?php if ($nm_try != $key['nm_try'] && $i==0): ?>
+                    <div class="contact">
+                      <span class="date"><a href="<?=base_url()?>/linetopik/part3/<?=$key['id_try'] ?>" id="font-<?=$i;?>"><?=$key['nm_try']?></a></span>
+                      <span > <a style="margin-left: 80px;" class="waves-effect waves-light btn primary-color " href="<?=base_url()?>index.php/linetopik/report_tryout/<?=$key['id_try'] ?>" id="font-<?=$i;?>">Report</a></span>
+
+
+                      <div class="dot z-depth-1">
+                      </div>
+        
+                    </div>
+                    <?php endif ?>
+                                        
+      <?php endforeach ?>
+
+                     
+                  </div>
+                </div>
+              </div>
+            </div>
+                  </div>
+                       
+                  </div>
+                </li>
+                
+
+              </ul>              
           </div>
         </div> 
       

@@ -87,7 +87,7 @@ function detail_topik(data){
 //detail bab
 function detail_bab(data){
 	$('.detail_topik').modal('show');
-	judul = " <h4 class='modal-title' style='display: inline'>Daftar Session</h4>";
+	judul = " <h4 class='modal-title' style='display: inline'>Daftar Season</h4>";
 	$('.detail_topik .modal-header').html(judul);
 	$(".detail_topik a").attr("href", base_url+"index.php/learningline/formtopik/"+data);
 	var url = base_url+"index.php/learningline/ajax_get_list_topik/"+data;

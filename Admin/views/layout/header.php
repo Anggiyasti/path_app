@@ -196,8 +196,8 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
     var tgl_akhir  =   $('#to_tglakhir').val();
     var wkt_mulai  =   $('#to_wktmulai').val();
     var wkt_akhir  =   $('#to_wktakhir').val();
-    var publish;
-  if ($('#to_publish:checked')==true) {
+  var publish;
+  if ($('#publisher:checked',true)) {
    publish = 1;
  } else{
    publish = 0;
@@ -334,8 +334,8 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
  <label class="col-sm-3 control-label">Publish</label>
  <div class="col-sm-8">
   <div class="checkbox custom-checkbox custom-checkbox-inverse">  
-   <input type="checkbox" name="publish" id="publish" value="1">  
-   <label for="publish" >&nbsp;&nbsp;</label>   
+   <input type="checkbox" name="publish" id="publisher" value="1">  
+   <label for="publisher" >&nbsp;&nbsp;</label>   
  </div>
 </div>
 </div> 

@@ -6,7 +6,7 @@
  <div class="col-md-12">
   <div class="panel panel-default">
    <div class="panel-heading">
-    <h3 class="panel-title">Tambah Session</h3>
+    <h3 class="panel-title">Tambah Season</h3>
     <div class="panel-toolbar text-right">
       <a class="btn btn-success" 
       href="<?= base_url(); ?>index.php/learningline/learningline" 
@@ -43,7 +43,7 @@
  </div>
 
 <div  class="form-group">
-  <label class="col-sm-3 control-label">Nama Session</label>
+  <label class="col-sm-3 control-label">Nama Season</label>
   <div class="col-sm-8">
 
    <input type="text" class="form-control" name="namaTopik">

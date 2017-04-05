@@ -436,6 +436,7 @@ class Modelbank extends CI_Model
 	public function delete_mapel($id_mapel) {
 		$this->db->where('id_mapel', $id_mapel);
         $this->db->set('status', '0');
+        $this->db->set('part', '0');
         $this->db->update('tb_mata_pelajaran');
 	}
 

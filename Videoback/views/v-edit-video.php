@@ -197,16 +197,17 @@
                               
 					            <div class="form-group">
 					                <label class="col-sm-2">Jenis Video</label>
+                                    <input  type="text" id="tempjenis" name="jenis_video" value="<?=$video['jenis_video']; ?>" hidden="true">
 
 					                <div class="col-sm-8">
 
-					                    <select name="jenis_video" class="form-control" required>
+					                    <select name="jenis_video" id="opjenis" value="<?=$video['jenis_video'];?>" class="form-control" required>
 
 					                        <option value="" selected>-Pilih Jenis Video-</option>
 
-					                        <option value="1">Room Recording</option>
+					                        <option value="1" id="j1">Room Recording</option>
 
-					                        <option value="2">Screen Recording</option>
+					                        <option value="2" id="j2">Screen Recording</option>
 
 					                    </select>
 
@@ -382,7 +383,39 @@ function ValidateSingleInput(oInput) {
           }else{
 
           }
+
+
+
+             // Set option Kesulitan ###########
+          //    var jenis =  $('#jenis').val();
+          // if (jenis != '') {
+          //     var tamid ='#opjenis option[value='+jenis+']';
+          //    $(tamid).attr('selected','selected');
+          // }else{
+          // }
+
+          var tempjenis =  $('#tempjenis').val();
+          if (tempjenis != '') {
+              var tamid ='#opjenis option[value='+tempjenis+']';
+             $(tamid).attr('selected','selected');
+          }else{
+          }
+
+          // set option kesulitan ################
+           var tempjenis=$('#tempjenis').val();
+          if (tempjenis ==2) {
+            $('#j2').attr('selected','selected');
+          }else if (tempjenis==1) {
+            $('#j1').attr('selected','selected');
+          }else{
+
+          }
+
+
 </script>
+
+
+
 <!-- END -->
 
 

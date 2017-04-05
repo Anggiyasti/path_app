@@ -104,6 +104,8 @@ class m_slide extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('tb_gambar_front', $data);
         // var_dump($data);
+      
+        $this->session->set_flashdata('info', '<div class="alert alert-success text-center"> Ubah Berhasil</div>');
         redirect(site_url('template/slide/tampilslide_passing'));
     }
 

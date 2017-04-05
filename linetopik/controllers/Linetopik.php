@@ -1167,6 +1167,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $this->load->view('v-error-test.php');
     }
 
+
+     // FUNGSI VIEW VIDEO PART 3
+    public function video_part4()
+    {
+        //hak akses jika siswa
+        if ($this->session->userdata('id_siswa')) {
+            $data['video'] = $this->load->Mlinetopik->get_view_to($lim);
+           
+            $sis = $this->session->userdata('id_siswa');
+            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+            $this->load->view('template/siswa2/v-header', $data);
+            $this->load->view('t-baru/v-tryout', $data);
+            $this->load->view('template/siswa2/v-footer');
+
+        } else {
+            redirect('login');
+        }
+    }
+    
+
+
+
  }
 
  ?>
