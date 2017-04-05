@@ -30,7 +30,7 @@ class Mworkout1 extends CI_Model
     // get soal
      public function get_soal($id_latihan) {
 
-        $this->db->select('soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw, soal.status, soal.pembahasan');
+        $this->db->select('soal as soal, soal.id_bank as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban_benar as jaw, soal.status, soal.pembahasan, soal.id_bab');
         $this->db->from('tb_bank_soal as soal');
         $this->db->join('tb_mm_sol_lat as sollat', 'sollat.id_soal = soal.id_bank');
         $this->db->where('sollat.id_latihan', $id_latihan);

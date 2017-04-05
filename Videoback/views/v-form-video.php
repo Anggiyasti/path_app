@@ -19,6 +19,24 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+         <!-- Start Modal salah upload size video -->
+<div class="modal fade" id="warninguploadsize" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center text-danger">Peringatan</h2>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-center">Silahkan cek ukuran gambar!</h3>
+        <h5 class="text-center">Ukuran yang bisa di upload maksimal 10MB! </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
  
             <!-- START Template Container -->
             <div class="container-fluid">
@@ -314,6 +332,11 @@ function ValidateSingleInput(oInput) {
                 // oInput.value = "";
                 return false;
             }
+            file = oInput.files[0];
+            if (file.size > 11000000 ) {
+               $('#warninguploadsize').modal('show');
+               return false;
+            } 
         }
     }
     return true;

@@ -6,7 +6,7 @@
         <source src="<?=base_url('assets/video/'.$key['nama_file'])?>" type="video/mp4">
                                                                                     </video>
  <?php else: ?>
- 	<iframe class="youtubePlayer" width="100%" height="630"  frameborder="0" src="https://www.youtube.com/embed/Y-FhDScM_2w" allowfullscreen></iframe>
+ 	<iframe class="youtubePlayer" width="100%" height="630"  frameborder="0" src="<?=$key['link']?>" allowfullscreen></iframe>
 
  	<?php endif ?>
 

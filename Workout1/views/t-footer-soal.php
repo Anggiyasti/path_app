@@ -294,7 +294,6 @@ var base_url = "<?php echo base_url();?>" ;
           if (isConfirm) {
             window.onbeforeunload = null;
             deleteAllCookies('seconds', 'minutes', 'hours');
-            // document.getElementById("hasil").submit();
             cek_workout();
           } else {
             swal("Dibatalkan", "Pengiriman LJK dibatalkan", "error");
@@ -305,16 +304,16 @@ var base_url = "<?php echo base_url();?>" ;
     }}
 
     function cek_workout(){
+      var bab = $('input[name=id_bab]').val();
       $.ajax({
                   type: "POST",
                   dataType: "TEXT",
                   url: base_url+"workout1/cekjawaban",
                   data: $('#hasil').serialize(),
-
                   success: function(){
                     deleteAllCookies('seconds', 'minutes');
                     window.localStorage.clear();
-                    window.location.href = base_url+"workout1";
+                    window.location.href = base_url+"workout1/reportmapel/"+bab;
                   },error:function(){
                     swal('Gagal menghubungkan ke server')
                   }

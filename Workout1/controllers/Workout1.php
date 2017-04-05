@@ -196,6 +196,7 @@ class Workout1 extends MX_Controller
             $query = $this->Mworkout1->get_soal($id);
             $data['soal'] = $query['soal'];
             $data['pil'] = $query['pil'];
+            $data['bab'] = $query['soal'][0]['id_bab'];
             $this->load->view('t-header-soal');
             $this->load->view('v-daftar-test', $data);
             $this->load->view('t-footer-soal');

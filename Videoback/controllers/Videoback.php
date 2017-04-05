@@ -63,19 +63,7 @@ class Videoback extends MX_Controller
          $link=$this->input->post('link_video');
          $option_up=htmlentities($this->input->post('option_up'));
 
-             if ($option_up =='link') {
-                $UUID = uniqid();
-                $linkembed=$this->get_linkembed($link);
-                 $data_video = array(
-                    'judul_video' => $data['judul_video'] ,
-                    'link' => $linkembed,
-                    'deskripsi' => $data['deskripsi'],
-                    'publish' => $data['publish'],
-                    'id_bab' => $data['id_bab'],
-                     'jenis_video' => $data['jenis_video']
-                );
-
-                 if ($link) {
+         if ($link) {
               for ($x = 0; $x < strlen($link); $x++) {
 
             if ($link[$x] == '=' ) {
@@ -91,6 +79,20 @@ class Videoback extends MX_Controller
             $link = '';
             $linkembed = $link;
           }
+
+             if ($option_up =='link') {
+                $UUID = uniqid();
+                // $linkembed=$this->get_linkembed($link);
+                 $data_video = array(
+                    'judul_video' => $data['judul_video'] ,
+                    'link' => $linkembed,
+                    'deskripsi' => $data['deskripsi'],
+                    'publish' => $data['publish'],
+                    'id_bab' => $data['id_bab'],
+                     'jenis_video' => $data['jenis_video']
+                );
+
+                 
                
                 $this->Videobackmodel->insertVideo($data_video);
              }else {
@@ -103,7 +105,7 @@ class Videoback extends MX_Controller
     public function upvideo($data) {
         $date = date("ymd");
         $configVideo['upload_path'] = './assets/video';
-        $configVideo['max_size'] = '600000';
+        $configVideo['max_size'] = '11000';
         $configVideo['allowed_types'] = 'avi|flv|wmv|mp3|mp4';
         $configVideo['overwrite'] = FALSE;
         $configVideo['remove_spaces'] = TRUE;
@@ -177,7 +179,7 @@ class Videoback extends MX_Controller
         $configVideo['max_size'] = '90000';
         $configVideo['allowed_types'] = 'avi|flv|wmv|mp3|mp4';
         $configVideo['overwrite'] = FALSE;
-        $configVideo['remove_spaces'] = TRUE;
+        $configVideo['remove_spaces'] = FALSE;
         $video_name = $date.$_FILES['video']['name'];
         $configVideo['file_name'] = $video_name;
 

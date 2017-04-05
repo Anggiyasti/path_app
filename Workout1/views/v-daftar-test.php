@@ -102,6 +102,8 @@
             <h4><span class="color-red-dark" id="timer"></span></h4>
         </div>
         <input type="text" hidden="true" id="durasi" value="" name="durasi" />
+        <input type="text" id="bab" value="<?=$bab?>" name="id_bab" />
+
     </div>
     
 
@@ -138,13 +140,15 @@
                                      <ul class="bjqs" style="display: block;list-style: none">
                                         <?php foreach ($soal as $key): ?>
                                         <li class="bjqs-slide" style="display: none;">
+
                                             <div class="">
                                                  <div class="panel panel-default" style="">
                                                     <div class="panel-collapse">
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-1 text-center">
-                                                                    <p><h4><?= $i ?>.</h4></p>
+                                                                    <p><h4><?= $i ?>.<?=$key['id_bab']?></h4></p>
+
                                                                 </div>
                                                                 <div class="col-md-11">
                                                                     <?php if (!empty($key['gambar'])) { ?>       
