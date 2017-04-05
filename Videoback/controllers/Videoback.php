@@ -74,6 +74,23 @@ class Videoback extends MX_Controller
                     'id_bab' => $data['id_bab'],
                      'jenis_video' => $data['jenis_video']
                 );
+
+                 if ($link) {
+              for ($x = 0; $x < strlen($link); $x++) {
+
+            if ($link[$x] == '=' ) {
+              $startID=$x+1;
+              $linkembed='https://www.youtube.com/embed/'.substr($link, $startID,11);
+              break;
+            }else{
+              $linkembed=$link;
+            }
+          
+          }
+          } else {
+            $link = '';
+            $linkembed = $link;
+          }
                
                 $this->Videobackmodel->insertVideo($data_video);
              }else {
@@ -86,7 +103,7 @@ class Videoback extends MX_Controller
     public function upvideo($data) {
         $date = date("ymd");
         $configVideo['upload_path'] = './assets/video';
-        $configVideo['max_size'] = '60000';
+        $configVideo['max_size'] = '600000';
         $configVideo['allowed_types'] = 'avi|flv|wmv|mp3|mp4';
         $configVideo['overwrite'] = FALSE;
         $configVideo['remove_spaces'] = TRUE;

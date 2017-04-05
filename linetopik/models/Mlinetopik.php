@@ -853,6 +853,25 @@
         }
     }
 
+
  
+  // ambil semua tryoout
+    public function get_view_video(){
+        $this->db->select('*');
+        $this->db->from('tb_video v');
+        $this->db->where('v.publish',1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // ambil semua tryoout
+    public function get_videobyid($id){
+        $this->db->select('*');
+        $this->db->from('tb_video v');
+        $this->db->where('id_video',$id);
+        $this->db->where('v.publish',1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
  }
  ?>

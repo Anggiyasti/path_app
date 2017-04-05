@@ -23,6 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
             $jur = $this->Mlinetopik->get_jurusan($sis);
+            $data['video'] = $this->load->Mlinetopik->get_view_video(); 
            
             $data['mapel'] = $this->load->Mlinetopik->getmapeltopik($jur);
             // update status path siswa menjadi tidak bisa ubah jurusan pelajaran
@@ -52,6 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
             // get status akttivasi path
             $data['sp'] = $this->load->Mlinetopik->status_path();
+
+            
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('t-baru/v-mapel-part', $data);
             $this->load->view('template/siswa2/v-footer');
@@ -1169,16 +1172,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
      // FUNGSI VIEW VIDEO PART 3
-    public function video_part4()
+    public function video_part4($id_video)
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
-            $data['video'] = $this->load->Mlinetopik->get_view_to($lim);
+            $data['video'] = $this->load->Mlinetopik->get_videobyid($id_video);
            
             $sis = $this->session->userdata('id_siswa');
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
             $this->load->view('template/siswa2/v-header', $data);
-            $this->load->view('t-baru/v-tryout', $data);
+            $this->load->view('t-baru/v_video', $data);
             $this->load->view('template/siswa2/v-footer');
 
         } else {
