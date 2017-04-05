@@ -616,7 +616,12 @@ class Modelbank extends CI_Model
     return $this->db->get('tb_mata_pelajaran');
     }
 
-
+    public function del_banksoal($data) {
+        $this->db->where('id_bank', $data);
+        $this->db->set('publish', '0');
+        $this->db->update('tb_bank_soal');
+    }
+    
 
 }
 

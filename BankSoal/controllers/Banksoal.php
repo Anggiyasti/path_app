@@ -1473,5 +1473,13 @@ function daftarmapelicon(){
 
   }
 
+  public function deletebanksoal2() {
+        if ($this->input->post()) {
+            $post = $this->input->post();
+             $this->Modelbank->del_banksoal($post['id']);
+        }
+           redirect(site_url('banksoal/listsoal'));
+    }
+
 
  } ?>
