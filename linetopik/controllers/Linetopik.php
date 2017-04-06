@@ -1041,19 +1041,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
             $sis = $this->session->userdata('id_siswa');
-            // cek dulu jumlah paket yang harus dikerjakan
-            $jml_paket = $this->load->Mlinetopik->get_jml_paket_by_siswa($sis);
-            // cek jumlah paket yang sudah dikerjakan siswa
-            $jml_log = $this->load->Mlinetopik->get_jml_log_by_siswa($sis);
-            // pengkondisian apakah jumlah log yang dikerjakan sudah sesuai(sama) atau belum
-            // jika sesuai
-            if ($jml_log == $jml_paket) {
-                // update status path siswa menjadi bisa ubah jurusan pelajaran
-                $this->Mlinetopik->update_status_siswa($sis, 0);
-            } else {
-                echo "Keluar";
-            }
-
 
             $data['report'] = $this->load->Mlinetopik->get_reporttry($id_try);
             $data['datline']=array();
@@ -1171,14 +1158,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
 
-     // FUNGSI VIEW VIDEO PART 3
+     // FUNGSI PENGECEKAN UNTUK PART 4
+    public function part4($id_video)
+    {
+        //hak akses jika siswa
+        if ($this->session->userdata('id_siswa')) {
+            $sis = $this->session->userdata('id_siswa');
+            // cek dulu jumlah paket yang harus dikerjakan
+            $jml_paket = $this->load->Mlinetopik->get_jml_paket_by_siswa($sis);
+            // cek jumlah paket yang sudah dikerjakan siswa
+            $jml_log = $this->load->Mlinetopik->get_jml_log_by_siswa($sis);
+            // pengecekan jumlah step 
+            if ($data2 != $data1) {
+                $this->session->set_flashdata('msg','<div class="notification notification-danger">
+                                                        <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+                                                        <p>Part 3 Belum Selesai</p>
+                                                      </div>
+                                                ');
+                redirect('linetopik');
+            } else {
+                redirect('linetopik/video_part4/'.$id_video);
+            }
+            
+        } else {
+            redirect('login');
+        }
+    }
+
+     // FUNGSI VIEW VIDEO PART 4
     public function video_part4($id_video)
     {
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
-            $data['video'] = $this->load->Mlinetopik->get_videobyid($id_video);
-           
             $sis = $this->session->userdata('id_siswa');
+            
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('t-baru/v_video', $data);
