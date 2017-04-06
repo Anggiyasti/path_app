@@ -28,7 +28,6 @@
                                 <thead>
                                     <tr>
                                         <th width="50%">Season</th>
-                                        <th>Part</th>
                                         <th>Urutan Tampil</th>
                                         <th>Status</th>
                                         <th width="20%">Aksi</th>
@@ -111,7 +110,6 @@
                         <tr>
                      
                             <th>Nama Mapel</th>
-                            <th>part</th>
 <!--                             <th>Bab</th>
  -->                        <th>Status Mapel</th>
                             <th width="15%">Aksi</th>

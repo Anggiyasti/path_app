@@ -61,7 +61,6 @@
                 <thead>
                     <tr>
                         <th width="50%">Season</th>
-                         <th>part</th>
                         <th>Urutan Tampil</th>
                         <th>Status</th>
                         <th width="20%">Aksi</th>

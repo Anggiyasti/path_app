@@ -55,24 +55,7 @@
      </div>
    </div>
 
-   <!-- <div class="form-group" id="bab" hidden="true">
-        <label class="col-sm-3 control-label">Bab</label>
-        <div class="col-sm-8">      
-            <select name="judul_bab" id="id_bab" class="form-control" >
-                                           
-        </select>
-        <span id="pesan"></span>
-        </div>
-    </div>
-
-   <div  class="form-group" id="oldbab1">
-    <label class="col-sm-3 control-label">Bab</label>
-    <div class="col-sm-8">
-      <select class='form-control' name="id_bab" id='id_bab'>
-        <option value='0'><?=$bab?></option>
-      </select>
-   </div>
- </div> -->
+ 
 
 <div  class="form-group">
   <label class="col-sm-3 control-label">Nama Season</label>

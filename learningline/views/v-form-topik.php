@@ -35,12 +35,7 @@
  </div>
 </div> -->
 
- <div  class="form-group">
-    <label class="col-sm-3 control-label">Part</label>
-    <div class="col-sm-8">
-     <input type="text" disabled="true" name="part" value="<?=$part; ?>" class="form-control">
-   </div>
- </div>
+ 
 
 <div  class="form-group">
   <label class="col-sm-3 control-label">Nama Season</label>

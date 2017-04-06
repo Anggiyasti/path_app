@@ -41,7 +41,7 @@ class Learningline extends MX_Controller {
 
          
              
-			$row[] = $list_item['part'];
+			// $row[] = $list_item['part'];
 			if ($list_item['status']==1) {
 				$row[] = "<input type='checkbox' 
 				class='switchery' checked onclick='update_learning_bab(".$list_item['id_mapel'].",".$list_item['status'].")'>";
@@ -207,7 +207,7 @@ class Learningline extends MX_Controller {
 			'id_mapel'=>$this->input->post('id_mapel'),
 			'deskripsi'=>$this->input->post('deskripsi'),
 			'namaTopik'=>$this->input->post('namaTopik'),
-			'part'=>$this->input->post('part'),			
+			// 'part'=>$this->input->post('part'),			
 			'status'=>1,
 			'urutan'=>$this->input->post('urutan'),
 			'UUID'=>uniqid(),
@@ -286,7 +286,6 @@ class Learningline extends MX_Controller {
 
 			$row = array();
 			$row[] = $list_item['namaTopik'];
-			$row[] = $list_item['part'];
 			$row[] = $list_item['urutan'];
 			if ($list_item['status']==1) {
 				$row[] = "<input type='checkbox' 
@@ -328,7 +327,6 @@ class Learningline extends MX_Controller {
 				'deskripsi'=>$metatopik['deskripsi'],
 				'mapel'=>$metatopik['nama_mapel'],
 				'mapell'=>$this->Videobackmodel->provinsi(),
-				'part'=>$metatopik['part'],
 				'topikID'=>$metatopik['id'],
 				'mapelID'=>$metatopik['id_mapel'],
 				);
