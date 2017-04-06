@@ -14,7 +14,7 @@
 
 <?php foreach ($video as $key ): ?>
 	<?php if ($key['nama_file'] != null): ?>
-		<video class="responsive-video"  controls>
+		<video class="responsive-video" controls style="height: 600px; width: 100%">
         <source src="<?=base_url('assets/video/'.$key['nama_file'])?>" type="video/mp4" >
 		</video>
  <?php else: ?>

@@ -59,13 +59,6 @@
                       
                     </div>
 
-                    <div class="contact">
-                      <span class="date"><a href="<?=base_url()?>index.php/linetopik/hitung_log_part2">Cek Part 2</a></span>
-                      <div class="dot z-depth-1" style="border-color: green">
-                      </div>
-                      
-                    </div>
-
                   </div>
                 </div>
               </div>
@@ -130,7 +123,7 @@
                                     
                       <?php if ($judul_video != $key['judul_video'] && $i==0): ?>
                     <div class="contact">
-                      <span class="date"><a href="<?=base_url()?>/linetopik/video_part4/<?=$key['id_video'] ?>" id="font-<?=$i;?>"><?=$key['judul_video']?></a></span>
+                      <span class="date"><a href="<?=base_url()?>/linetopik/part4/<?=$key['id_video'] ?>" id="font-<?=$i;?>"><?=$key['judul_video']?></a></span>
                       
 
 

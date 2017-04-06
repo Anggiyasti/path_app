@@ -1191,7 +1191,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //hak akses jika siswa
         if ($this->session->userdata('id_siswa')) {
             $sis = $this->session->userdata('id_siswa');
-            
+            $data['video'] = $this->load->Mlinetopik->get_videobyid($id_video);
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
             $this->load->view('template/siswa2/v-header', $data);
             $this->load->view('t-baru/v_video', $data);
