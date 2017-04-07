@@ -118,10 +118,11 @@
                 <div class="row m-l-0">
                   <div class="col">
                    <?php   $i=0; 
-                    $judul_video=''; ?>
+                    $judul_video='';?>
                     <?php foreach ($video as $key ): ?>
                                     
                       <?php if ($judul_video != $key['judul_video'] && $i==0): ?>
+                     
                     <div class="contact">
                       <span class="date"><a href="<?=base_url()?>/linetopik/part4/<?=$key['id_video'] ?>" id="font-<?=$i;?>"><?=$key['judul_video']?></a></span>
                       

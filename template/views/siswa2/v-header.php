@@ -219,6 +219,21 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
           </div>
         </div>
 
+        <!-- Modal Path -->
+        <div id="modalpath" class="modal">
+          <div class="modal-content">
+            <h4>Perhatian !</h4>
+            <?php $id = $this->session->userdata['id_siswa']; ?>
+            <p>Apakah anda yakin ingin mengulangi latihan? </p>
+            <p>Jika ya, semua report latihan akan terhapus!</p>
+          </div>
+          <div class="modal-footer">
+
+            <a href="<?= base_url('index.php/linetopik/del_latihan/'.$id) ?>" class="modal-action modal-close waves-effect waves-green btn-flat ">Ya</a>
+            <a href="<?= base_url('login') ?>" class="modal-action modal-close waves-effect waves-green btn-flat ">Tidak</a>
+          </div>
+        </div>
+
       
       <!-- Left Sidebar -->
       <ul id="slide-out-left" class="side-nav collapsible">
@@ -267,15 +282,32 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
             </ul>
           </div>
         </li>
-        <?php if($status=='1') : ?>
-        <li>
-          <a class="modal-trigger no-child" href="<?= base_url('index.php/linetopik') ?>"><i class="ion-ios-settings-strong"></i>Path</a>
+         <?php if($status=='1') : ?>
+         <li>
+          <div class="collapsible-header">
+            <i class="ion-ios-settings-strong"></i>path 
+          </div>
+          <div class="collapsible-body">
+            <ul class="collapsible">
+              <li>
+                <a href="<?= base_url('index.php/linetopik') ?>">Path Bejalan </a>
+                <a href="#modalpath" class="modal-trigger" >Ulangi Path Baru </a>
+
+              </li>
+            </ul>
+          </div>
         </li>
         <?php else : ?>
         <li>
           <!-- Modal Trigger Fixed Footer-->
           <a class="modal-trigger no-child" href="#modal2"><i class="ion-ios-settings"></i>Path</a>
         </li>
+       
+        <!-- <li>
+          <a class="modal-trigger no-child" href="<?= base_url('index.php/linetopik') ?>"><i class="ion-ios-settings-strong"></i>Path</a>
+        </li>
+         -->
+       
       <?php endif; ?>
         <li>
           <div class="collapsible-header">
