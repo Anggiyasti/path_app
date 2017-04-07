@@ -1177,6 +1177,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 ');
                 redirect('linetopik');
             } else {
+                // update status path siswa menjadi bisa ubah jurusan pelajaran
+                $this->Mlinetopik->update_status_siswa($sis, 0);
                 redirect('linetopik/video_part4/'.$id_video);
             }
             
@@ -1216,6 +1218,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->Mlinetopik->del_reportpart2($id);
             $this->Mlinetopik->del_reportquiz($id);
             $this->Mlinetopik->del_reportquiz3($id);
+            $this->Mlinetopik->update_status_siswa($id, 0);
             redirect('login');
 
         } else {
