@@ -1201,6 +1201,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             redirect('login');
         }
     }
+
+
+    // FUNGSI delete latihan
+    public function del_latihan($id)
+    {
+        //hak akses jika siswa
+        if ($this->session->userdata('id_siswa')) {
+            // $sis = $this->session->userdata('id_siswa');
+            $this->Mlinetopik->del_logline($id);
+            $this->Mlinetopik->del_loglinepart2($id);
+            $this->Mlinetopik->del_loglinepart3($id);
+            $this->Mlinetopik->del_logtryout($id);
+            $this->Mlinetopik->del_reportpart2($id);
+            $this->Mlinetopik->del_reportquiz($id);
+            $this->Mlinetopik->del_reportquiz3($id);
+            redirect('login');
+
+        } else {
+            redirect('login');
+        }
+    }
     
 
 

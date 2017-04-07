@@ -864,7 +864,7 @@
         return $query->result_array();
     }
 
-    // ambil semua tryoout
+    // ambil semua video
     public function get_videobyid($id){
         $this->db->select('*');
         $this->db->from('tb_video v');
@@ -872,6 +872,54 @@
         $this->db->where('v.publish',1);
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+
+    //query hapus 
+    public function del_logline($id)
+    {
+        $this->db->where('penggunaID',$id);
+        $this->db->delete('tb_line_log');
+    }
+
+     //query hapus 
+    public function del_loglinepart2($id)
+    {
+        $this->db->where('penggunaID',$id);
+        $this->db->delete('tb_line_log_part2');
+    }
+      //query hapus 
+    public function del_loglinepart3($id)
+    {
+        $this->db->where('penggunaID',$id);
+        $this->db->delete('tb_log_part3');
+    }
+
+      //query hapus 
+    public function del_logtryout($id)
+    {
+        $this->db->where('id_siswa',$id);
+        $this->db->delete('tb_log_tryout');
+    }
+     //query hapus 
+    public function del_reportpart2($id)
+    {
+        $this->db->where('id_pengguna',$id);
+        $this->db->delete('tb_report_part2');
+    }
+
+    //query hapus 
+    public function del_reportquiz($id)
+    {
+        $this->db->where('id_pengguna',$id);
+        $this->db->delete('tb_report_quiz');
+    }
+
+     //query hapus 
+    public function del_reportquiz3($id)
+    {
+        $this->db->where('id_pengguna',$id);
+        $this->db->delete('tb_report_quiz3');
     }
  }
  ?>
