@@ -1169,7 +1169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             // cek jumlah paket yang sudah dikerjakan siswa
             $jml_log = $this->load->Mlinetopik->get_jml_log_by_siswa($sis);
             // pengecekan jumlah step 
-            if ($data2 != $data1) {
+            if ($jml_log != $jml_paket) {
                 $this->session->set_flashdata('msg','<div class="notification notification-danger">
                                                         <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
                                                         <p>Part 3 Belum Selesai</p>
