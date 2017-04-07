@@ -54,7 +54,9 @@ class Videobackmodel extends CI_Model
     public function get_video($id)
 	{	
 		$this->db->select('*');
-		$this->db->from('tb_video');
+		$this->db->from('tb_video v');
+		$this->db->join('tb_bab bab','v.id_bab = bab.id_bab');
+		$this->db->join('tb_mata_pelajaran mapel ',' mapel.id_mapel = bab.id_mapel');
 		$this->db->where('id_video',$id);
 		$query = $this->db->get();
 		return $query->result_array();

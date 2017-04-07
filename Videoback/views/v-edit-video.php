@@ -52,7 +52,7 @@
                                     <label class="col-sm-2">Mata Pelajaran</label>
 	                                <div class="col-sm-8">
 	                                    <select class='form-control' name="pelajaran" id='pelajaran'>
-	                       	                <option value='0'>--pilih--</option>
+	                       	                <option value='0'><?=$video['nama_mapel']?></option>
 	                                        <?php 
 	                                        foreach ($mapel as $prov) {
 	                                        echo "<option value='$prov[id_mapel]'>$prov[nama_mapel]</option>";
@@ -65,7 +65,7 @@
                                     <label class="col-sm-2">Bab</label>
                                     <div class="col-sm-8">
                                         <select class='form-control' name="id_bab" id='id_bab'>
-                                    	    <option value='0'>--pilih--</option>
+                                    	    <option value='0'><?=$video['judul_bab']?></option>
                                         </select>
                                     </div>
                                 </div>  
@@ -197,17 +197,18 @@
                               
 					            <div class="form-group">
 					                <label class="col-sm-2">Jenis Video</label>
-                                    <input  type="text" id="tempjenis" name="jenis_video" value="<?=$video['jenis_video']; ?>" hidden="true">
+                                    
 
 					                <div class="col-sm-8">
+                          <input  type="text" name="jenis_video" value="<?=$video['jenis_video']; ?>" id='jenisvideo'  hidden="true">
 
-					                    <select name="jenis_video" id="opjenis" value="<?=$video['jenis_video'];?>" class="form-control" required>
+					                    <select name="jenis_video" class="form-control" required>
 
-					                        <option value="" selected>-Pilih Jenis Video-</option>
+					                        <option value="">-Pilih Jenis Video-</option>
 
-					                        <option value="1" id="j1">Room Recording</option>
+					                        <option value="1" id="lvl1">Room Recording</option>
 
-					                        <option value="2" id="j2">Screen Recording</option>
+					                        <option value="2" id="lvl2">Screen Recording</option>
 
 					                    </select>
 
@@ -223,7 +224,7 @@
 
                 <div class="col-sm-8">
 
-                    <input type="text" name="judul_video" class="form-control" value="<?php echo $editdata->judul_video; ?>">
+                    <input type="text" name="judul_video" class="form-control" value="<?php echo $editdata->judul_video; ?>" required>
 
                     <span class="text-danger"><?php echo form_error('judul_video'); ?></span>
 
@@ -239,7 +240,7 @@
 
                 <div class="col-sm-8">
 
-                    <textarea class="form-control" name="deskripsi" value="<?php echo $editdata->deskripsi; ?>"><?php echo $editdata->deskripsi; ?></textarea>
+                    <textarea class="form-control" name="deskripsi" value="<?php echo $editdata->deskripsi; ?>" required><?php echo $editdata->deskripsi; ?></textarea>
                 </div>
 
             </div>
@@ -248,14 +249,15 @@
                 <label class="col-sm-2">Publish</label>
 
                 <div class="col-sm-4">
+                    <input  type="text" name="publish" value="<?=$video['publish']; ?>" id="tamppublish"  hidden="true">
 
                     <select name="publish" class="form-control">
 
-                        <option value="0" selected>Select</option>
+                        <option value="" >Select </option>
 
-                        <option value="0">Tidak</option>
+                        <option value="0" id="lvl2" >Tidak</option>
 
-                        <option value="1">Ya</option>
+                        <option  value="1" id="lvl3">Ya</option>
 
                     </select>
 
@@ -266,7 +268,8 @@
                 <div class="col-md-2 col-md-offset-4 pull-right">
                 <input type="hidden" name="id_video" value="<?php echo $editdata->id_video;?>">
 
-                    <button type="reset" class="btn btn-default">Reset</button>
+                   
+
 
                     <button type="submit" class="btn btn-success ladda-button" data-style="zoom-in"><span class="ladda-label">Submit</span></button>
 
@@ -279,7 +282,7 @@
         </form>
 
         <!--/ END Form panel -->
- -->                </div>
+             </div>
                 <!--/ END row -->
             </div>
             <!-- Template Container -->
@@ -372,44 +375,35 @@ function ValidateSingleInput(oInput) {
 
     });
 
-  // set option kesulitan ################
-           var tampPel=$('#tampMapel').val();
-          if (tampPel ==3) {
-            $('#lvl3').attr('selected','selected');
-          }else if (tampkesulitan==2) {
+
+
+
+       
+
+        
+          // set option jenis ################
+           var jenisvideo=$('#jenisvideo').val();
+          if (jenisvideo ==2) {
             $('#lvl2').attr('selected','selected');
-          }else if (tampkesulitan==1) {
+          }else if (jenisvideo==1) {
             $('#lvl1').attr('selected','selected');
           }else{
 
           }
 
 
-
-             // Set option Kesulitan ###########
-          //    var jenis =  $('#jenis').val();
-          // if (jenis != '') {
-          //     var tamid ='#opjenis option[value='+jenis+']';
-          //    $(tamid).attr('selected','selected');
-          // }else{
-          // }
-
-          var tempjenis =  $('#tempjenis').val();
-          if (tempjenis != '') {
-              var tamid ='#opjenis option[value='+tempjenis+']';
-             $(tamid).attr('selected','selected');
-          }else{
-          }
-
           // set option kesulitan ################
-           var tempjenis=$('#tempjenis').val();
-          if (tempjenis ==2) {
-            $('#j2').attr('selected','selected');
-          }else if (tempjenis==1) {
-            $('#j1').attr('selected','selected');
+           var tamppublish=$('#tamppublish').val();
+          if (tamppublish ==1) {
+            $('#lvl3').attr('selected','selected');
+          }else if (tamppublish==0) {
+            $('#lvl2').attr('selected','selected');
+         
           }else{
 
           }
+
+
 
 
 </script>

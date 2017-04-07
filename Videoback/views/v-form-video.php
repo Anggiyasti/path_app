@@ -221,7 +221,7 @@
 
                 <div class="col-sm-8">
 
-                    <input type="text" name="judul_video" class="form-control">
+                    <input type="text" name="judul_video" class="form-control"  required>
 
                     <span class="text-danger"><?php echo form_error('judul_video'); ?></span>
 
@@ -237,7 +237,7 @@
 
                 <div class="col-sm-8">
 
-                    <textarea class="form-control" name="deskripsi"></textarea>
+                    <textarea class="form-control" name="deskripsi" required></textarea>
 
                 </div>
 
