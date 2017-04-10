@@ -41,11 +41,25 @@ class Videobackmodel extends CI_Model
 		redirect(site_url('videoback/daftarvideo'));
 	}
 
+	// insert ke db
+	public function insertVideo_part4($data_video)
+	{		
+		$this->db->insert('tb_video_part4', $data_video);
+		redirect(site_url('videoback/daftarvideo_part4'));
+	}
+
 	 // get tampil video
     public function tampilvideo() {
     	$this->db->select('b.id_bab, b.judul_bab, v.id_video, v.judul_video, v.deskripsi, v.nama_file, v.link');
 		$this->db->from('tb_bab b');
 		$this->db->join('tb_video v', 'v.id_bab = b.id_bab');
+		$tampil=$this->db->get();
+		return $tampil->result_array();
+    }
+     // get tampil video
+    public function tampilvideo_part4() {
+    	$this->db->select('v.id, v.judul_video, v.deskripsi, v.nama_file, v.link');
+		$this->db->from('tb_video_part4 v');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
     }
@@ -62,6 +76,16 @@ class Videobackmodel extends CI_Model
 		return $query->result_array();
 	}
 
+	 // get data video untuk dipake update video
+    public function get_video_part4($id)
+	{	
+		$this->db->select('*');
+		$this->db->from('tb_video_part4');
+		$this->db->where('id',$id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
 	// query update video link
 	public function up_video($data)
 	{	
@@ -72,6 +96,16 @@ class Videobackmodel extends CI_Model
 		redirect(site_url('videoback/daftarvideo'));
 	}
 
+	// query update video link
+	public function up_video_part4($data)
+	{	
+		// var_dump($data);
+		$this->db->set($data['video']);
+		$this->db->where('id',$data['id']);
+		$this->db->update('tb_video_part4');
+		redirect(site_url('videoback/daftarvideo_part4'));
+	}
+
 	//query hapus video
 	public function del_video($videoID)
 	{
@@ -79,11 +113,28 @@ class Videobackmodel extends CI_Model
 		$this->db->delete('tb_video');
 	}
 
-	//get nama file untuk menghapus file video di Videoback->function del_file_video
+	//query hapus video
+	public function del_video_part4($videoID)
+	{
+		$this->db->where('id',$videoID);
+		$this->db->delete('tb_video_part4');
+	}
+
+
+//get nama file untuk menghapus file video di Videoback->function del_file_video
   function get_nameFile($videoID){
    $this->db->select('nama_file');
    $this->db->from('tb_video');
    $this->db->where('id_video',$videoID);
+   $query = $this->db->get();
+   return $query->result();
+ }
+
+ //get nama file untuk menghapus file video di Videoback->function del_file_video
+  function get_nameFile_part4($videoID){
+   $this->db->select('nama_file');
+   $this->db->from('tb_video_part4');
+   $this->db->where('id',$videoID);
    $query = $this->db->get();
    return $query->result();
  }

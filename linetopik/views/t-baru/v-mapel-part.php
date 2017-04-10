@@ -124,7 +124,7 @@
                       <?php if ($judul_video != $key['judul_video'] && $i==0): ?>
                      
                     <div class="contact">
-                      <span class="date"><a href="<?=base_url()?>/linetopik/part4/<?=$key['id_video'] ?>" id="font-<?=$i;?>"><?=$key['judul_video']?></a></span>
+                      <span class="date"><a href="<?=base_url()?>/linetopik/part4/<?=$key['id'] ?>" id="font-<?=$i;?>"><?=$key['judul_video']?></a></span>
                       
 
 

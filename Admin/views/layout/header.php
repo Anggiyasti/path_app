@@ -641,6 +641,21 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
 
                                   </ul>
                             </li>
+                            <li >
+                                <a href="javascript:void(0);" data-target="#part4" data-toggle="submenu">
+                                    <span class="text">Part 4 (Video)</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul id="part4" class="submenu collapse ">
+                                    <li ><a href="<?php echo base_url('index.php/Videoback/tambah_video_part4')?>"><span class="text">Tambah Video</span>
+                                    </a></li>
+                                    <li><a href="<?php echo base_url('index.php/Videoback/daftarvideo_part4')?>" ><span class="text">Daftar Video</span>
+                                    </a></li>
+                                    
+
+
+                                  </ul>
+                            </li>
                              <li >
                                 <a href="<?=base_url('index.php/settingpath/stat_path')?>">
                                     <span class="text">Aktivasi Path</span>
