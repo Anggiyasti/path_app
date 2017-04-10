@@ -875,47 +875,47 @@
     }
 
 
-    //query hapus 
+    //query hapus log line
     public function del_logline($id)
     {
         $this->db->where('penggunaID',$id);
         $this->db->delete('tb_line_log');
     }
 
-     //query hapus 
+     //query hapus log line part 2
     public function del_loglinepart2($id)
     {
         $this->db->where('penggunaID',$id);
         $this->db->delete('tb_line_log_part2');
     }
-      //query hapus 
+      //query hapus log line part 3
     public function del_loglinepart3($id)
     {
         $this->db->where('penggunaID',$id);
         $this->db->delete('tb_log_part3');
     }
 
-      //query hapus 
+      //query hapus log tryout
     public function del_logtryout($id)
     {
         $this->db->where('id_siswa',$id);
         $this->db->delete('tb_log_tryout');
     }
-     //query hapus 
+     //query hapus report part2
     public function del_reportpart2($id)
     {
         $this->db->where('id_pengguna',$id);
         $this->db->delete('tb_report_part2');
     }
 
-    //query hapus 
+    //query hapus report quiz
     public function del_reportquiz($id)
     {
         $this->db->where('id_pengguna',$id);
         $this->db->delete('tb_report_quiz');
     }
 
-     //query hapus 
+     //query hapus report quiz 3
     public function del_reportquiz3($id)
     {
         $this->db->where('id_pengguna',$id);
