@@ -1218,6 +1218,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->Mlinetopik->del_reportpart2($id);
             $this->Mlinetopik->del_reportquiz($id);
             $this->Mlinetopik->del_reportquiz3($id);
+            // update status path siswa menjadi bisa ubah jurusan pelajaran
+                $this->Mlinetopik->update_status_siswa($id, 0);
             redirect('login');
 
         } else {
