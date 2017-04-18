@@ -538,7 +538,6 @@ class Videoback extends MX_Controller
          $data['judul_video'] = htmlspecialchars($this->input->post('judul_video'));
          $data['deskripsi'] = htmlspecialchars($this->input->post('deskripsi'));
          $data['publish'] = htmlspecialchars($this->input->post('publish'));
-         $data['jenis_video'] = htmlspecialchars($this->input->post('jenis_video'));
          $link=$this->input->post('link_video');
          $option_up=htmlentities($this->input->post('option_up'));
         if ($this->form_validation->run() == FALSE) {
