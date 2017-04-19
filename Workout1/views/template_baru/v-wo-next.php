@@ -61,6 +61,24 @@
                           <input type="radio" name="jumlahsoal" value="15" id="radio12346">
                           <label for="radio12346">15</label>
                       </div>
+                      <div>
+                          <h3 class="item-title">Materi Pelajaran</h3>
+                      </div>
+                      <div class="baru">
+                      <?php if ($video == array()) : ?>
+                        <h5 style="color: red">Video Materi Pelajaran Belum Tersedia !</h5>
+                      <?php else : ?>
+                        <?php foreach ($video as $key ): ?>
+                          <?php if ($key['nama_file'] != null): ?>
+                            <video class="responsive-video" controls style="height: 300px; width: 100%">
+                                <source src="<?=base_url('assets/video/'.$key['nama_file'])?>" type="video/mp4" >
+                            </video>
+                          <?php elseif($key['link']): ?>
+                            <iframe class="youtubePlayer" width="100%" height="300"  frameborder="0" src="<?=$key['link']?>" allowfullscreen></iframe>
+                          <?php endif ?>
+                        <?php endforeach ?>
+                      <?php endif ?>
+                      </div>
                       <br>
                       <button type="submit" class="waves-effect waves-light btn-large primary-color width-100">GO</button>
                                               

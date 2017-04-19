@@ -49,7 +49,9 @@ class Forgot_model extends CI_Model
         $config['smtp_user'] = 'noreply@sibejooclass.com',
         $config['smtp_pass'] = 'lainkaliaja123', //$from_email password
         $config['mailtype'] = 'html',
-        $config['charset'] = 'iso-8859-1',
+        $config['charset'] = 'utf-8',
+
+        // $config['charset'] = 'iso-8859-1',
         $config['wordwrap'] = TRUE,
         $config['newline'] = "\r\n"
         ); //use double quotes
@@ -63,11 +65,8 @@ class Forgot_model extends CI_Model
         $ci->email->subject('Verifikasi Password');
         $message = '<html><meta/><head/><body>';
 
-        $message .='<p> Permintaan reset password telah diproses,</p>';
+        $message .='<p>Silahkan</p>';
 
-        $message .='<p>Silahkan <strong><a href="' . base_url() . 'index.php/forgot/reset_password_form/' . $list . '/' .$email_code . '">klik disini</a></strong> untuk melakukan reset password akun anda. </p>';
-
-        $message .= '<p>Terimakasih</p>';
 
         $message .= '<p>Journal Academy</p>';
 

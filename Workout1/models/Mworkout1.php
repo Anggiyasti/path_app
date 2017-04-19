@@ -318,6 +318,15 @@ class Mworkout1 extends CI_Model
         return $query->result_array();
     }
 
+     // ambil video berdasarkan bab
+    public function get_videoby_idbab($id){
+        $this->db->select('*');
+        $this->db->from('tb_video');
+        $this->db->where('id_bab',$id);
+        $this->db->where('publish',1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 
  ?>

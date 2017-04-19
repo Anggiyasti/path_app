@@ -38,12 +38,12 @@ class Registrasi extends MX_Controller
         $this->form_validation->set_message('valid_email', '*silahkan masukan alamat email anda dengan benar');
 
         //validate form input
-        if ($this->form_validation->run() == FALSE) {
-            // gagal
-            // $this->load->view('vRegistrasi');
-            redirect('registrasi');
+        // if ($this->form_validation->run() == FALSE) {
+        //     // gagal
+        //     // $this->load->view('vRegistrasi');
+        //     redirect('login');
 
-            } else {
+        //     } else {
             //insert the user registration details into database
             $data = array(
                 'nama_depan' => $this->input->post('nama_depan'),
@@ -56,28 +56,29 @@ class Registrasi extends MX_Controller
             // insert form data into database
             if ($this->registrasi_model->insertUser($data))
             {
+                $this->registrasi_model->send_cobaemail($this->input->post('email'));
                 // send email
-                if ($this->registrasi_model->sendEmail($this->input->post('email')))
-                {
-                    // successfully sent mail
-                    $this->session->set_flashdata('msg','<div class="notification notification-success">You are Successfully Registered! Please confirm the mail sent to your Email-ID!!!</div>');
-                    redirect('registrasi');
-                }
-                else
-                {
-                    // error
-                    $this->session->set_flashdata('msg','<div class="notification notification-danger">
-                        <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
-                        <p>Oops! Error.  Please try again later!!!</p></div>');
-                    redirect('registrasi');
-                }
-            }
-            else
-            {
-                // error
-                $this->session->set_flashdata('msg','<div class="notification notification-danger>Oops! Error.  Please try again later!!!</div>');
-                redirect('registrasi');
-            }
+                // if ($this->registrasi_model->send_reset_email($this->input->post('email')))
+                // {
+                //     // successfully sent mail
+                //     $this->session->set_flashdata('msg','<div class="notification notification-success">You are Successfully Registered! Please confirm the mail sent to your Email-ID!!!</div>');
+                //     redirect('registrasi');
+                // }
+                // else
+                // {
+                //     // error
+                //     $this->session->set_flashdata('msg','<div class="notification notification-danger">
+                //         <a class="close-notification no-smoothState"><i class="ion-android-close"></i></a>
+                //         <p>Oops! Error.  Please try again later!!!</p></div>');
+                //     redirect('registrasi');
+                // }
+            // }
+            // else
+            // {
+            //     // error
+            //     $this->session->set_flashdata('msg','<div class="notification notification-danger>Oops! Error.  Please try again later!!!</div>');
+            //     redirect('registrasi');
+            // }
         }
     }
 

@@ -90,7 +90,8 @@ class Workout1 extends MX_Controller
             $data['soalid']  = $this->Mworkout1->cek_soal($bab);
 
             $sis = $this->session->userdata('id_siswa');
-
+            // get video
+            $data['video'] = $this->Mworkout1->get_videoby_idbab($bab);
             // get data siswa
             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
             // get nilai tertinggi di sidebar
