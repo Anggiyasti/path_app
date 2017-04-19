@@ -25,7 +25,7 @@ class Registrasi_model extends CI_Model
 			$message = 'Dear Journal Student,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> '. base_url() .' index.php/registrasi/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Path Team';
 
 			//configure email settings
-        $config['protocol'] = 'smtp';
+        $config['protocol'] = 'mail';
         $config['smtp_host'] = 'mail.sibejooclass.com'; //smtp host name
         $config['smtp_port'] = '587'; //smtp port number
         $config['smtp_user'] = $from_email;
