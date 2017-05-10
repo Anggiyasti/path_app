@@ -101,6 +101,41 @@ class Registrasi_model extends CI_Model
            show_error($this->email->print_debugger()); //untuk testing
 
     }
+
+    // kirim ulang kode verifikasi
+     public function resend_email($nama_depan)
+    {
+        $ci = get_instance();
+        $ci->load->library('email');
+        $from_email = 'noreply@sibejooclass.com';
+        //configure email settings
+        $config['protocol'] = 'mail';
+        $config['smtp_host'] = 'mail.sibejooclass.com'; //smtp host name
+        $config['smtp_port'] = '587'; //smtp port number
+        $config['smtp_user'] = $from_email;
+        $config['smtp_pass'] = 'lainkaliaja123'; //$from_email password
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'iso-8859-1';
+        $config['validate'] = FALSE;
+        $config['priority'] = 3;
+        $config['crlf'] = "\r\n";
+        $config['smtp_timeout'] = '30';
+        $config['wordwrap'] = TRUE;
+        $config['newline'] = "\r\n"; //use double quotes
+
+        
+        $ci->email->initialize($config);
+        $ci->email->from('noreply@sibejooclass.com', 'Journal Edu');
+        $list = $this->input->post('email');
+        // $list = $email;
+        $ci->email->to(array($list));
+        $ci->email->subject('Verify Your Email Address');
+        $message = 'Dear Student Lovers,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> <strong><a href="' . base_url() . 'index.php/registrasi/verify/' .md5($list) . '">klik disini</a></strong><br /><br /><br /><b>Thanks</b><br /><b>Journal Team</b>';
+
+        $ci->email->message($message);
+        return $this->email->send();
+}
+
 }
 
  ?>

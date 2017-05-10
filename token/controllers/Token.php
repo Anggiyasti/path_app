@@ -13,6 +13,7 @@ class Token extends MX_Controller {
 		$this->load->model('login/Loginmodel');
 		$this->load->model('workout1/Mworkout1');
 		$this->load->helper('string');
+		date_default_timezone_set('Asia/Jakarta');
 	}
 
 	public function index(){
@@ -84,9 +85,14 @@ class Token extends MX_Controller {
 			$date_diaktifkan = $date1->format('d-M-Y');
 			$date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$list->masaAktif));
 
+			// hitung sisa aktif 
 			$date1 = new DateTime(date("d-M-Y"));
 			$date2 = new DateTime($date_kadaluarsa);
-			$sisa_aktif = $date2->diff($date1);
+			if ($date1 > $date2) {
+				$sisa_aktif = '0';
+			} else {
+				$sisa_aktif =$date2->diff($date1)->days;
+			}
 			
 			$row = array();
 			$row[] = $no;
@@ -95,7 +101,7 @@ class Token extends MX_Controller {
 			$row[] = $list->masaAktif;
 			$row[] = $date_diaktifkan;
 			$row[] = $date_kadaluarsa;
-			$row[] = $sisa_aktif->days." Hari";
+			$row[] = $sisa_aktif." Hari";
 			if ($list->tokenStatus==1) {
 				$row[] = "Aktif";
 			$row[] = '<a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$list->tokenid."'".')"><i class="ico-remove"></i></a>';
@@ -244,9 +250,14 @@ class Token extends MX_Controller {
 			$date_diaktifkan = $date1->format('d-M-Y');
 			$date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$list->masaAktif));
 
+			// hitung sisa aktif 
 			$date1 = new DateTime(date("d-M-Y"));
 			$date2 = new DateTime($date_kadaluarsa);
-			$sisa_aktif = $date2->diff($date1);
+			if ($date1 > $date2) {
+				$sisa_aktif = '0';
+			} else {
+				$sisa_aktif =$date2->diff($date1)->days;
+			}
 			
 			$data['token'][]=array(
                 'nama'=>$list->nama_depan,
@@ -254,7 +265,7 @@ class Token extends MX_Controller {
  				'masa_aktif'=> $list->masaAktif,
                 'tgl_aktif'=>$date_diaktifkan,
  				'tgl_expired'=>$date_kadaluarsa,
- 				'sisa' => $sisa_aktif->days
+ 				'sisa' => $sisa_aktif
  			);
 		}
 

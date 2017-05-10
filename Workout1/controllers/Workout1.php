@@ -26,13 +26,17 @@ class Workout1 extends MX_Controller
             // cek dulu statusnya udah di aktifin atau belum
                 if ($token['status']==1) {
                     # udah diaktifin
-                 $date_diaktifkan = $date1->format('d-M-Y');
-                 $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
+                    $date_diaktifkan = $date1->format('d-M-Y');
+                    $date_kadaluarsa =  date("Y-m-d", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
 
-                 $date1 = new DateTime(date("d-M-Y"));
-                 $date2 = new DateTime($date_kadaluarsa);
-                 $sisa_aktif = $date2->diff($date1)->days;
-                         if ($sisa_aktif != 0) {
+                    $date1 = new DateTime(date("d-M-Y"));
+                    $date2 = new DateTime($date_kadaluarsa);
+                    $sisa_aktif = $date2->diff($date1)->days;
+                         if ($date1 > $date2) {
+                            //token habis
+                            $this->session->set_userdata(array('token'=>'Habis'));
+                            $this->settoken();
+                        } else {
                             //token aktif
                             $this->session->set_userdata(array('token'=>'Aktif','sisa'=>$sisa_aktif));
                             // get data nilai tertinggi
@@ -46,13 +50,9 @@ class Workout1 extends MX_Controller
                             $data['siswa']  = $this->Loginmodel->get_siswa($sis);
                             $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
                             $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
-                                $this->load->view('template/siswa2/v-header', $data);
-                                $this->load->view('template_baru/v-wo-bab', $data);
-                                $this->load->view('template/siswa2/v-footer');
-                        }else{
-                            //token habis
-                            $this->session->set_userdata(array('token'=>'Habis'));
-                            $this->settoken();
+                            $this->load->view('template/siswa2/v-header', $data);
+                            $this->load->view('template_baru/v-wo-bab', $data);
+                            $this->load->view('template/siswa2/v-footer');   
                         }
                 }else{
                     // token belum diaktifkan
@@ -69,12 +69,30 @@ class Workout1 extends MX_Controller
             redirect('login');
         }
     }
+    // hitung selisih hari
+    function IntervalDays($CheckIn,$CheckOut){
+        $CheckInX = explode("-", $CheckIn);
+        $CheckOutX =  explode("-", $CheckOut);
+        $date1 =  mktime(0, 0, 0, $CheckInX[1],$CheckInX[2],$CheckInX[0]);
+        $date2 =  mktime(0, 0, 0, $CheckOutX[1],$CheckOutX[2],$CheckOutX[0]);
+        $interval =($date2 - $date1)/(3600*24);
+        // returns numberofdays
+        return  $interval ;
+    }
 
     // untuk menampilkan halaman isi token bila kosong
     function settoken(){
         $sis = $this->session->userdata('id_siswa');
+        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+        // get data mata pelajaran
+        $data['mapel'] = $this->Mworkout1->getdaftarmapel();
+        // get data log activity
+        $data['log']  = $this->Loginmodel->getlogact();
+        $sis = $this->session->userdata('id_siswa');
         // get data siswa
         $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+        $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+        $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
         $this->load->view('template/siswa2/v-header', $data);
         $this->load->view('token/v-set-token');
         $this->load->view('template/siswa2/v-footer');

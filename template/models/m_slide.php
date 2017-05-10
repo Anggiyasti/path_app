@@ -112,14 +112,30 @@ class m_slide extends CI_Model
 
 
     // ambil artikel untuk dropdown memilih artikel
-    public function artikel(){
+    public function artikel($id){
     $this->db->select('*');
+    $this->db->where('id_artikel != '.$id.'');
     $a= $this->db->get('tb_artikel');
 
     return $a->result_array();
 
     }
 
+    //ambil semua gambar pada tabel slide
+    public function get_judul($id)
+
+    {
+
+        $this->db->select('a.id_artikel, a.judul_artikel');
+
+        $this->db->from('tb_artikel a');
+        $this->db->where('a.id_artikel',$id); 
+
+        $query = $this->db->get();
+
+        return $query->result_array()[0];
+
+    }
 
 }
 

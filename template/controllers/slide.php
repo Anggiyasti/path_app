@@ -51,8 +51,11 @@
   public function view($id){
     if ($this->session->userdata('id_admin')) {
        
-            $data['artikel']=$this->m_slide->artikel();
             $data['slide'] = $this->m_slide->get_gambarslide($id);
+            $id_artikel = $data['slide'][0]['id_artikel'];
+            $data['judul_artikel'] = $this->m_slide->get_judul($id_artikel)['judul_artikel'];
+            $data['id_art'] = $this->m_slide->get_judul($id_artikel)['id_artikel'];
+            $data['artikel']=$this->m_slide->artikel($id_artikel);
             $this->load->view('admin/layout/header');
             $this->load->view('slide/gambar_slide',$data);
             $this->load->view('admin/layout/footer');

@@ -32,6 +32,7 @@
                     <div class="pageapp-login-links">
                         <a href="<?php echo base_url('index.php/forgot')?>" class="page-login-forgot"><i class="ion-ios-eye"></i>Forgot Credentials</a>
                         <a href="<?php echo base_url('index.php/registrasi')?>" class="page-login-create">Create Account<i class="ion-android-create"></i></a>
+                        <a href="<?php echo base_url('index.php/registrasi/resend_code')?>" class="page-login-create">Resend Code<i class="ion-android-create"></i></a>
                         <div class="clear"></div>
                     </div>
                     <button type="submit" class="button button-green button-icon button-full half-top full-bottom">Login</button>

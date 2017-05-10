@@ -41,27 +41,28 @@ class Forgot_model extends CI_Model
     {
         $ci = get_instance();
         $ci->load->library('email');
-        $config = Array(
-            //configure email settings
-        $config['protocol'] = 'smtp',
-        $config['smtp_host'] = 'mail.sibejooclass.com', //smtp host name
-        $config['smtp_port'] = '587', //smtp port number
-        $config['smtp_user'] = 'noreply@sibejooclass.com',
-        $config['smtp_pass'] = 'lainkaliaja123', //$from_email password
-        $config['mailtype'] = 'html',
-        $config['charset'] = 'utf-8',
-
-        // $config['charset'] = 'iso-8859-1',
-        $config['wordwrap'] = TRUE,
-        $config['newline'] = "\r\n"
-        ); //use double quotes
+        $from_email = 'noreply@sibejooclass.com';
+        //configure email settings
+        $config['protocol'] = 'mail';
+        $config['smtp_host'] = 'mail.sibejooclass.com'; //smtp host name
+        $config['smtp_port'] = '587'; //smtp port number
+        $config['smtp_user'] = $from_email;
+        $config['smtp_pass'] = 'lainkaliaja123'; //$from_email password
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'iso-8859-1';
+        $config['validate'] = FALSE;
+$config['priority'] = 3;
+$config['crlf'] = "\r\n";
+        $config['smtp_timeout'] = '30';
+        $config['wordwrap'] = TRUE;
+        $config['newline'] = "\r\n"; //use double quotes
         
         
         $ci->email->initialize($config);
         $email_code = '123';
         $ci->email->from('noreply@sibejooclass.com', 'Forgot Password');
         $list = $this->input->post('email');
-        $ci->email->to(array($list));
+        $ci->email->to(array('anggiyasti.putri@mail.unpas.ac.id'));
         $ci->email->subject('Verifikasi Password');
         $message = '<html><meta/><head/><body>';
 

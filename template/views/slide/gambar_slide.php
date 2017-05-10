@@ -5,6 +5,7 @@
      $id = $row['id'];
      $judul = $row['judul'];
      $resume = $row['resume'];
+     $art= $row['id_artikel'];
 
      $gambar=base_url().'assets/app/halo/img/'.$row['gambar'];
      $oldphoto=$row['gambar'];
@@ -56,11 +57,12 @@
                                         <label class="col-sm-2 ">Link Artikel</label>
                                         <div class="col-sm-10">
                                             <select name="id_artikel" id="id_artikel" class="form-control">
+                                            <option value='<?=$id_art;?>'><?=$judul_artikel;?></option>
                                             <?php 
                                                 foreach ($artikel as $row) {
                                                 echo "<option value='$row[id_artikel]'>$row[judul_artikel]</option>";
                                                 }
-                                              ?>
+                                              ?>  
                                         </select>
                                          <br>
                                         </div>

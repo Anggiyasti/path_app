@@ -13,6 +13,7 @@ class Registrasi extends MX_Controller
 		$this->load->library(array('session', 'form_validation', 'email'));
 		$this->load->database();
 		$this->load->model('registrasi_model');
+        $this->load->model('forgot/Forgot_model');
 	}
 
 	function index() {
@@ -94,6 +95,30 @@ class Registrasi extends MX_Controller
         {
             $this->session->set_flashdata('verify_msg','<div class="alert alert-danger text-center">Sorry! There is error verifying your Email Address!</div>');
             redirect('registrasi/register');
+        }
+    }
+
+    public function resend_code()
+    {
+        $this->load->view('login/layout_login/header');
+        $this->load->view('v-form-resend');
+        $this->load->view('login/layout_login/footer');
+    }
+
+    public function kirim_ulang()
+    {
+        $this->load->library('form_validation');
+        $email = $this->input->post('email');
+        if ($result = $this->Forgot_model->cekuser($email)) {
+         $this->registrasi_model->resend_email($result);
+         $this->session->set_flashdata('notif', ' Cek email mu, kode reset telah dikirim');
+        redirect('index.php/forgot');
+        return TRUE;
+        } else {
+            $this->session->set_flashdata('notif', ' Akun dengan email yang dimasukan tidak ada');
+            redirect(base_url('index.php/forgot'));
+
+            return FALSE;
         }
     }
 }
