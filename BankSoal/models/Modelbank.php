@@ -444,10 +444,14 @@ class Modelbank extends CI_Model
 	public function update_bab() {
 		$a  =  $this->input->post('id_bab');
 		$b  =  $this->input->post('judul_bab');
+        $c  =  $this->input->post('keterangan');
+        $d  =  $this->input->post('status_free');
 		
 		$arr = array(
 				'id_bab' => $a,
-				'judul_bab'=> $b
+				'judul_bab'=> $b,
+                'keterangan' => $c,
+                'free' => $d
 			);
 		$this->db->where('id_bab', $a);
 		return $this->db->update('tb_bab', $arr);

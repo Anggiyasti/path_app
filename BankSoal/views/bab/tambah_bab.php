@@ -63,6 +63,16 @@
                                             <input type="text" name="keterangan" class="form-control" >
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2">Status</label>
+                                        <div class="col-sm-5">
+                                            <select name="status_free" class="form-control">
+                                                <option value="0">Free</option>
+                                                <option value="1">Premium</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     
                                     <div class="panel-footer">
                                         <div class="form-group no-border">

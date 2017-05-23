@@ -1272,12 +1272,14 @@ function daftarmapelicon(){
           $id_mapel= htmlspecialchars($this->input->post('id_mapel'));
           $judul_bab = htmlspecialchars($this->input->post('judul_bab'));
           $keterangan= htmlspecialchars($this->input->post('keterangan'));
+          $status_free= htmlspecialchars($this->input->post('status_free'));
 
                  
            $databab = array(
             'id_mapel' => $id_mapel,
             'judul_bab' => $judul_bab,
-            'keterangan' => $keterangan
+            'keterangan' => $keterangan,
+            'free' => $status_free
            );
 
            //call fungsi insert soal

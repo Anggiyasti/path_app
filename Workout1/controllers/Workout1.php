@@ -20,6 +20,7 @@ class Workout1 extends MX_Controller
         $token = $this->msiswa->get_token();
         // cek hak akses, jika siswa
         if ($this->session->userdata('id_siswa')) {
+            // cek dulu punya token atau engga?
             if ($token) {
             //memiliki token
             $date1 = new DateTime($token['tanggal_diaktifkan']);
@@ -41,7 +42,7 @@ class Workout1 extends MX_Controller
                             $this->session->set_userdata(array('token'=>'Aktif','sisa'=>$sisa_aktif));
                             // get data nilai tertinggi
                             $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
-                            // get data mata pelajaran
+                            // get data mata pelajaran dengan semua bab
                             $data['mapel'] = $this->Mworkout1->getdaftarmapel();
                             // get data log activity
                             $data['log']  = $this->Loginmodel->getlogact();
@@ -56,13 +57,40 @@ class Workout1 extends MX_Controller
                         }
                 }else{
                     // token belum diaktifkan
-                    $this->session->set_userdata(array('token'=>'BelumAktif'));
-                    $this->settoken();
+                     // get data nilai tertinggi
+                    $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+                    // get data mata pelajaran 
+                    $data['mapel'] = $this->Mworkout1->getdaftarmapel();
+                    // get data log activity
+                    $data['log']  = $this->Loginmodel->getlogact();
+                    $sis = $this->session->userdata('id_siswa');
+                    // get data siswa
+                    $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+                    $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+                    $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+                    $this->load->view('template/siswa2/v-header', $data);
+                    $this->load->view('template_baru/v-wo-bab', $data);
+                    $this->load->view('template/siswa2/v-footer');
                 }
             }else{
+                // get data nilai tertinggi
+                $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+                // get data mata pelajaran 
+                $data['mapel'] = $this->Mworkout1->getdaftarmapel();
+                // get data log activity
+                $data['log']  = $this->Loginmodel->getlogact();
+                $sis = $this->session->userdata('id_siswa');
+                // get data siswa
+                $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+                $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+                $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+                $this->load->view('template/siswa2/v-header', $data);
+                $this->load->view('template_baru/v-wo-bab', $data);
+                $this->load->view('template/siswa2/v-footer');
                 // belum terdaftar di token
-                $this->session->set_userdata(array('token'=>'TidakAda'));
-                $this->settoken();
+                // $this->session->set_userdata(array('token'=>'TidakAda'));
+                // $this->settoken();
+
             }
         // hak akses jika bukan siswa atau tidak memiliki hak akses
         } else {
@@ -98,29 +126,86 @@ class Workout1 extends MX_Controller
         $this->load->view('template/siswa2/v-footer');
     }
 
-        // fungsi untuk menampilkan form pilih kesulitan dan jumlah soal
+    // fungsi untuk menampilkan form pilih kesulitan dan jumlah soal
     function next($bab) {
+        $token = $this->msiswa->get_token();
         // jika hak akses siswa
         if ($this->session->userdata('id_siswa')) {
-            $data['bab'] = $bab;
+            $status = $this->Mworkout1->cek_bab($bab);
+            // cek dulu bab yang dipilih free atau premium?
+            if ($status == '1') {
+                // cek dulu punya token atau engga?
+            if ($token) {
+            //memiliki token
+            $date1 = new DateTime($token['tanggal_diaktifkan']);
+            // cek dulu statusnya udah di aktifin atau belum
+                if ($token['status']==1) {
+                    # udah diaktifin
+                    $date_diaktifkan = $date1->format('d-M-Y');
+                    $date_kadaluarsa =  date("Y-m-d", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
 
-            // pengecekan soalnya ada atau tidak            
-            $data['soalid']  = $this->Mworkout1->cek_soal($bab);
+                    $date1 = new DateTime(date("d-M-Y"));
+                    $date2 = new DateTime($date_kadaluarsa);
+                    $sisa_aktif = $date2->diff($date1)->days;
+                         if ($date1 > $date2) {
+                            //token habis
+                            $this->session->set_userdata(array('token'=>'Habis'));
+                            $this->settoken();
+                        } else {
+                            //token aktif
+                            $this->session->set_userdata(array('token'=>'Aktif','sisa'=>$sisa_aktif));
+                            $data['bab'] = $bab;
 
-            $sis = $this->session->userdata('id_siswa');
-            // get video
-            $data['video'] = $this->Mworkout1->get_videoby_idbab($bab);
-            // get data siswa
-            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
-            // get nilai tertinggi di sidebar
-            $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
-            // get data log acivity
-            $data['log']  = $this->Loginmodel->getlogact();
-            $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
-            $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
-            $this->load->view('template/siswa2/v-header', $data);
-            $this->load->view('template_baru/v-wo-next', $data);
-            $this->load->view('template/siswa2/v-footer');
+                            // pengecekan soalnya ada atau tidak            
+                            $data['soalid']  = $this->Mworkout1->cek_soal($bab);
+
+                            $sis = $this->session->userdata('id_siswa');
+                            // get video
+                            $data['video'] = $this->Mworkout1->get_videoby_idbab($bab);
+                            // get data siswa
+                            $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+                            // get nilai tertinggi di sidebar
+                            $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+                            // get data log acivity
+                            $data['log']  = $this->Loginmodel->getlogact();
+                            $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+                            $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+                            $this->load->view('template/siswa2/v-header', $data);
+                            $this->load->view('template_baru/v-wo-next', $data);
+                            $this->load->view('template/siswa2/v-footer'); 
+                        }
+                }else{
+                    // token belum diaktifkan
+                    $this->session->set_userdata(array('token'=>'BelumAktif'));
+                    $this->settoken();
+                }
+            }else{
+                // belum terdaftar di token
+                $this->session->set_userdata(array('token'=>'TidakAda'));
+                $this->settoken();
+
+            }
+            } else {
+                $data['bab'] = $bab;
+
+                // pengecekan soalnya ada atau tidak            
+                $data['soalid']  = $this->Mworkout1->cek_soal($bab);
+
+                $sis = $this->session->userdata('id_siswa');
+                // get video
+                $data['video'] = $this->Mworkout1->get_videoby_idbab($bab);
+                // get data siswa
+                $data['siswa']  = $this->Loginmodel->get_siswa($sis);
+                // get nilai tertinggi di sidebar
+                $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+                // get data log acivity
+                $data['log']  = $this->Loginmodel->getlogact();
+                $data['jur']  = $this->Loginmodel->get_siswa($sis)[0]->jurusan_pelajaran;
+                $data['status']  = $this->Loginmodel->get_siswa($sis)[0]->status_path;
+                $this->load->view('template/siswa2/v-header', $data);
+                $this->load->view('template_baru/v-wo-next', $data);
+                $this->load->view('template/siswa2/v-footer');
+            }
 
         // jika bukan hak akses siswa diredirect ke login
         } else {

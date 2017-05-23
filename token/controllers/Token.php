@@ -265,20 +265,26 @@ class Token extends MX_Controller {
  				'masa_aktif'=> $list->masaAktif,
                 'tgl_aktif'=>$date_diaktifkan,
  				'tgl_expired'=>$date_kadaluarsa,
- 				'sisa' => $sisa_aktif
+ 				'sisa' => $sisa_aktif,
+ 				'status' => $list->tokenStatus
  			);
 		}
 
-		$data['siswa']  = $this->Loginmodel->get_siswa($id);
-		// get data nilai tertinggi
-        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
-        // get data log activity
-        $data['log']  = $this->Loginmodel->getlogact();
-        $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
-        $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
- 		$this->load->view('template/siswa2/v-header', $data);
-        $this->load->view('front/v-token-siswa', $data);
-        $this->load->view('template/siswa2/v-footer');
+		// cek dulu statusnya udah di aktifin atau belum
+        // if ($list->tokenStatus==1) {
+			$data['siswa']  = $this->Loginmodel->get_siswa($id);
+			// get data nilai tertinggi
+	        $data['nilai'] = $this->Mworkout1->nilai_tertinggi();
+	        // get data log activity
+	        $data['log']  = $this->Loginmodel->getlogact();
+	        $data['jur']  = $this->Loginmodel->get_siswa($id)[0]->jurusan_pelajaran;
+	        $data['status']  = $this->Loginmodel->get_siswa($id)[0]->status_path;
+	 		$this->load->view('template/siswa2/v-header', $data);
+	        $this->load->view('front/v-token-siswa', $data);
+	        $this->load->view('template/siswa2/v-footer');
+	    // } else {
+	    // 	echo "Belum aktif";
+	    // }
 	}
 }
 ?>

@@ -5,7 +5,7 @@
 */
 class Mworkout1 extends CI_Model
 {
-	// get mapel
+	// get mapel buat yang punya token
 	public function getdaftarmapel(){
     	$this->db->distinct();
 		$this->db->select('m.id_mapel, m.nama_mapel, m.alias_mapel, b.id_mapel, b.id_bab, b.judul_bab, m.gambar');
@@ -13,9 +13,11 @@ class Mworkout1 extends CI_Model
         $this->db->join('tb_bab b', 'm.id_mapel = b.id_mapel');
 		$this->db->where('m.status = 1');
         $this->db->where('b.status = 1');
+        // $this->db->order_by('b.id_bab','desc');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
     }
+
     // get mapel dan bab
     public function get_mapel_bab($mapel) {
     	$this->db->distinct();
@@ -326,6 +328,16 @@ class Mworkout1 extends CI_Model
         $this->db->where('publish',1);
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    // cek bab tersebut free atau premium
+    public function cek_bab($id_bab) {
+        $this->db->select('free');
+        $this->db->from('tb_bab');
+        $this->db->where('id_bab', $id_bab);
+
+        $query = $this->db->get();
+        return $query->result_array()[0]['free'];
     }
 }
 

@@ -21,15 +21,23 @@
               <h3>Anda belum memiliki token</h3>
             <?php else: ?>
               <?php foreach ($token as $token) : ?>
-                <div class="activity animated fadeinright delay-1">
-                  <ul class="course-feature" style="margin-top: 0;">
-                    <li>Nomor Token&nbsp&nbsp&nbsp:&nbsp<?=$token['nomortoken']?></li>
-                    <li>Masa Aktif&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$token['masa_aktif']?> Hari</li>
-                    <li>Tgl Aktif&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$token['tgl_aktif']?></li>
-                    <li>Tgl Berakhir&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$token['tgl_expired']?></li>
-                    <li>Sisa Aktif&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$token['sisa']?> Hari</li>
-                  </ul>
-                </div>
+                <!-- cek dulu statusnya udah di aktifin atau belum -->
+                <?php if ($token['status'] ==1) : ?>
+                    <div class="activity animated fadeinright delay-1">
+                      <ul class="course-feature" style="margin-top: 0;">
+                        <li>Nomor Token&nbsp&nbsp&nbsp:&nbsp<?=$token['nomortoken']?></li>
+                        <li>Masa Aktif&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$token['masa_aktif']?> Hari</li>
+                        <li>Tgl Aktif&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$token['tgl_aktif']?></li>
+                        <li>Tgl Berakhir&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$token['tgl_expired']?></li>
+                        <li>Sisa Aktif&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp<?=$token['sisa']?> Hari</li>
+                      </ul>
+                    </div>
+                <?php else : ?>
+                  <div class="activity animated fadeinright delay-1">
+                  <h4>Token belum aktif.</h4>
+                  </div>
+                    
+                <?php endif; ?>
               <?php endforeach ?>
             <?php endif ?>
             <h4 class="uppercase" align="center">Cara Mengisi Token</h4>
